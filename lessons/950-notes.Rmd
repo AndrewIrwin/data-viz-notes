@@ -1,0 +1,41 @@
+---
+title: "Note and miscellaneous"
+author: "Andrew Irwin"
+date: "10/12/2020"
+output: html_document
+---
+
+## Version 2 planning
+
+* separate slides + live coding + course schedule in to one repository
+* course notes in separate repo. (should help with bookdown, static files, caching)
+* update github instructions. email and name. authentication: https://happygitwithr.com/credential-caching.html#credential-caching
+
+
+
+
+## Multi-panel figures 
+
+patchwork 
+cowplot
+hiding and combining guides
+Adding tags
+Creating space for a legend
+
+marginal plots (histograms, densities)
+
+## notes
+
+ghclass package for teaching with github
+github workshop for teaching https://mine-cetinkaya-rundel.github.io/teach-r-online/
+sugrrants package for visualizing course components
+
+## Miscellaneous
+
+bind_rows
+bind_cols
+
+Plotting functions (algebraic form: x^2, etc. or from regression line predictions)
+tibble. seq. expand.grid. mutate. plot.
+
+http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/
