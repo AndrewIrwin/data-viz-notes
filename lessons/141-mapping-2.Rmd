@@ -1,4 +1,8 @@
-# Mapping part two {#mapping-2}
+---
+always_allow_html: true
+---
+
+# Mapping II {#mapping-2}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -27,7 +31,7 @@ m  # Print the map
 Let's use the city database we used in the MDS lesson to label the 61 cities we selected in that lesson.
 
 ```{r}
-cities <- read_csv("static/selected_cities.csv")
+cities <- read_csv("static/selected_cities.csv", show_col_types = FALSE)
 m2 <- leaflet(data = cities) %>%
   addTiles() %>%
   addCircleMarkers(~ lng, ~lat, label = ~city)
@@ -50,7 +54,7 @@ m3
 
 It's common to see "chloropleth" maps of the USA in which geographic regions are coloured to show a quantitative or categorical variable, such as population density or election results. These maps are less common in Canada due to two main factors: the geographic concentration of the population in cities means that area maps are even less informative than for the USA and the latitude range of Canada makes for some severe challenges when plotting whole-country territory and province chloropleth maps on commonly used projections. Nevertheless, it is possible. Here's a demonstration with some random numbers for "data".
 
-```{r}
+```{r message=FALSE}
 library(geojsonio)
 pal <- colorNumeric("viridis", NULL)  # make a viridis palette
 canada <- geojson_read("https://gist.githubusercontent.com/mikelotis/2156d7c170d10d2c77cb79424fe2137d/raw/7a13748ed7ea5ba64876c77c53b6cb64dd5c3ab0/canada-province.geojson", what="sp")
@@ -75,8 +79,9 @@ There are two steps. First download the tiles needed for your map by specifying
 
 Always start with a small zoom level -- if you make it too big you will download a lot of unnecessary data, which takes time and imposes a burden on the service.
 
-```{r}
-mymap_terrain <- get_stamenmap(bbox = c(left = -130, bottom = 41, right = -50, top = 60), zoom=4, maptype = "terrain")
+```{r message=FALSE}
+mymap_terrain <- get_stamenmap(bbox = c(left = -130, bottom = 41, right = -50, top = 60),
+                               zoom=4, maptype = "terrain")
 ggmap(mymap_terrain)  
 ```
 
@@ -95,7 +100,7 @@ ggmap(mymap_terrain)  +
 
 You can also zoom in on urban areas.
 
-```{r}
+```{r message=FALSE}
 mymap_halifax <- get_stamenmap(bbox = c(left = -63.6-0.1, bottom = 44.60, right = -63.6+0.1, top = 44.75), 
                                zoom=12, maptype = "toner-lite")
 ggmap(mymap_halifax)  

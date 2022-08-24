@@ -8,6 +8,7 @@ library(tidyverse)
 library(report)  # from easystats: remotes::install_github("easystats/report")
 library(here)
 library(gapminder)
+library(styler)
 # needs reticulate for python 
 ```
 
@@ -89,8 +90,9 @@ Here is some carelessly formatted code.
 Here is the same code (and its output) formatted using `styler`:
 
 ```{r tidy='styler', message=FALSE}
-gapminder %>% filter(continent =="Europe") %>% group_by(country) %>% summarize(mean_life_exp = mean(lifeExp), mean_GDP = mean(gdpPercap)) %>% ggplot(
-aes(color = mean_life_exp, x = log10(mean_GDP), y=fct_reorder(country, mean_life_exp))) + geom_point()
+gapminder |> filter(continent =="Europe") |> group_by(country) |>
+  summarize(mean_life_exp = mean(lifeExp), mean_GDP = mean(gdpPercap)) |>
+  ggplot(aes(color = mean_life_exp, x = log10(mean_GDP), y=fct_reorder(country, mean_life_exp))) + geom_point()
 ```
 
 I suggest you write neat and easy to read code in your markdown documents. Don't use automatic tidying as an excuse to make messy code.
@@ -140,26 +142,16 @@ sessionInfo()
 
 If you want to produce bibliographic citations for your packages you can use the `report` package:
 
-```{r}
+```{r results='asis'}
 report::cite_packages()  
 # See also report::report(sessionInfo())
 ```
 
 To absolutely guarantee you can use R code in the future, some applications will benefit from you keeping copies of all the required packages on your own computer system. The [packrat](https://rstudio.github.io/packrat/) and [checkpoint](https://github.com/RevolutionAnalytics/checkpoint) packages can help you manage packages. I have never felt the need to have this level of reproducibility, but I find it reassuring to know these tools exist.
 
-## Using other languages with R markdown
+## Using other languages
 
-R markdown is primarily designed to work with R, but there are many other software tools that are commonly combined with R. These specific tools are outside the goals of this course, but it is valuable to learn about connections between R, R markdown and other computer tools.
-
-In data science, many people work with the [python](https://www.python.org/) programming language. Python works with R markdown much the same way as R. Instead of starting a code chunk with `{r}`, begin with `{python}`. Here's an example
-
-```{python}
-import random
-random.seed(8678309)  # Set a random seed to make the work reproducible
-[ random.random() for i in range(10) ]
-```
-
-This example requires the R package `reticulate` and a working python interpreter that R can find. The Quarto tools for reproducible reports provide even better support for python.
+Quarto is a new publishing tool being developed based on the ideas of R markdown. Quarto is designed to work much like R markdown, but with extra features for publishing books, websites, and presentation slides. Quarto allows you to combine several different programming languages, including python and julia in the same document. For more information see the [Quarto](https://quarto.org/) website. Quarto is already built-in to R and your Rmd documents work fine with Quarto, so if you wanto to learn more about this tool it should be easy to start.
 
 Related to the topic of inter-operation of computing languages, but departing from the topic of R markdown, you can also write C++ code in an R session and execute the compiled code directly from R.
 

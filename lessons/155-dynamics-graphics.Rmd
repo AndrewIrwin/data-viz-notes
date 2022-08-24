@@ -1,3 +1,7 @@
+---
+always_allow_html: true
+---
+
 # Dynamic graphics {#dynamic}
 
 ```{r setup, include=FALSE}
@@ -52,7 +56,9 @@ gapminder %>%
 
 Now we will use functions from the `gganimate` package to change year from one frame to the next. Here we use `transition_state` to change the plot along values of `year`. The animation is produced with just one function: `transition_time(year)` which uses the quantitative value of year to control the display of data over time. The code to show the year in the `geom_text` is not at all obvious.
 
-```{r}
+The results are not shown here, but this code should work in Rstudio.
+
+```{r eval=FALSE}
 animation <- gapminder %>% 
   ggplot() +
   geom_text(aes(label = format(round(year))), 
