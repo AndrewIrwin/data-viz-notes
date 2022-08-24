@@ -13,13 +13,15 @@ the [Marine Microbial Macroecology Lab](https://www.mmab.ca) at Dalhousie and mo
 
 ## Thanks to the community {-}
 
-This course builds on the knoweldge and generosity of many people. 
+This course builds on the knowledge and generosity of many people. 
 
-The software described in this course is all open source; free to use, modify, and extend by all. I started to learn to use these tools as a graduate student with the commercial Splus product. Participants in the open software development model have created an incredible set of resources for students to learn and use.
+The software described in this course is all open source: free to use, modify, and extend by all. I started to learn to use these tools as a graduate student with the commercial product [S-PLUS](https://en.wikipedia.org/wiki/S-PLUS). Participants in the open software development model have created an incredible set of resources for students to learn and use.
 
-I have referenced three textbooks extensively in these notes. All are commerically available books, but the the authors and publishers have made these resources available online in a free to use format, which is wonderful for students and makes it easy for me to refer to specific sections, ideas, and skills demonstrated in these books.
+I have referenced three textbooks extensively in these notes. All are commercially available books, but the the authors and publishers have made these resources available online in a free to use format, which is wonderful for students and makes it easy for me to refer to specific sections, ideas, and skills demonstrated in these books.
 
 Many people are actively engaged in making new resources for learning, supporting the creation of courses, and collecting data for interesting data visualization projects. Many of these are linked throughout these notes and used with much appreciation.
+
+[Posit](https://www.rstudio.com/about/what-makes-rstudio-different/) (formerly Rstudio) is a public benefit corporation based in the USA that is committed to developing tools for the statistics and data science community. The contribution of the Rstudio software and many R packages has been a huge boost to the community of people using R.
 
 ## License {-}
 

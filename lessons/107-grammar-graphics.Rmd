@@ -4,8 +4,6 @@
 
 In this lesson I will explain the concept behind the "grammar of graphics". The emphasis is on the idea and not the particular computing environment (R and ggplot2) that we will use.
 
-Your [task](#task-5) for this lesson is to review some material on ggplot to connect the ideas from the previous lesson to the concept of the grammar of graphics to prepare you for starting to learn the details in the next lesson. There are a few multiple choice questions to answer in this week's task repository.
-
 ## Introduction
 
 By the end of this lesson you should understand the design of the grammar of graphics. This will help you develop a mental model of what the R functions for plotting do, making the process easier to remember and modify to suit your own goals.
@@ -16,9 +14,11 @@ After both lessons, and some practice, you should be able to create new visualiz
 
 ## The layers of a plot
 
-A plot is assembled in layers (see below), starting with data, then adding aesthetic mappings from variables to features, geometries that determine how the features are displayed, optional facets for splitting the plot into subplots, statistics for computing new variables from the data, a coordinate system (usuallly Cartesian), and finally themes for modifying the appearance of the plot independently from the data.
+A plot is assembled in layers (see below), starting with data, then adding aesthetic mappings from variables to features, geometries that determine how the features are displayed, optional facets for splitting the plot into subplots, statistics for computing new variables from the data, a coordinate system (usually Cartesian), and finally themes for modifying the appearance of the plot independently from the data.
 
-```{r echo=FALSE, out.width="80%", fig.align="center", fig.caption="Summary of the layers in a ggplot. From erikaris.com/2020/02/11/understanding-ggplot-the-grammar-of-graphic/"}
+```{r echo=FALSE, out.width="80%", fig.align="center"}
+#| fig-caption: "Summary of the layers in a ggplot. From erikaris.com/2020/02/11/understanding-ggplot-the-grammar-of-graphic/"
+#| label: fig-ggplot-layers
 knitr::include_graphics("static/ggplot-layers.png")
 ```
 

@@ -72,7 +72,7 @@ The following data were collected by a class of students evaluating their abilit
 This dataset has a lot of problems, but they are very typical for data entered by a group of people who are not directly involved in the systematic analysis of the data with a software package like R. (They are not attuned to the problems of data errors.)  Take a look at the [file](static/jelly-bean-data.csv) and see how many problems you can find before continuing.
 
 ```{r}
-jelly <- read_csv(here("static/jelly-bean-data.csv")) %>% clean_names()
+jelly <- read_csv(here("lessons/static/jelly-bean-data.csv")) %>% clean_names()
 # jelly %>% kable() %>% scroll_box()
 ```
 

@@ -8,7 +8,6 @@ guc <- paste0("https://raw.githubusercontent.com/AndrewIrwin/data-visualization/
 
 In this lesson I will show you how to create a basic plot and then demonstrate a sequence of  refinements to the plot.
 
-Your [task](#task-b2) for this lesson is repeat the steps demonstrated here or in the accompanying video. Refer to [Healy Section 2.6](https://socviz.co/gettingstarted.html#make-your-first-figure) for a different basic plot.
 
 ## Introduction
 

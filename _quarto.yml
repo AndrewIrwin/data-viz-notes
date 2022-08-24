@@ -5,7 +5,7 @@ project:
 book:
   title: "Data Visualization notes"
   author: "Andrew Irwin"
-  date: "`r Sys.Date()`"
+  date: "2022-09-06"
   chapters:
     - index.qmd
     - lessons/101-introduction.Rmd
@@ -24,8 +24,6 @@ book:
     - lessons/113-data-tables.Rmd
     - lessons/114-asking-questions.Rmd
     - lessons/118-working-with-models.Rmd
-    - references.qmd
-  later-bits:
     - lessons/119-linear-models.Rmd
     - lessons/120-gam-loess.Rmd
     - lessons/124-collaboration.Rmd
@@ -34,6 +32,9 @@ book:
     - lessons/121-PCA.Rmd
     - lessons/122-mds.Rmd
     - lessons/123-kmean.Rmd
+    - lessons/201-colour.Rmd
+    - lessons/133-themes.Rmd
+    - lessons/130-graphics-output.Rmd
     - lessons/125-slides.Rmd
     - lessons/127-test-data.Rmd
     - lessons/155-dynamics-graphics.Rmd
@@ -41,13 +42,11 @@ book:
     - lessons/141-mapping-2.Rmd
     - lessons/142-mapping-3.Rmd
     - lessons/130-bonus-topics.Rmd
-    - lessons/201-colour.Rmd
-    - lessons/133-themes.Rmd
-    - lessons/130-graphics-output.Rmd
     - lessons/302-staying-organized.Rmd
-    - lessons/901-TMI-R.Rmd
     - lessons/911-ethics.Rmd
+    - lessons/901-TMI-R.Rmd
     - lessons/999-metadata.Rmd
+    - references.qmd
 
 bibliography: references.bib
 

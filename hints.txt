@@ -1,0 +1,27 @@
+# helpful hints
+
+# To preview quarto document from terminal
+
+quarto preview
+
+# to compile and make available using github pages
+
+quarto publish gh-pages
+
+# to find all the libraries needed
+## find in files library()
+## or R snippet (to be written)
+
+
+# incomplete and crappy, but it helps.
+getLessons <- function(directory = "lessons") {
+  fl_qmd <- list.files(here::here(directory), ".Rmd", full.names=TRUE)
+  lessons <- lapply(fl_qmd, readLines) |> unlist()
+  pkgs0 <- sort(unique(lessons[grep("library\\(", lessons)]))
+  needed <- str_remove(pkgs0, "^library") |> str_remove_all("\\(|\\)") |> str_squish()
+  have <- installed.packages()[, "Package"]
+  setdiff(needed, have)
+}
+
+install.packages(c("vegan", "tidymodels", "statebins", "sf", "dlookr", "equatiomatic", "fields", "gapminder", "geojsonio", 
+  "caret", "leaflet", "ggvegan"))

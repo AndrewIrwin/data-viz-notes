@@ -4,8 +4,6 @@
 
 In this lesson you will start using the computer tools introduced in the previous lesson.
 
-Your [task](#task-2) for this lesson is to follow along with the instructions and provide some information on Brightspace at the link marked Task 2.
-
 ## Introduction
 
 The statistical software R and RStudio and version control software git will be used in this course. No prior experience with
@@ -18,29 +16,31 @@ In this lesson you will
 * create a github account, and
 * complete a task to let me know this is done or ask for help and tell me your github account name.
 
-The steps below are demonstrated for a Windows and Macintosh computer in [videos](https://dal.brightspace.com/d2l/le/content/159870/Home?itemIdentifier=D2L.LE.Content.ContentObject.ModuleCO-2083726) on Brightspace. available on Brightspace. If you use a Chromebook, you can't install this software, so skip ahead to the rstudio.cloud section. If you use linux, follow the instructions below to install the software and contact me if you have trouble.
+The steps below are written for Windows and Macintosh computers, with necessary variations noted.
+If you use a Chromebook, you can't install this software, so skip ahead to the rstudio.cloud section. 
+If you use linux, adapt the instructions below to install the software and contact me if you have trouble.
 
 ## R
 
-* To download and install R go to [r-project.org](https://www.r-project.org/) and click on the link to [download R](http://cran.r-project.org/mirrors.html)
+* To download and install R go to [r-project.org](https://www.r-project.org/) and click on the link to [download R](https://cloud.r-project.org/). For Mac, you want "R-4.2.1.pkg" (or a more recent version). For Windows, follow the link marked "base". If you already have R installed, please check to be sure you have version 4.0 or later, and update the software if you have an older version. You can see the version of R with the command `R.version`.
 
 ## Rstudio
 
-* To download and install Rstudio, go to [Rstudio.com](https://www.rstudio.com/) and click on the link to [download Rstudio](https://rstudio.com/products/rstudio/download/)
+* To download and install Rstudio, go to [Rstudio.com](https://www.rstudio.com/) and click on the download link to [download Rstudio](https://rstudio.com/products/rstudio/download/). You want the free Rstudio Desktop for your computer (Windows, Mac, Linux).
 
 ## Git
 
 * To download and install git: 
   * on Windows, go to [git-scm.org](https://git-scm.org) and click on the link to [download a version for Windows](https://git-scm.com/download/win)
-  * on Macintosh, use the [Terminal app](https://www.dummies.com/computers/macs/mac-operating-systems/unix-terminal-application-on-your-macbook/) and type `xcode-select --install` to download and install git. There should be two minus signs in front of "install"; some web browsers may display this incorrectly as a dash (one symbol).
+  * on Macintosh, use the [Terminal app](https://www.dummies.com/computers/macs/mac-operating-systems/unix-terminal-application-on-your-macbook/) or the [Terminal tab](https://support.rstudio.com/hc/en-us/articles/115010737148-Using-the-RStudio-Terminal-in-the-RStudio-IDE) in Rstudio and type `xcode-select --install` to download and install git. There should be two minus signs in front of "install"; some web browsers may display this incorrectly as a dash (one symbol).
 
 ## rstudio.cloud
 
-If you have a Chromebook you can use R, Rstudio and git through the cloud service [rstudio.cloud](https://rstudio.cloud/project/1998812). **Everyone** should learn to use the cloud service as a backup in case of problems with the software on their own computer.
+If you have a Chromebook you can use R, Rstudio and git through the cloud service [rstudio.cloud](https://rstudio.cloud/). **Everyone** should learn to use the cloud service as a backup in case of problems with the software on their own computer.
 
 ## Dalhousie on-campus labs
 
-R and Rstudio are available on Dalhousie computer labs, but the git version control software must be installed following the instructions for Windows computers above. Since all your user files are erased from lab computers when you log out, this process must be repeated on each login.
+R and Rstudio are available on Dalhousie computer labs, but the git version control software must be installed following the instructions for Windows computers above. Since all your user files are erased from lab computers when you log out, this process must be repeated on each login. For this reason, I don't recommend using lab computers for this course, unless you are using the [rstudio.cloud](https://rstudio.cloud/) service.
 
 ## Packages
 
@@ -58,14 +58,18 @@ my_packages <- c("tidyverse", "broom", "coefplot", "cowplot",
                  "here", "interplot", "margins", "maps", "mapproj",
                  "mapdata", "MASS", "quantreg", "rlang", "scales",
                  "survey", "srvyr", "viridis", "viridisLite", 
-                 "socviz", "devtools", "patchwork")
+                 "socviz", "devtools", "patchwork", "usethis", "gitcreds",
+                 "remotes", "paletteer", "ggthemes", "ggtext")
 
 install.packages(my_packages)
 ```
 
 ## Github
 
-Github is a web service for sharing and publishing github repositories and many related services. For today, all you need to do is [create an account](https://github.com/join?ref_cta=Sign+up) and tell me your github name on a Brightspace quiz. Once I have your github name I will send you an invitation to join course resources by email.
+Github is a web service for sharing and publishing github repositories and many related services. We will learn more about using the service in later lessons.
 
+## Exercises
+
+The task today is especially important. Get all these tools working on your computer by installing them or using rstudio.cloud before the next lesson.
 
 

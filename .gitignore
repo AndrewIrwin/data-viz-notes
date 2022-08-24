@@ -8,3 +8,4 @@ _book/*
 /_site/
 /_book/
 /docs/
+.DS_Store

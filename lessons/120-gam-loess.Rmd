@@ -21,7 +21,7 @@ Generalized additive models are most commonly used when there is no theoretical 
 We will start by using the last decade of data from Lesson 1.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-co2 <- read_delim("static/co2_mm_mlo.txt", skip = 53, delim=" ",
+co2 <- read_table("static/co2_mm_mlo.txt", skip = 53,
                 col_names = c("year", "month", "decimal_date", "co2_avg", NA, NA, NA, NA)) %>%
   dplyr::select(year, month, decimal_date, co2_avg) %>%
   mutate(across(everything(), as.numeric),
