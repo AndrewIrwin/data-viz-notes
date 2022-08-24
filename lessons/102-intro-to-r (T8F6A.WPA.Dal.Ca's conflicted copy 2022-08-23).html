@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Visualization notes - 2&nbsp; Computer tools</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lessons/103-setup.html" rel="next">
+<link href="../lessons/101-introduction.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Computer tools</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Data Visualization notes</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/101-introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Invitation to Data Visualization</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/102-intro-to-r.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Computer tools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/103-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Setting up your computer</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/104-look-at-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Look at Data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/105-first-plot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Making your first plot</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/106-version-control.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">What is version control software?</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/107-grammar-graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Grammar of Graphics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/108-ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Using the grammar of graphics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/109-scales.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Using points, lines, colours, and shapes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/110-summarizing-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Summarizing data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/115-facets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Facetted graphs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/111-reading-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reading data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/112-reshaping-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Reshaping data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/113-data-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Format tables</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/114-asking-questions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Getting help and asking questions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/118-working-with-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Working with models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals"> <span class="header-section-number">2.1</span> Goals</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"> <span class="header-section-number">2.2</span> Introduction</a></li>
+  <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r"> <span class="header-section-number">2.3</span> R</a></li>
+  <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio"> <span class="header-section-number">2.4</span> Rstudio</a></li>
+  <li><a href="#grammar-of-graphics-ggplot2" id="toc-grammar-of-graphics-ggplot2" class="nav-link" data-scroll-target="#grammar-of-graphics-ggplot2"> <span class="header-section-number">2.5</span> Grammar of graphics (ggplot2)</a></li>
+  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse"> <span class="header-section-number">2.6</span> tidyverse</a></li>
+  <li><a href="#r-markdown" id="toc-r-markdown" class="nav-link" data-scroll-target="#r-markdown"> <span class="header-section-number">2.7</span> R Markdown</a></li>
+  <li><a href="#git-and-github" id="toc-git-and-github" class="nav-link" data-scroll-target="#git-and-github"> <span class="header-section-number">2.8</span> Git and Github</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"> <span class="header-section-number">2.9</span> Further reading</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"> <span class="header-section-number">2.10</span> Exercises</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources"> <span class="header-section-number">2.11</span> Resources</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"> <span class="header-section-number">2.12</span> References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="ch-tools" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Computer tools</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="goals" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="goals"><span class="header-section-number">2.1</span> Goals</h2>
+<p>In this lesson I will explain what computer tools we will use in the course, how they were selected, and why they are useful.</p>
+</section>
+<section id="introduction" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="introduction"><span class="header-section-number">2.2</span> Introduction</h2>
+<p>We will use R and Rstudio in this course. R widely used to analyze data and comes with many add-on packages for statistical analysis, data visualization, and specialized tools for many disciplines and applications. We will just scratch the surface of what R can do, but by the end of the course you should feel comfortable learning to use R for data visualization and you will have the skills to learn how to use R for many other tasks. Rstudio is a graphical user interface for R with many convenient features including tools to support report writing, getting help, and project management. For data visualization we will use <a href="https://en.wikipedia.org/wiki/Ggplot2">ggplot2</a>, for data analysis we will use the <a href="https://www.tidyverse.org/">tidyverse</a> style of programming, for report writing we will use <a href="https://rmarkdown.rstudio.com/">R markdown</a>, and for project management we will use R projects and <a href="https://git-scm.com/">git</a> version control. All of these computer terms will mean much more to you later on in the course!</p>
+</section>
+<section id="r" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="r"><span class="header-section-number">2.3</span> R</h2>
+<p><a href="https://en.wikipedia.org/wiki/R_(programming_language)">R</a> is open-source software developed by a core team of programmers, which is made available for free to all users along with the full ‘source code’ for the software so that any one can find out exactly how any part of the software works. R was first developed in the mid-1990s and is now a quite mature language, although development continues. For example a brand new notation for function composition was introduced in 2021. R was developed after a couple decades of experience with its predecessor <a href="https://en.wikipedia.org/wiki/S_(programming_language)">S</a> and a commercial product known as S+.</p>
+<p>R has many strengths that account for its popularity and longevity. It is a very flexible and expressive language, which allows for many styles of programming and the use of both powerful tools to perform sophisticated analyses easily and also the flexibility to develop your own computational tools from basic computations. There is a huge, global community of users who continually develop new tools for R and make them available and easy to install on your computer. This means that anyone can develop a new data analysis method and readily distribute it on a widely-used platform to anyone comparatively easily. This is tremendously powerful! A third key ingredient is a very helpful community of users who develop tutorials and books to help newcomers to R learn to use it. Our course will use three such books, which can be purchased, but are also available for free on the internet.</p>
+<p>On the other hand, R is a challenging tool to learn. To accomplish any task you must type instructions into the computer. This can be daunting as you must first learn what instructions are available, what they do, and how to use them. If you have had experience with programming before (for example using Python or JavaScript) you will know that there are many ways to go wrong and the computer’s output is not always easy to understand, especially when things go wrong! Nevertheless, the R style of computing with data, once you have been initiated, allows for endless possibilities in terms of data analysis.</p>
+<p>Our approach in this course will be to demonstrate a few sample calculations and computing tasks in each lesson and encourage you to become proficient in these tasks through repetition and minor modifications. Over time, you will come to understand both how to use the tools to analyze and visualize data and how to interact with R to accomplish new tasks.</p>
+</section>
+<section id="rstudio" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">2.4</span> Rstudio</h2>
+<p>Rstudio is a graphical interface (or <a href="https://en.wikipedia.org/wiki/Integrated_development_environment">integrated development environment</a>) to the R software. It provides an editor for documents, a convenient way to see plots, get help, explore data objects created with R, and manage report writing and sets of files used collectively as part of projects. As with R, you will find that Rstudio has many features that will take you a while to discover. In this course we will focus on a few features and leave you to find others on your own.</p>
+</section>
+<section id="grammar-of-graphics-ggplot2" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="grammar-of-graphics-ggplot2"><span class="header-section-number">2.5</span> Grammar of graphics (ggplot2)</h2>
+<p>Since this is a course in data visualization, creating plots from data is a core skill. To get a computer to make a graph, you need to bring data together with instructions for producing the graph. Traditional ways to make graphs have been idiosyncratic, with each kind of graph having its own specialized instructions, even for features common to many plots such as the use of size adjustments, symbols, or colors to represent numerical or categorical scales. The ggplot style arose out of a recognition that having a language (or ‘grammar’) to describe graphical displays of data was superior to other styles of graphics creation. (The gg in ggplot is an abbreviation for the grammar of graphics.) A common language is used to connect variables in your dataset to aesthetic features in your plot, such as position along an axis, symbol size, shape, or colour. This association is separate from selecting how the data are to be represented (e.g., as points, a line, a histogram). Another key element is how ranges of values are associated to sizes, shapes, and colours; these are called scales and they too have their own functions, which work regardless of the type of plot being made. Finally, annotations such as axis labels, and formatting of other elements (e.g., fonts, sizes, positions of non-data elements) may be adjusted to customize a plot. Essentially ggplot provides a tool for making graphs which is modular, and thus allows you to quickly and efficiently learn to make new kinds of plots and modify them. The proof that this works is that since ggplot2 was first developed, many users of the software have contributed their own styles of plotting which can be incorporated into the design of the original software. All this makes plotting data sound complicated, but in fact making a simple plot with few customizations is actually very easy once you understand the idea behind the grammar of graphics and practice with some data.</p>
+</section>
+<section id="tidyverse" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">2.6</span> tidyverse</h2>
+<p>The starting point for each visualization we will produce and each analysis we will do is data. The developers of the tidyverse set of tools in R noticed that we all do many of the same kinds of operations to our data such as transformations with functions, summaries, and filtering. The approach also makes a few style suggestions about how to organize your data and how to analyze data, providing both great flexibility and making your code easier for others to understand. There is nothing that can be done in the tidyverse style that I couldn’t figure out how to do before these tools were developed, but the R code I write now is much easier for me and others to read. The problem solving process I use is much more streamlined than it used to be since I tend to use the same kinds of solutions for each new dataset I examine.</p>
+<p>There are two central ideas in the tidyverse approach to data analysis.</p>
+<ol type="1">
+<li><p>Data should be arranged in rectangles (or two dimensional arrays) with variables in columns and observations in rows.</p></li>
+<li><p>A data analysis calculation should be broken down into a series of simple, modular functions that are composed together, such as filtering rows, grouping rows together, and computing summaries.</p></li>
+</ol>
+<p>Essentially this forms a grammar of data analysis, analogous to what ggplot did for plotting graphics.</p>
+</section>
+<section id="r-markdown" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="r-markdown"><span class="header-section-number">2.7</span> R Markdown</h2>
+<p>Once you know how to produce a data visualization or statistical analysis, new challenges quickly arrive. You must communicate these results to someone else. You must be prepared to revise your analysis and repeat it on revised or new data. A common approach is write lots of little bits of computer code, cut and paste the results into a word processor, and try to remember how it all fits together. R markdown documents are key step in a better solution. An R markdown document contains both natural-langauge (e.g., English) text for humans to read and R code for the computer to use. The R markdown document can be compiled (we will say ‘knitted’) together with the results of R computations to provide a finished report. This enables the computer code and data analysis results to be kept together with the exposition about the data and results.</p>
+<p><em>As of summer 2022, an updated style of report writing called Quarto is available. For our purposes this will be indistinguishable from R markdown and you can use either tool. Both are available in recent versions of Rstudio.</em></p>
+</section>
+<section id="git-and-github" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="git-and-github"><span class="header-section-number">2.8</span> Git and Github</h2>
+<p>Git is distributed version control software. This means that it is a tool to help you keep track of versions of computer code, including R markdown documents, both in your work and your collaboration with others. It has tools for managing versions of software in databases called <em>repositories</em>. Version history and management is useful if you revise a report you have prepared but want to keep access to the old report for archival purposes. Having access to old versions of data visualizations is essential for auditing and quality control as well. Git also enables two or more people working in different locations to collaborate on the same project. Git allows you to easily merge changes that are logically independent (in terms of the code; human comprehension is still necessary!) and helps collaborators resolve conflicts in edits. Git is widely used in the data science world and among software developers.</p>
+<p>We will be learning the most basic uses of git in our course.</p>
+<p>Github is a web service that allows you to easily publish your git repositories. Rstudio has easy to use tools for managing your work using git and github. These course notes are written and published using Rstudio, git, and github. You will use the same tools for your assignments and term project.</p>
+</section>
+<section id="further-reading" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">2.9</span> Further reading</h2>
+<p><a href="https://socviz.co/gettingstarted.html#gettingstarted">Healy, Sections 2.1-2.4</a> contain excellent advice on the reasons for using R markdown, R/Rstudio, projects, the basics of R, and being patient as you learn computing tasks. We will return to the basics of R at various points in the course.</p>
+<p><a href="https://r4ds.had.co.nz/communicate-intro.html">R4DS, Chapters 26 and 27</a> contains a valuable introduction to R markdown and its use for communication.</p>
+<p><a href="https://clauswilke.com/dataviz/preface.html">Wilke</a> has a thoughtful perspective on the ever changing landscape of software for data analysis. The tools we all use will change as the years progress, but we need to learn to make visualizations today, so we consider both the why and the how of data visualizations. Wilke emphasizes the why, but he has been strongly influenced by the tools we are using. I’ve been drawing computer graphics for over 30 years and used countless tools and ideas. The methods in this course are the best I’ve ever used; ggplot and the tidyverse constrain my work in just the right way to make it better.</p>
+</section>
+<section id="exercises" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="exercises"><span class="header-section-number">2.10</span> Exercises</h2>
+<ul>
+<li>Read the sections of Healy and R for Data Science (R4DS) linked in the previous section.</li>
+<li>Can you think of an example of a piece of technology (a tool, an app on your phone) that was useful at some point, but is not useful to you now? Did you learn something general from the experience of using the tool? Or did the tool make it easier for you to learn something (develop a skill, etc.) at the time?</li>
+</ul>
+</section>
+<section id="resources" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="resources"><span class="header-section-number">2.11</span> Resources</h2>
+<ul>
+<li><p>If you want to know a lot more about using Rstudio, here is an <a href="https://www.youtube.com/watch?v=PXiY8muVUec">hour-long video overview of Rstudio features</a>.</p></li>
+<li><p>If you want to know more than we will cover about git and github, see the notes called <a href="https://happygitwithr.com/">Happy git with R</a>. All the essentials of using these tools will be explained in future lessons.</p></li>
+<li><p><a href="https://rmd4sci.njtierney.com/">R Markdown for scientists</a> is a set of notes on using R markdown for report writing and data analysis aimed at scientists.</p></li>
+<li><p>Some <a href="https://towardsdatascience.com/ten-awesome-r-markdown-tricks-56ef6d41098">R Markdown</a> tips.</p></li>
+<li><p>Information about <a href="https://quarto.org/">Quarto</a>, the successor to R markdown.</p></li>
+</ul>
+</section>
+<section id="references" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="references"><span class="header-section-number">2.12</span> References</h2>
+<ul>
+<li>Course textbooks: <span class="citation" data-cites="healy2018data">Healy (<a href="../references.html#ref-healy2018data" role="doc-biblioref">2018</a>)</span>; <span class="citation" data-cites="wickham2014r4ds">Wickham and Grolemund (<a href="../references.html#ref-wickham2014r4ds" role="doc-biblioref">2017</a>)</span>; <span class="citation" data-cites="wilke2019fundamentals">Wilke (<a href="../references.html#ref-wilke2019fundamentals" role="doc-biblioref">2019</a>)</span>.</li>
+<li>The R software package: <span class="citation" data-cites="r-core-2022">R Core Team (<a href="../references.html#ref-r-core-2022" role="doc-biblioref">2022</a>)</span></li>
+<li>The Tidyverse: <span class="citation" data-cites="tidyverse">Wickham et al. (<a href="../references.html#ref-tidyverse" role="doc-biblioref">2019</a>)</span></li>
+<li>The grammar of graphics (ggplot) package: <span class="citation" data-cites="ggplot2">Wickham (<a href="../references.html#ref-ggplot2" role="doc-biblioref">2016</a>)</span></li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-healy2018data" class="csl-entry" role="doc-biblioentry">
+Healy, Kieran. 2018. <em>Data Visualization: A Practical Introduction</em>. Princeton University Press. <a href="https://socviz.co/">https://socviz.co/</a>.
+</div>
+<div id="ref-r-core-2022" class="csl-entry" role="doc-biblioentry">
+R Core Team. 2022. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+</div>
+<div id="ref-ggplot2" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+</div>
+<div id="ref-tidyverse" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span class="nocase">tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
+<div id="ref-wickham2014r4ds" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. "O’Reilly Media, Inc.". <a href="https://r4ds.had.co.nz/">https://r4ds.had.co.nz/</a>.
+</div>
+<div id="ref-wilke2019fundamentals" class="csl-entry" role="doc-biblioentry">
+Wilke, Claus O. 2019. <em>Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures</em>. "O’Reilly Media". <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lessons/101-introduction.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Invitation to Data Visualization</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lessons/103-setup.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Setting up your computer</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

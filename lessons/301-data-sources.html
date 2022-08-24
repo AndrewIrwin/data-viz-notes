@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Visualization notes - 20&nbsp; Finding and accessing data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lessons/133-reproducible-reports.html" rel="next">
+<link href="../lessons/124-collaboration.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Finding and accessing data</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Data Visualization notes</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/101-introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Invitation to Data Visualization</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/102-intro-to-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Computer tools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/103-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Setting up your computer</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/104-look-at-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Look at Data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/105-first-plot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Making your first plot</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/106-version-control.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">What is version control software?</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/107-grammar-graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Grammar of Graphics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/108-ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Using the grammar of graphics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/109-scales.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Using points, lines, colours, and shapes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/110-summarizing-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Summarizing data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/115-facets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Facetted graphs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/111-reading-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reading data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/112-reshaping-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Reshaping data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/113-data-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Format tables</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/114-asking-questions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Getting help and asking questions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/118-working-with-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Working with models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/119-linear-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Linear models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/120-gam-loess.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">GAM and LOESS smoothing</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/124-collaboration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Collaborating with GitHub</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/301-data-sources.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Finding and accessing data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/133-reproducible-reports.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reproducible reports</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/121-PCA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Principal component analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/122-mds.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Multidimensional scaling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/123-kmean.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">K-means clustering</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/201-colour.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Using colour well</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/133-themes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Themes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/130-graphics-output.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Graphics formatting</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/125-slides.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Making slides for presentations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/127-test-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Checking your work</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/155-dynamics-graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Dynamic graphics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/140-mapping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Making maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/141-mapping-2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Mapping II</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/142-mapping-3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Alternatives to maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/130-bonus-topics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Working with text, factors, dates and times</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/302-staying-organized.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Staying organized</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Accessibility, Bias, and Ethics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/901-TMI-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">More details about R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/999-metadata.html" class="sidebar-item-text sidebar-link">Metadata</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#finding-data" id="toc-finding-data" class="nav-link active" data-scroll-target="#finding-data"> <span class="header-section-number">20.1</span> Finding data</a>
+  <ul class="collapse">
+  <li><a href="#data-in-r-packages" id="toc-data-in-r-packages" class="nav-link" data-scroll-target="#data-in-r-packages"> <span class="header-section-number">20.1.1</span> Data in R packages</a></li>
+  <li><a href="#tidy-tuesday" id="toc-tidy-tuesday" class="nav-link" data-scroll-target="#tidy-tuesday"> <span class="header-section-number">20.1.2</span> Tidy Tuesday</a></li>
+  <li><a href="#r-packages-for-accessing-data" id="toc-r-packages-for-accessing-data" class="nav-link" data-scroll-target="#r-packages-for-accessing-data"> <span class="header-section-number">20.1.3</span> R packages for accessing data</a></li>
+  <li><a href="#websites-with-data-collections" id="toc-websites-with-data-collections" class="nav-link" data-scroll-target="#websites-with-data-collections"> <span class="header-section-number">20.1.4</span> Websites with data collections</a></li>
+  <li><a href="#canadian-covid-data" id="toc-canadian-covid-data" class="nav-link" data-scroll-target="#canadian-covid-data"> <span class="header-section-number">20.1.5</span> Canadian COVID data</a></li>
+  </ul></li>
+  <li><a href="#examples-of-accessing-data" id="toc-examples-of-accessing-data" class="nav-link" data-scroll-target="#examples-of-accessing-data"> <span class="header-section-number">20.2</span> Examples of accessing data</a>
+  <ul class="collapse">
+  <li><a href="#gapminder" id="toc-gapminder" class="nav-link" data-scroll-target="#gapminder"> <span class="header-section-number">20.2.1</span> Gapminder</a></li>
+  <li><a href="#consumer-price-index-in-canada" id="toc-consumer-price-index-in-canada" class="nav-link" data-scroll-target="#consumer-price-index-in-canada"> <span class="header-section-number">20.2.2</span> Consumer price index in Canada</a></li>
+  <li><a href="#causes-of-death-worldwide" id="toc-causes-of-death-worldwide" class="nav-link" data-scroll-target="#causes-of-death-worldwide"> <span class="header-section-number">20.2.3</span> Causes of death worldwide</a></li>
+  </ul></li>
+  <li><a href="#other-r-packages-related-to-data-collection" id="toc-other-r-packages-related-to-data-collection" class="nav-link" data-scroll-target="#other-r-packages-related-to-data-collection"> <span class="header-section-number">20.3</span> Other R packages related to data collection</a></li>
+  <li><a href="#describing-data" id="toc-describing-data" class="nav-link" data-scroll-target="#describing-data"> <span class="header-section-number">20.4</span> Describing data</a></li>
+  <li><a href="#distribution-of-data" id="toc-distribution-of-data" class="nav-link" data-scroll-target="#distribution-of-data"> <span class="header-section-number">20.5</span> Distribution of data</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"> <span class="header-section-number">20.6</span> Further reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="data-sources" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Finding and accessing data</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>Data are available from a huge number of sites on the internet run by governments, NGOs, companies, industry associations, research projects, and individuals. These data come in a variety of formats and while many will be easy to read with R, some will be quite challenging. In this lesson I will introduce you to some sources of data. Partly this is to help you start to learn how to navigate a variety of data sources, but of course part of the reason is to get you thinking about data you might use in your project. For more information on the project see the <a href="#project-description">description</a> on the evaluation page.</p>
+<section id="finding-data" class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="finding-data"><span class="header-section-number">20.1</span> Finding data</h2>
+<section id="data-in-r-packages" class="level3" data-number="20.1.1">
+<h3 data-number="20.1.1" class="anchored" data-anchor-id="data-in-r-packages"><span class="header-section-number">20.1.1</span> Data in R packages</h3>
+<p>Many datasets are available as part of R packages. These are the easiest to use, but they are often small and designed for demonstration purposes. For example, the gapminder package only contains a small portion of the data available on the gapminder website.</p>
+<p>These are the go-to datasets that we have used for demonstrating many simple visualizations:</p>
+<ul>
+<li>mtcars and many other well-known data in datasets package</li>
+<li>penguins in palmerpenguins package</li>
+<li>gapminder in gapminder package (but see website too <a href="https://www.gapminder.org/data/">Gapminder</a>)</li>
+<li>diamonds, mpg, economics, midwest, msleep in ggplot2 package</li>
+<li>nycflights13 in dbplyr package</li>
+<li>gss_sm, gss_cat, gss_sib, gss_lon and gss_lon in socviz package</li>
+</ul>
+<p>The function <code>datasets</code> in the package <code>datasets.load</code> will display a list of all datasets in R packages you have installed on your computer. There is not much information about each dataset, but you once you know their names, you can read the help page for each dataset.</p>
+</section>
+<section id="tidy-tuesday" class="level3" data-number="20.1.2">
+<h3 data-number="20.1.2" class="anchored" data-anchor-id="tidy-tuesday"><span class="header-section-number">20.1.2</span> Tidy Tuesday</h3>
+<p>Tidy Tuesday is a project to encourage people to develop skills at data visualization and analysis using the tidyverse packages in R. Each week a new data set is posted and participants experiment to create new visualzations. Some people share their work on GitHub and social media.</p>
+<ul>
+<li>The Tidy Tuesday <a href="https://github.com/rfordatascience/tidytuesday">website</a> describes the project and has a catalog of available datasets from previous weeks.</li>
+<li>The R package to access the data is called <code>tidytuesdayR</code>. Examples of using the package are <a href="https://github.com/thebioengineer/tidytuesdayR">here</a></li>
+</ul>
+</section>
+<section id="r-packages-for-accessing-data" class="level3" data-number="20.1.3">
+<h3 data-number="20.1.3" class="anchored" data-anchor-id="r-packages-for-accessing-data"><span class="header-section-number">20.1.3</span> R packages for accessing data</h3>
+<p>There are many packages designed primarily to provide access to large collections of data. Here are a few examples.</p>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/OECD/vignettes/oecd_vignette_main.html">OECD</a> for data from the <a href="https://stats.oecd.org/">OECD</a></li>
+<li><a href="https://cran.r-project.org/web/packages/cansim/vignettes/cansim.html">cansim</a> for data from <a href="https://www150.statcan.gc.ca/n1/en/type/data">Statistics Canada</a></li>
+<li><a href="https://cran.r-project.org/web/packages/cancensus/vignettes/cancensus.html">cancensus</a> for data from the Canadian census and National household survey. You need to create an account and get an API key to use this package. The package documentation shows you how.</li>
+</ul>
+</section>
+<section id="websites-with-data-collections" class="level3" data-number="20.1.4">
+<h3 data-number="20.1.4" class="anchored" data-anchor-id="websites-with-data-collections"><span class="header-section-number">20.1.4</span> Websites with data collections</h3>
+<p>Naturally there are websites that curate lists of data available from other sites. Here are a few I’ve found useful.</p>
+<ul>
+<li><a href="https://ourworldindata.org/">Our World In Data</a> is a curated set of over 3000 charts with documentation and open source data.</li>
+<li>The <a href="https://github.com/awesomedata/awesome-public-datasets">awesome public datasets</a> project collects high quality public data, organized thematically.</li>
+<li>This is one person’s collection of <a href="https://github.com/tacookson/data">data</a> of various sources</li>
+<li><a href="https://r-dir.com/reference/datasets.html">r-dir</a> has a list of freely available datasets</li>
+<li>World Bank <a href="https://datacatalog.worldbank.org/dataset/world-development-indicators">economic development indicators</a></li>
+<li><a href="https://corgis-edu.github.io/corgis/">CORGIS</a> the collection of really great, interesting, situated datasets</li>
+</ul>
+</section>
+<section id="canadian-covid-data" class="level3" data-number="20.1.5">
+<h3 data-number="20.1.5" class="anchored" data-anchor-id="canadian-covid-data"><span class="header-section-number">20.1.5</span> Canadian COVID data</h3>
+<p>Many countries and other organizations have developed collections of COVID-related data. Here are some sources for Canada.</p>
+<ul>
+<li><a href="https://health-infobase.canada.ca/covid-19/visual-data-gallery/">Federal</a>, <a href="https://experience.arcgis.com/experience/a6f23959a8b14bfa989e3cda29297ded">BC</a>, <a href="https://www.alberta.ca/stats/covid-19-alberta-statistics.htm">AB</a>, <a href="https://dashboard.saskatchewan.ca/health-wellness/covid-19/cases">SK</a>, <a href="https://www.arcgis.com/apps/opsdashboard/index.html#/29e86894292e449aa75763b077281b5b?rha=Winnipeg">MB</a>, <a href="https://covid-19.ontario.ca/data">ON</a>, <a href="https://www.inspq.qc.ca/covid-19/donnees/par-region">QC</a>, <a href="https://experience.arcgis.com/experience/8eeb9a2052d641c996dba5de8f25a8aa">NB</a>, <a href="https://www.princeedwardisland.ca/en/information/health-and-wellness/pei-covid-19-case-data">PE</a>, <a href="https://novascotia.ca/coronavirus/data/">NS</a>,</li>
+</ul>
+</section>
+</section>
+<section id="examples-of-accessing-data" class="level2" data-number="20.2">
+<h2 data-number="20.2" class="anchored" data-anchor-id="examples-of-accessing-data"><span class="header-section-number">20.2</span> Examples of accessing data</h2>
+<section id="gapminder" class="level3" data-number="20.2.1">
+<h3 data-number="20.2.1" class="anchored" data-anchor-id="gapminder"><span class="header-section-number">20.2.1</span> Gapminder</h3>
+<p>Gapminder distributes many datasets, some of their own, and some collected by other organizations that they are redistributing. They have a <a href="https://www.gapminder.org/data/">webpage</a> to help you search, browse and access the data. Using this webpage I have found <a href="http://gapm.io/dpop">data</a> on population of countries by years from 1800-2100 (with many missing data, some interpolated data, and of course many years of projections). Here is some R code to read and work with this data. There are data on 195 countries over 302 years. I have selected five countries to make a simple plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"static/population_total.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 195 Columns: 302
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (1): country
+dbl (301): 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 1809, 1810,...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pop <span class="sc">%&gt;%</span> <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Canada"</span>, <span class="st">"China"</span>, <span class="st">"Chile"</span>, <span class="st">"Germany"</span>, <span class="st">"United States"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="st">`</span><span class="at">1800</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2100</span><span class="st">`</span>, <span class="at">names_to =</span> <span class="st">"years"</span>, <span class="at">values_to =</span> <span class="st">"population"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">years =</span> <span class="fu">as.numeric</span>(years)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> years, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> population, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="fu">fct_reorder</span>(country, population, max, <span class="at">.desc=</span><span class="cn">TRUE</span>))) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">labels =</span> <span class="fu">trans_format</span>(<span class="st">"log10"</span>, <span class="fu">math_format</span>(<span class="dv">10</span><span class="sc">^</span>.x))) <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Country"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="301-data-sources_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="consumer-price-index-in-canada" class="level3" data-number="20.2.2">
+<h3 data-number="20.2.2" class="anchored" data-anchor-id="consumer-price-index-in-canada"><span class="header-section-number">20.2.2</span> Consumer price index in Canada</h3>
+<p>One measure of inflation is its effect on prices. Here is a table from Statistics Canada that reports over 1 million rows of data on this measure. Statistics Canada tables are an extreme version of “long” data, which usually require a lot of filtering to get just the rows you want. You will want to make use of <code>dpylr</code> functions <code>summarize</code> and <code>count</code> to study the structure of the data.</p>
+<div class="cell" data-hash="301-data-sources_cache/html/cansim_98109436042d1f5e3faff4bc0cc2b036">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Population and projection in a huge table with 2 million rows, 300 MB of data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># cansim::get_cansim("17100057")  </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>cpi <span class="ot">&lt;-</span> cansim<span class="sc">::</span><span class="fu">get_cansim</span>(<span class="st">"18-10-0004-01"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Accessing CANSIM NDM product 18-10-0004 from Statistics Canada</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Parsing data</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cpi <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">Products and product groups</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"All-items"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(GEO)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30 × 2
+   GEO                                                    n
+   &lt;chr&gt;                                              &lt;int&gt;
+ 1 Alberta                                              527
+ 2 British Columbia                                     527
+ 3 Calgary, Alberta                                     619
+ 4 Canada                                              1303
+ 5 Charlottetown and Summerside, Prince Edward Island   583
+ 6 Edmonton, Alberta                                    619
+ 7 Halifax, Nova Scotia                                 619
+ 8 Iqaluit, Nunavut                                     236
+ 9 Manitoba                                             527
+10 Montréal, Quebec                                     619
+# … with 20 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<p>Let’s look at these data for Canada as a whole.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cpi <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">Products and product groups</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"All-items"</span>,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>               GEO <span class="sc">==</span> <span class="st">"Canada"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(REF_DATE, VALUE) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> lubridate<span class="sc">::</span><span class="fu">ym</span>(REF_DATE)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> VALUE)) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date"</span>, <span class="at">y =</span> <span class="st">"All items CPI"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Consumer price index in Canada"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Scaled so that 2002 = 100"</span>) <span class="sc">+</span> </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="301-data-sources_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="causes-of-death-worldwide" class="level3" data-number="20.2.3">
+<h3 data-number="20.2.3" class="anchored" data-anchor-id="causes-of-death-worldwide"><span class="header-section-number">20.2.3</span> Causes of death worldwide</h3>
+<p><a href="https://ourworldindata.org/">Our world in data</a> has many compliations of data across many countries. <a href="https://ourworldindata.org/causes-of-death">Here</a> is a table listing causes of death over time and countries. There is a link to a csv file on that page that can be easily read with R. As is often the case, this is a large table (nearly 7000 observations of 37 variables). You will need to explore the data a bit to understand it. Here is one simple plot that can be made.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>death <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"static/annual-number-of-deaths-by-cause.csv"</span>, <span class="at">guess_max =</span> <span class="dv">10000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 6686 Columns: 37
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (3): Entity, Code, Number of executions (Amnesty International)
+dbl (34): Year, Deaths - Road injuries - Sex: Both - Age: All Ages (Number),...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>death <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Entity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Canada"</span>, <span class="st">"China"</span>, <span class="st">"Germany"</span>, <span class="st">"United States"</span>),</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                 Year <span class="sc">==</span> <span class="dv">2015</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Entity, <span class="st">`</span><span class="at">Deaths - Road injuries - Sex: Both - Age: All Ages (Number)</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">Terrorism (deaths)</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="st">`</span><span class="at">Deaths - Road injuries - Sex: Both - Age: All Ages (Number)</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">Terrorism (deaths)</span><span class="st">`</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"Cause"</span>, <span class="at">values_to =</span> <span class="st">"Deaths"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Cause =</span> <span class="fu">str_remove</span>(Cause, <span class="st">"Deaths - "</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>           <span class="fu">str_remove</span>(<span class="st">" - Sex: Both - Age: All Ages </span><span class="sc">\\</span><span class="st">(Number</span><span class="sc">\\</span><span class="st">)"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Deaths, <span class="at">y =</span> <span class="fu">fct_reorder</span>(Cause, Deaths), </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> Entity)) <span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="301-data-sources_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Of course, it would probably be more interesting to plot these as per capita deaths; or at least, that would enable a different sort of comparison.</p>
+</section>
+</section>
+<section id="other-r-packages-related-to-data-collection" class="level2" data-number="20.3">
+<h2 data-number="20.3" class="anchored" data-anchor-id="other-r-packages-related-to-data-collection"><span class="header-section-number">20.3</span> Other R packages related to data collection</h2>
+<p>Sometimes the only way you will find data is as a table on a website or in a document. The <a href="https://github.com/MilesMcBain/datapasta">datapasta</a> package is useful for some common reformatting tasks that are required after copy-and-paste.</p>
+<p>Sometimes data you want are only available on a graph – just points or lines and no numeric data at all. There are a variety of “data thief” tools for extracting quantitative data from these images, for example, the web app <a href="https://automeris.io/WebPlotDigitizer/">WebPlotDigitizer</a>.</p>
+</section>
+<section id="describing-data" class="level2" data-number="20.4">
+<h2 data-number="20.4" class="anchored" data-anchor-id="describing-data"><span class="header-section-number">20.4</span> Describing data</h2>
+<p>Once you have done work to find data, you will also want to do some research to learn the “5 Ws” of data. In addition to what the variables are and what each observation represents, you will want to know who collected it, when, why, and how. It’s a good idea to write a “readme” to summarize what you learn. For your term project you will be asked to provide some information on the datasets you analyze, but you should also be aware that there are <a href="https://data.research.cornell.edu/content/readme">online guides</a> that provide advice on documenting data.</p>
+</section>
+<section id="distribution-of-data" class="level2" data-number="20.5">
+<h2 data-number="20.5" class="anchored" data-anchor-id="distribution-of-data"><span class="header-section-number">20.5</span> Distribution of data</h2>
+<p>If you want to distribute an analysis of data or redistribute the original data, please be sure to respect the terms of use of the data. Many people encourage the use of <a href="https://en.wikipedia.org/wiki/FAIR_data">FAIR</a> data usage principles.</p>
+</section>
+<section id="further-reading" class="level2" data-number="20.6">
+<h2 data-number="20.6" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">20.6</span> Further reading</h2>
+<ul>
+<li><a href="https://r4ds.had.co.nz/data-import.html">Importing data</a> from R4DS</li>
+<li>Roger Peng’s notes on <a href="https://bookdown.org/rdpeng/rprogdatascience/getting-data-in-and-out-of-r.html">importing data</a></li>
+<li>An older but comprehensive guide to <a href="https://cran.r-project.org/doc/manuals/r-release/R-data.html">importing data</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lessons/124-collaboration.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Collaborating with GitHub</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lessons/133-reproducible-reports.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reproducible reports</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

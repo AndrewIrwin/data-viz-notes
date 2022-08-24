@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Visualization notes - 37&nbsp; More details about R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lessons/999-metadata.html" rel="next">
+<link href="../lessons/911-ethics.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">More details about R</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Data Visualization notes</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/101-introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Invitation to Data Visualization</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/102-intro-to-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Computer tools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/103-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Setting up your computer</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/104-look-at-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Look at Data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/105-first-plot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Making your first plot</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/106-version-control.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">What is version control software?</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/107-grammar-graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Grammar of Graphics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/108-ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Using the grammar of graphics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/109-scales.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Using points, lines, colours, and shapes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/110-summarizing-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Summarizing data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/115-facets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Facetted graphs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/111-reading-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reading data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/112-reshaping-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Reshaping data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/113-data-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Format tables</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/114-asking-questions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Getting help and asking questions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/118-working-with-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Working with models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/119-linear-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Linear models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/120-gam-loess.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">GAM and LOESS smoothing</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/124-collaboration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Collaborating with GitHub</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/301-data-sources.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Finding and accessing data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/133-reproducible-reports.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reproducible reports</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/121-PCA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Principal component analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/122-mds.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Multidimensional scaling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/123-kmean.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">K-means clustering</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/201-colour.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Using colour well</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/133-themes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Themes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/130-graphics-output.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Graphics formatting</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/125-slides.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Making slides for presentations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/127-test-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Checking your work</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/155-dynamics-graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Dynamic graphics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/140-mapping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Making maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/141-mapping-2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Mapping II</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/142-mapping-3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Alternatives to maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/130-bonus-topics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Working with text, factors, dates and times</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/302-staying-organized.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Staying organized</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Accessibility, Bias, and Ethics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/901-TMI-R.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">More details about R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lessons/999-metadata.html" class="sidebar-item-text sidebar-link">Metadata</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#recent-changes" id="toc-recent-changes" class="nav-link active" data-scroll-target="#recent-changes"> <span class="header-section-number">37.1</span> Recent changes</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview"> <span class="header-section-number">37.2</span> Overview</a></li>
+  <li><a href="#what-kinds-of-data-structures-does-r-use" id="toc-what-kinds-of-data-structures-does-r-use" class="nav-link" data-scroll-target="#what-kinds-of-data-structures-does-r-use"> <span class="header-section-number">37.3</span> What kinds of data structures does R use?</a></li>
+  <li><a href="#data-frame-tibbles-and-data-tables" id="toc-data-frame-tibbles-and-data-tables" class="nav-link" data-scroll-target="#data-frame-tibbles-and-data-tables"> <span class="header-section-number">37.4</span> data frame, tibbles, and data tables</a></li>
+  <li><a href="#what-is-the-difference-between-strings-and-factors" id="toc-what-is-the-difference-between-strings-and-factors" class="nav-link" data-scroll-target="#what-is-the-difference-between-strings-and-factors"> <span class="header-section-number">37.5</span> What is the difference between strings and factors?</a></li>
+  <li><a href="#whats-the-pipe" id="toc-whats-the-pipe" class="nav-link" data-scroll-target="#whats-the-pipe"> <span class="header-section-number">37.6</span> What’s the pipe?</a></li>
+  <li><a href="#why-does-ggplot-use" id="toc-why-does-ggplot-use" class="nav-link" data-scroll-target="#why-does-ggplot-use"> <span class="header-section-number">37.7</span> Why does ggplot use +?</a></li>
+  <li><a href="#what-are-packages-whats-the-difference-between-installing-one-and-using-one-why-is-r-organized-this-way" id="toc-what-are-packages-whats-the-difference-between-installing-one-and-using-one-why-is-r-organized-this-way" class="nav-link" data-scroll-target="#what-are-packages-whats-the-difference-between-installing-one-and-using-one-why-is-r-organized-this-way"> <span class="header-section-number">37.8</span> What are packages? What’s the difference between installing one and using one? Why is r organized this way?</a></li>
+  <li><a href="#why-are-there-so-many-kinds-of-equals-signs" id="toc-why-are-there-so-many-kinds-of-equals-signs" class="nav-link" data-scroll-target="#why-are-there-so-many-kinds-of-equals-signs"> <span class="header-section-number">37.9</span> Why are there so many kinds of “equals signs”?</a></li>
+  <li><a href="#numbers" id="toc-numbers" class="nav-link" data-scroll-target="#numbers"> <span class="header-section-number">37.10</span> Numbers</a></li>
+  <li><a href="#whats-a-function" id="toc-whats-a-function" class="nav-link" data-scroll-target="#whats-a-function"> <span class="header-section-number">37.11</span> What’s a function?</a></li>
+  <li><a href="#whats-a-formula" id="toc-whats-a-formula" class="nav-link" data-scroll-target="#whats-a-formula"> <span class="header-section-number">37.12</span> What’s a formula?</a></li>
+  <li><a href="#programming-styles" id="toc-programming-styles" class="nav-link" data-scroll-target="#programming-styles"> <span class="header-section-number">37.13</span> Programming styles</a></li>
+  <li><a href="#comparing-sql-to-dplyr" id="toc-comparing-sql-to-dplyr" class="nav-link" data-scroll-target="#comparing-sql-to-dplyr"> <span class="header-section-number">37.14</span> Comparing SQL to dplyr</a></li>
+  <li><a href="#using-databases-with-r" id="toc-using-databases-with-r" class="nav-link" data-scroll-target="#using-databases-with-r"> <span class="header-section-number">37.15</span> Using databases with R</a></li>
+  <li><a href="#computing-notes" id="toc-computing-notes" class="nav-link" data-scroll-target="#computing-notes"> <span class="header-section-number">37.16</span> Computing notes</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="r-details" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">More details about R</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="recent-changes" class="level2" data-number="37.1">
+<h2 data-number="37.1" class="anchored" data-anchor-id="recent-changes"><span class="header-section-number">37.1</span> Recent changes</h2>
+<p>Software is notorious for constant and unanticipated changes. Websites appear, disappear, and are redesigned frequently. Features appear and disappear even in mature software like email clients, word processors and spreadsheets. R is no different. Here are a few changes that have occurred in the last few years that are particularly relevant to our course.</p>
+<p>The “pipe” command has become part of R (as of version 4), but it looks different than the old pipe and works a little bit differently. I don’t think this difference will affect the examples in this course very much. I have changed to the new pipe (<code>|&gt;</code>) most places in the examples, but the old pipe (<code>%&gt;%</code>) probably still appears in some places.</p>
+<p>GitHub authentication has changed; passwords are no longer allowed from R (or anywhere except the website). I have revised and simplified the instructions for using GitHub. This is a technical subject that can be difficult for beginners to master. I think I have removed all references to GitHub passwords.</p>
+<p>Data sources and external links disappear and change frequently. I think I have checked them all. If you see problems, let me know!</p>
+</section>
+<section id="overview" class="level2" data-number="37.2">
+<h2 data-number="37.2" class="anchored" data-anchor-id="overview"><span class="header-section-number">37.2</span> Overview</h2>
+<p>R is a big software package. It’s developed over decades of use. It has millions of regular users across many disciplines in teaching, academic research and professional applications. It’s a computer programming language, and a tool for accessing thousands of data analysis tools, and a great interactive environment for exploring, analyzing, and visualizing data. You won’t learn it all.</p>
+<p>The approach in this course is to teach you how to use R in a particular style, with an emphasis on the ggplot and tidyverse packages. The R markdown documents we write balance interactive use with a documentation of the sequence of steps used in any analysis. I have omitted a lot of details that might be called “fundamentals” and instead focussed on getting work done quickly. In this lesson I fill in some of the gaps. My reasoning is that most important to want to learn a tool before you spend too much time on details, so this course empahsizes what you can do with R. On the other hand, I hope you will use R for a long time on many projects, and once you reach the point you know you will do that, you should start developing a solid mental model of how R works so that you can build robust understandings of how to accomplish tasks with R and get beyond copy, paste, search, and experiment. Without these fundamentals, its easy to make up incorrect ideas about why and how R works and then get really confused and frustrated.</p>
+<p>A simple introduction to the basics of R appears in <a href="https://socviz.co/appendix.html#appendix">Healy Appendix</a>. A different approach is taken in the R for Data Science book, which introduces the basics of many topics, such as <a href="https://r4ds.had.co.nz/tibbles.html">tibbles</a>, <a href="https://r4ds.had.co.nz/strings.html">strings</a>, <a href="https://r4ds.had.co.nz/factors.html">factors</a> and <a href="https://r4ds.had.co.nz/dates-and-times.html">dates</a>, <a href="https://r4ds.had.co.nz/functions.html">functions</a> and <a href="https://r4ds.had.co.nz/vectors.html">vectors</a> together with their applications one chapter at a time.</p>
+</section>
+<section id="what-kinds-of-data-structures-does-r-use" class="level2" data-number="37.3">
+<h2 data-number="37.3" class="anchored" data-anchor-id="what-kinds-of-data-structures-does-r-use"><span class="header-section-number">37.3</span> What kinds of data structures does R use?</h2>
+<p>R has many basic types: logical, numeric (double), character, factor. Any combination of these types can be combined into lists. Elements of lists can be named so that they work like dictionaries. Vectors, matrices, and higher dimensional arrays are all composed of the same type of data, usually numeric, factor, or logical.</p>
+<p>Lists are a very powerful type because they can be given attributes that identify them as special structures with particular intepretations. The most common special list is a data frame, data table or tibble. (The tibble is a refined kind of data frame.) You probably think of a tibble as a matrix where each column can be of a different type. How is this accomplished? It’s a list of vectors. Each vector corresponds to a column or variable in the data frame with its own name and data type.</p>
+<p>Here are some R commands you can use to decode the structure of any object you have in your workspace. I’ll demonstrate on the <code>diamonds</code> tibble. As always, experiment with these commands by trying them on other objects such as <code>cars</code> (a data frame).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(diamonds)  <span class="co"># it's a list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "list"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(diamonds) <span class="co"># which works as a data.frame and also as a tbl (tibble)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [53,940 × 10] (S3: tbl_df/tbl/data.frame)
+ $ carat  : num [1:53940] 0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...
+ $ cut    : Ord.factor w/ 5 levels "Fair"&lt;"Good"&lt;..: 5 4 2 4 2 3 3 3 1 3 ...
+ $ color  : Ord.factor w/ 7 levels "D"&lt;"E"&lt;"F"&lt;"G"&lt;..: 2 2 2 6 7 7 6 5 2 5 ...
+ $ clarity: Ord.factor w/ 8 levels "I1"&lt;"SI2"&lt;"SI1"&lt;..: 2 3 5 4 2 6 7 3 4 5 ...
+ $ depth  : num [1:53940] 61.5 59.8 56.9 62.4 63.3 62.8 62.3 61.9 65.1 59.4 ...
+ $ table  : num [1:53940] 55 61 65 58 58 57 57 55 61 61 ...
+ $ price  : int [1:53940] 326 326 327 334 335 336 336 337 337 338 ...
+ $ x      : num [1:53940] 3.95 3.89 4.05 4.2 4.34 3.94 3.95 4.07 3.87 4 ...
+ $ y      : num [1:53940] 3.98 3.84 4.07 4.23 4.35 3.96 3.98 4.11 3.78 4.05 ...
+ $ z      : num [1:53940] 2.43 2.31 2.31 2.63 2.75 2.48 2.47 2.53 2.49 2.39 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(diamonds<span class="sc">$</span>carat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(diamonds<span class="sc">$</span>cut)  <span class="co"># its a factor, and the factor is ordered (factors can be unordered)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "ordered" "factor" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">as.matrix</span>(diamonds <span class="sc">%&gt;%</span> <span class="fu">select</span>(depth, table, price)))  <span class="co"># if you pick columns of the same type, you can convert them to a matrix</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "matrix" "array" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">as.matrix</span>(diamonds <span class="sc">%&gt;%</span> <span class="fu">select</span>(cut, color, clarity)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "matrix" "array" </code></pre>
+</div>
+</div>
+</section>
+<section id="data-frame-tibbles-and-data-tables" class="level2" data-number="37.4">
+<h2 data-number="37.4" class="anchored" data-anchor-id="data-frame-tibbles-and-data-tables"><span class="header-section-number">37.4</span> data frame, tibbles, and data tables</h2>
+<p>When R was young, there was one way to organize data into the tables we are using throughout this course: the data frame. This data structure is made from a list of vectors; each column is an entry in the list and all the data in each list (column) must be of the same time. Over time, people wanted to add new features to data tables, but existing code written and deployed made this difficult. So two new kinds of data frames were created.</p>
+<p>A <a href="https://r4ds.had.co.nz/tibbles.html">tibble</a> is a data frame, but it has some extra features. Most notably the way it is displayed in R has been improved. Only a few rows and colums are shown (unless you ask for more) with the rest of the information provided as a summary. Tibbles are widely used by the tidyverse pacakges.</p>
+<p>A <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">data table</a> is a kind of data frame where all the code has been written with the goal of increasing calculation speed. Some of the methods for manipulating data tables are quite different from what we have learned in this course; some of the examples from R4DS chapter on data transformations are demonstrated <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">here</a>.</p>
+</section>
+<section id="what-is-the-difference-between-strings-and-factors" class="level2" data-number="37.5">
+<h2 data-number="37.5" class="anchored" data-anchor-id="what-is-the-difference-between-strings-and-factors"><span class="header-section-number">37.5</span> What is the difference between strings and factors?</h2>
+<p>A string is just a sequence of text, enclosed by single or double quotation marks. You can display strings, and search for text, and do other text-type things with them, but you can’t (of course) do calculations with them.</p>
+<p>You can convert a vector of strings into a vector of factors. This assigns an integer to each different element in the vector. Why would you do this? The numbers can be assigned to give a particular order to the factors (strings) that is different from alphabetical. The factors can be used in statistical models as though they are numbers, as though they were the indexes you use on a variable in math class (e.g., <span class="math inline">\(x_1, x_2, \dots\)</span>).</p>
+<p>Here are some simple examples.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Apple"</span>, <span class="st">"Bananna"</span>, <span class="st">"Cat"</span>, <span class="st">"Apple"</span>, <span class="st">"Orange"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">factor</span>(v)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "integer"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 1 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Apple   Bananna Cat     Apple   Orange 
+Levels: Apple Bananna Cat Orange</code></pre>
+</div>
+</div>
+<p>The <code>forcats</code> package has lots of great functions for working with factors which can help you control how your plots are drawn. That’s the main use we will have for them in this course.</p>
+</section>
+<section id="whats-the-pipe" class="level2" data-number="37.6">
+<h2 data-number="37.6" class="anchored" data-anchor-id="whats-the-pipe"><span class="header-section-number">37.6</span> What’s the pipe?</h2>
+<p>The pipe <code>%&gt;%</code> is a way to write function composition. In our data analysis we build up calculations from lots of different functions such as <code>select</code>, <code>group_by</code>, <code>arrange</code>, <code>filter</code>, <code>summarize</code>, <code>distinct</code> and many more described in R for Data Science. Each function starts with a tibble, does something to it, and produces a revised tibble. It’s very natural to develop a complex series of calculations like a recipe in a cookbook. (Sometimes these recipes are called pipelines!) Before pipes were invented there were basically two options; write the functions down in reverse order, or create lots of temporary variables to store the intermediate results and then discard them. Pipelines are easier to write and easier to read. Here’s an example of the three styles, based on a simple analysis of the <code>diamonds</code> data.</p>
+<p>Pipeline:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> <span class="fu">filter</span>(cut<span class="sc">==</span><span class="st">"Ideal"</span>) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(color) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">mean_price =</span> <span class="fu">mean</span>(price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 2
+  color mean_price
+  &lt;ord&gt;      &lt;dbl&gt;
+1 D          2629.
+2 E          2598.
+3 F          3375.
+4 G          3721.
+5 H          3889.
+6 I          4452.
+7 J          4918.</code></pre>
+</div>
+</div>
+<p>Temporary variables:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">filter</span>(diamonds, cut<span class="sc">==</span><span class="st">"Ideal"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> <span class="fu">group_by</span>(d1, color) </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(d2, <span class="at">mean_price =</span> <span class="fu">mean</span>(price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 2
+  color mean_price
+  &lt;ord&gt;      &lt;dbl&gt;
+1 D          2629.
+2 E          2598.
+3 F          3375.
+4 G          3721.
+5 H          3889.
+6 I          4452.
+7 J          4918.</code></pre>
+</div>
+</div>
+<p>Composition:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(diamonds, cut <span class="sc">==</span> <span class="st">"Ideal"</span>), color</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  ), <span class="at">mean_price =</span> <span class="fu">mean</span>(price)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 2
+  color mean_price
+  &lt;ord&gt;      &lt;dbl&gt;
+1 D          2629.
+2 E          2598.
+3 F          3375.
+4 G          3721.
+5 H          3889.
+6 I          4452.
+7 J          4918.</code></pre>
+</div>
+</div>
+<p>Which do you think is easier to understand? What if the pipline was longer? Or shorter?</p>
+<p>Note: as of late 2020, a new kind of pipe is becoming part of R. It looks like this <code>|&gt;</code> and works a bit like the existing pipe we use but has some differences. It’s not in this course at all yet since the official release of R doesn’t have it. This is another example of how R (and all computer systems) change over time. These sorts of big changes are very rare with R because so many people use it for so many purposes.</p>
+</section>
+<section id="why-does-ggplot-use" class="level2" data-number="37.7">
+<h2 data-number="37.7" class="anchored" data-anchor-id="why-does-ggplot-use"><span class="header-section-number">37.7</span> Why does ggplot use +?</h2>
+<p>When we make plots with ggplot we do something very similar – we start with a tibble or data frame, but then we make a plot, and then modify it step by step, setting geometries, adding more data, creating facets, setting scales, altering the theme. This seems a lot like a pipeline. Why do we use <code>+</code> to connect different <code>ggplot2</code> commands?</p>
+<p>Simple. The developer <a href="https://www.reddit.com/r/dataisbeautiful/comments/3mp9r7/im_hadley_wickham_chief_scientist_at_rstudio_and/cvi19ly/">didn’t know about</a> the pipe operator in R when ggplot was developed. Adding a feature to a plot seemed like a “plus” operation, so that was chosen. The developer says if he was starting over today, ggplot would use pipes, but its not practical to change at this point. Too many people use it with the <code>+</code>. Some <a href="https://community.rstudio.com/t/why-cant-ggplot2-use/4372/5">people think</a> of functions as verbs and ggplot commands as nouns, and justify the difference that way. Software development is a complicated human activity that takes place over time and develops quirks and lore.</p>
+</section>
+<section id="what-are-packages-whats-the-difference-between-installing-one-and-using-one-why-is-r-organized-this-way" class="level2" data-number="37.8">
+<h2 data-number="37.8" class="anchored" data-anchor-id="what-are-packages-whats-the-difference-between-installing-one-and-using-one-why-is-r-organized-this-way"><span class="header-section-number">37.8</span> What are packages? What’s the difference between installing one and using one? Why is r organized this way?</h2>
+<p>There are thousands of R packages. So many that it seems you are always needing to install a new one. Worse, sometimes you want a function, but you can’t remember which package it’s installed in – so then you can’t use it. (There is a solution to this: use the double ?? followed by the fuction name in the console to search for a function across all packages available on your computer.) Why this complication?</p>
+<p>There are several reasons.</p>
+<ul>
+<li>New packages are developed frequently, by different people. And some packages get abandoned too. Packages create modularity that makes it easier to test and fix problems with packages across different groups of developers.</li>
+<li>The <code>library</code> command tells R you want to use a particular package in your current session. Not loading all packages can save time, computer resources, and avoid name collisions (see below).</li>
+<li>Most people only use a small fraction of all the packages available – you simply don’t need to install them all.</li>
+<li>Two packages can use the same name for a different function or different dataset. If there were no packages, everyone using R would have to coordinate the naming of everything across all the packages. An impossible task. Sometimes when you load a package with <code>library</code> you’ll get a message that an existing function has been redefined (or masked) by this new package. You can always add the package name and two colons, <code>dplyr::filter</code> for example, to refer to a function in a particular package.</li>
+</ul>
+</section>
+<section id="why-are-there-so-many-kinds-of-equals-signs" class="level2" data-number="37.9">
+<h2 data-number="37.9" class="anchored" data-anchor-id="why-are-there-so-many-kinds-of-equals-signs"><span class="header-section-number">37.9</span> Why are there so many kinds of “equals signs”?</h2>
+<p>There are many different concepts behind the humble equals sign used in mathematics. In R we use different symbols: <code>=</code>, <code>==</code>, <code>&lt;-</code> and even some special functions like <code>all.equal</code> and <code>near</code>. Even with all these differences <code>=</code> can mean different things in different contexts, and there is a special version of <code>&lt;-</code> written in the other way: <code>-&gt;</code>. The pipe adds its own twist, you can write <code>%&lt;&gt;%</code> as a combined assignment operator and pipe.</p>
+<p>So what does each mean?</p>
+<ul>
+<li><code>a &lt;- b</code> means assign the name <code>a</code> to the object <code>b</code>. (You can use <code>=</code> for this, but I encourage you not to.)</li>
+<li><code>a == b</code> is a comparison between <code>a</code> and <code>b</code> with the result <code>TRUE</code> if they are the same and otherwise <code>FALSE</code>. (The notion of “same” in computing is surprisingly complicated, but for basic types, in particular strings, this is fairly straightforward.)</li>
+<li><code>a = b</code> is used when naming elements of a list or arguments to a function, for example <code>ggplot(mapping = aes(...))</code> or <code>list(a= "apple", b="bananna")</code>.</li>
+<li><code>near(1.25, 1.253, tol = 0.01)</code> in the <code>dplyr</code> package is used to compare numbers to see if they are close together.</li>
+</ul>
+<p>The <code>waldo</code> package has functions for testing equality of data frames and showing differences.</p>
+</section>
+<section id="numbers" class="level2" data-number="37.10">
+<h2 data-number="37.10" class="anchored" data-anchor-id="numbers"><span class="header-section-number">37.10</span> Numbers</h2>
+<p>R is</p>
+<p>NA nan inf -inf Testing for Na. Replacing. If then functions.</p>
+</section>
+<section id="whats-a-function" class="level2" data-number="37.11">
+<h2 data-number="37.11" class="anchored" data-anchor-id="whats-a-function"><span class="header-section-number">37.11</span> What’s a function?</h2>
+</section>
+<section id="whats-a-formula" class="level2" data-number="37.12">
+<h2 data-number="37.12" class="anchored" data-anchor-id="whats-a-formula"><span class="header-section-number">37.12</span> What’s a formula?</h2>
+<p>Lm facet also t.test gam</p>
+</section>
+<section id="programming-styles" class="level2" data-number="37.13">
+<h2 data-number="37.13" class="anchored" data-anchor-id="programming-styles"><span class="header-section-number">37.13</span> Programming styles</h2>
+<p>Grammar? Gg gt Descriptive vs imperative SQL as another example</p>
+</section>
+<section id="comparing-sql-to-dplyr" class="level2" data-number="37.14">
+<h2 data-number="37.14" class="anchored" data-anchor-id="comparing-sql-to-dplyr"><span class="header-section-number">37.14</span> Comparing SQL to dplyr</h2>
+</section>
+<section id="using-databases-with-r" class="level2" data-number="37.15">
+<h2 data-number="37.15" class="anchored" data-anchor-id="using-databases-with-r"><span class="header-section-number">37.15</span> Using databases with R</h2>
+</section>
+<section id="computing-notes" class="level2" data-number="37.16">
+<h2 data-number="37.16" class="anchored" data-anchor-id="computing-notes"><span class="header-section-number">37.16</span> Computing notes</h2>
+<p>There are thousands of different programming languages. Why? Partly different ideas have arisen over time. Sometimes, languages have been created for particular problems. But most often, languages are created to enable a new kind of interaction between programmer and computer. Over time, as computing power increases and the kinds of problems solved by computer change, new opportunities and new needs arise and new languages are developed.</p>
+<p>What are some of the constraints and trade-offs when using a computer? The three most important are * the amount of storage required to solve a problem, * the number of computations to solve a problem, and * the amount of human time required to design and implement a solution.</p>
+<p>Many programming languages prioritize the first two. The trade-off between the first two is a <a href="https://en.wikipedia.org/wiki/Space%E2%80%93time_tradeoff">classic idea</a> in computer science. You can see how it arises from a simple example. Suppose you know you need the approximate result of some complex mathematical computation. You can either perform the calcuation when you need it (which takes time), or you can compute a table of possible computations in advance (which takes storage) and lookup the result when you need it. This is the idea behind statistical tables in the back of statistics textbooks – the calculations are hard, but a good enough table fits on a page or two.</p>
+<p>The designers of the R language and packages often prioritize minimizing the amount of time required for a human to design and code the solution to a problem. To do this well, the designers needed to give you flexible and powerful tools (functions). The flexibility of the functions means that they are not always optimized to use the least storage or time.</p>
+<p>Powerful tools require significant study to learn how to use them effectively. The examples in this course are selected to convince you that that investment is worth your time. There are also many specialized packages of functions, each created to make a certain type of problem easier or faster to solve. This is now a feature of all programming domains, which have specialized tools for different operating systems, the web, or particular problem domains like databases, machine learningm or statistical data analysis. Each of these requires effort to learn, but a helpful insight comes from the early design of graphical user interfaces – if tools made by different programmers have enough in common and adhere to conventions, then the burden on the programmer and user is greatly reduced.</p>
+<p>There are many other optimizations and trade-offs in computing. For example, numerical computations sometimes are done in a different order compared to the way you would do them in math class as a result of numerical approximations made by computers.</p>
+<p>Even within the R system there are many different styles of programming and problem solving. In this course I emphasize one particular style, now known popularly as the tidyverse. This approach organizes data and results in tables (called tibbles) as much as possible and encourages you to build larger solutions from composing powerful functions together (like th dplyr package). As a result in this course a hidden message throughout most lessons is how to organize your data and results and how to use a small set of powerful functions to solve a large set of general problems.</p>
+<p>Many other computing systems would work well for this course. Among programmers, a very popular choice is <a href="https://www.python.org/">python</a>, which shares a lot in common with R with many add-on packages providing similar functions. As a simplification, python use tends to be favoured by people developing software to solve a particular problem, while R tends to be favoured by people who want to interactively explore their data analysis options and need to develop custom analyses for each problem they encounter. Python and R have both existed since before the year 2000, but the styles of data analysis and problem solving possible with each has grown and converged together considerably in recent years.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lessons/911-ethics.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Accessibility, Bias, and Ethics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lessons/999-metadata.html" class="pagination-link">
+        <span class="nav-page-text">Metadata</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
