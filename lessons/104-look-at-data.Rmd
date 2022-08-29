@@ -1,4 +1,4 @@
-# Look at Data {#look-data}
+# Look at data {#look-data}
 
 ## Goals
 

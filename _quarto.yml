@@ -14,9 +14,10 @@ book:
     - lessons/104-look-at-data.Rmd
     - lessons/105-first-plot.Rmd
     - lessons/106-version-control.Rmd
+    - lessons/302-staying-organized.Rmd
     - lessons/107-grammar-graphics.Rmd
     - lessons/108-ggplot.Rmd
-    - lessons/109-scales.Rmd
+    # - lessons/109-scales.Rmd
     - lessons/110-summarizing-data.Rmd
     - lessons/115-facets.Rmd
     - lessons/111-reading-data.Rmd
@@ -32,9 +33,6 @@ book:
     - lessons/121-PCA.Rmd
     - lessons/122-mds.Rmd
     - lessons/123-kmean.Rmd
-    - lessons/201-colour.Rmd
-    - lessons/133-themes.Rmd
-    - lessons/130-graphics-output.Rmd
     - lessons/125-slides.Rmd
     - lessons/127-test-data.Rmd
     - lessons/155-dynamics-graphics.Rmd
@@ -42,7 +40,10 @@ book:
     - lessons/141-mapping-2.Rmd
     - lessons/142-mapping-3.Rmd
     - lessons/130-bonus-topics.Rmd
-    - lessons/302-staying-organized.Rmd
+    - lessons/201-colour.Rmd
+    - lessons/133-themes.Rmd
+    - lessons/130-graphics-output.Rmd
+    - lessons/134-reconstruction.Rmd
     - lessons/911-ethics.Rmd
     - lessons/901-TMI-R.Rmd
     - lessons/999-metadata.Rmd
@@ -53,6 +54,8 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
-
+    cap-location: margin
+    reference-location: margin
+    # citation-location: margin
 
 

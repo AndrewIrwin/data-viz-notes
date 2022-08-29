@@ -72,7 +72,7 @@ Note that each image contains a wealth of data:
 
 In the past decade there has been a resurgence of interest in data visualizations, stimulated in part by journalists emphasising visualizations in their publications. This example in the New York Times shows [projected earnings for college graduates in a range of fields of study](https://www.nytimes.com/2018/01/04/learning/whats-going-on-in-this-graph-jan-9-2018.html) and is accompanied by notes and discussion questions. The New York Times has a series of educational materials on both [visualizations and their stories](https://www.nytimes.com/column/whats-going-on-in-this-graph).
 
-![Graph showing career earnings from a New York Times ](static/nyt-career-earnings.webp){#fig-nyt-career-earnings}
+![Graph showing career earnings from a New York Times data journalism story.](static/nyt-career-earnings.webp){#fig-nyt-career-earnings}
 
 ## Historically important visualizations
 

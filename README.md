@@ -1,4 +1,4 @@
-This forms part of the STAT 2430 Data Vizualization course in Fall 2022 at Dalhousie University.
+This forms part of the STAT 2430 Data Visualization course in Fall 2022 at Dalhousie University.
 
 This repository contains course notes for students.
 

@@ -17,17 +17,17 @@ We'll make some scatter plots with the `palmerpenguin` data because there are se
 First a simple scatterplot with no colour or shape of flipper length against body mass. As you might expect, there is a positive correlation -- heavier penguins are bigger penguins.
 
 ```{r warning=FALSE}
-penguins %>% ggplot(aes(x=body_mass_g, y = flipper_length_mm)) + geom_point()
+penguins |> ggplot(aes(x=body_mass_g, y = flipper_length_mm)) + geom_point()
 ```
 
  How do you think the categorical variables sex, species, and island might structure these data? Draw a few variations using colour and shape and possibly size. (There are quite a few possible choices for assiging 2 or 3 variables to 2 or 3 aesthetics.)
  
 ```{r warning=FALSE, message=FALSE}
-penguins %>% ggplot(aes(x=body_mass_g, y = flipper_length_mm, 
+penguins |> ggplot(aes(x=body_mass_g, y = flipper_length_mm, 
                         color = sex, shape = island)) + geom_point()
-penguins %>% ggplot(aes(x=body_mass_g, y = flipper_length_mm, 
+penguins |> ggplot(aes(x=body_mass_g, y = flipper_length_mm, 
                         color = species, shape = sex)) + geom_point()
-penguins %>% ggplot(aes(x=body_mass_g, y = flipper_length_mm, 
+penguins |> ggplot(aes(x=body_mass_g, y = flipper_length_mm, 
                         color = island, shape = species, size = sex)) + geom_point() +
   scale_size_discrete(na.value = 0, range = c(1,2))
 ```
@@ -39,7 +39,7 @@ penguins %>% ggplot(aes(x=body_mass_g, y = flipper_length_mm,
 You might think that colour is the most noticable. So let's try making new categories for each combination of species and sex and using this new variable for colour. (We will talk about the `unite` function in a future lesson.)
 
 ```{r}
-penguins %>% unite(species_sex, c(species, sex)) %>%
+penguins |> unite(species_sex, c(species, sex)) |>
   ggplot(aes(x=body_mass_g, y = flipper_length_mm, color = species_sex)) +
   geom_point()
 ```
@@ -55,8 +55,8 @@ display.brewer.all(6)
 Here's a version using the "Spectral" colour scale.
 
 ```{r}
-penguins %>% filter(!is.na(sex)) %>%
-  unite(species_sex, c(species, sex)) %>%
+penguins |> filter(!is.na(sex)) |>
+  unite(species_sex, c(species, sex)) |>
   ggplot(aes(x=body_mass_g, y = flipper_length_mm, color = species_sex)) +
   geom_point() +
   scale_color_brewer(palette = "Set1") # try Spectral too
@@ -71,8 +71,8 @@ These colors looked okay in the palette, but on the plot we see a few problems:
 There are a huge number of colour scales available for R. The number of possibilities makes selection of the right scale quite challenging. The [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) scales are often good choices. For discrete scales, common advice is to not use more that 5-6 colours on a single image. If you use more, your viewer has to spend a lot of time trying to decode the color scale. Here's an example using `viridis`. You can set the beginning and ending colour (values range from 0 to 1) to customize the scale a bit. The end of the scale is yellow which I find difficult.
 
 ```{r}
-penguins %>% filter(!is.na(sex)) %>%
-  unite(species_sex, c(species, sex)) %>%
+penguins |> filter(!is.na(sex)) |>
+  unite(species_sex, c(species, sex)) |>
   ggplot(aes(x=body_mass_g, y = flipper_length_mm, color = species_sex)) +
   geom_point() +
   scale_color_viridis_d(begin = 0, end = 0.9, option = "D")
@@ -87,7 +87,7 @@ Step 1 is to explore the data by making many plots. Keep notes about what stands
 For these data there are three clear clusters of points corresponding to different speices. Let's use colour for species. Within species the male and female penguins are smaller. Let's use shape for sex. To highlight the difference in shape, it's good to make the points large, but there are too many points here to have large symbols -- they will blur together.
 
 ```{r}
-penguins %>% filter(!is.na(sex)) %>%
+penguins |> filter(!is.na(sex)) |>
   ggplot(aes(x=body_mass_g, y = flipper_length_mm, color = species, shape = sex)) +
   geom_point(size=2) +
   scale_color_viridis_d(begin = 0, end = 0.9, option = "D")
@@ -96,10 +96,10 @@ penguins %>% filter(!is.na(sex)) %>%
 A nice trick in R is to overplot smaller white symbols on top of coloured symbols. We'll do this just for female penguins. There is no legend drawn since we make the hollow symbols without an aesthetic mapping. 
 
 ```{r}
-penguins %>% filter(!is.na(sex)) %>%
+penguins |> filter(!is.na(sex)) |>
   ggplot(aes(x=body_mass_g, y = flipper_length_mm, color = species)) +
   geom_point(size=2) +
-  geom_point(data = penguins %>% filter(sex == "female"), color = "white", size = 1) + 
+  geom_point(data = penguins |> filter(sex == "female"), color = "white", size = 1) + 
   scale_color_viridis_d(begin = 0, end = 0.9, option = "D") + 
   theme_bw()
 ```
@@ -113,42 +113,42 @@ I'm going to use a dataset of the number of PhDs granted by year in the USA. The
 ```{r message=FALSE}
 library(tidytuesdayR)
 tt <- tt_load("2019-02-19", "phd_by_field")
-phds <- tt$phd_by_field %>% 
-  group_by(broad_field, year) %>% 
+phds <- tt$phd_by_field |> 
+  group_by(broad_field, year) |> 
   summarise(n_phds = sum(n_phds, na.rm=TRUE))
 ```
 Let's plot the data using points.
 
 ```{r}
-phds %>% ggplot(aes(x = year, y = n_phds, color = broad_field)) + geom_point()
+phds |> ggplot(aes(x = year, y = n_phds, color = broad_field)) + geom_point()
 ```
 This is a good example of a dataset where lines would help to show the trend over time and add a visual clue to help see trends.
 
 ```{r}
-phds %>% ggplot(aes(x = year, y = n_phds, color = broad_field)) + 
+phds |> ggplot(aes(x = year, y = n_phds, color = broad_field)) + 
   geom_line()
 ```
 
 Sometimes its helpful to show the data points as well, especially if they are unevenly spaced or there are some missing data. Simply add a `geom_point` to the plot.
 
 ```{r}
-phds %>% ggplot(aes(x = year, y = n_phds, color = broad_field)) + 
+phds |> ggplot(aes(x = year, y = n_phds, color = broad_field)) + 
   geom_line() + geom_point()
 ```
 
 If you don't want the colour, you can discard that and just show lines. The first example shows what happens if you do that -- and the result looks terrible. We didn't tell ggplot about groups in the data at all, so all the points are connected. The second example uses `group` as an aesthetic to reproduce the original figure, but without colour.
 
 ```{r}
-phds %>% ggplot(aes(x = year, y = n_phds)) + geom_line()
-phds %>% ggplot(aes(x = year, y = n_phds, group = broad_field)) + geom_line()
+phds |> ggplot(aes(x = year, y = n_phds)) + geom_line()
+phds |> ggplot(aes(x = year, y = n_phds, group = broad_field)) + geom_line()
 ```
 
 We can add text labels on to this data to identify each line.
 
 ```{r}
-phds %>% ggplot(aes(x = year, y = n_phds, group = broad_field)) + 
+phds |> ggplot(aes(x = year, y = n_phds, group = broad_field)) + 
   geom_line() +
-  geom_text(data = phds %>% filter(year == 2017),
+  geom_text(data = phds |> filter(year == 2017),
             aes(label = broad_field),
             hjust = 0,
             size = 3) +
@@ -168,7 +168,7 @@ Those labels look a bit ugly, but this approach can sometimes be useful.
 ### Shapes, colours, and fills
 
 ```{r}
-penguins %>% ggplot(aes(x = bill_length_mm, y= bill_depth_mm, 
+penguins |> ggplot(aes(x = bill_length_mm, y= bill_depth_mm, 
                         color = sex, shape = species)) + geom_point()
 ```
 

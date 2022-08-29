@@ -1,4 +1,4 @@
-# More details about R {#r-details}
+# More details about R {#r-details .unnumbered}
 
 ```{r include=FALSE}
 library(tidyverse)

@@ -26,9 +26,9 @@ If I have no idea how to solve a problem, I go to google. It's often good to add
 * [plot colours](https://www.google.com/search?q=ggplot+custom+plot+colours)
 * [axis labels](https://www.google.com/search?q=ggplot+axis+labels)
 
-I look for a link on the first page or two that uses a reference I've found helpful. I like the `tidyverse` and `ggplot2` documentation, the "R Graph Gallery" and some online courses (one a UBC linked below.)
+I look for a link on the first page or two that uses a reference I've found helpful. I like the `tidyverse` and `ggplot2` documentation, the "R Graph Gallery" and some online courses (one at UBC linked below.)
 
-Using the incognito mode in google to get results not influenced by my search history I recommend the following starting places (lots of the other links you'll find are fine too):
+Using the incognito mode in google to get results not influenced by my search history, I recommend the following starting places (lots of the other links you'll find are fine too):
 
 * [error bars](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/)
 * [plot colours](https://www.stat.ubc.ca/~jenny/STAT545A/block17_colorsGgplot2Qualitative.html)
@@ -37,6 +37,8 @@ Using the incognito mode in google to get results not influenced by my search hi
 ### Find an example
 
 The web pages I find most helpful have lots of examples. Sometimes I realize that there are many ways to interpret the idea in my head and the examples help me figure out what I really want. I will often search three or more google links until I find an example I like -- the output looks right and the code doesn't look too complicated.
+
+I also look for an example that looks like the code I write myself. There are many different ways to solve some tasks, but some of those methods will be harder for you to understand. So if you find a "solution", but it's too hard to understand---there might be a way that's easier for you to understand. In this course we are using a style called "tidyverse" which emphasizes descriptive function names. Other styles include "base" and "data table". If you see a lot of pipes (`%>%` or `|>`) and familiar functions (`ggplot`, `summarize`, `select`, `group_by`), it's tidyverse style. If you see a lot of dollar signs (`$`) or square brackets (`[`, `]`) it's probably a different coding style and you can expect it to be harder to understand from your current perspective. Go ahead and learn other  styles if you are excited to explore more!
 
 ### Look at the documentation
 
@@ -69,7 +71,7 @@ I strongly suggest you keep your experiments and notes in a separate R markdown 
 * I make a version of `summarySE` myself just to be sure I understand what it does. Mine is simpler -- it just does the calculation instead of creating a new function. Making a simpler example is a great way to understand what the more complicated version does. 
 
 ```{r}
-my_summarySE <- ToothGrowth %>% group_by(supp, dose) %>%
+my_summarySE <- ToothGrowth |> group_by(supp, dose) |>
     dplyr::summarize(N = n(),
               mean_len = mean(len),
               sd = sd(len),
@@ -77,7 +79,7 @@ my_summarySE <- ToothGrowth %>% group_by(supp, dose) %>%
               ci = se * qt(0.975, N-1))
 ```
 
-Great -- this produces the same output as `summarySE(ToothGrowth)`. (I used a different name for the mean column because I need `len` to compute the standard deviation after I compute the mean. If you use the function from the help page and write `summarize` above instead of `dplyr::summarize` you'll get an error because the example uses the `plyr` package that has a different definition of `summarize`. I've bumped into that error a lot, so I recognize it right away. It might stump you the first time you experience it.)
+Great -- this produces the same output as `summarySE(ToothGrowth)`. (I used a different name for the mean column because I need `len` to compute the standard deviation after I compute the mean. If you use the function from the help page and write `summarize` above instead of `dplyr::summarize` you'll get an error because the example uses the `plyr` package that has a different definition of `summarize`. I've bumped into that error a lot, so I recognize it right away. It will probably stump you the first time you experience it.)
 
 * Cut and paste the example, modified to use my data (`mean_len` instead of `len`):
 
@@ -88,7 +90,7 @@ ggplot(my_summarySE, aes(x=dose, y=mean_len, colour=supp)) +
     geom_point()
 ```
 
-Get rid of the lines, becasuse I don't want them. 
+Get rid of the lines, because I don't want them. 
 
 ```{r}
 ggplot(my_summarySE, aes(x=dose, y=mean_len, colour=supp)) + 
@@ -96,7 +98,7 @@ ggplot(my_summarySE, aes(x=dose, y=mean_len, colour=supp)) +
     geom_point()
 ```
 
-Now, drop in my favourite data, the palmer penguins, making only the changes that are absolutely necessary. I had the overlapping points problem mentioned on the help page, so I borrowed it's `position_dodge` idea. I also noticed that the web page used `se` instead of the larger `ci` to draw the error bars, so I changed that too.
+Now, drop in my favourite data, the Palmer penguins, making only the changes that are absolutely necessary. I had the overlapping points problem mentioned on the help page, so I borrowed it's `position_dodge` idea. I also noticed that the web page used `se` instead of the larger `ci` to draw the error bars, so I changed that too.
 
 ```{r}
 library(palmerpenguins)
@@ -115,22 +117,22 @@ ggplot(my_summarySE, aes(x=species, y=mean_mass, colour=island)) +
 
 ## Asking question in this course
 
-Asking good questions can be challenging, especially in asynchronous learning. In a classroom, it's fairly easy: Can you give another example? Why did you do that calculation? What does the answer mean? Many questions you might ask in person don't translate well to other contexts: email, office hours, or online forums, because the immediate context of group discussion is missing. So it's up to you to add that context when you ask a question.
+Asking good questions can be challenging, especially when you are working on your own. In a classroom, it's fairly easy: Can you give another example? Why did you do that calculation? What does the answer mean? Many questions you might ask in person don't translate well to other contexts: email, office hours, or online forums, because the immediate context of group discussion is missing. So it's up to you to add that context when you ask a question.
 
 Here I describe several different ways to get answers to your questions. Knowing which method to use is itself a skill, so I provide some guidance for that as well.  It's important to ask questions -- and [I want you to ask questions](https://jvns.ca/blog/2014/04/04/ask-if-you-have-questions-isnt-enough/), so much that you should consider it part of your assigned work to formulate questions.
 
 
 ### Starting out
 
-At the start of the course you will have a bunch of computer tasks (installing R and Rstudio, installing R packagesm understanding the basics of Rstudio, working with git and github). These will range from easy to difficult depending on your previous experience. I have tried to provide written and video information to guide you, but if you get stuck on any of these, or the work associated with a "task" at any point in the course, ask for help right away. 
+At the start of the course you will have a bunch of computer tasks (installing R and Rstudio, installing R packages, understanding the basics of Rstudio, working with git and github). These will range from easy to difficult depending on your previous experience. I have tried to provide written and video information to guide you, but if you get stuck on any of these, or the work associated with a "task" at any point in the course, ask for help right away. 
 
 ### Learning R basics
 
-As you start to write R commands and make R markdown documents you will encounter problems arising from typos (forgetting, or not knowing where to place) commas, brackets, backticks, quotation marks, pipes (%>%), and many other bits of [syntax](https://en.wikipedia.org/wiki/Syntax_(programming_languages)) necessary for communcation with the computer. The error messages will frequently be hard to decipher. The best way to learn to solve these problems is the following: take a working R markdown document or example of R code and change it slightly. Make a prediction of what will happen and then get the computer to process the code. Compare what happens to what you predicted. Do this regularly until you can reliably predict outcomes of any changes you can think of. This is "playing computer" in your head -- try to understand how it will react to your input. When something happens that you don't understand: ask someone why. Describe what you did, what you thought would happen, and what really happened.
+As you start to write R commands and make R markdown documents you will encounter problems arising from typos (forgetting, or not knowing where to place) commas, brackets, backticks, quotation marks, pipes (`%>%` or `|>`), and many other bits of [syntax](https://en.wikipedia.org/wiki/Syntax_(programming_languages)) necessary for communication with the computer. The error messages will frequently be hard to decipher. The best way to learn to solve these problems is the following: take a working R markdown document or example of R code and change it slightly. Make a prediction of what will happen and then get the computer to process the code. Compare what happens to what you predicted. Do this regularly until you can reliably predict outcomes of any changes you can think of. This is "playing computer" in your head---try to understand how it will react to your input. When something happens that you don't understand: ask someone why. Describe what you did, what you thought would happen, and what really happened.
 
 ### Problem solving
 
-Once you have developed some fluency for working with R, you will start to learn to solve problems. This means that you are trying to accomplish a data visulization task, such as make a single plot, use colour in some way, change the kind of plot, add text to an axis, or thousands of other tasks. At the start you will be just doing tasks I've given you and later on you will be trying to achieve your own goals by solving problems. The method described above is useful here: when you have a working example, change it in some way and predict the result. Make changes that you think will lead to good outcomes, but also make playful or "silly" changes that will lead to poor quality graphs but still help you learn to use the tools. This kind of experimentation is essential for develop a robust and accurate mental model of how R (or any other) computer software works.
+Once you have developed some fluency for working with R, you will start to learn to solve problems. This means that you are trying to accomplish a data visualization task, such as make a single plot, use colour in some way, change the kind of plot, add text to an axis, or thousands of other tasks. At the start you will be just doing tasks I've given you and later on you will be trying to achieve your own goals by solving problems. The method described above is useful here: when you have a working example, change it in some way and predict the result. Make changes that you think will lead to good outcomes, but also make playful or "silly" changes that will lead to poor quality graphs but still help you learn to use the tools. This kind of experimentation is essential for develop a robust and accurate mental model of how R (or any other) computer software works.
 
 ### Learning new methods R
 
@@ -173,7 +175,7 @@ A few [suggestions](https://jvns.ca/blog/good-questions/):
 
 ### Asking a complete question
 
-If you are trying to solve a problem with R, and the code is not working as you expect, make the smallest possible example of the problem that you can. This is called a "reproducible example" -- meaning that the person you are asking for help can make the problem repeat on their computer. There is an R package to help you create these examples called [reprex](https://www.tidyverse.org/help/#reprex), but you don't need to do this in our course.
+If you are trying to solve a problem with R, and the code is not working as you expect, make the smallest possible example of the problem that you can. This is called a "reproducible example" -- meaning that you have provided enough information that the person you are asking for help can make the problem repeat on their computer. There is an R package to help you create these examples called [reprex](https://www.tidyverse.org/help/#reprex), but you don't need to do this in our course.
 
 The reprex function tests your code to see if you've included all the necessary to enable someone else to understand your code. This includes which libraries you are using and any variables that must be defined. Select your code that demonstrates the problem, then copy it to the clipboard. Type `reprex()` in the R Console. If your example is complete, it will appear in the preview window on the lower right. This can be cut and pasted into an email.
 
@@ -182,8 +184,6 @@ The reprex function tests your code to see if you've included all the necessary 
 There is another important kind of question -- what does `an-unfamiliar-R-function` do? This is a bit easier since you don't need to translate a goal into a question about R, you just need to figure out what the function does.
 
 You might be wondering what `position_dodge` does. It's fairly obvious from the step-by-step example, but try to figure out by reading the help page. It's a bit hard to understand, but you should be able to get that it is a function that moves (dodges) the horizontal position of a point, error bar, or other geom.
-
-
 
 
 ## How to learn material in this course
