@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Visualization notes - Accessibility, Bias, and Ethics</title>
+<title>Data Visualization notes - 34&nbsp; Reconstructing a visualization</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -15,6 +15,25 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -25,8 +44,8 @@ ul.task-list{list-style: none;}
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../lessons/901-TMI-R.html" rel="next">
-<link href="../lessons/134-reconstruction.html" rel="prev">
+<link href="../lessons/911-ethics.html" rel="next">
+<link href="../lessons/130-graphics-output.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -59,14 +78,14 @@ ul.task-list{list-style: none;}
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Accessibility, Bias, and Ethics</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Reconstructing a visualization</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -266,12 +285,12 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/134-reconstruction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Reconstructing a visualization</span></a>
+  <a href="../lessons/134-reconstruction.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Reconstructing a visualization</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link active">Accessibility, Bias, and Ethics</a>
+  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -298,18 +317,16 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#accessibility" id="toc-accessibility" class="nav-link active" data-scroll-target="#accessibility">Accessibility</a></li>
-  <li><a href="#data-collection-and-analysis" id="toc-data-collection-and-analysis" class="nav-link" data-scroll-target="#data-collection-and-analysis">Data collection and analysis</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
+  <li><a href="#goal" id="toc-goal" class="nav-link active" data-scroll-target="#goal"> <span class="header-section-number">34.1</span> Goal</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Accessibility, Bias, and Ethics</h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Reconstructing a visualization</span></h1>
 </div>
 
 
@@ -323,38 +340,23 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<p>Data visualization is about representing, including selecting, simplifying and organizing, data. It’s an activity done by humans, for questions generated and presented to humans, even if the underlying topic is about the natural world. As as a result, it is always important to think carefully about the human element. What steps can be taken to make our work accessible to as many people as possible? How may bias or discrimination enter into data collection, selection, analysis and interpretation? What are the ethical considerations to be considered in our work with <a href="https://en.wikipedia.org/wiki/Information_ethics">data</a> and the process of <a href="https://en.wikipedia.org/wiki/Research#Research_ethics">research</a>?</p>
-<p>This course only touches on these topics long enough to alert you to their importance.</p>
-<section id="accessibility" class="level2">
-<h2 class="anchored" data-anchor-id="accessibility">Accessibility</h2>
-<p>Data visualization is, as the name implies, the act of producing a product to be seen. This is a useful goal because our brains are very good at processing some kinds of visual information. Training to read visualizations can greatly increase the ability to extract information from a visualization, so it is important to know your audience – students, the general public, people with well developed quantiative skills, or domain experts for the data you are presenting. All of these factors are central to knowing if a visualization is suitable and effective. Our target audience is university students.</p>
-<p>Not everyone has the same visual abilities. Some people have vision that differs from the most common experience in some way – perceiving <a href="https://en.wikipedia.org/wiki/Color_blindness">colours differently</a>, reduced <a href="https://en.wikipedia.org/wiki/Visual_acuity">acuity</a>, and other differences all the way to complete blindness. We should always keep these differences in mind when producing visualizations. To take the hardest challenge head on, what is the value in producing a visualization for someone who cannot see it? Data visualization is a process that uses the creator’s visual and technical skills to present features of a dataset. Any data visualization should be <a href="https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style/Accessibility/Alternative_text_for_images">accompanied by a written description of the message to be conveyed</a>. Ideally the visual and written aspects will complement each other. A visualization does not “say” anything by itself; a written interpretation is an essential part of the process.</p>
-</section>
-<section id="data-collection-and-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="data-collection-and-analysis">Data collection and analysis</h2>
-<p><a href="https://en.wikipedia.org/wiki/Data">Data</a> collection and analysis are critical tools for understanding and interacting with the world. Data are used by academic researchers, goverments, corportations, non-profit organizations, and citizens in complex and contrasting ways. All of these processes create opportunities for bias and discrimination. The links below give a few examples and stories elaborating these challenges.</p>
-<ul>
-<li><a href="https://www.technologyreview.com/2020/12/10/1013617/racism-data-science-artificial-intelligence-ai-opinion/">Data encodes systematic racism</a> from the MIT technology review, December 2020.</li>
-<li><a href="https://www.oreilly.com/content/case-studies-in-data-ethics/">Case studies in data ethics</a> from O’Reilly publishers.</li>
-<li><a href="https://www.sciencedirect.com/science/article/pii/S2666389920300866">Data and the COVID pandemic</a>, opinion published in <em>Patterns</em>, July 2020.</li>
-<li>A business and marketing take on the <a href="https://towardsdatascience.com/the-ethics-of-data-science-e3b1828affa2">ethics of data science</a></li>
-<li>A student’s perspective on <a href="https://www.loyola.edu/academics/data-science/blog/2018/why-ethics-are-important-in-data-science">ethics in data science</a> from 2018.</li>
-<li>A professional statement on ethical data science from the <a href="https://www.actuaries.org.uk/system/files/field/document/An%20Ethical%20Charter%20for%20Date%20Science%20WEB%20FINAL.PDF">Royal statistical society and the Institute and Faculty of Actuaries</a></li>
-</ul>
-<p>The following resources are in the form of checklists or questions to think about when collecting, analyzing, and presenting data.</p>
-<ul>
-<li><a href="https://deon.drivendata.org/#data-science-ethics-checklist">Data science ethics checklist</a></li>
-<li><a href="https://www.datascience-pm.com/10-data-science-ethics-questions/">10 data science ethics questions</a></li>
-</ul>
-<p>If you find discussions of these topics you find particularly thought provoking or informative, please share them with me.</p>
-</section>
-<section id="further-reading" class="level2">
-<h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
-<ul>
-<li>Data Science in a Box notes on <a href="https://datasciencebox.org/ethics.html">ethics</a></li>
-</ul>
+<section id="goal" class="level2 page-columns page-full" data-number="34.1">
+<h2 data-number="34.1" class="anchored" data-anchor-id="goal"><span class="header-section-number">34.1</span> Goal</h2>
+<p>In this lesson we will find a visualization and try to reconstruct it using R.</p>
+<p>A reasonable challenge is to redraw a version of the <a href="https://www.google.ca/books/edition/Stats/muxnswEACAAJ">textbook</a> cover for STAT 1060 <span class="citation" data-cites="DeVeaux">(<a href="../references.html#ref-DeVeaux" role="doc-biblioref">De Veaux et al. 2018</a>)</span> using the <code>gapminder</code> data.</p>
+<div id="fig-book-cover" class="quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="static/cover-stats-data-models.JPG" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure 34.1: Cover of the textbook Stats: Data and Models</figcaption><p></p>
+</figure>
+</div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-DeVeaux" class="csl-entry" role="doc-biblioentry">
+De Veaux, Richard D., Paul F. Velleman, David E. Bock, Augustin M. Vukov, and Augustine C. M. Wong. 2018. <em>Stats: Data and Models</em>. Third Canadian Edition. Pearson Education Canada.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -457,13 +459,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lessons/134-reconstruction.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Reconstructing a visualization</span></span>
+      <a href="../lessons/130-graphics-output.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Graphics formatting</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../lessons/901-TMI-R.html" class="pagination-link">
-        <span class="nav-page-text">More details about R</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lessons/911-ethics.html" class="pagination-link">
+        <span class="nav-page-text">Accessibility, Bias, and Ethics</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
