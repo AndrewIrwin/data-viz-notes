@@ -117,4 +117,3 @@ Make a slide presentation with a few slides. Click "Render" (instead of knit) to
 * Lots more information on using [markdown and R markdown](https://slides.djnavarro.net/starting-rmarkdown/#1), presented in slide format
 * A blog post about [learning to make presentation slides](https://meghan.rbind.io/blog/quarto-slides/)
 * Thirty days of tips on using [Quarto for presentations](https://mine-cetinkaya-rundel.github.io/quarto-tip-a-day/)
-

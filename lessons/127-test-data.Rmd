@@ -29,9 +29,9 @@ The most important reason to test is that you will catch mistakes. Possibly the 
 
 Once you have a preliminary analysis, develop a testing plan. Methods that can help:
 
-* Check for errors in your data
-* Perform your analysis on a small subset of your data that you can understand without computer help. This is the "sample calculation" method of testing
-* Perform your analysis on simulated or fake "data" designed to test certain cases (independent variables, strong dependence, etc.) that will allow you to check your methods and interpretation
+* Check for errors in your data.
+* Perform your analysis on a small subset of your data that you can understand without computer help. This is the "sample calculation" method of testing.
+* Perform your analysis on simulated or fake "data" designed to test certain cases (independent variables, strong dependence, etc.) that will allow you to check your methods and interpretation.
 * Perform your calculations or visualizations two different ways, to check your understanding. This is especially useful if you have a fast and a slow way of doing a calculation. Use the slow way as a check on the fast method.
 
 ## Data errors
@@ -40,11 +40,11 @@ What kinds of errors can appear in data?
 
 * Misspellings, upper/lower case inconsistency, extra spaces
 * Duplicated observations
-* Miss-coded missing data (-999, 0)
+* Miss-coded missing data (writing -999 or 0 instead of NA)
 * Inconsistently formatted dates and times
 * Impossible values arising from typographical errors
 * Data in wrong columns
-* All the data can look correct, but the methods may have changed, creating "silent" errors
+* All the data can look correct, but the methods for collecting data may have changed, creating "silent" errors
 
 Why do data sometimes have errors? 
 
@@ -67,62 +67,50 @@ What do you do with errors?
 
 ### Sample data to test
 
-The following data were collected by a class of students evaluating their ability to identify a jelly bean flavour by blindfolded testing. Much of our sense of taste comes from smell, so there were two treatments: a control with the participant was blindfolded and a treatment where the participant was blindfolded and blocked their nose to reduce the sense of smell. Groups of students entered their data into a single Google docs spreadsheet which was exported to the csv file below.
+The following data were collected by a class of students evaluating their ability to identify a jelly bean flavour by blindfolded testing. Much of our sense of taste comes from smell, so there were two treatments. All participants were blindfolded. In the treatment, the participants blocked their nose to reduce their sense of smell and in the control participants could smell normally. Groups of students entered their data into a single Google docs spreadsheet which was exported to the csv file below.
 
 This dataset has a lot of problems, but they are very typical for data entered by a group of people who are not directly involved in the systematic analysis of the data with a software package like R. (They are not attuned to the problems of data errors.)  Take a look at the [file](static/jelly-bean-data.csv) and see how many problems you can find before continuing.
 
 ```{r}
-jelly <- read_csv(here("lessons/static/jelly-bean-data.csv")) %>% clean_names()
-# jelly %>% kable() %>% scroll_box()
+jelly <- read_csv(here("lessons/static/jelly-bean-data.csv"),
+                  show_col_types = FALSE) 
+jelly |> datatable()
 ```
 
-You should always look at data. For a first look, `View`, `skim` (in the `skimr` package), and `glimpse` functions are useful and will identify some problems.
+You should always look at data. For a first look, `View`, `skim` (in the `skimr` package), and `glimpse` functions are useful and will help you identify some problems.
 
 ```{r}
 glimpse(jelly)
-# skimr::skim(jelly)
+# skimr::skim(jelly)  # try this yourself on some data
 ```
 
-There are many columns that have no heading and are purely missing data. Before getting rid of those columns, let's be sure they are **all** missing using the `miss_var_summary` function from the `naniar` package.
+There are many columns that have no heading and are purely missing data. The `janitor` package has a function to remove rows and columns that are all missing data. I think some of these column names are a bit long and the punctuation makes them hard to type, so I will rename them to shorter names.
 
 ```{r}
-jelly %>% miss_var_summary() %>% kable() %>% kable_styling(full_width = FALSE)
+jelly <- jelly |>
+  clean_names() |>
+  rename(group = group_choose_from_drop_down,
+         reaction_s = reaction_time_in_sec,
+         accuracy = accuracy_0_incorrect_1_correct) |>
+  remove_empty(c("rows", "cols"))
 ```
 
-Now we will get rid of those data.
+Check to see if there are any more missing data using the `miss_var_summary` function from the `naniar` package.
 
 ```{r}
-jelly <- jelly %>% select(-(x7:x27))
+jelly |> miss_var_summary() |> 
+  kable() |> kable_styling(full_width = FALSE)
 ```
+
+Are those missing values are a problem? I might choose not to care about the person who collected the data (initials), but a missing flavour or accuracy is a big problem!
 
 The `dlookr` package provides a similar table, plus it adds a count of the number of distinct values for each variable.
 
 ```{r}
-diagnose(jelly) %>% kable() %>% kable_styling(full_width = FALSE)
+diagnose(jelly) |> kable() |> kable_styling(full_width = FALSE)
 ```
 
-There are at least 12% missing values in each variable, so there may be some rows that are completely missing. If you take another look at the data you will see that a lot of rows are all NA. Let's get rid of them.
-First find the rows that are all NA. First we count the number of missing data in each row (mutate) then we remove the rows where every variable is missing (filter). Whenever I clean data, I like to preview what will happen before modifying the dataset.
-
-```{r}
-jelly %>% rowwise() %>%
-  mutate(n_na = sum(is.na(across()))) %>% 
-  filter(n_na == ncol(jelly)) %>%
-  head() %>% kable()
-```
-
-Now remove them:
-
-```{r}
-jelly <- jelly %>% rowwise() %>%
-  mutate(n_na = sum(is.na(across()))) %>% 
-  ungroup() %>%
-  filter(n_na < ncol(jelly)) %>%
-  select(-n_na)
-```
-
-
-We still don't know what most of thse variables mean, but already one thing should stand out. The variable `accuracy_0_incorrect_1_correct` presumably should only be 0 or 1, but has three different values. We may not care about the initials of the investigator, but we might be concerned about the fact that there are 88 missing values (about 50 more than the all blank rows we removed.) 
+We still don't know what most of these variables mean, but already one thing should stand out. The variable `accuracy` (which originally also had the notation 0_incorrect_1_correct) presumably should only be 0 or 1, but has three different values. We may not care about the initials of the investigator, but we might be concerned about the fact that there are 56 missing values. The reaction time (measured in seconds) is text data, but should be a number.
 
 ## Data quality assurance
 
@@ -136,66 +124,67 @@ You can get report on your data using the `pointblank` package. (See the documen
 First we will write the tests.
 
 ```{r eval=FALSE}
-my_test <- jelly %>% 
-  create_agent(actions = action_levels(warn_at = 1)) %>%
-  col_vals_in_set(accuracy_0_incorrect_1_correct, c(0,1)) %>%
-  col_is_numeric(vars(trial_number, reaction_time_in_sec)) %>%
-  col_vals_gt(reaction_time_in_sec, 0) %>%
+my_test <- jelly |> 
+  create_agent(actions = action_levels(warn_at = 1)) |>
+  col_vals_in_set(accuracy, c(0,1)) |>
+  col_is_numeric(vars(trial_number, reaction_s)) |>
+  col_vals_gt(reaction_s, 0) |>
   rows_distinct() 
 ```
+
 Now you can use the tests to get a report. (The report is not shown. Experiment with these functions on your own.)
 
 ```{r eval=FALSE}
-my_test %>% interrogate() 
+my_test |> interrogate() 
 ```
 
 Reaction time (in seconds) is text not a number. Let's fix that. Probably there will be some non-numeric values in there, because otherwise the data would have been read as numeric. So let's look for those rows first. If you try to convert text to a number and the text doesn't look like a number, you'll get an NA instead. So filter out the NAs that get created when you convert from text to number. R will give us a message to alert us to the fact that there are some NAs created.
 
 ```{r}
-jelly %>% filter(is.na(as.numeric(reaction_time_in_sec))) %>%
-  kable() %>% kable_styling(full_width = FALSE)
+jelly |> filter(is.na(as.numeric(reaction_s))) |>
+  kable() |> kable_styling(full_width = FALSE)
 ```
 
 One of those is obviously an error. (Lemon is not a number!) In a careful analysis, you would contact the person who recorded the data (that's what the initials are for) and find out what went wrong. Same thing with the NA, where the time didn't get recorded. For now, we'll just throw away these numbers.
 
 ```{r warning=FALSE, message=FALSE}
-jelly <- jelly %>% 
-  mutate(reaction_time_in_sec = as.numeric(reaction_time_in_sec)) %>%
-  filter(!is.na(reaction_time_in_sec))
+jelly <- jelly |> 
+  mutate(reaction_s = as.numeric(reaction_s)) |>
+  filter(!is.na(reaction_s))
 ```
 
 The pointblank package also has a helpful function to produce a structured report on your whole dataset. (Again the results are not shown here.)
 
 ```{r eval=FALSE}
-jelly %>% scan_data()
+jelly |> scan_data()
 ```
 
 ## Data cleaning
 
-Freshly collected and tabulated data are often "dirty": there are errors in the data such as typographical errors, impossible values, or simply more detail than is appropriate for your analysis. Preparing a dataset for analysis is called [data cleaning](https://en.wikipedia.org/wiki/Data_cleansing) and it can be a complex and lengthy task that is at least as complext as analyzing data. Although there are common tasks performed in data cleaning, every dataset presents its own set of challenges. That's the reason we usually use "clean" data in courses.
+Freshly collected and tabulated data are often "dirty": there are errors in the data such as typographical errors, impossible values, or simply more detail than is appropriate for your analysis. Preparing a dataset for analysis is called [data cleaning](https://en.wikipedia.org/wiki/Data_cleansing) and it can be a complex and lengthy task that is at least as complex as analyzing data. Although there are common tasks performed in data cleaning, every dataset presents its own set of challenges. That's the reason we usually use "clean" data in courses.
 
 Data cleaning tasks are very individual and can take considerable creativity. Here we'll just try a few.
 
 Let's look at the values of `flavour`. It seems like there are a lot of them.
 
 ```{r}
-jelly %>% count(flavour) %>% arrange(-n) %>% 
-  kable() %>% kable_styling(full_width = FALSE)
+jelly |> count(flavour) |> arrange(-n) |> 
+  kable() |> kable_styling(full_width = FALSE)
 ```
 
 We definitely have some duplication. I'll do one correction -- changing all letters to lower case so differences in capitalization don't duplicate flavours. (This simple change eliminates 13 different values of flavour.) 
 If you look closely at the data, you will find spelling errors, different codings (and, +, or neither), and one missing flavour.
 
 ```{r}
-jelly %>% mutate(flavour = tolower(flavour)) %>%
-  count(flavour) %>% arrange(-n) %>% 
-  kable() %>% kable_styling(full_width = FALSE)
+jelly |> mutate(flavour = tolower(flavour)) |>
+  count(flavour) |> arrange(-n) |> 
+  kable() |> kable_styling(full_width = FALSE)
 ```
 
 Use what you learned to tidy the data. Here are some changes I'll make before continuing the analysis.
 
 ```{r}
-jelly <- jelly %>% 
+jelly <- jelly |> 
   mutate(flavour = tolower(flavour),
          flavour = case_when(flavour == "cocnut" ~ "coconut", 
                              TRUE ~ flavour), 
@@ -209,47 +198,47 @@ jelly <- jelly %>%
 Let's compute the average reaction time for correct and incorrect answers for each flavour and each treatment. We will count the number of observations for each grouping too.
 
 ```{r}
-jelly %>% group_by(flavour, group_choose_from_drop_down, accuracy_0_incorrect_1_correct) %>%
+jelly |> group_by(flavour, group, accuracy) |>
   summarize(count = n(),
-            mean_reaction_time = mean(reaction_time_in_sec),
-            .groups = "drop") %>% 
-  kable() %>% kable_styling(full_width = FALSE)
+            mean_reaction_time = mean(reaction_s),
+            .groups = "drop") |> 
+  kable() |> kable_styling(full_width = FALSE)
 ```
 
 This is a fairly simple calculation, but it serves to demonstrate the "manual check" method. Filter out just the incorrect, experimental results for apple flavours. Check that the number of rows and average match.
 
 ```{r}
-jelly %>% filter(flavour == "apple",
-                 accuracy_0_incorrect_1_correct == 0,
-                 group_choose_from_drop_down == "experimental") %>% 
-  kable() %>% kable_styling(full_width = FALSE)
+jelly |> filter(flavour == "apple",
+                 accuracy == 0,
+                 group == "experimental") |> 
+  kable() |> kable_styling(full_width = FALSE)
 ```
 
 Looks good!
 
 ## Use fake data, where you already know the answer
 
-This example will be a bit contrived, but its a good example of the idea. I'll create some simple data and then compute the averages using exactly the same code I wrote above. I'll put in a NA in one row just to see what happens.
+I'll create some simple data and then compute the averages using exactly the same code I wrote above. I'll put in a NA in one row just to see what happens.
 
 ```{r}
 my_jelly <- tribble(
-  ~group_choose_from_drop_down, ~ flavour, ~ reaction_time_in_sec, ~ accuracy_0_incorrect_1_correct,
+  ~group, ~ flavour, ~ reaction_s, ~ accuracy,
   "experimental", "lime", 1, 1,
   "experimental", "lime", 2, 1,
   "experimental", "lemon", 3, 1,
   "control", "lemon", 4, 1,
 )
-my_jelly %>% kable() %>% kable_styling(full_width = FALSE)
+my_jelly |> kable() |> kable_styling(full_width = FALSE)
 ```
 
 I know exactly what I'm expecting. Stop and decide for yourself before reading on.
 
 ```{r message=FALSE}
-my_jelly %>% group_by(flavour, group_choose_from_drop_down, accuracy_0_incorrect_1_correct) %>%
+my_jelly |> group_by(flavour, group, accuracy) |>
   summarize(count = n(),
-            mean_reaction_time = mean(reaction_time_in_sec),
-            .groups = "drop") %>% 
-  kable() %>% kable_styling(full_width = FALSE)
+            mean_reaction_time = mean(reaction_s),
+            .groups = "drop") |> 
+  kable() |> kable_styling(full_width = FALSE)
 ```
 
 
@@ -259,13 +248,13 @@ Suppose we weren't really confident that we knew what `mean` does? Even simple f
 
 ```{r}
 my_mean = function(x) sum(x) / length(x)
-my_jelly %>% group_by(flavour, 
-                      group_choose_from_drop_down, 
-                      accuracy_0_incorrect_1_correct) %>%
+my_jelly |> group_by(flavour, 
+                      group, 
+                      accuracy) |>
   summarize(count = length(flavour),
-            mean_reaction_time = my_mean(reaction_time_in_sec),
-            .groups = "drop") %>%
-  kable() %>% kable_styling(full_width = FALSE)
+            mean_reaction_time = my_mean(reaction_s),
+            .groups = "drop") |>
+  kable() |> kable_styling(full_width = FALSE)
 ```
 
 Excellent! We got the same answers.
