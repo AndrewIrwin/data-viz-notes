@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.0.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -630,11 +630,11 @@ geojson_write(canada_raw_sim, file = "static/canada_cd_sim.geojson") </code></pr
 </div>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>canada_cd <span class="sc">|&gt;</span> <span class="fu">pull</span>(CDNAME) <span class="sc">|&gt;</span> <span class="fu">unique</span>() <span class="sc">|&gt;</span> <span class="fu">sample</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Sunshine Coast"                  "Arthabaska"                     
- [3] "Sept-Rivières--Caniapiscau"      "La Côte-de-Beaupré"             
- [5] "Sudbury"                         "Deux-Montagnes"                 
- [7] "L'Érable"                        "Témiscamingue"                  
- [9] "Division No. 10"                 "Greater Sudbury / Grand Sudbury"</code></pre>
+<pre><code> [1] "Portneuf"                   "Sept-Rivières--Caniapiscau"
+ [3] "Restigouche"                "Squamish-Lillooet"         
+ [5] "Rimouski-Neigette"          "Le Rocher-Percé"           
+ [7] "Shelburne"                  "Saint John"                
+ [9] "Central Coast"              "Region 6"                  </code></pre>
 </div>
 </div>
 <p>I’ve changed the latitude and longitude parameters for the projection to values more suitable for this part of Canada.</p>
@@ -748,6 +748,9 @@ geojson_write(canada_raw_sim, file = "static/canada_cd_sim.geojson") </code></pr
 <li><a href="https://cran.r-project.org/web/packages/mapcan/readme/README.html">Election data</a> for boundaries and chloropleths and populated weighted chloropleths</li>
 <li>A map showing <a href="https://discuss.ropensci.org/t/osmdata-rnaturalearth-and-magick-for-tidytuesday/2255">wind turbines</a> in Maritimes</li>
 </ul>
+<div class="cell">
+
+</div>
 
 
 </section>

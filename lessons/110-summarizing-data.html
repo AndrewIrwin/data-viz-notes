@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.0.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -78,6 +78,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -415,14 +434,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 12
-  carat cut    color clarity depth table price     x     y     z   box box_ratio
-  &lt;dbl&gt; &lt;ord&gt;  &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
-1  0.23 Ideal  E     SI2      61.5    55   326  3.95  3.98  2.43  38.2   0.00602
-2  0.21 Premi… E     SI1      59.8    61   326  3.89  3.84  2.31  34.5   0.00609
-3  0.23 Good   E     VS1      56.9    65   327  4.05  4.07  2.31  38.1   0.00604
-4  0.29 Premi… I     VS2      62.4    58   334  4.2   4.23  2.63  46.7   0.00621
-5  0.31 Good   J     SI2      63.3    58   335  4.34  4.35  2.75  51.9   0.00597
-6  0.24 Very … J     VVS2     62.8    57   336  3.94  3.96  2.48  38.7   0.00620</code></pre>
+  carat cut      color clarity depth table price     x     y     z   box box_r…¹
+  &lt;dbl&gt; &lt;ord&gt;    &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+1  0.23 Ideal    E     SI2      61.5    55   326  3.95  3.98  2.43  38.2 0.00602
+2  0.21 Premium  E     SI1      59.8    61   326  3.89  3.84  2.31  34.5 0.00609
+3  0.23 Good     E     VS1      56.9    65   327  4.05  4.07  2.31  38.1 0.00604
+4  0.29 Premium  I     VS2      62.4    58   334  4.2   4.23  2.63  46.7 0.00621
+5  0.31 Good     J     SI2      63.3    58   335  4.34  4.35  2.75  51.9 0.00597
+6  0.24 Very Go… J     VVS2     62.8    57   336  3.94  3.96  2.48  38.7 0.00620
+# … with abbreviated variable name ¹​box_ratio</code></pre>
 </div>
 </div>
 <p>This function adds two new columns to the data table, computing values for every row in the table. It doesn’t change any of the other columns. You can also modify an existing column, for example to change units from dollars to thousands of dollars or carats to grams, by using the name of an existing column on the left hand side of the equals sign.</p>
@@ -539,11 +559,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code># A tibble: 5 × 10
   carat cut       color clarity depth table price     x     y     z
   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  0.4  Ideal     G     VS1      62.2    56   877  4.72  4.74  2.94
-2  0.35 Ideal     E     VS1      62.3    56   829  4.5   4.52  2.81
-3  0.3  Very Good G     SI1      62.7    58   447  4.22  4.27  2.66
-4  0.59 Ideal     F     SI1      62.3    54  1424  5.37  5.41  3.36
-5  1.03 Good      G     SI2      63.9    60  3466  6.33  6.37  4.06</code></pre>
+1  1.06 Very Good G     VS2      61.7    57  6483  6.5   6.57  4.03
+2  0.7  Very Good G     VS1      61      57  2591  5.69  5.72  3.48
+3  0.75 Ideal     F     SI1      60.8    57  3610  5.87  5.9   3.58
+4  1    Premium   G     I1       59      60  2264  6.49  6.43  3.82
+5  0.31 Very Good G     VS2      61.4    55   559  4.38  4.41  2.69</code></pre>
 </div>
 </div>
 <p>You can use <code>arrange</code> to sort the data by any number of columns before slicing or displaying the data.</p>
@@ -724,10 +744,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="further-reading" class="level2" data-number="9.7">
 <h2 data-number="9.7" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">9.7</span> Further reading</h2>
 <ul>
-<li>R4DS. Chapter 5 on <a href="https://r4ds.had.co.nz/transform.html">Data transformations</a></li>
+<li>R4DS <span class="citation" data-cites="wickham2014r4ds">(<a href="../references.html#ref-wickham2014r4ds" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>. Chapter 5 on <a href="https://r4ds.had.co.nz/transform.html">Data transformations</a></li>
 </ul>
+<div class="cell">
+
+</div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-wickham2014r4ds" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. "O’Reilly Media". <a href="https://r4ds.had.co.nz/">https://r4ds.had.co.nz/</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

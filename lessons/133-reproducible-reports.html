@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.0.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -538,13 +538,13 @@ aes(color = mean_life_exp, x = log10(mean_GDP), y=fct_reorder(country, mean_life
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.1.3 (2022-03-10)
+<pre><code>R version 4.2.1 (2022-06-23)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Big Sur/Monterey 10.16
+Running under: macOS Big Sur ... 10.16
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
 
 locale:
 [1] en_CA.UTF-8/en_CA.UTF-8/en_CA.UTF-8/C/en_CA.UTF-8/en_CA.UTF-8
@@ -562,43 +562,43 @@ loaded via a namespace (and not attached):
  [1] lubridate_1.8.0     assertthat_0.2.1    rprojroot_2.0.3    
  [4] digest_0.6.29       utf8_1.2.2          R6_2.5.1           
  [7] cellranger_1.1.0    backports_1.4.1     reprex_2.0.1       
-[10] evaluate_0.15       httr_1.4.2          pillar_1.7.0       
+[10] evaluate_0.15       httr_1.4.3          pillar_1.8.0       
 [13] rlang_1.0.4         googlesheets4_1.0.0 readxl_1.4.0       
 [16] rstudioapi_0.13     R.utils_2.12.0      R.oo_1.25.0        
 [19] rmarkdown_2.14      labeling_0.4.2      googledrive_2.0.0  
 [22] htmlwidgets_1.5.4   munsell_0.5.0       broom_1.0.0        
-[25] compiler_4.1.3      modelr_0.1.8        xfun_0.30          
-[28] pkgconfig_2.0.3     htmltools_0.5.2     tidyselect_1.1.2   
+[25] compiler_4.2.1      modelr_0.1.8        xfun_0.31          
+[28] pkgconfig_2.0.3     htmltools_0.5.3     tidyselect_1.1.2   
 [31] fansi_1.0.3         crayon_1.5.1        tzdb_0.3.0         
-[34] dbplyr_2.1.1        withr_2.5.0         R.methodsS3_1.8.2  
-[37] grid_4.1.3          jsonlite_1.8.0      gtable_0.3.0       
-[40] lifecycle_1.0.1     DBI_1.1.2           magrittr_2.0.3     
-[43] scales_1.2.1        cli_3.3.0           stringi_1.7.6      
-[46] farver_2.1.0        fs_1.5.2            xml2_1.3.3         
-[49] ellipsis_0.3.2      generics_0.1.2      vctrs_0.4.1        
-[52] tools_4.1.3         R.cache_0.16.0      glue_1.6.2         
+[34] dbplyr_2.2.1        withr_2.5.0         R.methodsS3_1.8.2  
+[37] grid_4.2.1          jsonlite_1.8.0      gtable_0.3.0       
+[40] lifecycle_1.0.1     DBI_1.1.3           magrittr_2.0.3     
+[43] scales_1.2.0        cli_3.3.0           stringi_1.7.8      
+[46] farver_2.1.1        fs_1.5.2            xml2_1.3.3         
+[49] ellipsis_0.3.2      generics_0.1.3      vctrs_0.4.1        
+[52] tools_4.2.1         R.cache_0.16.0      glue_1.6.2         
 [55] hms_1.1.1           fastmap_1.1.0       colorspace_2.0-3   
-[58] gargle_1.2.0        rvest_1.0.2         knitr_1.38         
-[61] haven_2.4.3        </code></pre>
+[58] gargle_1.2.0        rvest_1.0.2         knitr_1.39         
+[61] haven_2.5.0        </code></pre>
 </div>
 </div>
 <p>If you want to produce bibliographic citations for your packages you can use the <code>report</code> package:</p>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>report<span class="sc">::</span><span class="fu">cite_packages</span>()  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Bryan J (2017). <em>gapminder: Data from Gapminder</em>. R package version0.3.0, &lt;URL: https://CRAN.R-project.org/package=gapminder&gt;.</li>
-<li>Henry L, Wickham H (2020). <em>purrr: Functional Programming Tools</em>. Rpackage version 0.3.4, &lt;URL: https://CRAN.R-project.org/package=purrr&gt;.</li>
-<li>Makowski D, Ben-Shachar M, Patil I, Lüdecke D (2021). “AutomatedResults Reporting as a Practical Tool to Improve Reproducibility andMethodological Best Practices Adoption.” <em>CRAN</em>. &lt;URL:https://github.com/easystats/report&gt;.</li>
-<li>Müller K (2020). <em>here: A Simpler Way to Find Your Files</em>. R packageversion 1.0.1, &lt;URL: https://CRAN.R-project.org/package=here&gt;.</li>
-<li>Müller K, Walthert L (2022). <em>styler: Non-Invasive Pretty Printing of RCode</em>. R package version 1.7.0, &lt;URL:https://CRAN.R-project.org/package=styler&gt;.</li>
-<li>Müller K, Wickham H (2022). <em>tibble: Simple Data Frames</em>. R packageversion 3.1.8, &lt;URL: https://CRAN.R-project.org/package=tibble&gt;.</li>
-<li>R Core Team (2022). <em>R: A Language and Environment for StatisticalComputing</em>. R Foundation for Statistical Computing, Vienna, Austria.&lt;URL: https://www.R-project.org/&gt;.</li>
-<li>Wickham H (2016). <em>ggplot2: Elegant Graphics for Data Analysis</em>.Springer-Verlag New York. ISBN 978-3-319-24277-4, &lt;URL:https://ggplot2.tidyverse.org&gt;.</li>
-<li>Wickham H (2019). <em>stringr: Simple, Consistent Wrappers for CommonString Operations</em>. R package version 1.4.0, &lt;URL:https://CRAN.R-project.org/package=stringr&gt;.</li>
-<li>Wickham H (2021). <em>forcats: Tools for Working with CategoricalVariables (Factors)</em>. R package version 0.5.1, &lt;URL:https://CRAN.R-project.org/package=forcats&gt;.</li>
-<li>Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R,Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E,Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, TakahashiK, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to thetidyverse.” <em>Journal of Open Source Software</em>, <em>4</em>(43), 1686. doi:10.21105/joss.01686 (URL: https://doi.org/10.21105/joss.01686).</li>
-<li>Wickham H, François R, Henry L, Müller K (2022). <em>dplyr: A Grammar ofData Manipulation</em>. R package version 1.0.9, &lt;URL:https://CRAN.R-project.org/package=dplyr&gt;.</li>
-<li>Wickham H, Girlich M (2022). <em>tidyr: Tidy Messy Data</em>. R packageversion 1.2.0, &lt;URL: https://CRAN.R-project.org/package=tidyr&gt;.</li>
-<li>Wickham H, Hester J, Bryan J (2022). <em>readr: Read Rectangular TextData</em>. R package version 2.1.2, &lt;URL:https://CRAN.R-project.org/package=readr&gt;.</li>
+<li>Bryan J (2017). <em>gapminder: Data from Gapminder</em>. R package version0.3.0, <a href="https://CRAN.R-project.org/package=gapminder" class="uri">https://CRAN.R-project.org/package=gapminder</a>.</li>
+<li>Henry L, Wickham H (2020). <em>purrr: Functional Programming Tools</em>. Rpackage version 0.3.4, <a href="https://CRAN.R-project.org/package=purrr" class="uri">https://CRAN.R-project.org/package=purrr</a>.</li>
+<li>Makowski D, Ben-Shachar M, Patil I, Lüdecke D (2021). “AutomatedResults Reporting as a Practical Tool to Improve Reproducibility andMethodological Best Practices Adoption.” <em>CRAN</em>.<a href="https://github.com/easystats/report" class="uri">https://github.com/easystats/report</a>.</li>
+<li>Müller K (2020). <em>here: A Simpler Way to Find Your Files</em>. R packageversion 1.0.1, <a href="https://CRAN.R-project.org/package=here" class="uri">https://CRAN.R-project.org/package=here</a>.</li>
+<li>Müller K, Walthert L (2022). <em>styler: Non-Invasive Pretty Printing of RCode</em>. R package version 1.7.0,<a href="https://CRAN.R-project.org/package=styler" class="uri">https://CRAN.R-project.org/package=styler</a>.</li>
+<li>Müller K, Wickham H (2022). <em>tibble: Simple Data Frames</em>. R packageversion 3.1.8, <a href="https://CRAN.R-project.org/package=tibble" class="uri">https://CRAN.R-project.org/package=tibble</a>.</li>
+<li>R Core Team (2022). <em>R: A Language and Environment for StatisticalComputing</em>. R Foundation for Statistical Computing, Vienna, Austria.<a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</li>
+<li>Wickham H (2016). <em>ggplot2: Elegant Graphics for Data Analysis</em>.Springer-Verlag New York. ISBN 978-3-319-24277-4,<a href="https://ggplot2.tidyverse.org" class="uri">https://ggplot2.tidyverse.org</a>.</li>
+<li>Wickham H (2019). <em>stringr: Simple, Consistent Wrappers for CommonString Operations</em>. R package version 1.4.0,<a href="https://CRAN.R-project.org/package=stringr" class="uri">https://CRAN.R-project.org/package=stringr</a>.</li>
+<li>Wickham H (2021). <em>forcats: Tools for Working with CategoricalVariables (Factors)</em>. R package version 0.5.1,<a href="https://CRAN.R-project.org/package=forcats" class="uri">https://CRAN.R-project.org/package=forcats</a>.</li>
+<li>Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R,Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E,Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, TakahashiK, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to thetidyverse.” <em>Journal of Open Source Software</em>, <em>4</em>(43), 1686.doi:10.21105/joss.01686 <a href="https://doi.org/10.21105/joss.01686" class="uri">https://doi.org/10.21105/joss.01686</a>.</li>
+<li>Wickham H, François R, Henry L, Müller K (2022). <em>dplyr: A Grammar ofData Manipulation</em>. R package version 1.0.9,<a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</li>
+<li>Wickham H, Girlich M (2022). <em>tidyr: Tidy Messy Data</em>. R packageversion 1.2.0, <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a>.</li>
+<li>Wickham H, Hester J, Bryan J (2022). <em>readr: Read Rectangular TextData</em>. R package version 2.1.2,<a href="https://CRAN.R-project.org/package=readr" class="uri">https://CRAN.R-project.org/package=readr</a>.</li>
 </ul>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># See also report::report(sessionInfo())</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To absolutely guarantee you can use R code in the future, some applications will benefit from you keeping copies of all the required packages on your own computer system. The <a href="https://rstudio.github.io/packrat/">packrat</a> and <a href="https://github.com/RevolutionAnalytics/checkpoint">checkpoint</a> packages can help you manage packages. I have never felt the need to have this level of reproducibility, but I find it reassuring to know these tools exist.</p>
@@ -624,22 +624,30 @@ loaded via a namespace (and not attached):
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>penguins_aggr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># Source:   lazy query [?? x 8]
-# Database: sqlite 3.38.3 [:memory:]
-  species       N TOT_bill_length_mm TOT_bill_depth_mm TOT_flipper_length_mm
-  &lt;chr&gt;     &lt;int&gt;              &lt;dbl&gt;             &lt;dbl&gt;                 &lt;int&gt;
-1 Adelie      152              5858.             2770.                 28683
-2 Chinstrap    68              3321.             1253.                 13316
-3 Gentoo      124              5843.             1843.                 26714
-# … with 3 more variables: AVG_bill_length_mm &lt;dbl&gt;, AVG_bill_depth_mm &lt;dbl&gt;,
-#   AVG_flipper_length_mm &lt;dbl&gt;</code></pre>
+<pre><code># Source:   SQL [3 x 8]
+# Database: sqlite 3.39.1 [:memory:]
+  species       N TOT_bill_length_mm TOT_bill_…¹ TOT_f…² AVG_b…³ AVG_b…⁴ AVG_f…⁵
+  &lt;chr&gt;     &lt;int&gt;              &lt;dbl&gt;       &lt;dbl&gt;   &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 Adelie      152              5858.       2770.   28683    38.8    18.3    190.
+2 Chinstrap    68              3321.       1253.   13316    48.8    18.4    196.
+3 Gentoo      124              5843.       1843.   26714    47.5    15.0    217.
+# … with abbreviated variable names ¹​TOT_bill_depth_mm, ²​TOT_flipper_length_mm,
+#   ³​AVG_bill_length_mm, ⁴​AVG_bill_depth_mm, ⁵​AVG_flipper_length_mm</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">capture.output</span>(<span class="fu">show_query</span>(penguins_aggr))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "&lt;SQL&gt;"                                                                                                                                                                                                                                                                                                                              
-[2] "SELECT `species`, COUNT(*) AS `N`, SUM(`bill_length_mm`) AS `TOT_bill_length_mm`, SUM(`bill_depth_mm`) AS `TOT_bill_depth_mm`, SUM(`flipper_length_mm`) AS `TOT_flipper_length_mm`, AVG(`bill_length_mm`) AS `AVG_bill_length_mm`, AVG(`bill_depth_mm`) AS `AVG_bill_depth_mm`, AVG(`flipper_length_mm`) AS `AVG_flipper_length_mm`"
-[3] "FROM `penguins`"                                                                                                                                                                                                                                                                                                                    
-[4] "GROUP BY `species`"                                                                                                                                                                                                                                                                                                                 </code></pre>
+<pre><code> [1] "&lt;SQL&gt;"                                                 
+ [2] "SELECT"                                                
+ [3] "  `species`,"                                          
+ [4] "  COUNT(*) AS `N`,"                                    
+ [5] "  SUM(`bill_length_mm`) AS `TOT_bill_length_mm`,"      
+ [6] "  SUM(`bill_depth_mm`) AS `TOT_bill_depth_mm`,"        
+ [7] "  SUM(`flipper_length_mm`) AS `TOT_flipper_length_mm`,"
+ [8] "  AVG(`bill_length_mm`) AS `AVG_bill_length_mm`,"      
+ [9] "  AVG(`bill_depth_mm`) AS `AVG_bill_depth_mm`,"        
+[10] "  AVG(`flipper_length_mm`) AS `AVG_flipper_length_mm`" 
+[11] "FROM `penguins`"                                       
+[12] "GROUP BY `species`"                                    </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -654,6 +662,9 @@ loaded via a namespace (and not attached):
 <li>LeVeque et al.&nbsp;<a href="https://web.stanford.edu/~vcs/papers/CiSE2012-LMS.pdf">Reproducible research for scientific computing</a></li>
 <li>Sandve et al.&nbsp;Ten simple rules for reproducible computational research. <span class="citation" data-cites="sandve2013">(<a href="../references.html#ref-sandve2013" role="doc-biblioref">Sandve et al. 2013</a>)</span></li>
 </ul>
+<div class="cell">
+
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
