@@ -259,6 +259,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lessons/133-reproducible-reports.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reproducible reports</span></a>
   </div>
 </li>
@@ -334,7 +339,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  <a href="../lessons/499-review.html" class="sidebar-item-text sidebar-link">R Review</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -401,7 +406,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Here is a map of the 48 continental US states, with a quantiative variable used to shade each region. To change the variable used to colour the states, simply provide a new dataset with a numeric column and a text column called “state”. The map is drawn with ggplot, so the other features of ggplot including annotation, setting colour scales, labelling axes, etc., are all available to you and work the same way as for other visualizations we have created.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>states_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"state"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>crimes <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(USArrests, <span class="at">rownames=</span><span class="st">"state"</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">tolower</span>(state))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>crimes <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(USArrests, <span class="at">rownames=</span><span class="st">"state"</span>) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">tolower</span>(state))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(crimes, <span class="fu">aes</span>(<span class="at">map_id =</span> state)) <span class="sc">+</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_map</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Murder), <span class="at">map =</span> states_map) <span class="sc">+</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expand_limits</span>(<span class="at">x =</span> states_map<span class="sc">$</span>long, <span class="at">y =</span> states_map<span class="sc">$</span>lat) <span class="sc">+</span></span>
@@ -471,7 +476,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Here is a list of 252 regions available in the world map (abbreviated here).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>WorldData <span class="sc">%&gt;%</span> <span class="fu">pull</span>(region) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>WorldData <span class="sc">|&gt;</span> <span class="fu">pull</span>(region) <span class="sc">|&gt;</span> <span class="fu">unique</span>() <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Aruba"       "Afghanistan" "Angola"      "Anguilla"    "Albania"    
 [6] "Finland"    </code></pre>
@@ -549,7 +554,7 @@ geojson_write(canada_raw_sim, file = "static/canada_cd_sim.geojson") </code></pr
 </div>
 <p>Now we draw the map with some colours from a palette.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>map_colors <span class="ot">&lt;-</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">9</span>, <span class="st">"Pastel1"</span>) <span class="sc">%&gt;%</span> <span class="fu">rep</span>(<span class="dv">2</span>)   <span class="co"># 18 colours, 9 repeated</span></span>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>map_colors <span class="ot">&lt;-</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">9</span>, <span class="st">"Pastel1"</span>) <span class="sc">|&gt;</span> <span class="fu">rep</span>(<span class="dv">2</span>)   <span class="co"># 18 colours, 9 repeated</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> PRUID), <span class="at">color =</span> <span class="st">"gray60"</span>, <span class="at">size =</span> <span class="fl">0.1</span>, <span class="at">data =</span> canada_cd ) <span class="sc">+</span></span>
@@ -579,11 +584,11 @@ geojson_write(canada_raw_sim, file = "static/canada_cd_sim.geojson") </code></pr
 </div>
 <p>Convert the latitude and longitudes to map coordinates.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sf_cities <span class="ot">=</span> city_coords <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(long, lat) <span class="sc">%&gt;%</span> <span class="co"># 1</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> <span class="co"># 2</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_multipoint</span>(<span class="at">dim =</span> <span class="st">'XY'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_sfc</span>() <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sf_cities <span class="ot">=</span> city_coords <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(long, lat) <span class="sc">|&gt;</span> <span class="co"># 1</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.matrix</span>() <span class="sc">|&gt;</span> <span class="co"># 2</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_multipoint</span>(<span class="at">dim =</span> <span class="st">'XY'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_sfc</span>() <span class="sc">|&gt;</span> </span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_set_crs</span>(<span class="dv">4269</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Make the map with projected points.</p>
@@ -607,7 +612,7 @@ geojson_write(canada_raw_sim, file = "static/canada_cd_sim.geojson") </code></pr
 </div>
 <p>It’s easy to focus in on the Maritimes region of Canada – just filter the data to include only the province or census districts you want. Here are some of the names in the map data that you can use for filtering.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>canada_cd <span class="sc">%&gt;%</span> <span class="fu">pull</span>(PRNAME) <span class="sc">%&gt;%</span> <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>canada_cd <span class="sc">|&gt;</span> <span class="fu">pull</span>(PRNAME) <span class="sc">|&gt;</span> <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Manitoba"                                           
  [2] "British Columbia / Colombie-Britannique"            
@@ -623,13 +628,13 @@ geojson_write(canada_raw_sim, file = "static/canada_cd_sim.geojson") </code></pr
 [12] "Nunavut"                                            
 [13] "Yukon"                                              </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>canada_cd <span class="sc">%&gt;%</span> <span class="fu">pull</span>(CDNAME) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">sample</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>canada_cd <span class="sc">|&gt;</span> <span class="fu">pull</span>(CDNAME) <span class="sc">|&gt;</span> <span class="fu">unique</span>() <span class="sc">|&gt;</span> <span class="fu">sample</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Thérèse-De Blainville"    "Pontiac"                 
- [3] "Peterborough"             "Cowichan Valley"         
- [5] "La Côte-de-Beaupré"       "Les Îles-de-la-Madeleine"
- [7] "Prince"                   "Madawaska"               
- [9] "Cochrane"                 "Sudbury"                 </code></pre>
+<pre><code> [1] "Sunshine Coast"                  "Arthabaska"                     
+ [3] "Sept-Rivières--Caniapiscau"      "La Côte-de-Beaupré"             
+ [5] "Sudbury"                         "Deux-Montagnes"                 
+ [7] "L'Érable"                        "Témiscamingue"                  
+ [9] "Division No. 10"                 "Greater Sudbury / Grand Sudbury"</code></pre>
 </div>
 </div>
 <p>I’ve changed the latitude and longitude parameters for the projection to values more suitable for this part of Canada.</p>
@@ -637,7 +642,7 @@ geojson_write(canada_raw_sim, file = "static/canada_cd_sim.geojson") </code></pr
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>crs_string2 <span class="ot">=</span> <span class="st">"+proj=lcc +lat_1=40 +lat_2=50 +lon_0=-75 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs"</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> PRUID), <span class="at">color =</span> <span class="st">"gray60"</span>, <span class="at">size =</span> <span class="fl">0.1</span>, </span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> canada_cd <span class="sc">%&gt;%</span> <span class="fu">filter</span>(PRNAME <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Nova Scotia / Nouvelle-Écosse"</span>, <span class="st">"New Brunswick / Nouveau-Brunswick"</span>, <span class="st">"Prince Edward Island / Île-du-Prince-Édouard"</span>))) <span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> canada_cd <span class="sc">|&gt;</span> <span class="fu">filter</span>(PRNAME <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Nova Scotia / Nouvelle-Écosse"</span>, <span class="st">"New Brunswick / Nouveau-Brunswick"</span>, <span class="st">"Prince Edward Island / Île-du-Prince-Édouard"</span>))) <span class="sc">+</span></span>
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># geom_sf(data = sf_cities, color = '#001e73', alpha = 0.5, size = 3) + # 17</span></span>
 <span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_sf</span>(<span class="at">crs =</span> crs_string2) <span class="sc">+</span></span>
 <span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> map_colors) <span class="sc">+</span></span>
@@ -694,7 +699,7 @@ geojson_write(canada_raw_sim, file = "static/canada_cd_sim.geojson") </code></pr
 <h3 data-number="27.2.2" class="anchored" data-anchor-id="just-the-map-please"><span class="header-section-number">27.2.2</span> Just the map, please</h3>
 <p><a href="https://gist.githubusercontent.com/mikelotis/2156d7c170d10d2c77cb79424fe2137d/raw/7a13748ed7ea5ba64876c77c53b6cb64dd5c3ab0/canada-province.geojson">Here</a> is a file of province boundaries that can be used without showing the census district regions. I’ve added a latitude-longitude grid to the map.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>canada_prov <span class="ot">&lt;-</span> <span class="fu">geojson_read</span>(<span class="st">"https://gist.githubusercontent.com/mikelotis/2156d7c170d10d2c77cb79424fe2137d/raw/7a13748ed7ea5ba64876c77c53b6cb64dd5c3ab0/canada-province.geojson"</span>, <span class="at">what=</span><span class="st">"sp"</span>) <span class="sc">%&gt;%</span> <span class="fu">st_as_sf</span>()</span>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>canada_prov <span class="ot">&lt;-</span> <span class="fu">geojson_read</span>(<span class="st">"https://gist.githubusercontent.com/mikelotis/2156d7c170d10d2c77cb79424fe2137d/raw/7a13748ed7ea5ba64876c77c53b6cb64dd5c3ab0/canada-province.geojson"</span>, <span class="at">what=</span><span class="st">"sp"</span>) <span class="sc">|&gt;</span> <span class="fu">st_as_sf</span>()</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> name), </span>

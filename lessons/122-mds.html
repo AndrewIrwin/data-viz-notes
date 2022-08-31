@@ -262,6 +262,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lessons/133-reproducible-reports.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reproducible reports</span></a>
   </div>
 </li>
@@ -337,7 +342,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  <a href="../lessons/499-review.html" class="sidebar-item-text sidebar-link">R Review</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -424,14 +429,14 @@ dbl (4): lat, lng, population, id
 </div>
 <p>Now we calculate the distance between all pairs of cities. I’ve shown two ways to do this – using great circle distance along the surface of the Earth, and using a distance that projects the surface of the Earth onto a plane first. If the goal is to reconstruct the map shown above, use this projected distance. If you would like instead to show great-circle distances between cities in the plane, use the geodesic distance.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>city_distance <span class="ot">&lt;-</span> <span class="fu">dist</span>(cities <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(lng, lat) <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>()) <span class="co">#  distance in equirectangular projection</span></span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>city_distance <span class="ot">&lt;-</span> <span class="fu">dist</span>(cities <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(lng, lat) <span class="sc">|&gt;</span> <span class="fu">as.matrix</span>()) <span class="co">#  distance in equirectangular projection</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># https://en.wikipedia.org/wiki/Equirectangular_projection</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Perform <a href="https://en.wikipedia.org/wiki/Multidimensional_scaling">MDS</a> (principal coordinates analysis). The direction of the two main axes could be reversed relative to the original map; I’ve reversed the x and y axes to match our customary view of the world.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mds1 <span class="ot">&lt;-</span> <span class="fu">cmdscale</span>(city_distance)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(mds1) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"V1"</span>, <span class="st">"V2"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(cities, <span class="fu">as_tibble</span>(mds1)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(cities, <span class="fu">as_tibble</span>(mds1)) <span class="sc">|&gt;</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> V1, <span class="at">y =</span> V2)) <span class="sc">+</span> </span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> city), <span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
@@ -443,11 +448,11 @@ dbl (4): lat, lng, population, id
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>city_distance <span class="ot">&lt;-</span> <span class="fu">rdist.earth</span>(cities <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(lng, lat) <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>(), </span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>city_distance <span class="ot">&lt;-</span> <span class="fu">rdist.earth</span>(cities <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(lng, lat) <span class="sc">|&gt;</span> <span class="fu">as.matrix</span>(), </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">miles =</span> <span class="cn">FALSE</span>) <span class="co"># geodesic distance</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>mds1 <span class="ot">&lt;-</span> <span class="fu">cmdscale</span>(city_distance)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(mds1) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"V1"</span>, <span class="st">"V2"</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(cities, <span class="fu">as_tibble</span>(mds1)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(cities, <span class="fu">as_tibble</span>(mds1)) <span class="sc">|&gt;</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> V1, <span class="at">y =</span> V2)) <span class="sc">+</span> </span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> city), <span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
@@ -467,8 +472,8 @@ dbl (4): lat, lng, population, id
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>morse.dist <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">'https://raw.githubusercontent.com/zdealveindy/anadat-r/master/data/morsecodes-dist.txt'</span>,</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">row.names =</span> <span class="dv">1</span>, <span class="at">head =</span> T)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(morse.dist) <span class="ot">&lt;-</span> <span class="fu">rownames</span>(morse.dist)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>morse.dist[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="sc">%&gt;%</span> <span class="fu">kable</span>() <span class="sc">%&gt;%</span> <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">monospace=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">monospace=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>morse.dist[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="sc">|&gt;</span> <span class="fu">kable</span>() <span class="sc">|&gt;</span> <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">monospace=</span><span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">monospace=</span><span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -559,9 +564,9 @@ Species: scores missing</code></pre>
 <p>This next plot compares the distances in the original data to the distances as represented by the ordination. If the ordination represents the original data well, this will be close to a straight line. There is a point for every pairwise comparison. In this case there are 36 * 35 / 2 = 630 distances to compare. I have labeled some of the points with the largest distortion imposed by the ordination.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>symbols <span class="ot">&lt;-</span> <span class="fu">rownames</span>(NMDS<span class="sc">$</span>points)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>NMDS[<span class="fu">c</span>(<span class="st">"dist"</span>, <span class="st">"dhat"</span>, <span class="st">"iidx"</span>, <span class="st">"jidx"</span>)] <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>NMDS[<span class="fu">c</span>(<span class="st">"dist"</span>, <span class="st">"dhat"</span>, <span class="st">"iidx"</span>, <span class="st">"jidx"</span>)] <span class="sc">|&gt;</span> <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">comparison =</span> <span class="fu">paste0</span>(symbols[iidx], <span class="st">"/"</span>, symbols[jidx]),</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">comparison2 =</span> <span class="fu">case_when</span>( <span class="fu">abs</span>(dist<span class="sc">-</span>dhat) <span class="sc">&lt;</span> <span class="dv">40</span> <span class="sc">~</span> <span class="st">""</span>, <span class="cn">TRUE</span> <span class="sc">~</span> comparison)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">comparison2 =</span> <span class="fu">case_when</span>( <span class="fu">abs</span>(dist<span class="sc">-</span>dhat) <span class="sc">&lt;</span> <span class="dv">40</span> <span class="sc">~</span> <span class="st">""</span>, <span class="cn">TRUE</span> <span class="sc">~</span> comparison)) <span class="sc">|&gt;</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(dist, dhat)) <span class="sc">+</span> </span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">0.5</span>, <span class="at">color=</span><span class="st">"blue"</span>) <span class="sc">+</span> </span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> comparison2)) <span class="sc">+</span></span>
@@ -572,7 +577,7 @@ Species: scores missing</code></pre>
 </div>
 <p>You can also access the points from the ordination and make the “ordiplot” using ggplot. The relative position of points on the plat is the only thing that matters – any rotation or translation of the plot contains the same information.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>NMDS<span class="sc">$</span>points <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>(<span class="at">rownames =</span> <span class="st">"Symbol"</span>) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>NMDS<span class="sc">$</span>points <span class="sc">|&gt;</span> <span class="fu">as_tibble</span>(<span class="at">rownames =</span> <span class="st">"Symbol"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> MDS1, <span class="at">y =</span> MDS2 )) <span class="sc">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Symbol)) <span class="sc">+</span> </span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -614,8 +619,8 @@ Number of permutations: 999</code></pre>
 </div>
 <p>Here is a method to reproduce this plot using <code>ggplot</code>. First use <code>str(ef)</code> to examine the structure of the result from <code>envfit</code>. Then plot the points and arrows using ggplot.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>arrows1 <span class="ot">&lt;-</span> ef<span class="sc">$</span>vectors<span class="sc">$</span>arrows <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>(<span class="at">rownames =</span> <span class="st">"code"</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(NMDS<span class="sc">$</span>points, <span class="at">rownames =</span> <span class="st">"code"</span>) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>arrows1 <span class="ot">&lt;-</span> ef<span class="sc">$</span>vectors<span class="sc">$</span>arrows <span class="sc">|&gt;</span> <span class="fu">as_tibble</span>(<span class="at">rownames =</span> <span class="st">"code"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(NMDS<span class="sc">$</span>points, <span class="at">rownames =</span> <span class="st">"code"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> MDS1, <span class="at">y =</span> MDS2, <span class="at">label =</span> code)) <span class="sc">+</span> </span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>() <span class="sc">+</span></span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> arrows1, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">25</span><span class="sc">*</span>NMDS1, <span class="at">y =</span> <span class="dv">25</span><span class="sc">*</span>NMDS2)) <span class="sc">+</span></span>

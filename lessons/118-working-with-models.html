@@ -278,6 +278,11 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lessons/133-reproducible-reports.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reproducible reports</span></a>
   </div>
 </li>
@@ -353,7 +358,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  <a href="../lessons/499-review.html" class="sidebar-item-text sidebar-link">R Review</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -424,8 +429,8 @@ div.csl-indent {
 <p>In this lesson we will focus on visualizing models that smooth data. In the next two lessons we will take a closer look at these models, in particular getting diagnostic information about model fits and making data frames with quantitative output from the models.</p>
 <p>First, we’ll take a subset of the gapminder data and make a simple scatterplot.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>gp <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Europe"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> gp <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> <span class="fu">log10</span>(gdpPercap))) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>gp <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Europe"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> gp <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> <span class="fu">log10</span>(gdpPercap))) <span class="sc">+</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">

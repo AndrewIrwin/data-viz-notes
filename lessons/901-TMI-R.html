@@ -89,7 +89,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../lessons/999-metadata.html" rel="next">
-<link href="../lessons/911-ethics.html" rel="prev">
+<link href="../lessons/499-review.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -260,6 +260,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lessons/133-reproducible-reports.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reproducible reports</span></a>
   </div>
 </li>
@@ -335,7 +340,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  <a href="../lessons/499-review.html" class="sidebar-item-text sidebar-link">R Review</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -402,15 +407,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="recent-changes" class="level2">
 <h2 class="anchored" data-anchor-id="recent-changes">Recent changes</h2>
-<p>Software is notorious for constant and unanticipated changes. Websites appear, disappear, and are redesigned frequently. Features appear and disappear even in mature software like email clients, word processors and spreadsheets. R is no different. Here are a few changes that have occurred in the last few years that are particularly relevant to our course.</p>
-<p>The “pipe” command has become part of R (as of version 4), but it looks different than the old pipe and works a little bit differently. I don’t think this difference will affect the examples in this course very much. I have changed to the new pipe (<code>|&gt;</code>) most places in the examples, but the old pipe (<code>%&gt;%</code>) probably still appears in some places.</p>
-<p>GitHub authentication has changed; passwords are no longer allowed from R (or anywhere except the website). I have revised and simplified the instructions for using GitHub. This is a technical subject that can be difficult for beginners to master. I think I have removed all references to GitHub passwords.</p>
+<p>Software is notorious for frequent and unanticipated changes. Websites appear, disappear, and are redesigned frequently. Features appear and disappear even in mature software like email clients, word processors and spreadsheets. R is no different. Here are a few changes that have occurred in the last few years that are particularly relevant to our course.</p>
+<p>The “pipe” feature has become part of R (as of version 4.1), but it looks different than the <a href="https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html">old pipe</a> and works a little bit differently. I don’t think this difference will affect the examples in this course very much. I have changed to the new pipe (<code>|&gt;</code>) most places in the examples, but the old pipe (<code>%&gt;%</code>) probably still appears in some places.</p>
+<p>GitHub authentication has changed; passwords are no longer allowed from R (or anywhere except the website). I have revised and simplified the instructions for using GitHub. This is a technical subject that can be difficult for beginners to master—give yourself some time to fully understand how git and github work.</p>
 <p>Data sources and external links disappear and change frequently. I think I have checked them all. If you see problems, let me know!</p>
 </section>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>R is a big software package. It’s developed over decades of use. It has millions of regular users across many disciplines in teaching, academic research and professional applications. It’s a computer programming language, and a tool for accessing thousands of data analysis tools, and a great interactive environment for exploring, analyzing, and visualizing data. You won’t learn it all.</p>
-<p>The approach in this course is to teach you how to use R in a particular style, with an emphasis on the ggplot and tidyverse packages. The R markdown documents we write balance interactive use with a documentation of the sequence of steps used in any analysis. I have omitted a lot of details that might be called “fundamentals” and instead focussed on getting work done quickly. In this lesson I fill in some of the gaps. My reasoning is that most important to want to learn a tool before you spend too much time on details, so this course empahsizes what you can do with R. On the other hand, I hope you will use R for a long time on many projects, and once you reach the point you know you will do that, you should start developing a solid mental model of how R works so that you can build robust understandings of how to accomplish tasks with R and get beyond copy, paste, search, and experiment. Without these fundamentals, its easy to make up incorrect ideas about why and how R works and then get really confused and frustrated.</p>
+<p>The approach in this course is to teach you how to use R in a particular style, with an emphasis on the ggplot and tidyverse packages. The R markdown documents we write balance interactive use while documentating the sequence of steps used in any analysis. I have omitted a lot of details that might be called “fundamentals” and instead focussed on getting work done quickly. In this lesson I fill in some of the gaps. My reasoning is that most students want to learn a tool before you spend too much time on details, so this course emphasizes what you can do with R. On the other hand, I hope you will use R for a long time on many projects, and once you reach the point you know you will do that, you should start developing a solid mental model of how R works so that you can build robust understandings of how to accomplish tasks with R and get beyond copy, paste, search, and experiment. Without these fundamentals, its easy to make up incorrect ideas about why and how R works and then get really confused and frustrated.</p>
 <p>A simple introduction to the basics of R appears in <a href="https://socviz.co/appendix.html#appendix">Healy Appendix</a>. A different approach is taken in the R for Data Science book, which introduces the basics of many topics, such as <a href="https://r4ds.had.co.nz/tibbles.html">tibbles</a>, <a href="https://r4ds.had.co.nz/strings.html">strings</a>, <a href="https://r4ds.had.co.nz/factors.html">factors</a> and <a href="https://r4ds.had.co.nz/dates-and-times.html">dates</a>, <a href="https://r4ds.had.co.nz/functions.html">functions</a> and <a href="https://r4ds.had.co.nz/vectors.html">vectors</a> together with their applications one chapter at a time.</p>
 </section>
 <section id="what-kinds-of-data-structures-does-r-use" class="level2">
@@ -717,8 +722,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lessons/911-ethics.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Accessibility, Bias, and Ethics</span>
+      <a href="../lessons/499-review.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">R Review</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

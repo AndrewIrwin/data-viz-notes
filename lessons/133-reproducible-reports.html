@@ -108,7 +108,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../lessons/121-PCA.html" rel="next">
-<link href="../lessons/301-data-sources.html" rel="prev">
+<link href="../lessons/911-ethics.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -278,6 +278,11 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lessons/133-reproducible-reports.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reproducible reports</span></a>
   </div>
 </li>
@@ -353,7 +358,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  <a href="../lessons/499-review.html" class="sidebar-item-text sidebar-link">R Review</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -479,7 +484,7 @@ div.csl-indent {
 <h2 data-number="20.4" class="anchored" data-anchor-id="code-formatting"><span class="header-section-number">20.4</span> Code formatting</h2>
 <p>There is a <a href="https://style.tidyverse.org/">tidyverse style guide</a>. Google has their <a href="https://google.github.io/styleguide/Rguide.html">own</a>, revised from the tidyverse guide. It’s worthwhile reading these guides. Code that is formatted in a standard way is easier for you to read and easier for someone else to read.</p>
 <p>Here is some carelessly formatted code.</p>
-<pre><code>gapminder %&gt;% filter(continent =="Europe") %&gt;% group_by(country) %&gt;% summarize(mean_life_exp = mean(lifeExp), mean_GDP = mean(gdpPercap)) %&gt;% ggplot(
+<pre><code>gapminder |&gt; filter(continent =="Europe") |&gt; group_by(country) |&gt; summarize(mean_life_exp = mean(lifeExp), mean_GDP = mean(gdpPercap)) |&gt; ggplot(
 aes(color = mean_life_exp, x = log10(mean_GDP), y=fct_reorder(country, mean_life_exp))) + geom_point()</code></pre>
 <p>Here is the same code (and its output) formatted using <code>styler</code>:</p>
 <div class="cell">
@@ -506,8 +511,8 @@ aes(color = mean_life_exp, x = log10(mean_GDP), y=fct_reorder(country, mean_life
 </div>
 </div>
 <p>You can output graphics in multiple file formats by adding <code>dev = c("png", "pdf")</code> (and other formats) to the chunk options. These files will be deleted unless you <a href="https://bookdown.org/yihui/rmarkdown-cookbook/keep-files.html#keep-files">reqest they be kept</a>, which is easily done by caching the results of at least one code chunk.</p>
-<div class="cell" data-hash="133-reproducible-reports_cache/html/cache_test_2_35a6970200c440703ffa6a970a20a3d7">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="133-reproducible-reports_cache/html/cache_test_2_38428510aea701ed0a702da162214476">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="133-reproducible-reports_files/figure-html/cache_test_2-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -610,8 +615,8 @@ loaded via a namespace (and not attached):
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">copy_to</span>(con, palmerpenguins<span class="sc">::</span>penguins, <span class="st">"penguins"</span>)</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"penguins"</span>)</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>penguins_aggr <span class="ot">&lt;-</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  penguins <span class="sc">%&gt;%</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  penguins <span class="sc">|&gt;</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">n</span>(),</span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">ends_with</span>(<span class="st">"mm"</span>), sum, <span class="at">.names =</span> <span class="st">"TOT_{.col}"</span>),</span>
@@ -761,8 +766,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lessons/301-data-sources.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Finding and accessing data</span></span>
+      <a href="../lessons/911-ethics.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Accessibility, Bias, and Ethics</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

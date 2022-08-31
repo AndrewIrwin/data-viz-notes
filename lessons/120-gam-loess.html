@@ -262,6 +262,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lessons/133-reproducible-reports.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reproducible reports</span></a>
   </div>
 </li>
@@ -337,7 +342,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  <a href="../lessons/499-review.html" class="sidebar-item-text sidebar-link">R Review</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -401,7 +406,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Here is a plot of atmospheric CO2 concentration over time.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>my_theme <span class="ot">=</span> <span class="fu">theme_linedraw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> co2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(decimal_date, co2_avg)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> my_theme <span class="sc">+</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> co2 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(decimal_date, co2_avg)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> my_theme <span class="sc">+</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year (decimal)"</span>, <span class="at">y =</span> <span class="st">"Atmospheric CO2 (ppm)"</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -410,7 +415,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The next plot shows each observation, minus the annual mean, as a function of the time of year but not the actual year. Each year’s observations are overlapped.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> co2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(year_fraction, co2_anomaly)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> my_theme <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> co2 <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(year_fraction, co2_anomaly)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> my_theme <span class="sc">+</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year fraction (decimal)"</span>, <span class="at">y =</span> <span class="st">"Atmospheric CO2 anomaly (ppm)"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -462,7 +467,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 R-sq.(adj) =  0.976   Deviance explained = 97.8%
 GCV = 0.092244  Scale est. = 0.085038  n = 119</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(g1) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(g1) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table>
@@ -491,7 +496,7 @@ GCV = 0.092244  Scale est. = 0.085038  n = 119</code></pre>
 </table>
 
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(g1) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(g1) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table>
@@ -519,7 +524,7 @@ GCV = 0.092244  Scale est. = 0.085038  n = 119</code></pre>
 </div>
 <p>It is often useful to compute residuals and extract predicted values.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>co2 <span class="sc">%&gt;%</span> <span class="fu">add_residuals</span>(g1) <span class="sc">%&gt;%</span> <span class="fu">add_fitted</span>(g1) <span class="sc">%&gt;%</span> <span class="fu">kable</span>() <span class="sc">%&gt;%</span>  <span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">"200px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>co2 <span class="sc">|&gt;</span> <span class="fu">add_residuals</span>(g1) <span class="sc">|&gt;</span> <span class="fu">add_fitted</span>(g1) <span class="sc">|&gt;</span> <span class="fu">kable</span>() <span class="sc">|&gt;</span>  <span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">"200px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; "><table>
@@ -1734,7 +1739,7 @@ GCV = 0.092244  Scale est. = 0.085038  n = 119</code></pre>
 <p>If we generate new data (dates), we can plot predictions too. Since the model is a piecewise cubic function, extrapolations are often dramatically unreliable. The downward facing cubic in the last “bump” is simply continued, with comically bad results. Extrapolation of models, and especially smooths, is somewhere between risky and foolish!</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">decimal_date =</span> <span class="fu">seq</span>(<span class="dv">2017</span>, <span class="dv">2022</span>, <span class="at">by =</span> <span class="fl">0.05</span>))</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>new_data <span class="sc">%&gt;%</span> <span class="fu">add_fitted</span>(g3) <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>new_data <span class="sc">|&gt;</span> <span class="fu">add_fitted</span>(g3) <span class="sc">|&gt;</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(decimal_date, .value)) <span class="sc">+</span> </span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span> co2_avg), <span class="at">data =</span> co2) <span class="sc">+</span> my_theme <span class="sc">+</span> <span class="fu">xlim</span>(<span class="dv">2017</span>, <span class="dv">2022</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1744,7 +1749,7 @@ GCV = 0.092244  Scale est. = 0.085038  n = 119</code></pre>
 </div>
 <p>If you want confidence intervals on the fitted values, use the <code>confint</code> function together with the name of the smooth you are extracting. Be aware that this function does not include the intercept (or grand mean) from the model, so the values are all centred on zero.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(g1, <span class="st">"s(year_fraction)"</span>, <span class="at">level =</span> <span class="fl">0.95</span>) <span class="sc">%&gt;%</span> <span class="fu">kable</span>() <span class="sc">%&gt;%</span>  <span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">"200px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(g1, <span class="st">"s(year_fraction)"</span>, <span class="at">level =</span> <span class="fl">0.95</span>) <span class="sc">|&gt;</span> <span class="fu">kable</span>() <span class="sc">|&gt;</span>  <span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">"200px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: `evaluate_smooth()` was deprecated in gratia 0.7.0.
 Please use `smooth_estimates()` instead.
@@ -3771,7 +3776,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 </table></div>
 
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(g1, <span class="st">"s(year_fraction)"</span>, <span class="at">level =</span> <span class="fl">0.95</span>) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(g1, <span class="st">"s(year_fraction)"</span>, <span class="at">level =</span> <span class="fl">0.95</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year_fraction)) <span class="sc">+</span> </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper), <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span> </span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> est)) <span class="sc">+</span> my_theme</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3782,7 +3787,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 <p>You can also use <code>lm</code> to fit splines; these are similar to GAMs but there are some important differences. The <code>mgcv</code> package has a lot of features not available with <code>lm</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(co2_avg <span class="sc">~</span> splines<span class="sc">::</span><span class="fu">bs</span>(decimal_date, <span class="at">df =</span> <span class="dv">5</span>), <span class="at">data =</span> co2)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(s1) <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(s1) <span class="sc">|&gt;</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table>
@@ -3842,7 +3847,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 </table>
 
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(s1) <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(s1) <span class="sc">|&gt;</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table>
@@ -3885,7 +3890,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 <p>We can use <code>augment</code> to generate data to plot and combine it with the original data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="fu">augment</span>(s1, <span class="at">data =</span> co2, <span class="at">se_fit =</span> <span class="cn">TRUE</span>, <span class="at">interval=</span><span class="st">"prediction"</span>) </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>a1 <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(decimal_date)) <span class="sc">+</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>a1 <span class="sc">|&gt;</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(decimal_date)) <span class="sc">+</span> </span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> .lower, <span class="at">ymax =</span> .upper), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span> </span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span> .fitted)) <span class="sc">+</span></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> co2_avg)) <span class="sc">+</span> </span>
@@ -3926,7 +3931,7 @@ drop.square:  FALSE </code></pre>
 </div>
 <p>We can use <code>predict</code>, <code>residuals</code> and <code>augment</code> on these model objects as we did for <code>lm</code> fits in the previous lesson.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(l1, <span class="at">se_fit =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">kable</span>() <span class="sc">%&gt;%</span>  <span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">"200px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(l1, <span class="at">se_fit =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">kable</span>() <span class="sc">|&gt;</span>  <span class="fu">scroll_box</span>(<span class="at">height =</span> <span class="st">"200px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; "><table>
@@ -4777,7 +4782,7 @@ drop.square:  FALSE </code></pre>
 </table></div>
 
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(l1, <span class="at">se_fit =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(l1, <span class="at">se_fit =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year_fraction, <span class="at">y =</span> .fitted)) <span class="sc">+</span> </span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> .fitted <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>.se.fit, <span class="at">ymax =</span> .fitted <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>.se.fit), <span class="at">alpha =</span> <span class="fl">0.20</span>) <span class="sc">+</span> </span>
@@ -4791,7 +4796,7 @@ drop.square:  FALSE </code></pre>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">year_fraction =</span> <span class="fu">seq</span>(<span class="fu">min</span>(co2<span class="sc">$</span>year_fraction), </span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                                      <span class="fu">max</span>(co2<span class="sc">$</span>year_fraction),</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">length =</span> <span class="dv">100</span>))</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(l1, <span class="at">newdata =</span> new_data, <span class="at">se_fit =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(l1, <span class="at">newdata =</span> new_data, <span class="at">se_fit =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year_fraction, <span class="at">y =</span> .fitted)) <span class="sc">+</span> </span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> .fitted <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>.se.fit,</span>

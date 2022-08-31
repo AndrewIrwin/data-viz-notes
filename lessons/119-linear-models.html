@@ -260,6 +260,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lessons/133-reproducible-reports.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reproducible reports</span></a>
   </div>
 </li>
@@ -335,7 +340,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  <a href="../lessons/499-review.html" class="sidebar-item-text sidebar-link">R Review</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -449,14 +454,14 @@ Multiple R-squared:  0.851, Adjusted R-squared:  0.851
 F-statistic: 1.54e+05 on 2 and 53937 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>linear_model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> carat <span class="sc">+</span> clarity <span class="sc">+</span> color, </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> diamonds <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">clarity =</span> <span class="fu">factor</span>(clarity, <span class="at">ordered=</span><span class="cn">FALSE</span>), </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> diamonds <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">clarity =</span> <span class="fu">factor</span>(clarity, <span class="at">ordered=</span><span class="cn">FALSE</span>), </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">color =</span> <span class="fu">factor</span>(color, <span class="at">ordered=</span><span class="cn">FALSE</span>)))</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(linear_model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = price ~ carat + clarity + color, data = diamonds %&gt;% 
-    mutate(clarity = factor(clarity, ordered = FALSE), color = factor(color, 
+lm(formula = price ~ carat + clarity + color, data = mutate(diamonds, 
+    clarity = factor(clarity, ordered = FALSE), color = factor(color, 
         ordered = FALSE)))
 
 Residuals:
@@ -533,9 +538,9 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h2 data-number="16.2" class="anchored" data-anchor-id="smoothing-on-facets"><span class="header-section-number">16.2</span> Smoothing on facets</h2>
 <p>The <code>geom_smooth</code> function is especially powerful for facetted plots. The smooth is automatically computed and plotted for each facet separately.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(color <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"D"</span>, <span class="st">"F"</span>, <span class="st">"H"</span>, <span class="st">"J"</span>), </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>         clarity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"SI1"</span>, <span class="st">"VS1"</span>, <span class="st">"IF"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>         clarity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"SI1"</span>, <span class="st">"VS1"</span>, <span class="st">"IF"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>carat, <span class="at">y=</span>price)) <span class="sc">+</span> </span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>cut)) <span class="sc">+</span></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(color <span class="sc">~</span> clarity) <span class="sc">+</span> </span>
@@ -554,11 +559,11 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>We demonstrated the importance of visualizing data at the start of the course by appealing to the example of Anscombe’s quartet. This is a set of four data sets which all have the same means, standard deviations, and correlation. Here I’ll show how to plot four lines on a single plot and how to avoid at least one of the problems with outliers by using robust regression from the <code>MASS</code> package.</p>
 <p>Robust regression is designed to be less influenced by outliers. Robust regression is a big improvement for group 3, but has little effect on any of the other problems. (Try <code>formula = y ~ poly(x,2)</code> to fix panel 2. There is no fix for the problem in panel 4.)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> anscombe <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> anscombe <span class="sc">|&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(),</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">".value"</span>, <span class="st">"set"</span>),</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">names_pattern =</span> <span class="st">"(.)(.)"</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a> ) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a> ) <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> set) </span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># p1 + geom_smooth(method="lm") # Try this instead</span></span>
@@ -572,7 +577,7 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h2 data-number="16.4" class="anchored" data-anchor-id="predicting-quantiles"><span class="header-section-number">16.4</span> Predicting quantiles</h2>
 <p>You can also try to predict quantiles of your data. Here we make a linear model for the 0.05, 0.50 (median), and 0.95 quantiles.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> <span class="fu">filter</span>(cut <span class="sc">==</span> <span class="st">"Ideal"</span>, color <span class="sc">==</span> <span class="st">"G"</span>) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> <span class="fu">filter</span>(cut <span class="sc">==</span> <span class="st">"Ideal"</span>, color <span class="sc">==</span> <span class="st">"G"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>carat, <span class="at">y =</span> price)) <span class="sc">+</span> </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_quantile</span>(<span class="at">method =</span> rqss, <span class="at">formula =</span> y <span class="sc">~</span> x,</span>
@@ -587,7 +592,7 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The <code>broom</code> package has functions to obtain model coefficients and compute residuals, predictions, and confindence intervals. Healy also shows how to use <code>broom</code> to fit many models (such as a model for each facet) in his <a href="https://socviz.co/modeling.html#grouped-analysis-and-list-columns">Section 6.6</a>, but I will skip those steps.</p>
 <p>Get the coefficients (and standard errors, t-statistic, p-value and confidence intervals) from your model using <code>tidy</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(linear_model1, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(linear_model1, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table>
@@ -628,8 +633,8 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p>The second model has the effect of each level of clarity on price (relative to the base case of I1). Here’s how we can plot the regression coefficients as dot plots with uncertainties using the output from <code>tidy</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(linear_model2, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_starts</span>(term, <span class="st">"clarity"</span>)) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(linear_model2, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_starts</span>(term, <span class="st">"clarity"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> term, <span class="at">x =</span> estimate, <span class="at">xmin =</span> conf.low, <span class="at">xmax =</span> conf.high)) <span class="sc">+</span> </span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -646,7 +651,7 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p>You can get statistics for the model using <code>glance</code>. We don’t discuss these results, but if you have taken a statistics course with topics on regression you should recognize at least some of these results.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(linear_model1) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(linear_model1) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table>
@@ -688,7 +693,7 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p>The <code>augment</code> function makes it easy to plot residuals and predicted values for many models (see <code>?augment</code>). We can use <code>augment</code> on the model object to get a data frame with the data used in the model plus fitted (predicted) values, residuals, and other quantities. You can add the other data not provided in the model object by including <code>data = diamonds</code> in the augment function (output not shown.)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(linear_model1, <span class="at">interval =</span> <span class="st">"prediction"</span>) <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(linear_model1, <span class="at">interval =</span> <span class="st">"prediction"</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>() <span class="sc">|&gt;</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table>
@@ -783,12 +788,12 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 </table>
 
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># augment(linear_model1, interval = "prediction", data = diamonds) %&gt;% head()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># augment(linear_model1, interval = "prediction", data = diamonds) |&gt; head()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If you generate new data, you can make and plot predictions easily.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">carat =</span> <span class="fu">seq</span>(<span class="fl">0.20</span>, <span class="fl">5.01</span>, <span class="fl">0.01</span>))</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(linear_model1, <span class="at">newdata =</span> new_data, <span class="at">interval =</span> <span class="st">"prediction"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(linear_model1, <span class="at">newdata =</span> new_data, <span class="at">interval =</span> <span class="st">"prediction"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> .fitted, <span class="at">ymin =</span> .lower, <span class="at">ymax =</span> .upper)) <span class="sc">+</span> </span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">fill=</span><span class="st">"darkblue"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -804,7 +809,7 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Here we will fit each of the models generated above and look at the <code>summary</code> output from each model. I’ll start by computing log(GDP) and the number of years since 1950 to use as variables in my models.</p>
 <p>A linear model fitting a straight line to the data (slope, intercept):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>gp <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Europe"</span>) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>gp <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Europe"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year1950 =</span> year <span class="sc">-</span> <span class="dv">1950</span>,</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">logGDP =</span> <span class="fu">log10</span>(gdpPercap))</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logGDP <span class="sc">~</span> year1950, <span class="at">data =</span> gp)</span>
@@ -888,7 +893,7 @@ year1950    0.00939      0.00692  0.01221 </code></pre>
 <p>An important visualization for any model is to compare observations with the predictions of the model. This difference is called the residual. (From the residual variation in the data not described by the model.) The function <code>residuals</code> applied to the model object gives you access to these values and makes them easy to plot.</p>
 <p>You can make histograms of residuals:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">residuals =</span> <span class="fu">residuals</span>(m1)) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">residuals =</span> <span class="fu">residuals</span>(m1)) <span class="sc">|&gt;</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> residuals)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
@@ -901,12 +906,12 @@ year1950    0.00939      0.00692  0.01221 </code></pre>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="at">model =</span> <span class="st">"spline"</span>, <span class="at">residual =</span> <span class="fu">residuals</span>(m3)),</span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="at">model =</span> <span class="st">"loess"</span>, <span class="at">residual =</span> <span class="fu">residuals</span>(m5))</span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>residuals <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> residual, <span class="at">fill =</span> model)) <span class="sc">+</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>residuals <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> residual, <span class="at">fill =</span> model)) <span class="sc">+</span></span>
 <span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>residuals <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> residual)) <span class="sc">+</span> </span>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>residuals <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> residual)) <span class="sc">+</span> </span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>) <span class="sc">+</span> <span class="fu">facet_grid</span>(model <span class="sc">~</span> .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-21-2.png" class="img-fluid" width="672"></p>
@@ -915,16 +920,16 @@ year1950    0.00939      0.00692  0.01221 </code></pre>
 <p>We can see that the distribution (histogram) of the residuals is fairly similar for all three models. There are defintely negative residuals larger in magnitude than any of the positive residuals. The modal residuals are bigger than zero. This suggests there are some points where the model “over predicts” (model prediction larger than observed data) and the most common result is an under prediction (model prediction is smaller than observed value.)</p>
 <p>More commonly you will want to compare the residuals to one of the independent variable, dependent variable, or predicted values. This is easy to do by adding predictions and residuals to the original data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>gp1 <span class="ot">&lt;-</span> gp <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">linear_residuals =</span> <span class="fu">residuals</span>(m1),</span>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>gp1 <span class="ot">&lt;-</span> gp <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">linear_residuals =</span> <span class="fu">residuals</span>(m1),</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">linear_predictions =</span> <span class="fu">predict</span>(m1))</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>gp1 <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> logGDP, </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>gp1 <span class="sc">|&gt;</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> logGDP, </span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> linear_predictions)) <span class="sc">+</span> </span>
 <span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="fu">aes</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>gp1 <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> linear_predictions, </span>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>gp1 <span class="sc">|&gt;</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> linear_predictions, </span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> linear_residuals)) <span class="sc">+</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -935,9 +940,9 @@ year1950    0.00939      0.00692  0.01221 </code></pre>
 <p>When making predictions, you can also generate <a href="https://en.wikipedia.org/wiki/Confidence_interval">confidence</a> or <a href="https://en.wikipedia.org/wiki/Prediction_interval">prediction</a> intervals to add a measure of uncertainty to your visualization. For plotting purposes you may want to generate a uniform grid along the x-axis and make predictions for these values. Here’s how you can do that. I’ve used summarize to determine the range of the years since 1950 (not shown). You should always be very cautious interpreting predictions, but especially predictions for values outside the observed values in your original data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">year1950 =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">57</span>, <span class="at">by =</span> <span class="dv">1</span>))</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>predictions1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(m3, new_data, <span class="at">interval =</span> <span class="st">"prediction"</span>) <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>predictions2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(m5, new_data, <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(new_data, predictions1) <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>predictions1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(m3, new_data, <span class="at">interval =</span> <span class="st">"prediction"</span>) <span class="sc">|&gt;</span> <span class="fu">as_tibble</span>()</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>predictions2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(m5, new_data, <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">as_tibble</span>()</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(new_data, predictions1) <span class="sc">|&gt;</span></span>
 <span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year1950, <span class="at">y =</span> fit)) <span class="sc">+</span> </span>
 <span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr), <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span> </span>
 <span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
@@ -945,7 +950,7 @@ year1950    0.00939      0.00692  0.01221 </code></pre>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(new_data, predictions2) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(new_data, predictions2) <span class="sc">|&gt;</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year1950, <span class="at">y =</span> fit)) <span class="sc">+</span> </span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> fit <span class="sc">-</span>se.fit, <span class="at">ymax =</span> fit <span class="sc">+</span> se.fit), <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span> </span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>

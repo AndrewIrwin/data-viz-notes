@@ -262,6 +262,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lessons/133-reproducible-reports.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reproducible reports</span></a>
   </div>
 </li>
@@ -337,7 +342,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  <a href="../lessons/499-review.html" class="sidebar-item-text sidebar-link">R Review</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -400,9 +405,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 data-number="12.1" class="anchored" data-anchor-id="pivot-wider"><span class="header-section-number">12.1</span> Pivot wider</h2>
 <p>We’ll start by selecting three years (1987, 1997, 2007) and computing the median life expectancy for each continent in each year. (The median for the continent may not be representative of all countries in the continent, but we’ll worry about that some other time.)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span> </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1987</span>, <span class="dv">1997</span>, <span class="dv">2007</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent, year) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1987</span>, <span class="dv">1997</span>, <span class="dv">2007</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent, year) <span class="sc">|&gt;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">median_life_expectancy =</span> <span class="fu">median</span>(lifeExp), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>t1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -428,7 +433,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Now we can see the data and it’s not too large, the reshaping problem is clearer. I’d like to create a table with one row for each continent, one column for each year and the numbers in the grid should be the median life expectancy. This reshaping is called a pivot, specifically a pivot to make a wider table, and we simply need to specify the current column to use as the new names (year) and the current column to use as the values for the new grid (median_life_expectancy).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> year, <span class="at">values_from =</span> median_life_expectancy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="sc">|&gt;</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> year, <span class="at">values_from =</span> median_life_expectancy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
   continent `1987` `1997` `2007`
@@ -442,11 +447,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>I’ll give you an advanced peek at table formatting skills from the next lesson to make this look a bit better:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> t1 <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> year, <span class="at">values_from =</span> median_life_expectancy)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>t2 <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">Continent =</span> continent) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span><span class="st">`</span><span class="at">2007</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> t1 <span class="sc">|&gt;</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> year, <span class="at">values_from =</span> median_life_expectancy)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>t2 <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">Continent =</span> continent) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span><span class="st">`</span><span class="at">2007</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold=</span><span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -501,7 +506,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Sometimes data a provided in a “wide” format, like the summary table above. This is often very convient for data entry and visual inspection. Suppose you wanted to use the years in the table shown above as a aesthetic in a plot, or a grouping variable in a summarise operation. You can’t! So you might want to pivot the table to make it longer.</p>
 <p><code>pivot_longer</code> undoes the <code>pivot_wider</code> operation. You need to give the set of variables to be stacked and a name for the new variable to be filled with those column headings. Here’s how to perform the inverse of the <code>pivot_wider</code> shown above. You can describe a sequence of variables by giving the first one, a colon (<code>:</code>), and the last one. Since our variable names are just numbers (which are not standard column names in data tables), we need to put backticks around them. (The plain expression 1987:2007 would be interpreted quite differently by R. Try it in the console. )</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>t3 <span class="ot">&lt;-</span> t2 <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1987</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2007</span><span class="st">`</span>, <span class="at">names_to =</span> <span class="st">"year"</span>, <span class="at">values_to =</span> <span class="st">"median_life_expectancy"</span>)</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>t3 <span class="ot">&lt;-</span> t2 <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1987</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2007</span><span class="st">`</span>, <span class="at">names_to =</span> <span class="st">"year"</span>, <span class="at">values_to =</span> <span class="st">"median_life_expectancy"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>t3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 15 × 3
@@ -526,7 +531,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>There is an important difference between the original table <code>t1</code> and this recovered table <code>t3</code>: the year variable in t1 was an integer (numeric) but the year variable in <code>t3</code> is character (text). This will matter if you want to calculate with the new year variable or put it on a quantitative scale. The <code>hablar</code> package makes it really easy to convert variables from one type to another:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>t3 <span class="sc">%&gt;%</span> <span class="fu">convert</span>(<span class="fu">int</span>(year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>t3 <span class="sc">|&gt;</span> <span class="fu">convert</span>(<span class="fu">int</span>(year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 15 × 3
    continent  year median_life_expectancy
@@ -551,7 +556,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The dataset <code>who</code> in the <code>tidyr</code> package is counts of tuberculosis cases by country and year. It is in wide format with many columns (new…) describing diagnosis method, sex, and age category. There are also a lot of missing data when the data are shown in this wide format.</p>
 <p>Let’s pivot this data to make it long.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>who_long <span class="ot">&lt;-</span> who <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(new_sp_m014<span class="sc">:</span>newrel_f65, <span class="at">names_to =</span> <span class="st">"category"</span>, <span class="at">values_to =</span> <span class="st">"counts"</span>)</span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>who_long <span class="ot">&lt;-</span> who <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(new_sp_m014<span class="sc">:</span>newrel_f65, <span class="at">names_to =</span> <span class="st">"category"</span>, <span class="at">values_to =</span> <span class="st">"counts"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(who_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
@@ -567,7 +572,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>the original data had 7240 observations and 60 columns (4 that we’ve kept and 56 that we have pivoted). As a result our new table <code>who_long</code> has 6 columns (4+2) and 56 x 7240 = 405,440 rows. Let’s see how many of the count data are missing.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>who_long <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">count_NA =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(counts)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>who_long <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">count_NA =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(counts)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   count_NA
@@ -577,7 +582,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>A lot of them! In fact 81% of the data in the original matrix are NA. So let’s discard them using <code>na.omit</code> or <code>filter(!is.na(counts))</code>. You can also use <code>values_drop_na = TRUE</code> in the <code>pivot_longer</code> function call. That will make a much smaller table. If you look at the smaller table, you’ll see there are some counts equal to 0. So NA did not simply mean 0. (You should never use NA to mean 0; it should mean missing. But some people do.)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>who_long <span class="ot">&lt;-</span> who_long <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(counts))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>who_long <span class="ot">&lt;-</span> who_long <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(counts))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="separate-and-unite" class="level2" data-number="12.3">
@@ -585,10 +590,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The category variable combines three pieces of information together in one label. How can we decode the category into three columns: diagnosis, sex, and age group? The <code>separate</code> function is made for this. The easiest way to use separate is if the variable you are separating is consistently structured with the same character between each column, such as new_rel_f_2534. That’s not the case here: some values start with <code>new_</code> and some are missing the underscore after the <code>new</code>. Also there is no underscore between sex and age group. So we will do a bit of pre-processing using the <code>stringr</code> package before we use separate.</p>
 <p>First, I’ll remove “new” or “new_” (described concisely by a “regular expression” using new_*). Then I’ll change <code>_f</code> to <code>_f_</code> and <code>_m</code> to <code>_m_</code>. When you first start learning to do these kinds of manipulations, you should check through a lot of the cases to be sure all the transformations worked the way you expect. There are a lot os <code>str_</code> functions in the <code>stringr</code> package to help with these kinds of manipulations.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>who_long <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">category =</span> <span class="fu">str_remove</span>(category, <span class="st">"new_*"</span>),</span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>who_long <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">category =</span> <span class="fu">str_remove</span>(category, <span class="st">"new_*"</span>),</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">category =</span> <span class="fu">str_replace</span>(category, <span class="st">"_f"</span>, <span class="st">"_f_"</span>),</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">category =</span> <span class="fu">str_replace</span>(category, <span class="st">"_m"</span>, <span class="st">"_m_"</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                    ) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                    ) <span class="sc">|&gt;</span> </span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
@@ -604,12 +609,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Now, we will use <code>separate</code> to convert <code>category</code> into three columns using the underscore as a separator.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>who_new <span class="ot">&lt;-</span> who_long <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">category =</span> <span class="fu">str_remove</span>(category, <span class="st">"new_*"</span>),</span>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>who_new <span class="ot">&lt;-</span> who_long <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">category =</span> <span class="fu">str_remove</span>(category, <span class="st">"new_*"</span>),</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">category =</span> <span class="fu">str_replace</span>(category, <span class="st">"_f"</span>, <span class="st">"_f_"</span>),</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">category =</span> <span class="fu">str_replace</span>(category, <span class="st">"_m"</span>, <span class="st">"_m_"</span>)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                    ) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                    ) <span class="sc">|&gt;</span> </span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> category, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"diagnosis"</span>, <span class="st">"sex"</span>, <span class="st">"age_group"</span>), <span class="at">sep=</span><span class="st">"_"</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>who_new <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>who_new <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 8
   country     iso2  iso3   year diagnosis sex   age_group counts

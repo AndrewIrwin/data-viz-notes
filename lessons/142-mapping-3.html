@@ -259,6 +259,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lessons/133-reproducible-reports.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reproducible reports</span></a>
   </div>
 </li>
@@ -334,7 +339,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  <a href="../lessons/499-review.html" class="sidebar-item-text sidebar-link">R Review</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -392,7 +397,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="heatmaps" class="level2" data-number="29.1">
 <h2 data-number="29.1" class="anchored" data-anchor-id="heatmaps"><span class="header-section-number">29.1</span> Heatmaps</h2>
 <p>Suppose we want to show a combination of spatial and temporal data. The geographic data is important, but the location on a map is not the most important feature. As an example, consider this data on total cases of COVID-19 in 5 regions of Canada reported on 2021-01-21. In the code below I select the number of cases identified broken down into age classes and geographic regions. The number of cases is presented as a shade of blue using <code>geom_tile</code>.</p>
-<div class="cell" data-hash="142-mapping-3_cache/html/covid-data_7174775786d37dfcaf353763efaaae36">
+<div class="cell" data-hash="142-mapping-3_cache/html/covid-data_1e53906508be7a32fb3a867ff2f2efdd">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span> cansim<span class="sc">::</span><span class="fu">get_cansim</span>(<span class="st">"13-10-0775-01"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Accessing CANSIM NDM product 13-10-0775 from Statistics Canada</code></pre>
@@ -401,9 +406,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>Parsing data</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># covid2 &lt;- get_cansim("13-10-0774-01")  # related data with extra information</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>covid_ss <span class="ot">&lt;-</span> covid <span class="sc">%&gt;%</span> <span class="fu">filter</span>(GEO <span class="sc">!=</span> <span class="st">"Canada"</span>, Gender <span class="sc">==</span> <span class="st">"Total, all genders"</span>, <span class="st">`</span><span class="at">Age group</span><span class="st">`</span> <span class="sc">!=</span> <span class="st">"Total, all age groups"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>covid_ss <span class="ot">&lt;-</span> covid <span class="sc">|&gt;</span> <span class="fu">filter</span>(GEO <span class="sc">!=</span> <span class="st">"Canada"</span>, Gender <span class="sc">==</span> <span class="st">"Total, all genders"</span>, <span class="st">`</span><span class="at">Age group</span><span class="st">`</span> <span class="sc">!=</span> <span class="st">"Total, all age groups"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Statistics <span class="sc">==</span> <span class="st">"Community exposures"</span>) </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>covid_ss <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>covid_ss <span class="sc">|&gt;</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> GEO, <span class="at">x =</span> <span class="st">`</span><span class="at">Age group</span><span class="st">`</span>, <span class="at">fill =</span> VALUE)) <span class="sc">+</span> </span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -413,16 +418,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>There are two common ways to improve a figure like this. First is to ensure the ordering of categorical variables is easily interpreted. Here we would remove hte “Not stated” age group and order the geographic regions from west to east to follow Canadian convention. We might swap the x and y axes to align left-right flow with the west-east geography of Canada.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>covid_ss2 <span class="ot">&lt;-</span> covid_ss <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">Age group</span><span class="st">`</span> <span class="sc">!=</span> <span class="st">"Not stated, age group"</span>)</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>covid_ss2 <span class="ot">&lt;-</span> covid_ss <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">Age group</span><span class="st">`</span> <span class="sc">!=</span> <span class="st">"Not stated, age group"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>regions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"BC + Yukon"</span>, <span class="st">"Prairies + NWT"</span>,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">"ON + NU"</span>, <span class="st">"QC"</span>, <span class="st">"Atlantic"</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>covid_ss3 <span class="ot">&lt;-</span> covid_ss2 <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>covid_ss3 <span class="ot">&lt;-</span> covid_ss2 <span class="sc">|&gt;</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GEO =</span> <span class="fu">fct_recode</span>(GEO, <span class="st">"BC + Yukon"</span> <span class="ot">=</span> <span class="st">"British Columbia and Yukon Region"</span>,</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Prairies + NWT"</span> <span class="ot">=</span> <span class="st">"Prairies and Northwest Territories Region"</span>,</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>              <span class="st">"ON + NU"</span> <span class="ot">=</span> <span class="st">"Ontario and Nunavut Region"</span>,</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>             <span class="st">"QC"</span>  <span class="ot">=</span>  <span class="st">"Quebec Region"</span>, </span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Atlantic"</span> <span class="ot">=</span> <span class="st">"Atlantic Region"</span>))</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>covid_ss3 <span class="sc">%&gt;%</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>covid_ss3 <span class="sc">|&gt;</span></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_relevel</span>(GEO, regions),</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> <span class="st">`</span><span class="at">Age group</span><span class="st">`</span>, <span class="at">fill =</span> VALUE)) <span class="sc">+</span> </span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
@@ -433,10 +438,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>A second approach is to group the rows and columns so that similar patterns are side by side. The <code>ggheatmap</code> function in the <a href="https://github.com/tleonardi/ggheatmap/">ggheatmap</a> package makes this easy.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>covid_ss4 <span class="ot">&lt;-</span> covid_ss3 <span class="sc">%&gt;%</span> <span class="fu">select</span>(GEO, <span class="st">`</span><span class="at">Age group</span><span class="st">`</span>, VALUE) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>covid_ss4 <span class="ot">&lt;-</span> covid_ss3 <span class="sc">|&gt;</span> <span class="fu">select</span>(GEO, <span class="st">`</span><span class="at">Age group</span><span class="st">`</span>, VALUE) <span class="sc">|&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> GEO, <span class="at">values_from =</span> VALUE) </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(covid_ss4 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="st">`</span><span class="at">Age group</span><span class="st">`</span>), </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">row.names =</span> covid_ss4 <span class="sc">%&gt;%</span> <span class="fu">pull</span>(<span class="st">`</span><span class="at">Age group</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(covid_ss4 <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span><span class="st">`</span><span class="at">Age group</span><span class="st">`</span>), </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">row.names =</span> covid_ss4 <span class="sc">|&gt;</span> <span class="fu">pull</span>(<span class="st">`</span><span class="at">Age group</span><span class="st">`</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggheatmap</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="142-mapping-3_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
@@ -444,10 +449,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>From this analysis you can tell that the number of cases is structured by age (see the tree on left side of the plot) and geographically. The number of people in each region is very different, so you might want to account for that in some way. One approach would be to compute the cases per capita in each region, but I don’t have those data handy. An alternative is to allocate the number of cases to age classes as proportions, by dividing the number of cases in each region and age group by the total in each region. We can use scale to accomplish that scaling. Now the color represents the proportion of COVID-19 cases in each age class, scaled within a region.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(covid_ss4 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="st">`</span><span class="at">Age group</span><span class="st">`</span>), </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">row.names =</span> covid_ss4 <span class="sc">%&gt;%</span> <span class="fu">pull</span>(<span class="st">`</span><span class="at">Age group</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale</span>(<span class="at">center =</span> <span class="cn">FALSE</span>, <span class="at">scale =</span> <span class="fu">colSums</span>(.)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(covid_ss4 <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span><span class="st">`</span><span class="at">Age group</span><span class="st">`</span>), </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">row.names =</span> covid_ss4 <span class="sc">|&gt;</span> <span class="fu">pull</span>(<span class="st">`</span><span class="at">Age group</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale</span>(<span class="at">center =</span> <span class="cn">FALSE</span>, <span class="at">scale =</span> <span class="fu">colSums</span>(.)) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggheatmap</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="142-mapping-3_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
@@ -461,7 +466,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(statebins)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"static/election.rda"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>election <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">state =</span> state, <span class="at">fill =</span> pct_trump)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>election <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">state =</span> state, <span class="at">fill =</span> pct_trump)) <span class="sc">+</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_statebins</span>() <span class="sc">+</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_statebins</span>() <span class="sc">+</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill=</span><span class="st">"Percent Trump"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
