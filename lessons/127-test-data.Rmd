@@ -8,6 +8,7 @@ library(janitor)
 library(naniar)
 # library(pointblank) # causes problems with knitting: scan_data, interrogate, create_agent
 library(dlookr)
+library(DT)
 ```
 
 ## An introduction to testing

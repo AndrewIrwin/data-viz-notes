@@ -62,7 +62,7 @@ Let's use the Palmer penguins data to show how three colours can be selected: by
 The [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) palette is designed to have approximately uniform brightness (making it suitable for printing in gray scale) and colour-blind friendly. There are four different colour scales you can select (option: magma = A, inferno = B, plasma = C, viridis = D, cividis = E), plus you select the beginning and ending location (begin, end: numbers between 0 and 1). I find the end of the viridis scale to be too yellow, so I usually adjust `end`.
 
 ```{r warning=FALSE, dev='svglite'}
-penguins %>% ggplot(aes(flipper_length_mm, bill_length_mm, color = species)) +
+penguins |> ggplot(aes(flipper_length_mm, bill_length_mm, color = species)) +
   geom_point(size=3) + theme_bw() +
   scale_color_viridis_d(begin = 0.1, end = 0.9, option = "D")
 ```
@@ -71,7 +71,7 @@ Now I'll show how to use other scales you can find from paletteer. Here we use t
 
 ```{r warning=FALSE, dev='svglite'}
 # paletteer_d("ggthemes::hc_default", n = 3)  # to see the colours
-penguins %>% ggplot(aes(flipper_length_mm, bill_length_mm, 
+penguins |> ggplot(aes(flipper_length_mm, bill_length_mm, 
                         color = species)) +
   geom_point(size=3) + theme_bw() +
   scale_color_paletteer_d("ggthemes::hc_default")
@@ -80,7 +80,7 @@ penguins %>% ggplot(aes(flipper_length_mm, bill_length_mm,
 To make a custom scale use `scale_color_manual`. You need to give the right number of colours (or some extras which will be ignored), or a function which takes and integer and returns that many colours.
 
 ```{r warning=FALSE, dev='svglite'}
-penguins %>% ggplot(aes(flipper_length_mm, bill_length_mm, 
+penguins |> ggplot(aes(flipper_length_mm, bill_length_mm, 
                         color = species)) +
   geom_point(size=3) + theme_bw() +
   scale_color_manual(values = c("red", "blue", "orange"))
@@ -97,11 +97,11 @@ Quantitative data are almost always best shown as position on an axis, so when w
 Quantitative values can be mapped onto colour in a "continuous" way or in a "binned" way. Of course there are only a finite number of colours so this is a matter of degree. Do you want colours to change smoothly (continuously) or do you want a small number of discrete colours (binned). Examples of both are shown below.
 
 ```{r warning=FALSE, dev='svglite'}
-penguins %>% ggplot(aes(flipper_length_mm, bill_length_mm, 
+penguins |> ggplot(aes(flipper_length_mm, bill_length_mm, 
                         color = body_mass_g)) +
   geom_point(size=3) + theme_bw() +
   scale_color_viridis_c(begin = 0.2)
-penguins %>% ggplot(aes(flipper_length_mm, bill_length_mm, 
+penguins |> ggplot(aes(flipper_length_mm, bill_length_mm, 
                         color = body_mass_g)) +
   geom_point(size=3) + theme_bw() +
   scale_color_paletteer_binned("ggthemes::Blue")
@@ -110,8 +110,8 @@ penguins %>% ggplot(aes(flipper_length_mm, bill_length_mm,
 If it is important to draw a difference between two classes, for example positive and negative values, or numbers larger and smaller than a mean, you can use a diverging colour scale. For variety I will use functions from the `RColorBrewer` package that has a great set of palettes. With a diverging colour scale you generally want to make a symmetric scale so that 0 is placed at the centre of your color scale.
 
 ```{r warning=FALSE, dev='svglite'}
-penguins %>% mutate(body_mass_centered = 
-                      body_mass_g - mean(body_mass_g, na.rm=TRUE)) %>%
+penguins |> mutate(body_mass_centered = 
+                      body_mass_g - mean(body_mass_g, na.rm=TRUE)) |>
   ggplot(aes(flipper_length_mm, bill_length_mm, 
              color = body_mass_centered)) +
   geom_point(size=3) + theme_bw() +
@@ -129,9 +129,9 @@ The 'fermenter' function makes a binned quantitative scale, while the `distiller
 Sometimes you will just want to highlight a small number of points. Perhaps they are outliers or interesting for a particular reason. One of the most flexible ways to do this is to create a new variable that identifies an observation as being highlighted or not, then use this to control plotting.
 
 ```{r warning=FALSE}
-penguins %>% mutate(highlight = 
+penguins |> mutate(highlight = 
                       body_mass_g > quantile(body_mass_g, 0.9, 
-                                             na.rm=TRUE)) %>%
+                                             na.rm=TRUE)) |>
   ggplot(aes(flipper_length_mm, bill_length_mm, 
              color = highlight)) +
   geom_point(size=3, show.legend=FALSE,
@@ -154,7 +154,7 @@ Particularly in a oral presentation you want your figure to be decoded rapidly. 
 
 
 ```{r warning=FALSE}
-penguins %>% ggplot(aes(flipper_length_mm, bill_length_mm, 
+penguins |> ggplot(aes(flipper_length_mm, bill_length_mm, 
                         color = species)) +
   geom_point(size=3, show.legend = FALSE) + theme_bw() +
   scale_color_manual(values = c("red", "blue", "orange")) +

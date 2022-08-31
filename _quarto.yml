@@ -29,6 +29,7 @@ book:
     - lessons/120-gam-loess.Rmd
     - lessons/124-collaboration.Rmd
     - lessons/301-data-sources.Rmd
+    - lessons/911-ethics.Rmd
     - lessons/133-reproducible-reports.Rmd
     - lessons/121-PCA.Rmd
     - lessons/122-mds.Rmd
@@ -44,7 +45,7 @@ book:
     - lessons/133-themes.Rmd
     - lessons/130-graphics-output.Rmd
     - lessons/134-reconstruction.Rmd
-    - lessons/911-ethics.Rmd
+    - lessons/499-review.Rmd
     - lessons/901-TMI-R.Rmd
     - lessons/999-metadata.Rmd
     - references.qmd

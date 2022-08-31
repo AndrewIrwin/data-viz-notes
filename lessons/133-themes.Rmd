@@ -22,12 +22,12 @@ There are many add on packages for working with themes. I'll give examples from 
 We'll use a couple of plots repeatedly: one with facets, and one with many other elements, but no facets.
 
 ```{r}
-p1 <- penguins %>% ggplot(aes(x = body_mass_g, y = flipper_length_mm, 
+p1 <- penguins |> ggplot(aes(x = body_mass_g, y = flipper_length_mm, 
                               color = species, shape = sex)) + 
   geom_point()
 p1
-p2 <- mpg %>% 
-  unglue_unnest(trans, "{trans_type}({trans_code})") %>%
+p2 <- mpg |> 
+  unglue_unnest(trans, "{trans_type}({trans_code})") |>
            ggplot(aes(x = displ, y = hwy, color = trans_type)) +
                     geom_point() +
                     facet_wrap(~ factor(cyl))

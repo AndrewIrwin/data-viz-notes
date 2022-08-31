@@ -19,9 +19,9 @@ Suppose we want to show a combination of spatial and temporal data. The geograph
 ```{r covid-data, cache=TRUE}
 covid <- cansim::get_cansim("13-10-0775-01")
 # covid2 <- get_cansim("13-10-0774-01")  # related data with extra information
-covid_ss <- covid %>% filter(GEO != "Canada", Gender == "Total, all genders", `Age group` != "Total, all age groups") %>%
+covid_ss <- covid |> filter(GEO != "Canada", Gender == "Total, all genders", `Age group` != "Total, all age groups") |>
   filter(Statistics == "Community exposures") 
-covid_ss %>%
+covid_ss |>
   ggplot(aes(y = GEO, x = `Age group`, fill = VALUE)) + 
   geom_tile() +
   theme(axis.text.x = element_text(angle = 90))
@@ -30,16 +30,16 @@ covid_ss %>%
 There are two common ways to improve a figure like this. First is to ensure the ordering of categorical variables is easily interpreted. Here we would remove hte "Not stated" age group and order the geographic regions from west to east to follow Canadian convention. We might swap the x and y axes to align left-right flow with the west-east geography of Canada. 
 
 ```{r}
-covid_ss2 <- covid_ss %>% filter(`Age group` != "Not stated, age group")
+covid_ss2 <- covid_ss |> filter(`Age group` != "Not stated, age group")
 regions <- c("BC + Yukon", "Prairies + NWT",
              "ON + NU", "QC", "Atlantic")
-covid_ss3 <- covid_ss2 %>%
+covid_ss3 <- covid_ss2 |>
   mutate(GEO = fct_recode(GEO, "BC + Yukon" = "British Columbia and Yukon Region",
               "Prairies + NWT" = "Prairies and Northwest Territories Region",
               "ON + NU" = "Ontario and Nunavut Region",
              "QC"  =  "Quebec Region", 
              "Atlantic" = "Atlantic Region"))
-covid_ss3 %>%
+covid_ss3 |>
   ggplot(aes(x = fct_relevel(GEO, regions),
              y = `Age group`, fill = VALUE)) + 
   geom_tile() +
@@ -49,20 +49,20 @@ covid_ss3 %>%
 A second approach is to group the rows and columns so that similar patterns are side by side. The `ggheatmap` function in the [ggheatmap](https://github.com/tleonardi/ggheatmap/) package makes this easy.
 
 ```{r message=FALSE}
-covid_ss4 <- covid_ss3 %>% select(GEO, `Age group`, VALUE) %>%
+covid_ss4 <- covid_ss3 |> select(GEO, `Age group`, VALUE) |>
   pivot_wider(names_from = GEO, values_from = VALUE) 
-data.frame(covid_ss4 %>% select(-`Age group`), 
-              row.names = covid_ss4 %>% pull(`Age group`)) %>%
+data.frame(covid_ss4 |> select(-`Age group`), 
+              row.names = covid_ss4 |> pull(`Age group`)) |>
   ggheatmap()
 ```
 
 From this analysis you can tell that the number of cases is structured by age (see the tree on left side of the plot) and geographically. The number of people in each region is very different, so you might want to account for that in some way. One approach would be to compute the cases per capita in each region, but I don't have those data handy. An alternative is to allocate the number of cases to age classes as proportions, by dividing the number of cases in each region and age group by the total in each region. We can use scale to accomplish that scaling. Now the color represents the proportion of COVID-19 cases in each age class, scaled within a region.
 
 ```{r message=FALSE}
-data.frame(covid_ss4 %>% select(-`Age group`), 
-              row.names = covid_ss4 %>% pull(`Age group`)) %>%
-  scale(center = FALSE, scale = colSums(.)) %>%
-  as.data.frame() %>%
+data.frame(covid_ss4 |> select(-`Age group`), 
+              row.names = covid_ss4 |> pull(`Age group`)) %>%
+  scale(center = FALSE, scale = colSums(.)) |>
+  as.data.frame() |>
   ggheatmap()
 ```
 
@@ -76,7 +76,7 @@ each state is the same size and the states are arranged in an approximate geogra
 ```{r}
 library(statebins)
 load("static/election.rda")
-election %>% ggplot(aes(state = state, fill = pct_trump)) +
+election |> ggplot(aes(state = state, fill = pct_trump)) +
   geom_statebins() +
   theme_statebins() +
   labs(fill="Percent Trump")

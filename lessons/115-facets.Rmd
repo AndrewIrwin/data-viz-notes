@@ -18,7 +18,7 @@ glimpse(diamonds)
 As a consequence of years of relentless advertising, you may be aware of four widely reported characteristics of diamonds that influence their price: cut, colour, clarity, and carats. Let's make a plot of price vs carets (mass) showing all the data. Since there are so many points, we will make each point smaller.
 
 ```{r}
-p1 <- diamonds %>% ggplot(aes(x=carat, y=price, color=cut)) + geom_point(size=0.4)
+p1 <- diamonds |> ggplot(aes(x=carat, y=price, color=cut)) + geom_point(size=0.4)
 p1
 ```
 ## Facets indexed by one variable
@@ -26,8 +26,8 @@ p1
 If you want to display many levels of a categorical variable across many facets, the `facet_wrap` function is available. We'll do this here for just one colour using `filter` to select it. The `facet_wrap` function requires you to give a "formula" for how the facets are constructed. Here we write `~ clarity` meaning that the levels of the categorical variable `clarity` is used to facets. One facet is drawn for each value of the variable and only points with that value of clarity are shown on the corresponding facet.
 
 ```{r}
-diamonds %>% 
-  filter(color %in% c("F")) %>%
+diamonds |> 
+  filter(color %in% c("F")) |>
   ggplot(aes(x=carat, y=price, color=cut)) + 
   geom_point(size = 0.4) +
   facet_wrap( ~ clarity) 
@@ -46,9 +46,9 @@ p1 + facet_grid(color ~ clarity)
 The plots in those facets are really small. Let's pick out just a few colours and clarity values to make a plot that is easier to read. 
 
 ```{r}
-diamonds %>% 
+diamonds |> 
   filter(color %in% c("D", "F", "H", "J"), 
-         clarity %in% c("SI1", "VS1", "IF")) %>%
+         clarity %in% c("SI1", "VS1", "IF")) |>
   ggplot(aes(x=carat, y=price, color=cut)) + 
   geom_point(size=0.5) +
   facet_grid(color ~ clarity) + 
@@ -63,12 +63,12 @@ Here is an example showing two plots with very different views of the `gapminder
 
 ```{r}
 library(patchwork)
-p1 <- gapminder %>% 
-  filter(year == max(year)) %>% count(continent) %>% 
+p1 <- gapminder |> 
+  filter(year == max(year)) |> count(continent) |> 
   ggplot(aes(x=continent, y = n, fill=continent)) +
   geom_col(show.legend = FALSE) +
   labs(y = "Number of countries") 
-p2 <- gapminder %>%
+p2 <- gapminder |>
   ggplot(aes(x= year, y = lifeExp, color = continent)) + 
   geom_jitter(size = 0.5)
 p1 + p2 

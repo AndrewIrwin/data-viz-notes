@@ -18,36 +18,36 @@ The k-nearest neighbours algorithm can be used to classify an observation or pre
 Let's apply the method to a the Palmer Penguin data. I will use some measurements on the penguins to determine the species of a few observations. I've concealed the species identity of a few observations, labeled as "missing" in this plot. There are some missing values for sex, but I won't use those in my model, so I'll remove them.
 
 ```{r echo=FALSE, warning=FALSE}
-penguins %>%
+penguins |>
   mutate(species = as.character(species), 
          species2 = case_when(
                        row_number(species) %in% c(213, 188, 173, 165,146, 100, 231, 96, 217, 254) ~ "missing", 
                        TRUE ~ species),
-         species2 = as.factor(species2)) %>%
+         species2 = as.factor(species2)) |>
     filter(!is.na(sex)) -> penguins2
-penguins2 %>% ggplot(aes(x=bill_length_mm, y = flipper_length_mm, color=species2)) +
+penguins2 |> ggplot(aes(x=bill_length_mm, y = flipper_length_mm, color=species2)) +
   geom_point() # + geom_text(aes(label=row_number(species)), color="black", label.size=0.1)
 ```
 
 Now we make a model and try to predict the unknown species. 
 
 ```{r}
-penguins2 %>% 
+penguins2 |> 
   mutate(random = runif(n()),
                      train = (random > 0.25) & (species2 != "missing"),
                      test = (!train) ) -> penguins2
 penguin_recipe <- 
   recipe(species2 ~ bill_length_mm + flipper_length_mm, # + bill_depth_mm + body_mass_g, # add to improve model
-      data = penguins2 ) %>%
-  step_scale(all_predictors()) %>%
+      data = penguins2 ) |>
+  step_scale(all_predictors()) |>
   step_center(all_predictors()) 
 
 knn_specification <-  nearest_neighbor(mode = "classification")  # optional: neighbours = <integer>
 
-penguin_knn <- workflow() %>% 
-    add_recipe(penguin_recipe) %>%
-    add_model(knn_specification) %>%
-    fit(data = penguins2 %>% filter(train))
+penguin_knn <- workflow() |> 
+    add_recipe(penguin_recipe) |>
+    add_model(knn_specification) |>
+    fit(data = penguins2 |> filter(train))
 penguin_knn
 
 penguin_predicted <- bind_cols(penguins2,
@@ -58,14 +58,14 @@ penguin_predicted <- bind_cols(penguins2,
 Compare the original values and the predicted values: we get a perfect recovery!
 
 ```{r}
-penguin_predicted %>% filter(species2 == "missing") %>% tabyl(species, .pred_class)
-penguin_predicted %>% filter(test) %>% tabyl(species, .pred_class)
+penguin_predicted |> filter(species2 == "missing") |> tabyl(species, .pred_class)
+penguin_predicted |> filter(test) |> tabyl(species, .pred_class)
 ```
 
 Plot the data, using larger symbols for misclassified data.
 
 ```{r}
-penguin_predicted %>% mutate(correct = species == .pred_class) %>%
+penguin_predicted |> mutate(correct = species == .pred_class) |>
   ggplot(aes(x = bill_length_mm, y = flipper_length_mm, shape = species, 
              size = train, color = correct)) +
   geom_point(alpha = 0.75) +
@@ -78,7 +78,7 @@ penguin_predicted %>% mutate(correct = species == .pred_class) %>%
 Now try regression. Predict bill_length from the other variables.
 
 ```{r}
-penguins3 <- penguins2 %>%
+penguins3 <- penguins2 |>
   mutate(flipper_length_s = scale(flipper_length_mm), 
          body_mass_s = scale(body_mass_g),
          bill_depth_s = scale(bill_depth_mm),
@@ -89,15 +89,15 @@ penguin_recipe2 <-
 
 knn_specification2 <-  nearest_neighbor(mode = "regression")  # optional: neighbours = <integer>
 
-penguin_knn2 <- workflow() %>% 
-    add_recipe(penguin_recipe2) %>%
-    add_model(knn_specification2) %>%
-    fit(data = penguins3 %>% filter(train))
+penguin_knn2 <- workflow() |> 
+    add_recipe(penguin_recipe2) |>
+    add_model(knn_specification2) |>
+    fit(data = penguins3 |> filter(train))
 penguin_knn2
 
 penguin_predicted <- bind_cols(penguins3,
           predict(penguin_knn2, new_data = penguins3 ))
-penguin_predicted %>% ggplot(aes(x = body_mass_g, y = .pred,
+penguin_predicted |> ggplot(aes(x = body_mass_g, y = .pred,
                                  color = species, shape = train)) + 
   geom_point() + 
   geom_abline()
@@ -108,15 +108,15 @@ Compare to linear regression. Rank deficient since there is an intercept and an 
 ```{r}
 linear_specification2 <-  linear_reg(mode = "regression")  # optional: neighbours = <integer>
 
-penguin_linear <- workflow() %>% 
-    add_recipe(penguin_recipe2) %>%
-    add_model(linear_specification2) %>%
-    fit(data = penguins3 %>% filter(train))
+penguin_linear <- workflow() |> 
+    add_recipe(penguin_recipe2) |>
+    add_model(linear_specification2) |>
+    fit(data = penguins3 |> filter(train))
 penguin_linear
 
 penguin_predicted <- bind_cols(penguins3,
           predict(penguin_linear, new_data = penguins3 ))
-penguin_predicted %>% ggplot(aes(x = body_mass_g, y = .pred,
+penguin_predicted |> ggplot(aes(x = body_mass_g, y = .pred,
                                  color = species, shape = train)) + 
   geom_point() + 
   geom_abline()

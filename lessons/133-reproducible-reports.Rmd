@@ -84,7 +84,7 @@ There is a [tidyverse style guide](https://style.tidyverse.org/). Google has the
 
 Here is some carelessly formatted code.
 
-    gapminder %>% filter(continent =="Europe") %>% group_by(country) %>% summarize(mean_life_exp = mean(lifeExp), mean_GDP = mean(gdpPercap)) %>% ggplot(
+    gapminder |> filter(continent =="Europe") |> group_by(country) |> summarize(mean_life_exp = mean(lifeExp), mean_GDP = mean(gdpPercap)) |> ggplot(
     aes(color = mean_life_exp, x = log10(mean_GDP), y=fct_reorder(country, mean_life_exp))) + geom_point()
 
 Here is the same code (and its output) formatted using `styler`:
@@ -110,7 +110,7 @@ Knitting a document usually stops when an error is encountered. This is a safety
 You can output graphics in multiple file formats by adding `dev = c("png", "pdf")` (and other formats) to the chunk options. These files will be deleted unless you [reqest they be kept](https://bookdown.org/yihui/rmarkdown-cookbook/keep-files.html#keep-files), which is easily done by caching the results of at least one code chunk.
 
 ```{r cache_test_2, cache=TRUE, dev=c('png', 'pdf')}
-mpg %>% ggplot(aes(displ, hwy)) + geom_point()
+mpg |> ggplot(aes(displ, hwy)) + geom_point()
 ```
 
 You can use chunk options to control whether the knitted document includes:
@@ -164,8 +164,8 @@ con <- DBI::dbConnect(RSQLite::SQLite(), dbname = ":memory:")
 copy_to(con, palmerpenguins::penguins, "penguins")
 penguins <- tbl(con, "penguins")
 penguins_aggr <-
-  penguins %>%
-  group_by(species) %>%
+  penguins |>
+  group_by(species) |>
   summarize(
     N = n(),
     across(ends_with("mm"), sum, .names = "TOT_{.col}"),

@@ -22,8 +22,8 @@ The dataset below is built from a database of world cities, selected to have onl
 ```{r include=FALSE}
 # cities0 <- read_csv("~/Downloads/simplemaps_worldcities_basicv1.73/worldcities.csv", n_max = 1000) # This is the original data
 # Keep the 25 largest cities, plus a few from Canada; this is the filtering code
-# cities <- cities0 %>% filter(iso2 == "CA" | population > 5000000) %>% group_by(iso2) %>% filter(dense_rank(-population) < 5) 
-# cities <- bind_rows(cities, cities0 %>% filter(city == "Halifax", iso2 == "CA"))
+# cities <- cities0 |> filter(iso2 == "CA" | population > 5000000) |> group_by(iso2) |> filter(dense_rank(-population) < 5) 
+# cities <- bind_rows(cities, cities0 |> filter(city == "Halifax", iso2 == "CA"))
 # write_csv(cities, "static/selected_cities.csv")
 ```
 
@@ -44,7 +44,7 @@ ggmap(mymap) +
 Now we calculate the distance between all pairs of cities. I've shown two ways to do this -- using great circle distance along the surface of the Earth, and using a distance that projects the surface of the Earth onto a plane first. If the goal is to reconstruct the map shown above, use this projected distance. If you would like instead to show great-circle distances between cities in the plane, use the geodesic distance.
 
 ```{r}
-city_distance <- dist(cities %>% dplyr::select(lng, lat) %>% as.matrix()) #  distance in equirectangular projection
+city_distance <- dist(cities |> dplyr::select(lng, lat) |> as.matrix()) #  distance in equirectangular projection
   # https://en.wikipedia.org/wiki/Equirectangular_projection
 ```
   
@@ -54,7 +54,7 @@ two main axes could be reversed relative to the original map; I've reversed the 
 ```{r}
 mds1 <- cmdscale(city_distance)
 colnames(mds1) <- c("V1", "V2")
-bind_cols(cities, as_tibble(mds1)) %>%
+bind_cols(cities, as_tibble(mds1)) |>
   ggplot(aes(x = V1, y = V2)) + 
   geom_point() + 
   geom_text_repel(aes(label = city), size=2) +
@@ -63,11 +63,11 @@ bind_cols(cities, as_tibble(mds1)) %>%
        x = "", y = "")
 ```
 ```{r}
-city_distance <- rdist.earth(cities %>% dplyr::select(lng, lat) %>% as.matrix(), 
+city_distance <- rdist.earth(cities |> dplyr::select(lng, lat) |> as.matrix(), 
                              miles = FALSE) # geodesic distance
 mds1 <- cmdscale(city_distance)
 colnames(mds1) <- c("V1", "V2")
-bind_cols(cities, as_tibble(mds1)) %>%
+bind_cols(cities, as_tibble(mds1)) |>
   ggplot(aes(x = V1, y = V2)) + 
   geom_point() + 
   geom_text_repel(aes(label = city), size=2) +
@@ -86,8 +86,8 @@ The dataset below was created as part of an experiment to measure the rate at wh
 morse.dist <- read.delim('https://raw.githubusercontent.com/zdealveindy/anadat-r/master/data/morsecodes-dist.txt',
                           row.names = 1, head = T)
 names(morse.dist) <- rownames(morse.dist)
-morse.dist[1:5,1:5] %>% kable() %>% row_spec(0, monospace=TRUE) %>% 
-  column_spec(1, monospace=TRUE) %>%
+morse.dist[1:5,1:5] |> kable() |> row_spec(0, monospace=TRUE) |> 
+  column_spec(1, monospace=TRUE) |>
   kable_styling(full_width = FALSE)
 ```
 
@@ -105,9 +105,9 @@ This next plot compares the distances in the original data to the distances as r
 
 ```{r}
 symbols <- rownames(NMDS$points)
-NMDS[c("dist", "dhat", "iidx", "jidx")] %>% as_tibble() %>% 
+NMDS[c("dist", "dhat", "iidx", "jidx")] |> as_tibble() |> 
   mutate(comparison = paste0(symbols[iidx], "/", symbols[jidx]),
-         comparison2 = case_when( abs(dist-dhat) < 40 ~ "", TRUE ~ comparison)) %>%
+         comparison2 = case_when( abs(dist-dhat) < 40 ~ "", TRUE ~ comparison)) |>
   ggplot(aes(dist, dhat)) + 
   geom_point(size=0.5, color="blue") + 
   geom_text_repel(aes(label = comparison2)) +
@@ -117,7 +117,7 @@ NMDS[c("dist", "dhat", "iidx", "jidx")] %>% as_tibble() %>%
 You can also access the points from the ordination and make the "ordiplot" using ggplot. The relative position of points on the plat is the only thing that matters -- any rotation or translation of the plot contains the same information.
 
 ```{r}
-NMDS$points %>% as_tibble(rownames = "Symbol") %>%
+NMDS$points |> as_tibble(rownames = "Symbol") |>
   ggplot(aes(x = MDS1, y = MDS2 )) +
   geom_text(aes(label=Symbol)) + 
   theme_bw()
@@ -144,8 +144,8 @@ plot(ef)
 Here is a method to reproduce this plot using `ggplot`. First use `str(ef)` to examine the structure of the result from `envfit`. Then plot the points and arrows using ggplot.
 
 ```{r}
-arrows1 <- ef$vectors$arrows %>% as_tibble(rownames = "code")
-as_tibble(NMDS$points, rownames = "code") %>%
+arrows1 <- ef$vectors$arrows |> as_tibble(rownames = "code")
+as_tibble(NMDS$points, rownames = "code") |>
   ggplot(aes(x = MDS1, y = MDS2, label = code)) + 
   geom_text() +
   geom_text(data = arrows1, aes(x = 25*NMDS1, y = 25*NMDS2)) +

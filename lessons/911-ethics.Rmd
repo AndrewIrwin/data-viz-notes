@@ -31,4 +31,4 @@ If you find discussions of these topics you find particularly thought provoking 
 
 ## Further reading
 
-* Data Science in a Box notes on [ethics](https://datasciencebox.org/ethics.html)
+* Data Science in a Box notes on [ethics](https://datasciencebox.org/02-ethics.html)

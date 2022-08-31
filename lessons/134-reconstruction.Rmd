@@ -1,0 +1,13 @@
+# Reconstructing a visualization
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Goal
+
+In this lesson we will find a visualization and try to reconstruct it using R.
+
+A reasonable challenge is to redraw a version of the [textbook](https://www.google.ca/books/edition/Stats/muxnswEACAAJ) cover for STAT 1060 [@DeVeaux] using the `gapminder` data.
+
+![Cover of the textbook Stats: Data and Models](static/cover-stats-data-models.JPG){#fig-book-cover}

@@ -22,19 +22,19 @@ We will start by using the last decade of data from Lesson 1.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 co2 <- read_table("static/co2_mm_mlo.txt", skip = 53,
-                col_names = c("year", "month", "decimal_date", "co2_avg", NA, NA, NA, NA)) %>%
-  dplyr::select(year, month, decimal_date, co2_avg) %>%
+                col_names = c("year", "month", "decimal_date", "co2_avg", NA, NA, NA, NA)) |>
+  dplyr::select(year, month, decimal_date, co2_avg) |>
   mutate(across(everything(), as.numeric),
-         year_fraction = decimal_date - floor(decimal_date)) %>%
-  filter(year > 2010) %>%
-  group_by(year) %>% mutate(co2_anomaly = co2_avg - mean(co2_avg)) %>% ungroup()
+         year_fraction = decimal_date - floor(decimal_date)) |>
+  filter(year > 2010) |>
+  group_by(year) |> mutate(co2_anomaly = co2_avg - mean(co2_avg)) |> ungroup()
 ```
 
 Here is a plot of atmospheric CO2 concentration over time.
 
 ```{r}
 my_theme = theme_linedraw() + theme(text = element_text(size = 14))
-p1 <- co2 %>% ggplot(aes(decimal_date, co2_avg)) + geom_point() + my_theme +
+p1 <- co2 |> ggplot(aes(decimal_date, co2_avg)) + geom_point() + my_theme +
   labs(x = "Year (decimal)", y = "Atmospheric CO2 (ppm)")
 p1
 ```
@@ -42,7 +42,7 @@ p1
 The next plot shows each observation, minus the annual mean, as a function of the time of year but not the actual year. Each year's observations are overlapped.
 
 ```{r}
-p2 <- co2 %>% ggplot(aes(year_fraction, co2_anomaly)) + geom_point() + my_theme +
+p2 <- co2 |> ggplot(aes(year_fraction, co2_anomaly)) + geom_point() + my_theme +
   labs(x = "Year fraction (decimal)", y = "Atmospheric CO2 anomaly (ppm)")
 p2
 ```
@@ -68,21 +68,21 @@ There is a `summary` function for GAM fits and the `broom` functions `glance` an
 
 ```{r}
 summary(g1)
-glance(g1) %>% kable()
-tidy(g1) %>% kable()
+glance(g1) |> kable()
+tidy(g1) |> kable()
 ```
 
 It is often useful to compute residuals and extract predicted values.
 
 ```{r}
-co2 %>% add_residuals(g1) %>% add_fitted(g1) %>% kable() %>%  scroll_box(height = "200px")
+co2 |> add_residuals(g1) |> add_fitted(g1) |> kable() |>  scroll_box(height = "200px")
 ```
 
 If we generate new data (dates), we can plot predictions too. Since the model is a piecewise cubic function, extrapolations are often dramatically unreliable. The downward facing cubic in the last "bump" is simply continued, with comically bad results. Extrapolation of models, and especially smooths, is somewhere between risky and foolish!
 
 ```{r warning=FALSE}
 new_data <- tibble(decimal_date = seq(2017, 2022, by = 0.05))
-new_data %>% add_fitted(g3) %>%
+new_data |> add_fitted(g3) |>
   ggplot(aes(decimal_date, .value)) + 
   geom_line(color = "blue", size = 2) +
   geom_point(aes(y= co2_avg), data = co2) + my_theme + xlim(2017, 2022)
@@ -91,8 +91,8 @@ new_data %>% add_fitted(g3) %>%
 If you want confidence intervals on the fitted values, use the `confint` function together with the name of the smooth you are extracting.  Be aware that this function does not include the intercept (or grand mean) from the model, so the values are all centred on zero.
 
 ```{r}
-confint(g1, "s(year_fraction)", level = 0.95) %>% kable() %>%  scroll_box(height = "200px")
-confint(g1, "s(year_fraction)", level = 0.95) %>% 
+confint(g1, "s(year_fraction)", level = 0.95) |> kable() |>  scroll_box(height = "200px")
+confint(g1, "s(year_fraction)", level = 0.95) |> 
   ggplot(aes(year_fraction)) + 
   geom_ribbon(aes(ymin = lower, ymax = upper), alpha = 0.25) + 
   geom_line(aes(y = est)) + my_theme
@@ -102,14 +102,14 @@ You can also use `lm` to fit splines; these are similar to GAMs but there are so
 
 ```{r}
 s1 <- lm(co2_avg ~ splines::bs(decimal_date, df = 5), data = co2)
-tidy(s1) %>% kable(digits = 2)
-glance(s1) %>% kable(digits = 2)
+tidy(s1) |> kable(digits = 2)
+glance(s1) |> kable(digits = 2)
 ```
 We can use `augment` to generate data to plot and combine it with the original data.
 
 ```{r}
 a1 <- augment(s1, data = co2, se_fit = TRUE, interval="prediction") 
-a1 %>%  ggplot(aes(decimal_date)) + 
+a1 |>  ggplot(aes(decimal_date)) + 
   geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.2) + 
   geom_line(aes(y= .fitted)) +
   geom_point(aes(y = co2_avg)) + 
@@ -136,8 +136,8 @@ summary(l1)
 We can use `predict`, `residuals` and `augment` on these model objects as we did for `lm` fits in the previous lesson.
 
 ```{r}
-augment(l1, se_fit = TRUE) %>% kable() %>%  scroll_box(height = "200px")
-augment(l1, se_fit = TRUE) %>%
+augment(l1, se_fit = TRUE) |> kable() |>  scroll_box(height = "200px")
+augment(l1, se_fit = TRUE) |>
   ggplot(aes(x = year_fraction, y = .fitted)) + 
   geom_line() + 
   geom_ribbon(aes(ymin = .fitted - 2*.se.fit, ymax = .fitted + 2*.se.fit), alpha = 0.20) + 
@@ -150,7 +150,7 @@ This line is only drawn using 12 points, so we might want to generate a smoother
 new_data = tibble(year_fraction = seq(min(co2$year_fraction), 
                                       max(co2$year_fraction),
                                       length = 100))
-augment(l1, newdata = new_data, se_fit = TRUE) %>%
+augment(l1, newdata = new_data, se_fit = TRUE) |>
   ggplot(aes(x = year_fraction, y = .fitted)) + 
   geom_line() + 
   geom_ribbon(aes(ymin = .fitted - 2*.se.fit,

@@ -1,0 +1,30 @@
+# R Review {.unnumbered}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+library(DT)
+library(readxl)
+funs <- read_excel(here("lessons/static", "functions.xlsx"), sheet = 1)
+```
+
+This page summarizes all the R functions and packages described in the course.
+You can sort the following table by function, package, or lesson. You can also search the table for the function or the description.
+
+This table will be updated and expanded throughout the term.
+
+I strongly encourage you to make your own notes about functions you learn to use. 
+
+:::{.column-page}
+```{r echo=FALSE}
+funs |> select(-Type) |>
+  select(Object, Description, Example, Lesson, Package, everything()) |>
+  datatable(rownames = FALSE)
+```
+:::
+
+Note that the `tidyverse` package includes the following packages: `r cat(paste(tidyverse_packages(), collapse=", "))`
+
+
+

@@ -19,7 +19,7 @@ Here is a map of the 48 continental US states, with a quantiative variable used 
 
 ```{r}
 states_map <- map_data("state")
-crimes <- as_tibble(USArrests, rownames="state") %>% mutate(state = tolower(state))
+crimes <- as_tibble(USArrests, rownames="state") |> mutate(state = tolower(state))
 ggplot(crimes, aes(map_id = state)) +
     geom_map(aes(fill = Murder), map = states_map) +
     expand_limits(x = states_map$long, y = states_map$lat) +
@@ -78,7 +78,7 @@ ggplot(my_map, aes(map_id=region)) +
 Here is a list of 252 regions available in the world map (abbreviated here).
 
 ```{r}
-WorldData %>% pull(region) %>% unique() %>% head()
+WorldData |> pull(region) |> unique() |> head()
 ```
 
 The map of the globe and even of Canada does not look good at high latitudes, espcially if either pole is included. Here is a projection that is a bit more suitable for those regions. The `geom_map` function is not perfect; it creates stray lines when a region is clipped by the projection.
@@ -165,7 +165,7 @@ theme_map <- function(base_size=9, base_family="") {
 Now we draw the map with some colours from a palette.
 
 ```{r}
-map_colors <- RColorBrewer::brewer.pal(9, "Pastel1") %>% rep(2)   # 18 colours, 9 repeated
+map_colors <- RColorBrewer::brewer.pal(9, "Pastel1") |> rep(2)   # 18 colours, 9 repeated
 
 ggplot() +
 	geom_sf(aes(fill = PRUID), color = "gray60", size = 0.1, data = canada_cd ) +
@@ -192,11 +192,11 @@ city_coords <- tribble( ~city, ~lat, ~long,
 Convert the latitude and longitudes to map coordinates.
 
 ```{r}
-sf_cities = city_coords %>%
-	select(long, lat) %>% # 1
-	as.matrix() %>% # 2
-	st_multipoint(dim = 'XY') %>% 
-	st_sfc() %>% 
+sf_cities = city_coords |>
+	select(long, lat) |> # 1
+	as.matrix() |> # 2
+	st_multipoint(dim = 'XY') |> 
+	st_sfc() |> 
 	st_set_crs(4269)
 ```
 
@@ -217,8 +217,8 @@ ggplot() +
 It's easy to focus in on the Maritimes region of Canada -- just filter the data to include only the province or census districts you want. Here are some of the names in the map data that you can use for filtering.
 
 ```{r}
-canada_cd %>% pull(PRNAME) %>% unique()
-canada_cd %>% pull(CDNAME) %>% unique() %>% sample(10)
+canada_cd |> pull(PRNAME) |> unique()
+canada_cd |> pull(CDNAME) |> unique() |> sample(10)
 ```
 
 I've changed the latitude and longitude parameters for the projection to values more suitable for this part of Canada.
@@ -227,7 +227,7 @@ I've changed the latitude and longitude parameters for the projection to values 
 crs_string2 = "+proj=lcc +lat_1=40 +lat_2=50 +lon_0=-75 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs"
 ggplot() +
 	geom_sf(aes(fill = PRUID), color = "gray60", size = 0.1, 
-	        data = canada_cd %>% filter(PRNAME %in% c("Nova Scotia / Nouvelle-Écosse", "New Brunswick / Nouveau-Brunswick", "Prince Edward Island / Île-du-Prince-Édouard"))) +
+	        data = canada_cd |> filter(PRNAME %in% c("Nova Scotia / Nouvelle-Écosse", "New Brunswick / Nouveau-Brunswick", "Prince Edward Island / Île-du-Prince-Édouard"))) +
 	# geom_sf(data = sf_cities, color = '#001e73', alpha = 0.5, size = 3) + # 17
 	coord_sf(crs = crs_string2) +
 	scale_fill_manual(values = map_colors) +
@@ -274,7 +274,7 @@ ggplot() +
 [Here](https://gist.githubusercontent.com/mikelotis/2156d7c170d10d2c77cb79424fe2137d/raw/7a13748ed7ea5ba64876c77c53b6cb64dd5c3ab0/canada-province.geojson) is a file of province boundaries that can be used without showing the census district regions. I've added a latitude-longitude grid to the map.
 
 ```{r}
-canada_prov <- geojson_read("https://gist.githubusercontent.com/mikelotis/2156d7c170d10d2c77cb79424fe2137d/raw/7a13748ed7ea5ba64876c77c53b6cb64dd5c3ab0/canada-province.geojson", what="sp") %>% st_as_sf()
+canada_prov <- geojson_read("https://gist.githubusercontent.com/mikelotis/2156d7c170d10d2c77cb79424fe2137d/raw/7a13748ed7ea5ba64876c77c53b6cb64dd5c3ab0/canada-province.geojson", what="sp") |> st_as_sf()
 
 ggplot() +
 	geom_sf(aes(fill = name), 

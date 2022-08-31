@@ -27,8 +27,8 @@ In this lesson we will focus on visualizing models that smooth data. In the next
 First, we'll take a subset of the gapminder data and make a simple scatterplot.
 
 ```{r}
-gp <- gapminder %>% filter(continent == "Europe")
-p1 <- gp %>% ggplot(aes(x = year, y = log10(gdpPercap))) +
+gp <- gapminder |> filter(continent == "Europe")
+p1 <- gp |> ggplot(aes(x = year, y = log10(gdpPercap))) +
   geom_point(alpha = 0.5) + theme_bw()
 p1
 ```

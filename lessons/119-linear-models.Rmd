@@ -27,7 +27,7 @@ quadratic_model1 <- lm(price ~ poly(carat, 2),
                        data = diamonds)
 summary(quadratic_model1)
 linear_model2 <- lm(price ~ carat + clarity + color, 
-                    data = diamonds %>% mutate(clarity = factor(clarity, ordered=FALSE), 
+                    data = diamonds |> mutate(clarity = factor(clarity, ordered=FALSE), 
                                                color = factor(color, ordered=FALSE)))
 summary(linear_model2)
 ```
@@ -58,9 +58,9 @@ These results are the jumping off point for a lot more exploration.
 The `geom_smooth` function is especially powerful for facetted plots. The smooth is automatically computed and plotted for each facet separately. 
 
 ```{r}
-diamonds %>% 
+diamonds |> 
   filter(color %in% c("D", "F", "H", "J"), 
-         clarity %in% c("SI1", "VS1", "IF")) %>%
+         clarity %in% c("SI1", "VS1", "IF")) |>
   ggplot(aes(x=carat, y=price)) + 
   geom_point(aes(color=cut)) +
   facet_grid(color ~ clarity) + 
@@ -81,11 +81,11 @@ Robust regression is designed to be less influenced by outliers.
 Robust regression is a big improvement for group 3, but has little effect on any of the other problems. (Try `formula = y ~ poly(x,2)` to fix panel 2. There is no fix for the problem in panel 4.)
 
 ```{r message=FALSE}
-p1 <- anscombe %>%
+p1 <- anscombe |>
  pivot_longer(everything(),
    names_to = c(".value", "set"),
    names_pattern = "(.)(.)"
- ) %>% ggplot(aes(x = x, y = y)) +
+ ) |> ggplot(aes(x = x, y = y)) +
   geom_point() + 
   facet_wrap(~ set) 
 # p1 + geom_smooth(method="lm") # Try this instead
@@ -97,7 +97,7 @@ p1 + geom_smooth(method=MASS::rlm) # , formula  = y ~ poly(x,2))
 You can also try to predict quantiles of your data. Here we make a linear model for the 0.05, 0.50 (median), and 0.95 quantiles.
 
 ```{r}
-diamonds %>% filter(cut == "Ideal", color == "G") %>%
+diamonds |> filter(cut == "Ideal", color == "G") |>
   ggplot(aes(x=carat, y = price)) + 
   geom_point() +
   geom_quantile(method = rqss, formula = y ~ x,
@@ -111,14 +111,14 @@ The `broom` package has functions to obtain model coefficients and compute resid
 Get the coefficients (and standard errors, t-statistic, p-value and confidence intervals) from your model using `tidy`.
 
 ```{r}
-tidy(linear_model1, conf.int = TRUE) %>% kable(digits = 1)
+tidy(linear_model1, conf.int = TRUE) |> kable(digits = 1)
 ```
 
 The second model has the effect of each level of clarity on price (relative to the base case of I1). Here's how we can plot the regression coefficients as dot plots with uncertainties using the output from `tidy`.
 
 ```{r}
-tidy(linear_model2, conf.int = TRUE) %>%
-  filter(str_starts(term, "clarity")) %>%
+tidy(linear_model2, conf.int = TRUE) |>
+  filter(str_starts(term, "clarity")) |>
   ggplot(aes(y = term, x = estimate, xmin = conf.low, xmax = conf.high)) + 
   geom_pointrange()
 ```
@@ -133,21 +133,21 @@ coefplot(linear_model2, sort = "magnitude", intercept = FALSE)
 You can get statistics for the model using `glance`. We don't discuss these results, but if you have taken a statistics course with topics on regression you should recognize at least some of these results.    
 
 ```{r}
-glance(linear_model1) %>% kable()
+glance(linear_model1) |> kable()
 ```
 
 The `augment` function makes it easy to plot residuals and predicted values for many models (see `?augment`). We can use `augment` on the model object to get a data frame with the data used in the model plus fitted (predicted) values, residuals, and other quantities.  You can add the other data not provided in the model object by including `data = diamonds` in the augment function (output not shown.)
  
 ```{r}
-augment(linear_model1, interval = "prediction") %>% head() %>% kable(digits = 2)
-# augment(linear_model1, interval = "prediction", data = diamonds) %>% head()
+augment(linear_model1, interval = "prediction") |> head() |> kable(digits = 2)
+# augment(linear_model1, interval = "prediction", data = diamonds) |> head()
 ```
 
 If you generate new data, you can make and plot predictions easily.
 
 ```{r}
 new_data = tibble(carat = seq(0.20, 5.01, 0.01))
-augment(linear_model1, newdata = new_data, interval = "prediction") %>%
+augment(linear_model1, newdata = new_data, interval = "prediction") |>
   ggplot(aes(x = carat, y = .fitted, ymin = .lower, ymax = .upper)) + 
   geom_ribbon(fill="darkblue", alpha = 0.5) + 
   geom_line(color="blue")
@@ -166,7 +166,7 @@ Here we will fit each of the models generated above and look at the `summary` ou
 A linear model fitting a straight line to the data (slope, intercept):
 
 ```{r}
-gp <- gapminder %>% filter(continent == "Europe") %>%
+gp <- gapminder |> filter(continent == "Europe") |>
   mutate(year1950 = year - 1950,
          logGDP = log10(gdpPercap))
 m1 <- lm(logGDP ~ year1950, data = gp)
@@ -212,7 +212,7 @@ An important visualization for any model is to compare observations with the pre
 You can make histograms of residuals:
 
 ```{r}
-tibble(residuals = residuals(m1)) %>%
+tibble(residuals = residuals(m1)) |>
   ggplot(aes(x = residuals)) + geom_histogram(bins = 20)
 ```
 
@@ -224,9 +224,9 @@ residuals <- bind_rows(
   bind_cols(model = "spline", residual = residuals(m3)),
   bind_cols(model = "loess", residual = residuals(m5))
 )
-residuals %>% ggplot(aes(x = residual, fill = model)) +
+residuals |> ggplot(aes(x = residual, fill = model)) +
   geom_histogram(bins=20)
-residuals %>% ggplot(aes(x = residual)) + 
+residuals |> ggplot(aes(x = residual)) + 
   geom_histogram(bins=20) + facet_grid(model ~ .)
 ```
 
@@ -236,13 +236,13 @@ We can see that the distribution (histogram) of the residuals is fairly similar 
 More commonly you will want to compare the residuals to one of the independent variable, dependent variable, or predicted values. This is easy to do by adding predictions and residuals to the original data.
 
 ```{r}
-gp1 <- gp %>% mutate(linear_residuals = residuals(m1),
+gp1 <- gp |> mutate(linear_residuals = residuals(m1),
               linear_predictions = predict(m1))
-gp1 %>%  ggplot(aes(x = logGDP, 
+gp1 |>  ggplot(aes(x = logGDP, 
                     y = linear_predictions)) + 
   geom_point() +
   geom_abline(aes(intercept = 0, slope=1))
-gp1 %>%  ggplot(aes(x = linear_predictions, 
+gp1 |>  ggplot(aes(x = linear_predictions, 
                     y = linear_residuals)) +
   geom_point()
 ```
@@ -253,14 +253,14 @@ When making predictions, you can also generate [confidence](https://en.wikipedia
 
 ```{r}
 new_data <- tibble(year1950 = seq(from = 2, to = 57, by = 1))
-predictions1 <- predict(m3, new_data, interval = "prediction") %>% as_tibble()
-predictions2 <- predict(m5, new_data, se=TRUE) %>% as_tibble()
-bind_cols(new_data, predictions1) %>%
+predictions1 <- predict(m3, new_data, interval = "prediction") |> as_tibble()
+predictions2 <- predict(m5, new_data, se=TRUE) |> as_tibble()
+bind_cols(new_data, predictions1) |>
   ggplot(aes(x = year1950, y = fit)) + 
   geom_ribbon(aes(ymin = lwr, ymax = upr), fill = "blue", alpha = 0.4) + 
   geom_line(color = "blue") +
   geom_point(data = gp, aes(x = year1950, y = logGDP))
-bind_cols(new_data, predictions2) %>%
+bind_cols(new_data, predictions2) |>
   ggplot(aes(x = year1950, y = fit)) + 
   geom_ribbon(aes(ymin = fit -se.fit, ymax = fit + se.fit), fill = "blue", alpha = 0.4) + 
   geom_line(color = "blue") +

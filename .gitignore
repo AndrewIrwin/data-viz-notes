@@ -9,3 +9,5 @@ _book/*
 /_book/
 /docs/
 .DS_Store
+*_cache/
+*_files/
