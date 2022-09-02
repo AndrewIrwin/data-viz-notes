@@ -102,3 +102,8 @@ We will return to the theme of story telling frequently in the course, particula
 - Kurt Vonnegut summary of [story arcs](https://www.openculture.com/2014/02/kurt-vonnegut-masters-thesis-rejected-by-u-chicago.html)
 - @wilke2019fundamentals, in particular [Chapter 29](https://clauswilke.com/dataviz/telling-a-story.html).
 - A course about [Data Visualization](https://wilkelab.org/SDS375/) in R by Claus Wilke.
+
+```{r echo=FALSE}
+source("helper.R")
+writePackages(erase=TRUE)
+```

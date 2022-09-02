@@ -145,3 +145,9 @@ These two sources provide more detail on how k-means clustering works.
 
 * Notes on [K-means](https://www.tidymodels.org/learn/statistics/k-means/) from the tidymodels package
 * Chapter on [K-means](https://bookdown.org/rdpeng/exdata/k-means-clustering.html) from Roger Peng's book
+
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+

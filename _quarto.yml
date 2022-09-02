@@ -58,5 +58,6 @@ format:
     cap-location: margin
     reference-location: margin
     # citation-location: margin
+    code-link: true
 
 

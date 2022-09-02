@@ -129,3 +129,9 @@ Both these chapters are strongly recommended. This lesson is a brief introductio
 -   [Wilke Chapter 1](https://clauswilke.com/dataviz/introduction.html) emphasizes the difference between ugly, bad, and wrong figures, echoing many of the observations made here. The rest of his book addresses these questions in considerable detail from the perspective of someone training students in good and bad features of graphics, focusing on many of the same perceptual issues introduced here.
 -   Visualization of biomedical data [@odonoghue2018]
 -   Rainbow colours on hydrological maps mislead readers [@stoelzle2021]
+
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+

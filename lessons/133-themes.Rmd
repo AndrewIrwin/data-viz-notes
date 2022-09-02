@@ -139,3 +139,9 @@ p1 + geom_richtext(mapping = aes(x = x, y = y, label = label,
 
 * [ggplot tidyverse documentation](https://ggplot2.tidyverse.org/reference/theme.html) - like the `theme` help page, but shows the results of the examples
 * Documentation for [ggtext](https://github.com/wilkelab/ggtext)
+
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+

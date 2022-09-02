@@ -120,3 +120,9 @@ Sometimes you will want to do the reverse operation: combining two or more colum
 * R4DS [Sextion 12.4 Separate and Unite](https://r4ds.had.co.nz/tidy-data.html#separating-and-uniting)
 * Vignette on [kableExtra](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) for formatting tables. See the next lesson for a lot more on this topic.
 * Vignette on [stringr](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html) for manipulating text variables.
+
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+

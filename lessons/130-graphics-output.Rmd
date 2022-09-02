@@ -145,3 +145,9 @@ The `ragg` library and graphics output device also provides reliable rendering t
 
 * Notes on [figure scaling in R Markdown](https://r4ds.had.co.nz/graphics-for-communication.html#figure-sizing) from R for Data Science.
 * For a demonstration of text in other languages, please see [here](https://www.tidyverse.org/blog/2021/02/modern-text-features/). For a discussion of scaling plots see [here](https://www.tidyverse.org/blog/2020/08/taking-control-of-plot-scaling/).
+
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+

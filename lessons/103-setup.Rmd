@@ -72,4 +72,8 @@ Github is a web service for sharing and publishing github repositories and many 
 
 The task today is especially important. Get all these tools working on your computer by installing them or using rstudio.cloud before the next lesson.
 
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
 

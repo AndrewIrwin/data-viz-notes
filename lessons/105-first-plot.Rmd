@@ -90,3 +90,8 @@ This formatting of the numbers on the x-axis is a bit tricky to get right and to
 
 * [Healy Section 2.5-2.6](https://socviz.co/gettingstarted.html#gettingstarted)
 * For more on aesthetics and mappings from data to visualizations, see [Wilke Chapter 2](https://clauswilke.com/dataviz/aesthetic-mapping.html)
+
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```

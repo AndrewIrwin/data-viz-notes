@@ -185,3 +185,9 @@ What does using other tools have to do with making your work reproducible? R mar
 -   Peng. Reproducible research in computational science. [@peng2011]
 -   LeVeque et al. [Reproducible research for scientific computing](https://web.stanford.edu/~vcs/papers/CiSE2012-LMS.pdf)
 -   Sandve et al. Ten simple rules for reproducible computational research. [@sandve2013]
+
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+

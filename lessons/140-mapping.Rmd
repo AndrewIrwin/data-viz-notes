@@ -312,4 +312,8 @@ Map making is complex for at least two reasons: obtaining the data to describe c
 * [Election data](https://cran.r-project.org/web/packages/mapcan/readme/README.html) for boundaries and chloropleths and populated weighted chloropleths 
 * A map showing [wind turbines](https://discuss.ropensci.org/t/osmdata-rnaturalearth-and-magick-for-tidytuesday/2255) in Maritimes
 
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
 

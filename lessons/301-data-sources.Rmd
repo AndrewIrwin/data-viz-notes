@@ -145,3 +145,8 @@ If you want to distribute an analysis of data or redistribute the original data,
 * Roger Peng's notes on [importing data](https://bookdown.org/rdpeng/rprogdatascience/getting-data-in-and-out-of-r.html)
 * An older but comprehensive guide to [importing data](https://cran.r-project.org/doc/manuals/r-release/R-data.html)
 
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+

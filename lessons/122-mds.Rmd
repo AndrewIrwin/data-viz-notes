@@ -160,3 +160,9 @@ as_tibble(NMDS$points, rownames = "code") |>
 * https://jonlefcheck.net/2012/10/24/nmds-tutorial-in-r/
 * https://rpubs.com/collnellphd/GWU_nmds
 * [Morse code](https://www.davidzeleny.net/anadat-r/doku.php/en:data:morse) experiment description and [analysis](https://www.davidzeleny.net/anadat-r/doku.php/en:pcoa_nmds_examples)
+
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+

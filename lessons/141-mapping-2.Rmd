@@ -114,4 +114,8 @@ ggmap(mymap_halifax)
 * A [ggmap](https://github.com/dkahle/ggmap) tutorial, showing how to use Google map services including geocoding (turning an address into a location and the reverse) and routing.
 * Another well-developed approach to mapping: [mapview](https://r-spatial.github.io/mapview/index.html)
 
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
 

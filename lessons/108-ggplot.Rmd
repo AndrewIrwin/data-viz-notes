@@ -253,3 +253,9 @@ s |> ggplot(aes(x= price, y = carat, color = cut)) + scale_x_log10() +
 * A ggplot [cheatsheet](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf) summarizing a huge amount of information in two pages
 * A guide to themes from the [ggplot2 book](https://ggplot2-book.org/polishing.html)
 * A whole book on [ggplot2](https://ggplot2-book.org/index.html)
+
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+

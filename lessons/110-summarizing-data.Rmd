@@ -196,5 +196,10 @@ Tables can be a useful way to visualize data and grouped summaries are often the
 
 ## Further reading
 
-* R4DS. Chapter 5 on [Data transformations](https://r4ds.had.co.nz/transform.html)
+* R4DS [@wickham2014r4ds]. Chapter 5 on [Data transformations](https://r4ds.had.co.nz/transform.html)
+
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
 

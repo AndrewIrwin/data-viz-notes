@@ -9,22 +9,26 @@ library(readxl)
 funs <- read_excel(here("lessons/static", "functions.xlsx"), sheet = 1)
 ```
 
-This page summarizes all the R functions and packages described in the course.
-You can sort the following table by function, package, or lesson. You can also search the table for the function or the description.
+This page summarizes the most important R functions, datasets, and packages described in the course.
+You can sort the following table by object (function or dataset), lesson, or package. You can also search the table by function name or description. There is a simple example of how to use most functions. Take a look at the help pages for more examples.
 
 This table will be updated and expanded throughout the term.
 
 I strongly encourage you to make your own notes about functions you learn to use. 
 
-:::{.column-page}
 ```{r echo=FALSE}
+#| column: page
 funs |> select(-Type) |>
+  arrange(Lesson, Object) |>
   select(Object, Description, Example, Lesson, Package, everything()) |>
-  datatable(rownames = FALSE)
+  datatable(rownames = FALSE,
+            options = list(pageLength = 25))
 ```
-:::
 
-Note that the `tidyverse` package includes the following packages: `r cat(paste(tidyverse_packages(), collapse=", "))`
+Note that the `tidyverse` package includes the following packages: 
 
+```{r results='asis', echo=FALSE}
+cat(paste(tidyverse_packages() |> setdiff("tidyverse"), collapse=", "))
+```
 
 

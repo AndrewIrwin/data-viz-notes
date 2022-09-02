@@ -195,3 +195,9 @@ LOESS fits are slow and take a lot of memory compared to other methods (both tim
 
 * [LOESS (Wikipedia)](https://en.wikipedia.org/wiki/Local_regression)
 * [Generalized additive models (Wikipedia)](https://en.wikipedia.org/wiki/Generalized_additive_model)
+
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+

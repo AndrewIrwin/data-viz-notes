@@ -157,4 +157,8 @@ penguins |>
 * Directory of Visualizations in [Wilke Chapter 5](https://clauswilke.com/dataviz/directory-of-visualizations.html)
 * The [R Graph Gallery](https://www.r-graph-gallery.com/index.html)
 
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
 

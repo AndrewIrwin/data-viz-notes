@@ -84,5 +84,9 @@ You can make complex layouts, collect legends from multiple panels together, and
 * The [patchwork](https://patchwork.data-imaginist.com/) documentation can help you with many more tasks.
 * The [cowplot](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html#:~:text=The%20cowplot%20package%20is%20a,or%20mix%20plots%20with%20images.) package package is designed to help with many plotting tasks, including combining many figures into one using `plot_grid`. "cow" stands for Claus O Wilke, the author of one of our textbooks.
 
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
 
 

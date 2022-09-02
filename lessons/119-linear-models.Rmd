@@ -275,3 +275,9 @@ A few technical observations. `predict` does not generate a data frame; it makes
 
 * Healy [Chapter 6 Work with models](https://socviz.co/modeling.html#modeling)
 * Documentation for [equationomatic](https://github.com/datalorax/equatiomatic) including instructions for installation.
+
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+

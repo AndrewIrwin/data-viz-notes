@@ -246,3 +246,8 @@ na.omit(dt3)
 * A blog post about [missing values](https://www.njtierney.com/post/2020/09/17/missing-flavour/) and data types
 * [R 4 Data Science](https://r4ds.had.co.nz/) chapters on Strings, Factors, Dates and Times.
 
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+

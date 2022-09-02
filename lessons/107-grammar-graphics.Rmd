@@ -70,3 +70,9 @@ That's the basic idea behind the grammar of graphics approach to plotting. It ta
 -   [Cheatsheets for R](https://www.rstudio.com/resources/cheatsheets/), in particular a ggplot [cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf) summarizing a huge amount of information in two pages
 -   The [R graph gallery](https://www.r-graph-gallery.com/)
 -   Wickham's [article](https://www.tandfonline.com/doi/abs/10.1198/jcgs.2009.07098) on the grammar of graphics [@wickham2010]
+
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+

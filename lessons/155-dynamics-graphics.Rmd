@@ -79,3 +79,9 @@ animate(animation, nframes = 75)
 
 * Documentation for [plot_ly](https://plotly.com/r/) graphics for R
 * Documentation for [gganimate](https://gganimate.com/index.html), the grammar of animations
+
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+

@@ -26,7 +26,7 @@ By the end of the course you will be familiar with several aspects of data visua
 
 - Understand the relationship between the structure of your data and the perceptual features of your graphics.
 - Describe aesthetic features of good plots. 
-- Use length, shape, size, colour, annotations, and other features to effectively display data and enable comparitive visual interpretation.
+- Use length, shape, size, colour, annotations, and other features to effectively display data and enable comparative visual interpretation.
 
 *Visualization as communication*
 

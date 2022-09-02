@@ -92,4 +92,10 @@ For these reasons, you should consider alternatives to maps even when your data 
 
 ## Further reading
 
-* Healy Chapter 7 [Maps](https://socviz.co/maps.html)
+* Healy [@healy2018data] Chapter 7 [Maps](https://socviz.co/maps.html)
+
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+

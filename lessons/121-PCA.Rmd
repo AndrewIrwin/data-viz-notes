@@ -182,3 +182,9 @@ pca2 %>%
 -   <https://juliasilge.com/blog/stack-overflow-pca/>
 -   PCA using [tidymodels](https://juliasilge.com/blog/cocktail-recipes-umap/)
 -   [PCA](https://melinaluethje.com/2020/11/12/multivariate-ordinations-101/)
+
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+

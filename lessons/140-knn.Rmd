@@ -160,3 +160,8 @@ Tidymodels / parsnip
 * UBC data science course on knn [classification](https://ubc-dsci.github.io/introduction-to-datascience/classification.html) and [regression](https://ubc-dsci.github.io/introduction-to-datascience/regression1.html)
 * Tidymodels documentation for [knn](https://www.tidymodels.org/learn/statistics/k-means/)
 
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+

@@ -281,3 +281,8 @@ We are not integrating testing into our work in this course. This lesson is here
 * [dataMaid](https://github.com/ekstroem/dataMaid) documentation for data cleaning
 * For testing R code, look at [tinytest](https://cran.r-project.org/web/packages/tinytest/vignettes/using_tinytest.pdf) and [testthat](https://testthat.r-lib.org/)
 
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+

@@ -195,3 +195,8 @@ Avoid using more than 5 colours. It is hard to make quantitative comparisons bet
 * [HCL wizard](http://hclwizard.org/hclcolorpicker/)
 * The [colorspace](https://cran.r-project.org/web/packages/colorspace/vignettes/colorspace.html) package enables conversions between many different ways of describing colours
 
+```{r echo=FALSE}
+source("helper.R")
+writePackages()
+```
+
