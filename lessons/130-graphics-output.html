@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.37">
-
+<meta name="generator" content="quarto-1.0.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>Data Visualization notes - 33&nbsp; Graphics formatting</title>
 <style>
 code{white-space: pre-wrap;}
@@ -80,7 +77,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -98,8 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -118,29 +113,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Graphics formatting</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -152,7 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome</a>
   </div>
@@ -358,29 +344,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Table of contents</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#formatting-visualizations-for-a-purpose" id="toc-formatting-visualizations-for-a-purpose" class="nav-link active" data-scroll-target="#formatting-visualizations-for-a-purpose"> <span class="header-section-number">33.1</span> Formatting visualizations for a purpose</a></li>
+<li><a href="#formatting-visualizations-for-a-purpose" id="toc-formatting-visualizations-for-a-purpose" class="nav-link active" data-scroll-target="#formatting-visualizations-for-a-purpose"> <span class="header-section-number">33.1</span> Formatting visualizations for a purpose</a></li>
   <li><a href="#graphics-formats" id="toc-graphics-formats" class="nav-link" data-scroll-target="#graphics-formats"> <span class="header-section-number">33.2</span> Graphics formats</a></li>
   <li><a href="#vector-or-raster" id="toc-vector-or-raster" class="nav-link" data-scroll-target="#vector-or-raster"> <span class="header-section-number">33.3</span> Vector or raster?</a></li>
   <li><a href="#size-and-resolution" id="toc-size-and-resolution" class="nav-link" data-scroll-target="#size-and-resolution"> <span class="header-section-number">33.4</span> Size and resolution</a></li>
   <li><a href="#recommendations" id="toc-recommendations" class="nav-link" data-scroll-target="#recommendations"> <span class="header-section-number">33.5</span> Recommendations</a></li>
   <li><a href="#a-solution-for-scaling-graphics" id="toc-a-solution-for-scaling-graphics" class="nav-link" data-scroll-target="#a-solution-for-scaling-graphics"> <span class="header-section-number">33.6</span> A solution for scaling graphics</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"> <span class="header-section-number">33.7</span> Further reading</a></li>
-  </ul>
-</nav>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="output-files" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Graphics formatting</span></span></h1>
 </div>
 
@@ -393,11 +372,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header>
-
-<p>This lesson is about a grab-bag of concepts related to presenting, storing, and repurposing visualizations. First, and most directly linked to the rest of the course, we will consider how a visualization might be changed according to its particular application, whether it is on a poster, in an oral presentation, in a written document, or as part of a technical report. Second we will explore the various notions of the size of a visualization and what that tends to do to parts that are easily scaled and parts that need to be scaled differently. Third we will review formats for storing images, both the general differences between vector and raster formats, and the particulars of various often used file formats and why they matter. Finally I’ll lead you to some resources on dealing with text in non-Latin scripts.</p>
-<section id="formatting-visualizations-for-a-purpose" class="level2" data-number="33.1">
-<h2 data-number="33.1" class="anchored" data-anchor-id="formatting-visualizations-for-a-purpose"><span class="header-section-number">33.1</span> Formatting visualizations for a purpose</h2>
+</header><p>This lesson is about a grab-bag of concepts related to presenting, storing, and repurposing visualizations. First, and most directly linked to the rest of the course, we will consider how a visualization might be changed according to its particular application, whether it is on a poster, in an oral presentation, in a written document, or as part of a technical report. Second we will explore the various notions of the size of a visualization and what that tends to do to parts that are easily scaled and parts that need to be scaled differently. Third we will review formats for storing images, both the general differences between vector and raster formats, and the particulars of various often used file formats and why they matter. Finally I’ll lead you to some resources on dealing with text in non-Latin scripts.</p>
+<section id="formatting-visualizations-for-a-purpose" class="level2" data-number="33.1"><h2 data-number="33.1" class="anchored" data-anchor-id="formatting-visualizations-for-a-purpose">
+<span class="header-section-number">33.1</span> Formatting visualizations for a purpose</h2>
 <p>A final design check for your visualization can be done by asking two questions:</p>
 <ul>
 <li>How big will this graphic be and how far away will the viewer be from it?</li>
@@ -406,13 +383,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>These two questions focus your attention on whether elements of your visualization are too small and whether your visualization is too complex to be understood in the time available. Many visualizations are both too complex and contain detail that is too small. To exercise your thinking about these questions, design a visualization and then ask yourself how it could be made simpler or more complex, and how it should change if its apparent size changed.</p>
 <p>Let’s start with a frequently used visualization of penguin data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(body_mass_g, flipper_length_mm, </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">color =</span> species, <span class="at">shape =</span> sex)) <span class="sc">+</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">facet_wrap</span>( <span class="sc">~</span> island) <span class="sc">+</span> </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_shape</span>(<span class="at">na.translate =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Body mass (g)"</span>, <span class="at">y =</span> <span class="st">"Flipper length (mm)"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op">%&gt;%</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">body_mass_g</span>, <span class="va">flipper_length_mm</span>, </span>
+<span>                        color <span class="op">=</span> <span class="va">species</span>, shape <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>        <span class="fu">facet_wrap</span><span class="op">(</span> <span class="op">~</span> <span class="va">island</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>        <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>        <span class="fu">scale_shape</span><span class="op">(</span>na.translate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>        <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Body mass (g)"</span>, y <span class="op">=</span> <span class="st">"Flipper length (mm)"</span><span class="op">)</span></span>
+<span><span class="va">p1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="130-graphics-output_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -420,36 +397,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This is a fairly complex figure, but it’s fine if you will have a minute to look at it on a monitor or printed page within a metre. For quick or distant viewing, the text should be made bigger, the symbols for sex should be dropped (or made more prominent if they are critical information), and the facets should be combined (unless they are critical.) Essentially what I’ve done with the figure above is to make a “multi-purpose” figure that shows a lot of data, but I’ve avoided the “should I show feature X?” question. This is one reason editing figures for other uses is so valuable: it focusses your attention on what is essential for your story.</p>
 <p>Let’s simplify the visualization to emphasize the species differences, discard the sex and island differences, and make it suitable for display in an oral presentation or poster.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(body_mass_g, flipper_length_mm, </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">color =</span> species)) <span class="sc">+</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_clean</span>() <span class="sc">+</span> </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>),</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> species),</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">size =</span> <span class="dv">8</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> <span class="fu">tibble</span>(<span class="at">species =</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>),</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                             <span class="at">body_mass_g =</span> <span class="fu">c</span>(<span class="dv">4000</span>, <span class="dv">3200</span>, <span class="dv">4500</span>),</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                             <span class="at">flipper_length_mm =</span> <span class="fu">c</span>(<span class="dv">173</span>, <span class="dv">207</span>, <span class="dv">227</span>))) <span class="sc">+</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Body mass (g)"</span>, <span class="at">y =</span> <span class="st">"Flipper length (mm)"</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op">%&gt;%</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">body_mass_g</span>, <span class="va">flipper_length_mm</span>, </span>
+<span>                        color <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>        <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>        <span class="fu">theme_clean</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>        <span class="fu">theme</span><span class="op">(</span>axis.title <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">18</span><span class="op">)</span>,</span>
+<span>              axis.text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span>,</span>
+<span>              legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>        <span class="fu">geom_text</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">species</span><span class="op">)</span>,</span>
+<span>                  size <span class="op">=</span> <span class="fl">8</span>,</span>
+<span>               data <span class="op">=</span> <span class="fu">tibble</span><span class="op">(</span>species <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span><span class="op">)</span>,</span>
+<span>                             body_mass_g <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4000</span>, <span class="fl">3200</span>, <span class="fl">4500</span><span class="op">)</span>,</span>
+<span>                             flipper_length_mm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">173</span>, <span class="fl">207</span>, <span class="fl">227</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>        <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Body mass (g)"</span>, y <span class="op">=</span> <span class="st">"Flipper length (mm)"</span><span class="op">)</span></span>
+<span><span class="va">p2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="130-graphics-output_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
-<section id="graphics-formats" class="level2" data-number="33.2">
-<h2 data-number="33.2" class="anchored" data-anchor-id="graphics-formats"><span class="header-section-number">33.2</span> Graphics formats</h2>
+</section><section id="graphics-formats" class="level2" data-number="33.2"><h2 data-number="33.2" class="anchored" data-anchor-id="graphics-formats">
+<span class="header-section-number">33.2</span> Graphics formats</h2>
 <p>Computer graphics can be divided into two types: raster images and vector drawings. A photograph is a raster image; there is a separate color value for each of millions of pixels. A scatter plot is often best represented as a vector drawing which is just a list of instructions: make circles of a certain colour at these locations, draw lines for axes of a particular thickness, etc. For “simple” visualizations, the vector graphics format is smaller to store, faster to transmit, and easy to display at high fidelity on devices with different numbers of dots per unit length.</p>
 <p>R can produce graphics files in many formats, of which the most common vector formats are <a href="https://en.wikipedia.org/wiki/PDF">PDF</a> (which can include raster images as well) and <a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics">SVG</a> and the most common raster formats are <a href="https://en.wikipedia.org/wiki/Portable_Network_Graphics">PNG</a> and <a href="https://en.wikipedia.org/wiki/JPEG">JPEG</a>. There are a huge number of other formats, some of which R can produce directly and others can be achieved by conversion.</p>
 <p>When you create a PDF or SVG file, you specify the size in units such as mm, cm, or inches. The function <code>ggsave</code> will write out a graphic to a file name you specify.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"static/penguin-plot.pdf"</span>, p2, <span class="at">width =</span> <span class="dv">15</span>, <span class="at">height =</span> <span class="dv">10</span> , <span class="at">units =</span> <span class="st">"cm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"static/penguin-plot.pdf"</span>, <span class="va">p2</span>, width <span class="op">=</span> <span class="fl">15</span>, height <span class="op">=</span> <span class="fl">10</span> , units <span class="op">=</span> <span class="st">"cm"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"static/penguin-plot.svg"</span>, p2, <span class="at">width =</span> <span class="dv">15</span>, <span class="at">height =</span> <span class="dv">10</span> , <span class="at">units =</span> <span class="st">"cm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"static/penguin-plot.svg"</span>, <span class="va">p2</span>, width <span class="op">=</span> <span class="fl">15</span>, height <span class="op">=</span> <span class="fl">10</span> , units <span class="op">=</span> <span class="st">"cm"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 </div>
@@ -459,11 +435,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The actual sizes of these plots are of course completely fictional. The instructions stored on a computer have no physical size! What purpose to the size measurements have? They allow for the relative sizing of different elements: lines, symbols, and text. If you change the size of the images created above, all that will change is the relative sizes of these elements. This is why the “size” of text elements is not closely tied to a “point size” for a font; ggplot does not know how the figure will be rendered not when stored in a file a certainly not when ultimately placed on a computer monitor, phone, projected on a wall, printed on a page or a poster. The size of a figure in these functions serves as a convenient reminder of how you are planning to use the image and will help you think about your design. Sometimes the simplest way to refine a plot is to change the “size” it is created at slightly to make a bit more or less white space between the graphical elements.</p>
 <p>Here is how to make the raster format images; it’s fairly easy to guess the functions now!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"static/penguin-plot.png"</span>, p2, <span class="at">width =</span> <span class="dv">15</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">units =</span> <span class="st">"cm"</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"static/penguin-plot.png"</span>, <span class="va">p2</span>, width <span class="op">=</span> <span class="fl">15</span>, height <span class="op">=</span> <span class="fl">10</span>, units <span class="op">=</span> <span class="st">"cm"</span>, dpi <span class="op">=</span> <span class="fl">300</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"static/penguin-plot.jpeg"</span>, p2, <span class="at">width =</span> <span class="dv">15</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">units =</span> <span class="st">"cm"</span>, <span class="at">dpi =</span> <span class="dv">144</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"static/penguin-plot.jpeg"</span>, <span class="va">p2</span>, width <span class="op">=</span> <span class="fl">15</span>, height <span class="op">=</span> <span class="fl">10</span>, units <span class="op">=</span> <span class="st">"cm"</span>, dpi <span class="op">=</span> <span class="fl">144</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 </div>
@@ -473,81 +449,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The PNG format, by contrast, is excellent at high contrast lines and shapes and has none of these problems. It is also good at photographic images. This is the format you should use for <code>ggplot</code> visualizations if, for some reason, you need to produce a raster image. One reason to produce a raster image is that you will know exactly what it will look like when it is displayed or printed. You don’t know what size it will be, but you can know the relative placement of all elements on the figure.</p>
 <p>A third application for rendering visualiztions is the one we have been using in this course since the very first lesson: in an interactive or rendered R markdown document. There are several options you can provide on the <code>{r}</code> line that opens a code block: fig.height and fig.width which control the size in inches, fig.align (left, right, or center) to control placement left-to-right, and out.height and out.width for scaling to a percentage. For more, see <a href="https://rmd4sci.njtierney.com/customising-your-figures.html">these notes</a> by Nicholas Tierney. You can also get a figure written to a file in any of the formats discussed above using the option dev. Here I’ll demonstrate a few of these options. Some of these options only have an effect when your document is knitted.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="130-graphics-output_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figure class="figure"><p><img src="130-graphics-output_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="vector-or-raster" class="level2" data-number="33.3">
-<h2 data-number="33.3" class="anchored" data-anchor-id="vector-or-raster"><span class="header-section-number">33.3</span> Vector or raster?</h2>
+</section><section id="vector-or-raster" class="level2" data-number="33.3"><h2 data-number="33.3" class="anchored" data-anchor-id="vector-or-raster">
+<span class="header-section-number">33.3</span> Vector or raster?</h2>
 <p>The quality of a vector image (PDF, svg) should always be superior to a raster image (png). Vector images can be redrawn at different scales easily, making it possible for your reader to zoom in on your graphics. If your plot has millions of points or a huge number of lines, then a vector format which requires the computer to draw each feature every time the image is shown will be slow. So you should normally use a raster format (svg for the web, pdf for printing) and only use raster formats (png) for very complicated figures, for example if you notice that your graphics are displaying slowly.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 11 rows containing missing values (geom_point).</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="130-graphics-output_files/figure-html/unnamed-chunk-7-1.svg" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="130-graphics-output_files/figure-html/unnamed-chunk-7-1.svg" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="size-and-resolution" class="level2" data-number="33.4">
-<h2 data-number="33.4" class="anchored" data-anchor-id="size-and-resolution"><span class="header-section-number">33.4</span> Size and resolution</h2>
+</section><section id="size-and-resolution" class="level2" data-number="33.4"><h2 data-number="33.4" class="anchored" data-anchor-id="size-and-resolution">
+<span class="header-section-number">33.4</span> Size and resolution</h2>
 <p>The differences between raster and vector formats give rise to different ideas of a graphics size. Raster images are defined by the number of pixels in each dimension. Vector graphics are not made of pixels, so they are defined by a target size for presentation in inches or centimeters. When they are actually displayed, raster images may be simplified to lower resolution or dots may be interpolated to match the device you are using. Similarly, a vector image on a monitor, printed page, or projected on a screen will have very different sizes, even if the computer doesn’t know it. These resizing operations happen all the time, sometimes even interactively (as you zoom on a phone for example) and the person creating the image has no control over how it will be displayed!</p>
-</section>
-<section id="recommendations" class="level2" data-number="33.5">
-<h2 data-number="33.5" class="anchored" data-anchor-id="recommendations"><span class="header-section-number">33.5</span> Recommendations</h2>
+</section><section id="recommendations" class="level2" data-number="33.5"><h2 data-number="33.5" class="anchored" data-anchor-id="recommendations">
+<span class="header-section-number">33.5</span> Recommendations</h2>
 <p>In your code chunks use</p>
 <ul>
-<li><code>fig.width = 6</code> (6 inches)</li>
-<li><code>fig.asp = 0.65</code> (aspect ratio of height is 65% of the width)</li>
-<li><code>out.width = '70%'</code> (so that there is some blank margin on both sides of your image)</li>
+<li>
+<code>fig.width = 6</code> (6 inches)</li>
+<li>
+<code>fig.asp = 0.65</code> (aspect ratio of height is 65% of the width)</li>
+<li>
+<code>out.width = '70%'</code> (so that there is some blank margin on both sides of your image)</li>
 <li><code>fig.align = 'center'</code></li>
-<li><code>dev = 'svg'</code> or <code>dev = 'svglite'</code> (the output format)</li>
+<li>
+<code>dev = 'svg'</code> or <code>dev = 'svglite'</code> (the output format)</li>
 </ul>
 <p>You can set the defaults in your first code chunk using the following code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">fig.width =</span> <span class="dv">6</span>, <span class="at">fig.asp =</span> <span class="fl">0.65</span>, <span class="at">fig.align=</span><span class="st">"center"</span>, <span class="at">out.width =</span> <span class="st">'70%'</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span></span>
+<span>  fig.width <span class="op">=</span> <span class="fl">6</span>, fig.asp <span class="op">=</span> <span class="fl">0.65</span>, fig.align<span class="op">=</span><span class="st">"center"</span>, out.width <span class="op">=</span> <span class="st">'70%'</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then you only need to specify these chunk options if you need to change them for some reason.</p>
-</section>
-<section id="a-solution-for-scaling-graphics" class="level2" data-number="33.6">
-<h2 data-number="33.6" class="anchored" data-anchor-id="a-solution-for-scaling-graphics"><span class="header-section-number">33.6</span> A solution for scaling graphics</h2>
+</section><section id="a-solution-for-scaling-graphics" class="level2" data-number="33.6"><h2 data-number="33.6" class="anchored" data-anchor-id="a-solution-for-scaling-graphics">
+<span class="header-section-number">33.6</span> A solution for scaling graphics</h2>
 <p>When you show a figure on the screen, on a projector, printed page, or poster, you will want to redesign some elements. There is a relatively new solution to this resizing challenge. (So new it seems to not work sometimes.) Once you have made a graphic look just the way you want, you can adjust the scale of the elements of the figure without changing the “physical” size of the image. Here I make the graphic have a much larger “physical” size, but I also scale up all the elements of the graphic by a factor of three (using <code>scaling = 3</code>). This allows you to make a high resolution object you can include in a printed poster without redesigning a figure too much – just set the scaling factor and adjust the width and height by the same factor.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pngfile <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">path</span>(knitr<span class="sc">::</span><span class="fu">fig_path</span>(),  <span class="st">"penguins-ragg.png"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(pngfile, p2, <span class="at">device =</span> agg_png, </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">width =</span> <span class="dv">45</span>, <span class="at">height =</span> <span class="dv">30</span>, <span class="at">units =</span> <span class="st">"cm"</span>, <span class="at">res =</span> <span class="dv">300</span>, <span class="at">scaling =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pngfile</span> <span class="op">&lt;-</span> <span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/path.html">path</a></span><span class="op">(</span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/fig_path.html">fig_path</a></span><span class="op">(</span><span class="op">)</span>,  <span class="st">"penguins-ragg.png"</span><span class="op">)</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="va">pngfile</span>, <span class="va">p2</span>, device <span class="op">=</span> <span class="va">agg_png</span>, </span>
+<span>        width <span class="op">=</span> <span class="fl">45</span>, height <span class="op">=</span> <span class="fl">30</span>, units <span class="op">=</span> <span class="st">"cm"</span>, res <span class="op">=</span> <span class="fl">300</span>, scaling <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(pngfile)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="va">pngfile</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="130-graphics-output_files/figure-html/unnamed-chunk-9-1/penguins-ragg.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figure class="figure"><p><img src="130-graphics-output_files/figure-html/unnamed-chunk-9-1/penguins-ragg.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># agg_png("static/penguins-ragg.png", width = 45, height = 30, units = "cm", res = 300, scaling = 3)</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># p2</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># invisble(dev.off())</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># agg_png("static/penguins-ragg.png", width = 45, height = 30, units = "cm", res = 300, scaling = 3)</span></span>
+<span><span class="co"># p2</span></span>
+<span><span class="co"># invisble(dev.off())</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>ragg</code> library and graphics output device also provides reliable rendering text in many (perhaps most) languages and a way to scale the size of images across different output formats. See the link below for more information.</p>
-</section>
-<section id="further-reading" class="level2" data-number="33.7">
-<h2 data-number="33.7" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">33.7</span> Further reading</h2>
+</section><section id="further-reading" class="level2" data-number="33.7"><h2 data-number="33.7" class="anchored" data-anchor-id="further-reading">
+<span class="header-section-number">33.7</span> Further reading</h2>
 <ul>
 <li>Notes on <a href="https://r4ds.had.co.nz/graphics-for-communication.html#figure-sizing">figure scaling in R Markdown</a> from R for Data Science.</li>
 <li>For a demonstration of text in other languages, please see <a href="https://www.tidyverse.org/blog/2021/02/modern-text-features/">here</a>. For a discussion of scaling plots see <a href="https://www.tidyverse.org/blog/2020/08/taking-control-of-plot-scaling/">here</a>.</li>
@@ -557,10 +529,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -656,9 +625,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="../lessons/133-themes.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Themes</span></span>
       </a>          

@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.37">
-
+<meta name="generator" content="quarto-1.0.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>Data Visualization notes - 24&nbsp; Making slides for presentations</title>
 <style>
 code{white-space: pre-wrap;}
@@ -16,7 +13,6 @@ div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 </style>
-
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
@@ -35,8 +31,7 @@ ul.task-list{list-style: none;}
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -55,29 +50,20 @@ ul.task-list{list-style: none;}
     "search-submit-button-title": "Submit"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating slimcontent">
 
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Making slides for presentations</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -89,7 +75,7 @@ ul.task-list{list-style: none;}
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome</a>
   </div>
@@ -295,35 +281,30 @@ ul.task-list{list-style: none;}
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Table of contents</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-makes-a-good-presentation" id="toc-what-makes-a-good-presentation" class="nav-link active" data-scroll-target="#what-makes-a-good-presentation"> <span class="header-section-number">24.1</span> What makes a good presentation?</a></li>
+<li><a href="#what-makes-a-good-presentation" id="toc-what-makes-a-good-presentation" class="nav-link active" data-scroll-target="#what-makes-a-good-presentation"> <span class="header-section-number">24.1</span> What makes a good presentation?</a></li>
   <li><a href="#why-we-make-slides" id="toc-why-we-make-slides" class="nav-link" data-scroll-target="#why-we-make-slides"> <span class="header-section-number">24.2</span> Why we make slides</a></li>
   <li><a href="#how-to-make-slides-using-rstudio" id="toc-how-to-make-slides-using-rstudio" class="nav-link" data-scroll-target="#how-to-make-slides-using-rstudio"> <span class="header-section-number">24.3</span> How to make slides using Rstudio</a></li>
-  <li><a href="#formatting-tricks" id="toc-formatting-tricks" class="nav-link" data-scroll-target="#formatting-tricks"> <span class="header-section-number">24.4</span> Formatting tricks</a>
+  <li>
+<a href="#formatting-tricks" id="toc-formatting-tricks" class="nav-link" data-scroll-target="#formatting-tricks"> <span class="header-section-number">24.4</span> Formatting tricks</a>
   <ul class="collapse">
-  <li><a href="#hiding-code" id="toc-hiding-code" class="nav-link" data-scroll-target="#hiding-code"> <span class="header-section-number">24.4.1</span> Hiding code</a></li>
-  </ul></li>
+<li><a href="#hiding-code" id="toc-hiding-code" class="nav-link" data-scroll-target="#hiding-code"> <span class="header-section-number">24.4.1</span> Hiding code</a></li>
+  </ul>
+</li>
   <li><a href="#changing-the-size-and-position-of-a-plot" id="toc-changing-the-size-and-position-of-a-plot" class="nav-link" data-scroll-target="#changing-the-size-and-position-of-a-plot"> <span class="header-section-number">24.5</span> Changing the size and position of a plot</a></li>
   <li><a href="#two-column-formatting" id="toc-two-column-formatting" class="nav-link" data-scroll-target="#two-column-formatting"> <span class="header-section-number">24.6</span> Two column formatting</a></li>
   <li><a href="#what-if-my-material-wont-fit-on-a-single-slide" id="toc-what-if-my-material-wont-fit-on-a-single-slide" class="nav-link" data-scroll-target="#what-if-my-material-wont-fit-on-a-single-slide"> <span class="header-section-number">24.7</span> What if my material won’t fit on a single slide?</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"> <span class="header-section-number">24.8</span> Summary</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"> <span class="header-section-number">24.9</span> Exercise</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"> <span class="header-section-number">24.10</span> Further reading</a></li>
-  </ul>
-</nav>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="slides" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Making slides for presentations</span></span></h1>
 </div>
 
@@ -336,20 +317,16 @@ ul.task-list{list-style: none;}
   </div>
   
 
-</header>
-
-<p>Since data visualization is ultimately about communication, you will often need to talk to people about what you’ve learned. In this lesson I’ll provide some suggestions on how to make a good presentation about a data visualization or analysis. I’ll show you how to use R markdown and Rstudio to make visual aids for your presentation.</p>
-<section id="what-makes-a-good-presentation" class="level2" data-number="24.1">
-<h2 data-number="24.1" class="anchored" data-anchor-id="what-makes-a-good-presentation"><span class="header-section-number">24.1</span> What makes a good presentation?</h2>
+</header><p>Since data visualization is ultimately about communication, you will often need to talk to people about what you’ve learned. In this lesson I’ll provide some suggestions on how to make a good presentation about a data visualization or analysis. I’ll show you how to use R markdown and Rstudio to make visual aids for your presentation.</p>
+<section id="what-makes-a-good-presentation" class="level2" data-number="24.1"><h2 data-number="24.1" class="anchored" data-anchor-id="what-makes-a-good-presentation">
+<span class="header-section-number">24.1</span> What makes a good presentation?</h2>
 <p>A good presentation tells a story that engages your audience, has a clear purpose advanced through a predictable arc from introduction through evidence to a conclusion. There are many ways to design a good presentation, but most people find that practice and reflection on what works for your own personal goals and audience are a key part of the trajectory.</p>
-</section>
-<section id="why-we-make-slides" class="level2" data-number="24.2">
-<h2 data-number="24.2" class="anchored" data-anchor-id="why-we-make-slides"><span class="header-section-number">24.2</span> Why we make slides</h2>
+</section><section id="why-we-make-slides" class="level2" data-number="24.2"><h2 data-number="24.2" class="anchored" data-anchor-id="why-we-make-slides">
+<span class="header-section-number">24.2</span> Why we make slides</h2>
 <p>Visual aides, commonly called <a href="https://en.wikipedia.org/wiki/Presentation_slide">slides</a>, can help you communicate with your audience. Computer software makes it easy to generate lots of slides full of text that the presenter reads. This is generally a bad approach as the audience’s attention is focused more on reading than listening and as a result they tend to be less engaged with your presentation. There are, of course, many different opinions on this topic!</p>
 <p>In data visualization, we make slides to display the visualization! That’s the primary reason for the slide, so your slides should focus on the visualization. The visualization should be large enough to be seen by everyone watching. This is much easier when everyone watches a presentation by teleconferencing. In a classroom, when the slide is far away, you must be careful not to put too much on a slide and not to make any element of the slide too small.</p>
-</section>
-<section id="how-to-make-slides-using-rstudio" class="level2 page-columns page-full" data-number="24.3">
-<h2 data-number="24.3" class="anchored" data-anchor-id="how-to-make-slides-using-rstudio"><span class="header-section-number">24.3</span> How to make slides using Rstudio</h2>
+</section><section id="how-to-make-slides-using-rstudio" class="level2 page-columns page-full" data-number="24.3"><h2 data-number="24.3" class="anchored" data-anchor-id="how-to-make-slides-using-rstudio">
+<span class="header-section-number">24.3</span> How to make slides using Rstudio</h2>
 <div class="page-columns page-full"><p>There are several packages to help you make slides with R markdown. The method we will use is well integrated into Rstudio. To create a presentation, select the menu File &gt; New File &gt; Quarto Presentation.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> You will be asked to provide a title for your presentation and there are a few options, but you don’t need to change any of them. This will give you a sample file with a title slide. The R markdown tools you already know for text formatting, list making, and titles all work here. Of course, you can insert R code blocks and have the output included as well. All of this is described in the help available from the menu Help &gt; Markdown quick reference.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;You need to have a version of Rstudio from the July 2022 or newer for this to work. If your copy of Rstudio doesn’t have this menu item, this is a good time to update!</p></li></div></div>
 <p>The top of your slide file should have five lines: a row with three minus signs, a title, an author, and a format line, followed by three minus signs by themselves on a line. Use format <code>revealjs</code>:</p>
 <pre><code>---
@@ -359,11 +336,10 @@ format: revealjs
 ---</code></pre>
 <p>The most important new idea is how to start a new slide. It’s simple. Create a level one or two heading (one or two hash marks at the start of a line, followed a space, then a short title) or write three minus signs at the start of a blank line. A level one heading is the largest and it is centered vertically on the slide. A level 2 heading appears at the top of a slide. If you start a new slide with three minus signs, there is no title. That’s handy if you want to make as much room as possible for a graph or image.</p>
 <p>The Quarto website has excellent documentation on the <a href="https://quarto.org/docs/presentations/">basics</a> and <a href="https://quarto.org/docs/presentations/revealjs/">more specialized formatting</a> for making slides. In this lesson I’ll give you just enough information to get started.</p>
-</section>
-<section id="formatting-tricks" class="level2" data-number="24.4">
-<h2 data-number="24.4" class="anchored" data-anchor-id="formatting-tricks"><span class="header-section-number">24.4</span> Formatting tricks</h2>
-<section id="hiding-code" class="level3" data-number="24.4.1">
-<h3 data-number="24.4.1" class="anchored" data-anchor-id="hiding-code"><span class="header-section-number">24.4.1</span> Hiding code</h3>
+</section><section id="formatting-tricks" class="level2" data-number="24.4"><h2 data-number="24.4" class="anchored" data-anchor-id="formatting-tricks">
+<span class="header-section-number">24.4</span> Formatting tricks</h2>
+<section id="hiding-code" class="level3" data-number="24.4.1"><h3 data-number="24.4.1" class="anchored" data-anchor-id="hiding-code">
+<span class="header-section-number">24.4.1</span> Hiding code</h3>
 <p>Usually in a presenation you don’t want to show your computer code – its too complex to be easily digested by the audience. (This course, is naturally, a bit of an exception!) You can hide output by writing the start of your code block like this:</p>
 <p><code>{r echo=FALSE}</code></p>
 <p>The main options for showing code, the results of code, warning messages, and errors are summarized <a href="https://rmarkdown.rstudio.com/lesson-3.html">here</a>. The option <code>fig.cap="Message"</code> is particularly useful for adding text. (The options are: echo, eval, include, warning, message, which can all be TRUE or FALSE.)</p>
@@ -371,19 +347,18 @@ format: revealjs
 <pre><code>#| code-fold: true
 #| code-summary: "Show the code"</code></pre>
 <p>Try it out to see what happens.</p>
-</section>
-</section>
-<section id="changing-the-size-and-position-of-a-plot" class="level2" data-number="24.5">
-<h2 data-number="24.5" class="anchored" data-anchor-id="changing-the-size-and-position-of-a-plot"><span class="header-section-number">24.5</span> Changing the size and position of a plot</h2>
+</section></section><section id="changing-the-size-and-position-of-a-plot" class="level2" data-number="24.5"><h2 data-number="24.5" class="anchored" data-anchor-id="changing-the-size-and-position-of-a-plot">
+<span class="header-section-number">24.5</span> Changing the size and position of a plot</h2>
 <p>The following code chunk options let you control the size and position of a plot:</p>
 <ul>
-<li><code>out.width = "70%"</code> (or other value, in quotation marks)</li>
-<li><code>fig.align = "center"</code> (or left, right)</li>
+<li>
+<code>out.width = "70%"</code> (or other value, in quotation marks)</li>
+<li>
+<code>fig.align = "center"</code> (or left, right)</li>
 </ul>
 <p>For more figure formatting options look <a href="">here</a></p>
-</section>
-<section id="two-column-formatting" class="level2" data-number="24.6">
-<h2 data-number="24.6" class="anchored" data-anchor-id="two-column-formatting"><span class="header-section-number">24.6</span> Two column formatting</h2>
+</section><section id="two-column-formatting" class="level2" data-number="24.6"><h2 data-number="24.6" class="anchored" data-anchor-id="two-column-formatting">
+<span class="header-section-number">24.6</span> Two column formatting</h2>
 <p>If you want to divide your slide into a left and right column, split your material between sections marked off with three colons (<code>:::</code>) as follows:</p>
 <pre><code>:::: {.columns}
 
@@ -397,43 +372,38 @@ Right column
 
 ::::</code></pre>
 <p>You can adjust the amount of space used by each side by changing the percentages. You can have more than two columns if you like too—but your slide will get crowded and the columns get narrow.</p>
-</section>
-<section id="what-if-my-material-wont-fit-on-a-single-slide" class="level2" data-number="24.7">
-<h2 data-number="24.7" class="anchored" data-anchor-id="what-if-my-material-wont-fit-on-a-single-slide"><span class="header-section-number">24.7</span> What if my material won’t fit on a single slide?</h2>
+</section><section id="what-if-my-material-wont-fit-on-a-single-slide" class="level2" data-number="24.7"><h2 data-number="24.7" class="anchored" data-anchor-id="what-if-my-material-wont-fit-on-a-single-slide">
+<span class="header-section-number">24.7</span> What if my material won’t fit on a single slide?</h2>
 <p>If you try to put too much on a slide, there just isn’t room and it disappears off the bottom. Usually the right decision is to split your material across two slides.</p>
 <p>But you have other options. After the title you can add an instruction to make everything on the slide smaller. For example write a title as</p>
 <p><code>## Slide title {.smaller}</code></p>
 <p>If the material still doesn’t fit, you can make the slide scrollable using</p>
 <p><code>## Slide title {.scrollable}</code></p>
 <p>but remember, when you show the slide you’ll have to scroll to let viewers see the material off the bottom. This might work best with slides you distribute so that the viewer can scroll by themselves. In a live presentation, scrolling like this could be quite disorienting!</p>
-</section>
-<section id="summary" class="level2" data-number="24.8">
-<h2 data-number="24.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">24.8</span> Summary</h2>
+</section><section id="summary" class="level2" data-number="24.8"><h2 data-number="24.8" class="anchored" data-anchor-id="summary">
+<span class="header-section-number">24.8</span> Summary</h2>
 <p>This was an introduction to making slides with R. I’ve picked a method which is relatively easy to use and is well integrated with Rstudio.</p>
-</section>
-<section id="exercise" class="level2" data-number="24.9">
-<h2 data-number="24.9" class="anchored" data-anchor-id="exercise"><span class="header-section-number">24.9</span> Exercise</h2>
+</section><section id="exercise" class="level2" data-number="24.9"><h2 data-number="24.9" class="anchored" data-anchor-id="exercise">
+<span class="header-section-number">24.9</span> Exercise</h2>
 <p>Make a slide presentation with a few slides. Click “Render” (instead of knit) to see your slides. The slide presentation is just a regular html file, so you can open it in a web browser.</p>
-</section>
-<section id="further-reading" class="level2" data-number="24.10">
-<h2 data-number="24.10" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">24.10</span> Further reading</h2>
+</section><section id="further-reading" class="level2" data-number="24.10"><h2 data-number="24.10" class="anchored" data-anchor-id="further-reading">
+<span class="header-section-number">24.10</span> Further reading</h2>
 <ul>
 <li>Notes on using Quarto (very similar to R markdown) to make presentation slides: <a href="https://quarto.org/docs/presentations/">introduction</a> and <a href="https://quarto.org/docs/presentations/revealjs/">more information</a> for making slides viewable in the web browser (which is what I recommend and show you in this course.)</li>
-<li>Patrick Winston’s video on <a href="https://www.youtube.com/watch?v=Unzc731iCUY">how to speak effectively</a></li>
+<li>Patrick Winston’s video on <a href="https://www.youtube.com/watch?v=Unzc731iCUY">how to speak effectively</a>
+</li>
 <li>Lots more information on using <a href="https://slides.djnavarro.net/starting-rmarkdown/#1">markdown and R markdown</a>, presented in slide format</li>
-<li>A blog post about <a href="https://meghan.rbind.io/blog/quarto-slides/">learning to make presentation slides</a></li>
-<li>Thirty days of tips on using <a href="https://mine-cetinkaya-rundel.github.io/quarto-tip-a-day/">Quarto for presentations</a></li>
+<li>A blog post about <a href="https://meghan.rbind.io/blog/quarto-slides/">learning to make presentation slides</a>
+</li>
+<li>Thirty days of tips on using <a href="https://mine-cetinkaya-rundel.github.io/quarto-tip-a-day/">Quarto for presentations</a>
+</li>
 </ul>
 <div class="cell">
 
 </div>
 
 
-</section>
-
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -529,9 +499,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="../lessons/123-kmean.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">K-means clustering</span></span>
       </a>          

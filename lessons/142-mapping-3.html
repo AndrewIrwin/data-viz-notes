@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.37">
-
+<meta name="generator" content="quarto-1.0.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>Data Visualization notes - 29&nbsp; Alternatives to maps</title>
 <style>
 code{white-space: pre-wrap;}
@@ -99,7 +96,6 @@ div.csl-indent {
 }
 </style>
 
-
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -117,8 +113,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -137,29 +132,20 @@ div.csl-indent {
     "search-submit-button-title": "Submit"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Alternatives to maps</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -171,7 +157,7 @@ div.csl-indent {
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome</a>
   </div>
@@ -377,26 +363,19 @@ div.csl-indent {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Table of contents</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#heatmaps" id="toc-heatmaps" class="nav-link active" data-scroll-target="#heatmaps"> <span class="header-section-number">29.1</span> Heatmaps</a></li>
+<li><a href="#heatmaps" id="toc-heatmaps" class="nav-link active" data-scroll-target="#heatmaps"> <span class="header-section-number">29.1</span> Heatmaps</a></li>
   <li><a href="#specialized-maps-of-the-usa" id="toc-specialized-maps-of-the-usa" class="nav-link" data-scroll-target="#specialized-maps-of-the-usa"> <span class="header-section-number">29.2</span> Specialized maps of the USA</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"> <span class="header-section-number">29.3</span> Summary</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"> <span class="header-section-number">29.4</span> Further reading</a></li>
-  </ul>
-</nav>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="mapping-3" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Alternatives to maps</span></span></h1>
 </div>
 
@@ -409,100 +388,96 @@ div.csl-indent {
   </div>
   
 
-</header>
-
-<p>Sometimes geospatial data doesn’t need to be shown on a map. If there are a small number of categories – for example the provinces of Canada – a regular boxplot or dotplot (scatterplot with a categorical axis) can work just fine. We are very used to seeing <a href="https://www.esri.com/en-us/maps-we-love/gallery/popular-vote">coloured maps of the United States</a>, but these distort data in ways that people <a href="https://xkcd.com/2399/">rarely recognize</a>. For example, we often care about the number of people affected by a factor and maps serve to <a href="https://xkcd.com/1138/">confuse area and population</a>. There are <a href="https://www.businessinsider.com/2016-election-results-maps-population-adjusted-cartogram-2016-11">tricks</a> (and <a href="https://stats.stackexchange.com/questions/136007/data-visualization-alternatives-to-choropleth-maps-for-spatial-data-and-statist">more tricks</a>) like shading and adjusting regions to the population size, but perceptual problems persist. We rarely see maps like this for Canada because the way population and political power is distributed is very different in Canada compared to the USA.</p>
+</header><p>Sometimes geospatial data doesn’t need to be shown on a map. If there are a small number of categories – for example the provinces of Canada – a regular boxplot or dotplot (scatterplot with a categorical axis) can work just fine. We are very used to seeing <a href="https://www.esri.com/en-us/maps-we-love/gallery/popular-vote">coloured maps of the United States</a>, but these distort data in ways that people <a href="https://xkcd.com/2399/">rarely recognize</a>. For example, we often care about the number of people affected by a factor and maps serve to <a href="https://xkcd.com/1138/">confuse area and population</a>. There are <a href="https://www.businessinsider.com/2016-election-results-maps-population-adjusted-cartogram-2016-11">tricks</a> (and <a href="https://stats.stackexchange.com/questions/136007/data-visualization-alternatives-to-choropleth-maps-for-spatial-data-and-statist">more tricks</a>) like shading and adjusting regions to the population size, but perceptual problems persist. We rarely see maps like this for Canada because the way population and political power is distributed is very different in Canada compared to the USA.</p>
 <p>In this lesson we will look ways to show data with spatial dimensions in ways that don’t involve a map. but still reflect the geographic nature of the data. These methods show a quantitative variable with colour and shading while arranging space (and sometimes time) along the two spatial dimensions of the plot. As a result they suffer many of the perceptual issues with decoding colour and shading into quantitative comparisons. They are most useful for broad overviews of data and conveying general impressions, but you must always be careful that your presentation doesn’t mislead you or your reader.</p>
-<section id="heatmaps" class="level2" data-number="29.1">
-<h2 data-number="29.1" class="anchored" data-anchor-id="heatmaps"><span class="header-section-number">29.1</span> Heatmaps</h2>
+<section id="heatmaps" class="level2" data-number="29.1"><h2 data-number="29.1" class="anchored" data-anchor-id="heatmaps">
+<span class="header-section-number">29.1</span> Heatmaps</h2>
 <p>Suppose we want to show a combination of spatial and temporal data. The geographic data is important, but the location on a map is not the most important feature. As an example, consider this data on total cases of COVID-19 in 5 regions of Canada reported on 2021-01-21. In the code below I select the number of cases identified broken down into age classes and geographic regions. The number of cases is presented as a shade of blue using <code>geom_tile</code>.</p>
 <div class="cell" data-hash="142-mapping-3_cache/html/covid-data_1e53906508be7a32fb3a867ff2f2efdd">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span> cansim<span class="sc">::</span><span class="fu">get_cansim</span>(<span class="st">"13-10-0775-01"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid</span> <span class="op">&lt;-</span> <span class="fu">cansim</span><span class="fu">::</span><span class="fu"><a href="https://mountainmath.github.io/cansim/index.html/reference/get_cansim.html">get_cansim</a></span><span class="op">(</span><span class="st">"13-10-0775-01"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Accessing CANSIM NDM product 13-10-0775 from Statistics Canada</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Parsing data</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># covid2 &lt;- get_cansim("13-10-0774-01")  # related data with extra information</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>covid_ss <span class="ot">&lt;-</span> covid <span class="sc">|&gt;</span> <span class="fu">filter</span>(GEO <span class="sc">!=</span> <span class="st">"Canada"</span>, Gender <span class="sc">==</span> <span class="st">"Total, all genders"</span>, <span class="st">`</span><span class="at">Age group</span><span class="st">`</span> <span class="sc">!=</span> <span class="st">"Total, all age groups"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Statistics <span class="sc">==</span> <span class="st">"Community exposures"</span>) </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>covid_ss <span class="sc">|&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> GEO, <span class="at">x =</span> <span class="st">`</span><span class="at">Age group</span><span class="st">`</span>, <span class="at">fill =</span> VALUE)) <span class="sc">+</span> </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># covid2 &lt;- get_cansim("13-10-0774-01")  # related data with extra information</span></span>
+<span><span class="va">covid_ss</span> <span class="op">&lt;-</span> <span class="va">covid</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">GEO</span> <span class="op">!=</span> <span class="st">"Canada"</span>, <span class="va">Gender</span> <span class="op">==</span> <span class="st">"Total, all genders"</span>, <span class="va">`Age group`</span> <span class="op">!=</span> <span class="st">"Total, all age groups"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">Statistics</span> <span class="op">==</span> <span class="st">"Community exposures"</span><span class="op">)</span> </span>
+<span><span class="va">covid_ss</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">GEO</span>, x <span class="op">=</span> <span class="va">`Age group`</span>, fill <span class="op">=</span> <span class="va">VALUE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">geom_tile</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="142-mapping-3_files/figure-html/covid-data-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>There are two common ways to improve a figure like this. First is to ensure the ordering of categorical variables is easily interpreted. Here we would remove hte “Not stated” age group and order the geographic regions from west to east to follow Canadian convention. We might swap the x and y axes to align left-right flow with the west-east geography of Canada.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>covid_ss2 <span class="ot">&lt;-</span> covid_ss <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">Age group</span><span class="st">`</span> <span class="sc">!=</span> <span class="st">"Not stated, age group"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>regions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"BC + Yukon"</span>, <span class="st">"Prairies + NWT"</span>,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">"ON + NU"</span>, <span class="st">"QC"</span>, <span class="st">"Atlantic"</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>covid_ss3 <span class="ot">&lt;-</span> covid_ss2 <span class="sc">|&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GEO =</span> <span class="fu">fct_recode</span>(GEO, <span class="st">"BC + Yukon"</span> <span class="ot">=</span> <span class="st">"British Columbia and Yukon Region"</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Prairies + NWT"</span> <span class="ot">=</span> <span class="st">"Prairies and Northwest Territories Region"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>              <span class="st">"ON + NU"</span> <span class="ot">=</span> <span class="st">"Ontario and Nunavut Region"</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>             <span class="st">"QC"</span>  <span class="ot">=</span>  <span class="st">"Quebec Region"</span>, </span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Atlantic"</span> <span class="ot">=</span> <span class="st">"Atlantic Region"</span>))</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>covid_ss3 <span class="sc">|&gt;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_relevel</span>(GEO, regions),</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> <span class="st">`</span><span class="at">Age group</span><span class="st">`</span>, <span class="at">fill =</span> VALUE)) <span class="sc">+</span> </span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_ss2</span> <span class="op">&lt;-</span> <span class="va">covid_ss</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">`Age group`</span> <span class="op">!=</span> <span class="st">"Not stated, age group"</span><span class="op">)</span></span>
+<span><span class="va">regions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"BC + Yukon"</span>, <span class="st">"Prairies + NWT"</span>,</span>
+<span>             <span class="st">"ON + NU"</span>, <span class="st">"QC"</span>, <span class="st">"Atlantic"</span><span class="op">)</span></span>
+<span><span class="va">covid_ss3</span> <span class="op">&lt;-</span> <span class="va">covid_ss2</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>GEO <span class="op">=</span> <span class="fu">fct_recode</span><span class="op">(</span><span class="va">GEO</span>, <span class="st">"BC + Yukon"</span> <span class="op">=</span> <span class="st">"British Columbia and Yukon Region"</span>,</span>
+<span>              <span class="st">"Prairies + NWT"</span> <span class="op">=</span> <span class="st">"Prairies and Northwest Territories Region"</span>,</span>
+<span>              <span class="st">"ON + NU"</span> <span class="op">=</span> <span class="st">"Ontario and Nunavut Region"</span>,</span>
+<span>             <span class="st">"QC"</span>  <span class="op">=</span>  <span class="st">"Quebec Region"</span>, </span>
+<span>             <span class="st">"Atlantic"</span> <span class="op">=</span> <span class="st">"Atlantic Region"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">covid_ss3</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="fu">fct_relevel</span><span class="op">(</span><span class="va">GEO</span>, <span class="va">regions</span><span class="op">)</span>,</span>
+<span>             y <span class="op">=</span> <span class="va">`Age group`</span>, fill <span class="op">=</span> <span class="va">VALUE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">geom_tile</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="142-mapping-3_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>A second approach is to group the rows and columns so that similar patterns are side by side. The <code>ggheatmap</code> function in the <a href="https://github.com/tleonardi/ggheatmap/">ggheatmap</a> package makes this easy.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>covid_ss4 <span class="ot">&lt;-</span> covid_ss3 <span class="sc">|&gt;</span> <span class="fu">select</span>(GEO, <span class="st">`</span><span class="at">Age group</span><span class="st">`</span>, VALUE) <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> GEO, <span class="at">values_from =</span> VALUE) </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(covid_ss4 <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span><span class="st">`</span><span class="at">Age group</span><span class="st">`</span>), </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">row.names =</span> covid_ss4 <span class="sc">|&gt;</span> <span class="fu">pull</span>(<span class="st">`</span><span class="at">Age group</span><span class="st">`</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggheatmap</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_ss4</span> <span class="op">&lt;-</span> <span class="va">covid_ss3</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="va">GEO</span>, <span class="va">`Age group`</span>, <span class="va">VALUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">GEO</span>, values_from <span class="op">=</span> <span class="va">VALUE</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">covid_ss4</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">`Age group`</span><span class="op">)</span>, </span>
+<span>              row.names <span class="op">=</span> <span class="va">covid_ss4</span> <span class="op">|&gt;</span> <span class="fu">pull</span><span class="op">(</span><span class="va">`Age group`</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">ggheatmap</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="142-mapping-3_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>From this analysis you can tell that the number of cases is structured by age (see the tree on left side of the plot) and geographically. The number of people in each region is very different, so you might want to account for that in some way. One approach would be to compute the cases per capita in each region, but I don’t have those data handy. An alternative is to allocate the number of cases to age classes as proportions, by dividing the number of cases in each region and age group by the total in each region. We can use scale to accomplish that scaling. Now the color represents the proportion of COVID-19 cases in each age class, scaled within a region.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(covid_ss4 <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span><span class="st">`</span><span class="at">Age group</span><span class="st">`</span>), </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">row.names =</span> covid_ss4 <span class="sc">|&gt;</span> <span class="fu">pull</span>(<span class="st">`</span><span class="at">Age group</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale</span>(<span class="at">center =</span> <span class="cn">FALSE</span>, <span class="at">scale =</span> <span class="fu">colSums</span>(.)) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggheatmap</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">covid_ss4</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">`Age group`</span><span class="op">)</span>, </span>
+<span>              row.names <span class="op">=</span> <span class="va">covid_ss4</span> <span class="op">|&gt;</span> <span class="fu">pull</span><span class="op">(</span><span class="va">`Age group`</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span>center <span class="op">=</span> <span class="cn">FALSE</span>, scale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">ggheatmap</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="142-mapping-3_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Matching the previous visualization, we see that the proportion of cases is higher in people age 60 and older compared to younger groups. We now also see that the highest proportion of cases (about 20% or more) was in inviduals aged 80 and over in Quebec and in the 20-29 age group in BC and Yukon. The distribution of cases across ages was most similar between Ontario + Nunavut and BC + Yukon.</p>
-</section>
-<section id="specialized-maps-of-the-usa" class="level2" data-number="29.2">
-<h2 data-number="29.2" class="anchored" data-anchor-id="specialized-maps-of-the-usa"><span class="header-section-number">29.2</span> Specialized maps of the USA</h2>
+</section><section id="specialized-maps-of-the-usa" class="level2" data-number="29.2"><h2 data-number="29.2" class="anchored" data-anchor-id="specialized-maps-of-the-usa">
+<span class="header-section-number">29.2</span> Specialized maps of the USA</h2>
 <p>Customization of any visualization is always possible, but takes time to develop. Maps of the USA are very common, so a huge number of variations have been developed. Here is a <a href="https://www.washingtonpost.com/wp-srv/special/business/states-most-threatened-by-trade/">kind of heatmap</a>: each state is the same size and the states are arranged in an approximate geographic representation of the USA. (Example adapted from Healy Section 7.3.)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(statebins)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"static/election.rda"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>election <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">state =</span> state, <span class="at">fill =</span> pct_trump)) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_statebins</span>() <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_statebins</span>() <span class="sc">+</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill=</span><span class="st">"Percent Trump"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gitlab.com/hrbrmstr/statebins">statebins</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"static/election.rda"</span><span class="op">)</span></span>
+<span><span class="va">election</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>state <span class="op">=</span> <span class="va">state</span>, fill <span class="op">=</span> <span class="va">pct_trump</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/statebins/man/geom_statebins.html">geom_statebins</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/statebins/man/theme_statebins.html">theme_statebins</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>fill<span class="op">=</span><span class="st">"Percent Trump"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="142-mapping-3_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
-<section id="summary" class="level2" data-number="29.3">
-<h2 data-number="29.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">29.3</span> Summary</h2>
+</section><section id="summary" class="level2" data-number="29.3"><h2 data-number="29.3" class="anchored" data-anchor-id="summary">
+<span class="header-section-number">29.3</span> Summary</h2>
 <p>Maps are commonly used in data visualization to display data (quantitative or categorical) over a geographical area, when the geography will provide insight into patterns in the data. Maps can be misleading because the area of the region (province, state, country) may have little to do with the message you want to communicate, but the area on a data visualization usually has greater impact than the color hue or brightness which is used to encode the primary data.</p>
 <p>For these reasons, you should consider alternatives to maps even when your data are clearly geographic. All the visualizations we have used in this course that permit a categorical variable can be useful. In this lesson we added one more, the heatmap, which is like a map, except all the regions are the same area and the “geographic” trend is arranged along one axis.</p>
-</section>
-<section id="further-reading" class="level2" data-number="29.4">
-<h2 data-number="29.4" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">29.4</span> Further reading</h2>
+</section><section id="further-reading" class="level2" data-number="29.4"><h2 data-number="29.4" class="anchored" data-anchor-id="further-reading">
+<span class="header-section-number">29.4</span> Further reading</h2>
 <ul>
-<li>Healy <span class="citation" data-cites="healy2018data">(<a href="../references.html#ref-healy2018data" role="doc-biblioref">Healy 2018</a>)</span> Chapter 7 <a href="https://socviz.co/maps.html">Maps</a></li>
+<li>Healy <span class="citation" data-cites="healy2018data">(<a href="../references.html#ref-healy2018data" role="doc-biblioref">Healy 2018</a>)</span> Chapter 7 <a href="https://socviz.co/maps.html">Maps</a>
+</li>
 </ul>
 <div class="cell">
 
@@ -514,10 +489,7 @@ div.csl-indent {
 Healy, Kieran. 2018. <em>Data Visualization: A Practical Introduction</em>. Princeton University Press. <a href="https://socviz.co/">https://socviz.co/</a>.
 </div>
 </div>
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -613,9 +585,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="../lessons/141-mapping-2.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Mapping II</span></span>
       </a>          

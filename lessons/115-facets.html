@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.37">
-
+<meta name="generator" content="quarto-1.0.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>Data Visualization notes - 10&nbsp; Facetted graphs</title>
 <style>
 code{white-space: pre-wrap;}
@@ -80,7 +77,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -98,8 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -118,29 +113,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Facetted graphs</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -152,7 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome</a>
   </div>
@@ -358,26 +344,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Table of contents</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#facets-indexed-by-one-variable" id="toc-facets-indexed-by-one-variable" class="nav-link active" data-scroll-target="#facets-indexed-by-one-variable"> <span class="header-section-number">10.1</span> Facets indexed by one variable</a></li>
+<li><a href="#facets-indexed-by-one-variable" id="toc-facets-indexed-by-one-variable" class="nav-link active" data-scroll-target="#facets-indexed-by-one-variable"> <span class="header-section-number">10.1</span> Facets indexed by one variable</a></li>
   <li><a href="#facets-indexed-by-two-variables" id="toc-facets-indexed-by-two-variables" class="nav-link" data-scroll-target="#facets-indexed-by-two-variables"> <span class="header-section-number">10.2</span> Facets indexed by two variables</a></li>
   <li><a href="#compositing" id="toc-compositing" class="nav-link" data-scroll-target="#compositing"> <span class="header-section-number">10.3</span> Compositing</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"> <span class="header-section-number">10.4</span> Further reading</a></li>
-  </ul>
-</nav>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="facets" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Facetted graphs</span></span></h1>
 </div>
 
@@ -390,13 +369,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header>
-
-<p>When a plot has too much data, or you want to emphasize a particular comparison across categories or numerical values, it is often a good idea to split the graph into several subplots. Like any method, this can be overdone, for example by producing a complex array of too many plots that distract and confuse the reader. Done well, the multiple plots let patterns jump off the page.</p>
+</header><p>When a plot has too much data, or you want to emphasize a particular comparison across categories or numerical values, it is often a good idea to split the graph into several subplots. Like any method, this can be overdone, for example by producing a complex array of too many plots that distract and confuse the reader. Done well, the multiple plots let patterns jump off the page.</p>
 <p>Making a sequence or array of similar plots goes by a variety of names: small multiples, a lattice, or facets. We’ll call them facets because that’s the name ggplot uses.</p>
 <p>Facetted plots are often useful with datasets that have one or more categorical variables and lots of observations. We’ll use the <code>diamonds</code> dataset because, as we’ve seen, variation across . Let’s start by using <code>glimpse</code> to see what’s there.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">glimpse</span><span class="op">(</span><span class="va">diamonds</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 53,940
 Columns: 10
@@ -414,73 +391,70 @@ $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.39
 </div>
 <p>As a consequence of years of relentless advertising, you may be aware of four widely reported characteristics of diamonds that influence their price: cut, colour, clarity, and carats. Let’s make a plot of price vs carets (mass) showing all the data. Since there are so many points, we will make each point smaller.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>carat, <span class="at">y=</span>price, <span class="at">color=</span>cut)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">0.4</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">carat</span>, y<span class="op">=</span><span class="va">price</span>, color<span class="op">=</span><span class="va">cut</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span>size<span class="op">=</span><span class="fl">0.4</span><span class="op">)</span></span>
+<span><span class="va">p1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="115-facets_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<section id="facets-indexed-by-one-variable" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="facets-indexed-by-one-variable"><span class="header-section-number">10.1</span> Facets indexed by one variable</h2>
+<section id="facets-indexed-by-one-variable" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="facets-indexed-by-one-variable">
+<span class="header-section-number">10.1</span> Facets indexed by one variable</h2>
 <p>If you want to display many levels of a categorical variable across many facets, the <code>facet_wrap</code> function is available. We’ll do this here for just one colour using <code>filter</code> to select it. The <code>facet_wrap</code> function requires you to give a “formula” for how the facets are constructed. Here we write <code>~ clarity</code> meaning that the levels of the categorical variable <code>clarity</code> is used to facets. One facet is drawn for each value of the variable and only points with that value of clarity are shown on the corresponding facet.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(color <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"F"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>carat, <span class="at">y=</span>price, <span class="at">color=</span>cut)) <span class="sc">+</span> </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> clarity) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">color</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"F"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">carat</span>, y<span class="op">=</span><span class="va">price</span>, color<span class="op">=</span><span class="va">cut</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">facet_wrap</span><span class="op">(</span> <span class="op">~</span> <span class="va">clarity</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="115-facets_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Notice that the x and y scales are the same on each facet. A single colour scale is used for <code>cut</code> and this is the same for each facet as well. We can see that there is a similar non-linear relationship between price and carat on each panel. The price is higher at any particular size (carat) in the panels near the bottom compared to the panels near the top. Cut makes a compartively small difference to the price.</p>
-</section>
-<section id="facets-indexed-by-two-variables" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="facets-indexed-by-two-variables"><span class="header-section-number">10.2</span> Facets indexed by two variables</h2>
+</section><section id="facets-indexed-by-two-variables" class="level2" data-number="10.2"><h2 data-number="10.2" class="anchored" data-anchor-id="facets-indexed-by-two-variables">
+<span class="header-section-number">10.2</span> Facets indexed by two variables</h2>
 <p>If you want to look at the effect of two categorical variables across different facets, you can arrange them in a grid. Again we use a formula, but now we put the variables for the “y” axis of facets on the left side of <code>~</code> and the variables determining the <code>x</code> axis of the facets on the right.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">facet_grid</span>(color <span class="sc">~</span> clarity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">facet_grid</span><span class="op">(</span><span class="va">color</span> <span class="op">~</span> <span class="va">clarity</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="115-facets_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The plots in those facets are really small. Let’s pick out just a few colours and clarity values to make a plot that is easier to read.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(color <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"D"</span>, <span class="st">"F"</span>, <span class="st">"H"</span>, <span class="st">"J"</span>), </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>         clarity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"SI1"</span>, <span class="st">"VS1"</span>, <span class="st">"IF"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>carat, <span class="at">y=</span>price, <span class="at">color=</span>cut)) <span class="sc">+</span> </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(color <span class="sc">~</span> clarity) <span class="sc">+</span> </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_viridis_d</span>(<span class="at">begin=</span><span class="dv">0</span>, <span class="at">end =</span><span class="fl">0.8</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">color</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"F"</span>, <span class="st">"H"</span>, <span class="st">"J"</span><span class="op">)</span>, </span>
+<span>         <span class="va">clarity</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"SI1"</span>, <span class="st">"VS1"</span>, <span class="st">"IF"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">carat</span>, y<span class="op">=</span><span class="va">price</span>, color<span class="op">=</span><span class="va">cut</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span>size<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">facet_grid</span><span class="op">(</span><span class="va">color</span> <span class="op">~</span> <span class="va">clarity</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">scale_colour_viridis_d</span><span class="op">(</span>begin<span class="op">=</span><span class="fl">0</span>, end <span class="op">=</span><span class="fl">0.8</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="115-facets_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
-<section id="compositing" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="compositing"><span class="header-section-number">10.3</span> Compositing</h2>
+</section><section id="compositing" class="level2" data-number="10.3"><h2 data-number="10.3" class="anchored" data-anchor-id="compositing">
+<span class="header-section-number">10.3</span> Compositing</h2>
 <p>If you want to combine graphs together into a grid layout, but the graphs don’t share axes or even data, then it may be easier to draw the graphs separately and then combine them together into a layout with the <code>patchwork</code> package. This package is both simple to use and quite powerful, enabling complex layouts, labelling subplots with codes to aid identification, and combining guides for colours and shapes across panels. The <a href="https://patchwork.data-imaginist.com/">documentation</a> is excellent.</p>
 <p>Here is an example showing two plots with very different views of the <code>gapminder</code> data. It’s usually best to create the plots one at a time, assign them to a name in your R environment using <code>&lt;-</code> and a name for each plot, then put them together using <code>+</code> from the <code>patchwork</code> package.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="fu">max</span>(year)) <span class="sc">|&gt;</span> <span class="fu">count</span>(continent) <span class="sc">|&gt;</span> </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>continent, <span class="at">y =</span> n, <span class="at">fill=</span>continent)) <span class="sc">+</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Number of countries"</span>) </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> year, <span class="at">y =</span> lifeExp, <span class="at">color =</span> continent)) <span class="sc">+</span> </span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="fl">0.5</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">count</span><span class="op">(</span><span class="va">continent</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">continent</span>, y <span class="op">=</span> <span class="va">n</span>, fill<span class="op">=</span><span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span>show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Number of countries"</span><span class="op">)</span> </span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">lifeExp</span>, color <span class="op">=</span> <span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">geom_jitter</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="115-facets_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>You can make complex layouts, collect legends from multiple panels together, and label panels with patchwork. Read the documentation if you want to learn more.</p>
-</section>
-<section id="further-reading" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">10.4</span> Further reading</h2>
+</section><section id="further-reading" class="level2" data-number="10.4"><h2 data-number="10.4" class="anchored" data-anchor-id="further-reading">
+<span class="header-section-number">10.4</span> Further reading</h2>
 <ul>
 <li>The <a href="https://ggplot2-book.org/facet.html">ggplot book</a> has a longer tutorial on using facets.</li>
 <li>The <a href="http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/">R cookbook</a> has more examples of facetted plots, including instructions for chaging the way the facets are labelled.</li>
@@ -492,10 +466,7 @@ $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.39
 </div>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -591,9 +562,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="../lessons/110-summarizing-data.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summarizing data</span></span>
       </a>          

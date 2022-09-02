@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.37">
-
+<meta name="generator" content="quarto-1.0.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>Data Visualization notes - 16&nbsp; Linear models</title>
 <style>
 code{white-space: pre-wrap;}
@@ -80,7 +77,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -98,8 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -117,31 +112,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit"
   }
-}</script>
-
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
+}</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
-
 <body class="nav-sidebar floating">
 
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Linear models</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -153,7 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome</a>
   </div>
@@ -359,32 +344,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Table of contents</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#making-linear-models" id="toc-making-linear-models" class="nav-link active" data-scroll-target="#making-linear-models"> <span class="header-section-number">16.1</span> Making linear models</a></li>
+<li><a href="#making-linear-models" id="toc-making-linear-models" class="nav-link active" data-scroll-target="#making-linear-models"> <span class="header-section-number">16.1</span> Making linear models</a></li>
   <li><a href="#smoothing-on-facets" id="toc-smoothing-on-facets" class="nav-link" data-scroll-target="#smoothing-on-facets"> <span class="header-section-number">16.2</span> Smoothing on facets</a></li>
   <li><a href="#robust-regression" id="toc-robust-regression" class="nav-link" data-scroll-target="#robust-regression"> <span class="header-section-number">16.3</span> Robust regression</a></li>
   <li><a href="#predicting-quantiles" id="toc-predicting-quantiles" class="nav-link" data-scroll-target="#predicting-quantiles"> <span class="header-section-number">16.4</span> Predicting quantiles</a></li>
-  <li><a href="#quantitative-model-output" id="toc-quantitative-model-output" class="nav-link" data-scroll-target="#quantitative-model-output"> <span class="header-section-number">16.5</span> Quantitative model output</a>
+  <li>
+<a href="#quantitative-model-output" id="toc-quantitative-model-output" class="nav-link" data-scroll-target="#quantitative-model-output"> <span class="header-section-number">16.5</span> Quantitative model output</a>
   <ul class="collapse">
-  <li><a href="#revisiting-models-from-the-previous-lesson" id="toc-revisiting-models-from-the-previous-lesson" class="nav-link" data-scroll-target="#revisiting-models-from-the-previous-lesson"> <span class="header-section-number">16.5.1</span> Revisiting models from the previous lesson</a></li>
+<li><a href="#revisiting-models-from-the-previous-lesson" id="toc-revisiting-models-from-the-previous-lesson" class="nav-link" data-scroll-target="#revisiting-models-from-the-previous-lesson"> <span class="header-section-number">16.5.1</span> Revisiting models from the previous lesson</a></li>
   <li><a href="#computing-and-plotting-residuals" id="toc-computing-and-plotting-residuals" class="nav-link" data-scroll-target="#computing-and-plotting-residuals"> <span class="header-section-number">16.5.2</span> Computing and plotting residuals</a></li>
-  </ul></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"> <span class="header-section-number">16.6</span> Further reading</a></li>
   </ul>
-</nav>
+</li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"> <span class="header-section-number">16.6</span> Further reading</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="linear-models" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Linear models</span></span></h1>
 </div>
 
@@ -397,18 +377,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header>
-
-<p>Linear regression is a powerful technique for finding a line that approximates a set of data. For the approximation to be a good one, the linear model must be appropriate for the data, which can sometimes be determined by reasoning about the processes that generate the data, and is sometimes justified based on statistical properties of the data. We will use linear models as a tool without elaboration of the methods or theoretical background; you should learn about those in a different statistics course.</p>
+</header><p>Linear regression is a powerful technique for finding a line that approximates a set of data. For the approximation to be a good one, the linear model must be appropriate for the data, which can sometimes be determined by reasoning about the processes that generate the data, and is sometimes justified based on statistical properties of the data. We will use linear models as a tool without elaboration of the methods or theoretical background; you should learn about those in a different statistics course.</p>
 <p>We will explore how to create a linear model, which can include a lot more than straight lines, and then discuss how to add those models to a visualization.</p>
-<section id="making-linear-models" class="level2" data-number="16.1">
-<h2 data-number="16.1" class="anchored" data-anchor-id="making-linear-models"><span class="header-section-number">16.1</span> Making linear models</h2>
+<section id="making-linear-models" class="level2" data-number="16.1"><h2 data-number="16.1" class="anchored" data-anchor-id="making-linear-models">
+<span class="header-section-number">16.1</span> Making linear models</h2>
 <p>We will always make linear models with variables from a data frame. Designate one variable the response variable, which we will attempt to predict using one or more other variables, called predictors. You are not restricted to variables in your data frame; you can transform the variables first, for example by squaring, taking logarithms, or applying some other function. Additionally, you can use categorical (or factor) variables as predictors and in combination with quantitative variables. Be aware that the more variables or transformations you add to your list of predictors, the more likely they will be correlated and your model will be very hard to interpret. These issues are discussed in statistics courses on regression.</p>
 <p>Once your data frame is created, write the linear model as a “formula” object, meaning as an equation but with a <code>~</code> instead of an <code>=</code> to indicate that you are modelling the left hand side and allowing for a specific model for the mismatch between predictors and response.</p>
 <p>We have seen that the price of a diamond increases a bit faster than linearly as the mass of the diamond increases, we will try both a linear model and a quadratic model for data in the <code>diamonds</code> dataframe.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>linear_model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> carat, <span class="at">data =</span> diamonds)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(linear_model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">linear_model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span>, data <span class="op">=</span> <span class="va">diamonds</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">linear_model1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -429,9 +407,9 @@ Residual standard error: 1549 on 53938 degrees of freedom
 Multiple R-squared:  0.8493,    Adjusted R-squared:  0.8493 
 F-statistic: 3.041e+05 on 1 and 53938 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>quadratic_model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> <span class="fu">poly</span>(carat, <span class="dv">2</span>), </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> diamonds)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(quadratic_model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">quadratic_model1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">carat</span>, <span class="fl">2</span><span class="op">)</span>, </span>
+<span>                       data <span class="op">=</span> <span class="va">diamonds</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">quadratic_model1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -453,10 +431,10 @@ Residual standard error: 1540 on 53937 degrees of freedom
 Multiple R-squared:  0.851, Adjusted R-squared:  0.851 
 F-statistic: 1.54e+05 on 2 and 53937 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>linear_model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> carat <span class="sc">+</span> clarity <span class="sc">+</span> color, </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> diamonds <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">clarity =</span> <span class="fu">factor</span>(clarity, <span class="at">ordered=</span><span class="cn">FALSE</span>), </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">color =</span> <span class="fu">factor</span>(color, <span class="at">ordered=</span><span class="cn">FALSE</span>)))</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(linear_model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">linear_model2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">carat</span> <span class="op">+</span> <span class="va">clarity</span> <span class="op">+</span> <span class="va">color</span>, </span>
+<span>                    data <span class="op">=</span> <span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>clarity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">clarity</span>, ordered<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>, </span>
+<span>                                               color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">color</span>, ordered<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">linear_model2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -494,14 +472,14 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>You can write the formulas for the regression lines using the <code>equatiomatic</code> package. (To get the equations formatted properly, you need to add <code>results='asis'</code> to the <code>{r}</code> line in your R markdown document. The equations display correctly in the knitted document, but are show as LaTeX code in the Rstudio preview.) At present this does not work correctly for functions with mathematical transformations like <code>log</code>, <code>exp</code>, <code>poly(x, 2)</code>, so I’ll only show the linear models here.</p>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(equatiomatic)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">extract_eq</span>(linear_model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/datalorax/equatiomatic">equatiomatic</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://datalorax.github.io/equatiomatic/reference/extract_eq.html">extract_eq</a></span><span class="op">(</span><span class="va">linear_model1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><span class="math display">\[
 \operatorname{price} = \alpha + \beta_{1}(\operatorname{carat}) + \epsilon
 \]</span></p>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">extract_eq</span>(linear_model2, <span class="at">wrap=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://datalorax.github.io/equatiomatic/reference/extract_eq.html">extract_eq</a></span><span class="op">(</span><span class="va">linear_model2</span>, wrap<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><span class="math display">\[
 \begin{aligned}
@@ -513,14 +491,14 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 \]</span></p>
 </div>
 <p>and you can fill in the results showing the numeric coefficients in the equations:</p>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">extract_eq</span>(linear_model1, <span class="at">use_coefs=</span><span class="cn">TRUE</span>, <span class="at">fix_signs=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://datalorax.github.io/equatiomatic/reference/extract_eq.html">extract_eq</a></span><span class="op">(</span><span class="va">linear_model1</span>, use_coefs<span class="op">=</span><span class="cn">TRUE</span>, fix_signs<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><span class="math display">\[
 \operatorname{\widehat{price}} = -2256.36 + 7756.43(\operatorname{carat})
 \]</span></p>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">extract_eq</span>(linear_model2, <span class="at">use_coefs=</span><span class="cn">TRUE</span>, <span class="at">terms_per_line =</span> <span class="dv">3</span>,</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">fix_signs=</span><span class="cn">TRUE</span>, <span class="at">wrap=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://datalorax.github.io/equatiomatic/reference/extract_eq.html">extract_eq</a></span><span class="op">(</span><span class="va">linear_model2</span>, use_coefs<span class="op">=</span><span class="cn">TRUE</span>, terms_per_line <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>           fix_signs<span class="op">=</span><span class="cn">TRUE</span>, wrap<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><span class="math display">\[
 \begin{aligned}
@@ -533,83 +511,77 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 \]</span></p>
 </div>
 <p>These results are the jumping off point for a lot more exploration.</p>
-</section>
-<section id="smoothing-on-facets" class="level2" data-number="16.2">
-<h2 data-number="16.2" class="anchored" data-anchor-id="smoothing-on-facets"><span class="header-section-number">16.2</span> Smoothing on facets</h2>
+</section><section id="smoothing-on-facets" class="level2" data-number="16.2"><h2 data-number="16.2" class="anchored" data-anchor-id="smoothing-on-facets">
+<span class="header-section-number">16.2</span> Smoothing on facets</h2>
 <p>The <code>geom_smooth</code> function is especially powerful for facetted plots. The smooth is automatically computed and plotted for each facet separately.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(color <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"D"</span>, <span class="st">"F"</span>, <span class="st">"H"</span>, <span class="st">"J"</span>), </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>         clarity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"SI1"</span>, <span class="st">"VS1"</span>, <span class="st">"IF"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>carat, <span class="at">y=</span>price)) <span class="sc">+</span> </span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>cut)) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(color <span class="sc">~</span> clarity) <span class="sc">+</span> </span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_viridis_d</span>(<span class="at">begin=</span><span class="dv">0</span>, <span class="at">end =</span><span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x,<span class="dv">2</span>),</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">0.5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">color</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"F"</span>, <span class="st">"H"</span>, <span class="st">"J"</span><span class="op">)</span>, </span>
+<span>         <span class="va">clarity</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"SI1"</span>, <span class="st">"VS1"</span>, <span class="st">"IF"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">carat</span>, y<span class="op">=</span><span class="va">price</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color<span class="op">=</span><span class="va">cut</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">facet_grid</span><span class="op">(</span><span class="va">color</span> <span class="op">~</span> <span class="va">clarity</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">scale_colour_viridis_d</span><span class="op">(</span>begin<span class="op">=</span><span class="fl">0</span>, end <span class="op">=</span><span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>,<span class="fl">2</span><span class="op">)</span>,</span>
+<span>              color <span class="op">=</span> <span class="st">"black"</span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>You can fit all these lines using <code>lm</code> as well, using color and clarity as variables in the regression equation. The way <code>facet_*</code> and <code>geom_smooth</code> combine together makes the visualization of these lines very easy.</p>
 <p>Notice that I’ve moved the <code>color=cut</code> from the ggplot function to the <code>geom_point</code> function as the aesthetic for only the points. If the colour was specified in the first ggplot function, the <code>geom_smooth</code> would “inherit” this aesthetic mapping and would make a separate smooth for each cut (5 lines per panel). There are not enough data in some panels for some cuts to do a good job, so I revised the plot to only draw one smooth per facet. You should move the <code>color=cut</code> back to the ggplot call to see how the result changes.</p>
-</section>
-<section id="robust-regression" class="level2" data-number="16.3">
-<h2 data-number="16.3" class="anchored" data-anchor-id="robust-regression"><span class="header-section-number">16.3</span> Robust regression</h2>
+</section><section id="robust-regression" class="level2" data-number="16.3"><h2 data-number="16.3" class="anchored" data-anchor-id="robust-regression">
+<span class="header-section-number">16.3</span> Robust regression</h2>
 <p>We demonstrated the importance of visualizing data at the start of the course by appealing to the example of Anscombe’s quartet. This is a set of four data sets which all have the same means, standard deviations, and correlation. Here I’ll show how to plot four lines on a single plot and how to avoid at least one of the problems with outliers by using robust regression from the <code>MASS</code> package.</p>
 <p>Robust regression is designed to be less influenced by outliers. Robust regression is a big improvement for group 3, but has little effect on any of the other problems. (Try <code>formula = y ~ poly(x,2)</code> to fix panel 2. There is no fix for the problem in panel 4.)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> anscombe <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(),</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">".value"</span>, <span class="st">"set"</span>),</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">names_pattern =</span> <span class="st">"(.)(.)"</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a> ) <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> set) </span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># p1 + geom_smooth(method="lm") # Try this instead</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method=</span>MASS<span class="sc">::</span>rlm) <span class="co"># , formula  = y ~ poly(x,2))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">anscombe</span> <span class="op">|&gt;</span></span>
+<span> <span class="fu">pivot_longer</span><span class="op">(</span><span class="fu">everything</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>   names_to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">".value"</span>, <span class="st">"set"</span><span class="op">)</span>,</span>
+<span>   names_pattern <span class="op">=</span> <span class="st">"(.)(.)"</span></span>
+<span> <span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">set</span><span class="op">)</span> </span>
+<span><span class="co"># p1 + geom_smooth(method="lm") # Try this instead</span></span>
+<span><span class="va">p1</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span>method<span class="op">=</span><span class="fu">MASS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/MASS/man/rlm.html">rlm</a></span><span class="op">)</span> <span class="co"># , formula  = y ~ poly(x,2))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
-<section id="predicting-quantiles" class="level2" data-number="16.4">
-<h2 data-number="16.4" class="anchored" data-anchor-id="predicting-quantiles"><span class="header-section-number">16.4</span> Predicting quantiles</h2>
+</section><section id="predicting-quantiles" class="level2" data-number="16.4"><h2 data-number="16.4" class="anchored" data-anchor-id="predicting-quantiles">
+<span class="header-section-number">16.4</span> Predicting quantiles</h2>
 <p>You can also try to predict quantiles of your data. Here we make a linear model for the 0.05, 0.50 (median), and 0.95 quantiles.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> <span class="fu">filter</span>(cut <span class="sc">==</span> <span class="st">"Ideal"</span>, color <span class="sc">==</span> <span class="st">"G"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>carat, <span class="at">y =</span> price)) <span class="sc">+</span> </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_quantile</span>(<span class="at">method =</span> rqss, <span class="at">formula =</span> y <span class="sc">~</span> x,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">lambda =</span> <span class="dv">1</span>, <span class="at">quantiles =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.5</span>, <span class="fl">0.95</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">cut</span> <span class="op">==</span> <span class="st">"Ideal"</span>, <span class="va">color</span> <span class="op">==</span> <span class="st">"G"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">carat</span>, y <span class="op">=</span> <span class="va">price</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_quantile</span><span class="op">(</span>method <span class="op">=</span> <span class="va">rqss</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>,</span>
+<span>                lambda <span class="op">=</span> <span class="fl">1</span>, quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.5</span>, <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
-<section id="quantitative-model-output" class="level2" data-number="16.5">
-<h2 data-number="16.5" class="anchored" data-anchor-id="quantitative-model-output"><span class="header-section-number">16.5</span> Quantitative model output</h2>
+</section><section id="quantitative-model-output" class="level2" data-number="16.5"><h2 data-number="16.5" class="anchored" data-anchor-id="quantitative-model-output">
+<span class="header-section-number">16.5</span> Quantitative model output</h2>
 <p>The <code>broom</code> package has functions to obtain model coefficients and compute residuals, predictions, and confindence intervals. Healy also shows how to use <code>broom</code> to fit many models (such as a model for each facet) in his <a href="https://socviz.co/modeling.html#grouped-analysis-and-list-columns">Section 6.6</a>, but I will skip those steps.</p>
 <p>Get the coefficients (and standard errors, t-statistic, p-value and confidence intervals) from your model using <code>tidy</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(linear_model1, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tidy</span><span class="op">(</span><span class="va">linear_model1</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> term </th>
+<thead><tr>
+<th style="text-align:left;"> term </th>
    <th style="text-align:right;"> estimate </th>
    <th style="text-align:right;"> std.error </th>
    <th style="text-align:right;"> statistic </th>
    <th style="text-align:right;"> p.value </th>
    <th style="text-align:right;"> conf.low </th>
    <th style="text-align:right;"> conf.high </th>
-  </tr>
- </thead>
+  </tr></thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> (Intercept) </td>
+<tr>
+<td style="text-align:left;"> (Intercept) </td>
    <td style="text-align:right;"> -2256.4 </td>
    <td style="text-align:right;"> 13.1 </td>
    <td style="text-align:right;"> -172.8 </td>
@@ -617,8 +589,8 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
    <td style="text-align:right;"> -2281.9 </td>
    <td style="text-align:right;"> -2230.8 </td>
   </tr>
-  <tr>
-   <td style="text-align:left;"> carat </td>
+<tr>
+<td style="text-align:left;"> carat </td>
    <td style="text-align:right;"> 7756.4 </td>
    <td style="text-align:right;"> 14.1 </td>
    <td style="text-align:right;"> 551.4 </td>
@@ -628,36 +600,34 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
   </tr>
 </tbody>
 </table>
-
 </div>
 </div>
 <p>The second model has the effect of each level of clarity on price (relative to the base case of I1). Here’s how we can plot the regression coefficients as dot plots with uncertainties using the output from <code>tidy</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(linear_model2, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_starts</span>(term, <span class="st">"clarity"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> term, <span class="at">x =</span> estimate, <span class="at">xmin =</span> conf.low, <span class="at">xmax =</span> conf.high)) <span class="sc">+</span> </span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tidy</span><span class="op">(</span><span class="va">linear_model2</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fu">str_starts</span><span class="op">(</span><span class="va">term</span>, <span class="st">"clarity"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">term</span>, x <span class="op">=</span> <span class="va">estimate</span>, xmin <span class="op">=</span> <span class="va">conf.low</span>, xmax <span class="op">=</span> <span class="va">conf.high</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">geom_pointrange</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>This can also be done easily using <code>coefplot</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(coefplot)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coefplot</span>(linear_model2, <span class="at">sort =</span> <span class="st">"magnitude"</span>, <span class="at">intercept =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">coefplot</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/coefplot/man/coefplot.html">coefplot</a></span><span class="op">(</span><span class="va">linear_model2</span>, sort <span class="op">=</span> <span class="st">"magnitude"</span>, intercept <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>You can get statistics for the model using <code>glance</code>. We don’t discuss these results, but if you have taken a statistics course with topics on regression you should recognize at least some of these results.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(linear_model1) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">glance</span><span class="op">(</span><span class="va">linear_model1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> r.squared </th>
+<thead><tr>
+<th style="text-align:right;"> r.squared </th>
    <th style="text-align:right;"> adj.r.squared </th>
    <th style="text-align:right;"> sigma </th>
    <th style="text-align:right;"> statistic </th>
@@ -669,11 +639,9 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
    <th style="text-align:right;"> deviance </th>
    <th style="text-align:right;"> df.residual </th>
    <th style="text-align:right;"> nobs </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 0.8493305 </td>
+  </tr></thead>
+<tbody><tr>
+<td style="text-align:right;"> 0.8493305 </td>
    <td style="text-align:right;"> 0.8493277 </td>
    <td style="text-align:right;"> 1548.562 </td>
    <td style="text-align:right;"> 304050.9 </td>
@@ -685,21 +653,18 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
    <td style="text-align:right;"> 129345695398 </td>
    <td style="text-align:right;"> 53938 </td>
    <td style="text-align:right;"> 53940 </td>
-  </tr>
-</tbody>
+  </tr></tbody>
 </table>
-
 </div>
 </div>
 <p>The <code>augment</code> function makes it easy to plot residuals and predicted values for many models (see <code>?augment</code>). We can use <code>augment</code> on the model object to get a data frame with the data used in the model plus fitted (predicted) values, residuals, and other quantities. You can add the other data not provided in the model object by including <code>data = diamonds</code> in the augment function (output not shown.)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(linear_model1, <span class="at">interval =</span> <span class="st">"prediction"</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>() <span class="sc">|&gt;</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">augment</span><span class="op">(</span><span class="va">linear_model1</span>, interval <span class="op">=</span> <span class="st">"prediction"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> price </th>
+<thead><tr>
+<th style="text-align:right;"> price </th>
    <th style="text-align:right;"> carat </th>
    <th style="text-align:right;"> .fitted </th>
    <th style="text-align:right;"> .lower </th>
@@ -709,11 +674,10 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
    <th style="text-align:right;"> .sigma </th>
    <th style="text-align:right;"> .cooksd </th>
    <th style="text-align:right;"> .std.resid </th>
-  </tr>
- </thead>
+  </tr></thead>
 <tbody>
-  <tr>
-   <td style="text-align:right;"> 326 </td>
+<tr>
+<td style="text-align:right;"> 326 </td>
    <td style="text-align:right;"> 0.23 </td>
    <td style="text-align:right;"> -472.38 </td>
    <td style="text-align:right;"> -3507.64 </td>
@@ -724,8 +688,8 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0.52 </td>
   </tr>
-  <tr>
-   <td style="text-align:right;"> 326 </td>
+<tr>
+<td style="text-align:right;"> 326 </td>
    <td style="text-align:right;"> 0.21 </td>
    <td style="text-align:right;"> -627.51 </td>
    <td style="text-align:right;"> -3662.78 </td>
@@ -736,8 +700,8 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0.62 </td>
   </tr>
-  <tr>
-   <td style="text-align:right;"> 327 </td>
+<tr>
+<td style="text-align:right;"> 327 </td>
    <td style="text-align:right;"> 0.23 </td>
    <td style="text-align:right;"> -472.38 </td>
    <td style="text-align:right;"> -3507.64 </td>
@@ -748,8 +712,8 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0.52 </td>
   </tr>
-  <tr>
-   <td style="text-align:right;"> 334 </td>
+<tr>
+<td style="text-align:right;"> 334 </td>
    <td style="text-align:right;"> 0.29 </td>
    <td style="text-align:right;"> -7.00 </td>
    <td style="text-align:right;"> -3042.25 </td>
@@ -760,8 +724,8 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0.22 </td>
   </tr>
-  <tr>
-   <td style="text-align:right;"> 335 </td>
+<tr>
+<td style="text-align:right;"> 335 </td>
    <td style="text-align:right;"> 0.31 </td>
    <td style="text-align:right;"> 148.13 </td>
    <td style="text-align:right;"> -2887.12 </td>
@@ -772,8 +736,8 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
    <td style="text-align:right;"> 0 </td>
    <td style="text-align:right;"> 0.12 </td>
   </tr>
-  <tr>
-   <td style="text-align:right;"> 336 </td>
+<tr>
+<td style="text-align:right;"> 336 </td>
    <td style="text-align:right;"> 0.24 </td>
    <td style="text-align:right;"> -394.82 </td>
    <td style="text-align:right;"> -3430.08 </td>
@@ -786,34 +750,33 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
   </tr>
 </tbody>
 </table>
-
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># augment(linear_model1, interval = "prediction", data = diamonds) |&gt; head()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># augment(linear_model1, interval = "prediction", data = diamonds) |&gt; head()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If you generate new data, you can make and plot predictions easily.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">carat =</span> <span class="fu">seq</span>(<span class="fl">0.20</span>, <span class="fl">5.01</span>, <span class="fl">0.01</span>))</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(linear_model1, <span class="at">newdata =</span> new_data, <span class="at">interval =</span> <span class="st">"prediction"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> .fitted, <span class="at">ymin =</span> .lower, <span class="at">ymax =</span> .upper)) <span class="sc">+</span> </span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">fill=</span><span class="st">"darkblue"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_data</span> <span class="op">=</span> <span class="fu">tibble</span><span class="op">(</span>carat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.20</span>, <span class="fl">5.01</span>, <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">augment</span><span class="op">(</span><span class="va">linear_model1</span>, newdata <span class="op">=</span> <span class="va">new_data</span>, interval <span class="op">=</span> <span class="st">"prediction"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">carat</span>, y <span class="op">=</span> <span class="va">.fitted</span>, ymin <span class="op">=</span> <span class="va">.lower</span>, ymax <span class="op">=</span> <span class="va">.upper</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op">(</span>fill<span class="op">=</span><span class="st">"darkblue"</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Of course, this is overly complicated for plotting a straight line, but the method can be adopted to many other models.</p>
-<section id="revisiting-models-from-the-previous-lesson" class="level3" data-number="16.5.1">
-<h3 data-number="16.5.1" class="anchored" data-anchor-id="revisiting-models-from-the-previous-lesson"><span class="header-section-number">16.5.1</span> Revisiting models from the previous lesson</h3>
+<section id="revisiting-models-from-the-previous-lesson" class="level3" data-number="16.5.1"><h3 data-number="16.5.1" class="anchored" data-anchor-id="revisiting-models-from-the-previous-lesson">
+<span class="header-section-number">16.5.1</span> Revisiting models from the previous lesson</h3>
 <p>While <code>tidy</code>, <code>glance</code> and <code>augment</code> are very convenient, you will sometimes want simpler methods to get at model results. Here I will show you how to make models and predictions for each of the model types from the previous lesson.</p>
 <p>Each of these models can be fitted independently of making a plot. If you do this, you get a complex object called a fitted model that can be used to give you a lot of information about your model. Healy <a href="https://socviz.co/modeling.html#look-inside-model-objects">discusses</a> how to look at the model output, but we will skip over this with two exceptions. We will look at the difference between model and data (called residuals) and making predictions with models.</p>
 <p>Here we will fit each of the models generated above and look at the <code>summary</code> output from each model. I’ll start by computing log(GDP) and the number of years since 1950 to use as variables in my models.</p>
 <p>A linear model fitting a straight line to the data (slope, intercept):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>gp <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Europe"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year1950 =</span> year <span class="sc">-</span> <span class="dv">1950</span>,</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">logGDP =</span> <span class="fu">log10</span>(gdpPercap))</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logGDP <span class="sc">~</span> year1950, <span class="at">data =</span> gp)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gp</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">==</span> <span class="st">"Europe"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>year1950 <span class="op">=</span> <span class="va">year</span> <span class="op">-</span> <span class="fl">1950</span>,</span>
+<span>         logGDP <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">logGDP</span> <span class="op">~</span> <span class="va">year1950</span>, data <span class="op">=</span> <span class="va">gp</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -837,9 +800,9 @@ F-statistic: 183.1 on 1 and 358 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p>A robust version of this line that is less influenced by outliers:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">rlm</span>(logGDP <span class="sc">~</span> year1950, <span class="at">data =</span> gp)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a></span><span class="op">)</span></span>
+<span><span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MASS/man/rlm.html">rlm</a></span><span class="op">(</span><span class="va">logGDP</span> <span class="op">~</span> <span class="va">year1950</span>, data <span class="op">=</span> <span class="va">gp</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call: rlm(formula = logGDP ~ year1950, data = gp)
@@ -857,21 +820,21 @@ Residual standard error: 0.2592 on 358 degrees of freedom</code></pre>
 </div>
 <p>Here I fit splines two ways: using lm and using generalized additive models:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logGDP <span class="sc">~</span> splines<span class="sc">::</span><span class="fu">bs</span>(year1950, <span class="at">df =</span> <span class="dv">5</span>, <span class="at">degree=</span><span class="dv">3</span>), <span class="at">data =</span> gp)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> mgcv<span class="sc">::</span><span class="fu">gam</span>(logGDP <span class="sc">~</span> <span class="fu">s</span>(year1950), <span class="at">data =</span> gp)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(m3) # this is a bit hard to read, so I don't show it here.</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(m4) # same comment here!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">logGDP</span> <span class="op">~</span> <span class="fu">splines</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/splines/bs.html">bs</a></span><span class="op">(</span><span class="va">year1950</span>, df <span class="op">=</span> <span class="fl">5</span>, degree<span class="op">=</span><span class="fl">3</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">gp</span><span class="op">)</span></span>
+<span><span class="va">m4</span> <span class="op">&lt;-</span> <span class="fu">mgcv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam</a></span><span class="op">(</span><span class="va">logGDP</span> <span class="op">~</span> <span class="fu">s</span><span class="op">(</span><span class="va">year1950</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">gp</span><span class="op">)</span></span>
+<span><span class="co"># summary(m3) # this is a bit hard to read, so I don't show it here.</span></span>
+<span><span class="co"># summary(m4) # same comment here!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here is a LOESS smooth:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> <span class="fu">loess</span>(logGDP <span class="sc">~</span> year1950, <span class="at">data =</span> gp)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(m5)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/loess.html">loess</a></span><span class="op">(</span><span class="va">logGDP</span> <span class="op">~</span> <span class="va">year1950</span>, data <span class="op">=</span> <span class="va">gp</span><span class="op">)</span></span>
+<span><span class="co"># summary(m5)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And finally here is a quantile regression. The quantile predicted by the model is given by <code>tau</code>; we’ve selected the 10 percentile here. <code>lambda</code> is a parameter that</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>m6 <span class="ot">&lt;-</span> quantreg<span class="sc">::</span><span class="fu">rq</span>(logGDP <span class="sc">~</span> year1950, <span class="at">data=</span> gp, </span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">tau =</span> <span class="fl">0.1</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m6</span> <span class="op">&lt;-</span> <span class="fu">quantreg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/quantreg/man/rq.html">rq</a></span><span class="op">(</span><span class="va">logGDP</span> <span class="op">~</span> <span class="va">year1950</span>, data<span class="op">=</span> <span class="va">gp</span>, </span>
+<span>                     tau <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m6</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in rq.fit.br(x, y, tau = tau, ci = TRUE, ...): Solution may be nonunique</code></pre>
 </div>
@@ -887,32 +850,31 @@ Coefficients:
 year1950    0.00939      0.00692  0.01221 </code></pre>
 </div>
 </div>
-</section>
-<section id="computing-and-plotting-residuals" class="level3" data-number="16.5.2">
-<h3 data-number="16.5.2" class="anchored" data-anchor-id="computing-and-plotting-residuals"><span class="header-section-number">16.5.2</span> Computing and plotting residuals</h3>
+</section><section id="computing-and-plotting-residuals" class="level3" data-number="16.5.2"><h3 data-number="16.5.2" class="anchored" data-anchor-id="computing-and-plotting-residuals">
+<span class="header-section-number">16.5.2</span> Computing and plotting residuals</h3>
 <p>An important visualization for any model is to compare observations with the predictions of the model. This difference is called the residual. (From the residual variation in the data not described by the model.) The function <code>residuals</code> applied to the model object gives you access to these values and makes them easy to plot.</p>
 <p>You can make histograms of residuals:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">residuals =</span> <span class="fu">residuals</span>(m1)) <span class="sc">|&gt;</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> residuals)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tibble</span><span class="op">(</span>residuals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">residuals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Using <code>bind_cols</code> and <code>bind_rows</code> to combine variables and observations into one large table, you can plot the residuals of several models:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>residuals <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="at">model =</span> <span class="st">"linear"</span>, <span class="at">residual =</span> <span class="fu">residuals</span>(m1)),</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="at">model =</span> <span class="st">"spline"</span>, <span class="at">residual =</span> <span class="fu">residuals</span>(m3)),</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(<span class="at">model =</span> <span class="st">"loess"</span>, <span class="at">residual =</span> <span class="fu">residuals</span>(m5))</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>residuals <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> residual, <span class="at">fill =</span> model)) <span class="sc">+</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">residuals</span> <span class="op">&lt;-</span> <span class="fu">bind_rows</span><span class="op">(</span></span>
+<span>  <span class="fu">bind_cols</span><span class="op">(</span>model <span class="op">=</span> <span class="st">"linear"</span>, residual <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="fu">bind_cols</span><span class="op">(</span>model <span class="op">=</span> <span class="st">"spline"</span>, residual <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">m3</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="fu">bind_cols</span><span class="op">(</span>model <span class="op">=</span> <span class="st">"loess"</span>, residual <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">m5</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">residuals</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">residual</span>, fill <span class="op">=</span> <span class="va">model</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins<span class="op">=</span><span class="fl">20</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>residuals <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> residual)) <span class="sc">+</span> </span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>) <span class="sc">+</span> <span class="fu">facet_grid</span>(model <span class="sc">~</span> .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">residuals</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">residual</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins<span class="op">=</span><span class="fl">20</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span><span class="va">model</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-21-2.png" class="img-fluid" width="672"></p>
 </div>
@@ -920,18 +882,18 @@ year1950    0.00939      0.00692  0.01221 </code></pre>
 <p>We can see that the distribution (histogram) of the residuals is fairly similar for all three models. There are defintely negative residuals larger in magnitude than any of the positive residuals. The modal residuals are bigger than zero. This suggests there are some points where the model “over predicts” (model prediction larger than observed data) and the most common result is an under prediction (model prediction is smaller than observed value.)</p>
 <p>More commonly you will want to compare the residuals to one of the independent variable, dependent variable, or predicted values. This is easy to do by adding predictions and residuals to the original data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>gp1 <span class="ot">&lt;-</span> gp <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">linear_residuals =</span> <span class="fu">residuals</span>(m1),</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">linear_predictions =</span> <span class="fu">predict</span>(m1))</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>gp1 <span class="sc">|&gt;</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> logGDP, </span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> linear_predictions)) <span class="sc">+</span> </span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="fu">aes</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gp1</span> <span class="op">&lt;-</span> <span class="va">gp</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>linear_residuals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span>,</span>
+<span>              linear_predictions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">gp1</span> <span class="op">|&gt;</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">logGDP</span>, </span>
+<span>                    y <span class="op">=</span> <span class="va">linear_predictions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="fl">0</span>, slope<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>gp1 <span class="sc">|&gt;</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> linear_predictions, </span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> linear_residuals)) <span class="sc">+</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gp1</span> <span class="op">|&gt;</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">linear_predictions</span>, </span>
+<span>                    y <span class="op">=</span> <span class="va">linear_residuals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-22-2.png" class="img-fluid" width="672"></p>
 </div>
@@ -939,34 +901,33 @@ year1950    0.00939      0.00692  0.01221 </code></pre>
 <p>Note that models generally don’t make predictions from missing data, so if year or GDP data were missing, for any country or year, there would be some problems with the code above. The easiest solution is to filter out all rows from your data table that have missing data.</p>
 <p>When making predictions, you can also generate <a href="https://en.wikipedia.org/wiki/Confidence_interval">confidence</a> or <a href="https://en.wikipedia.org/wiki/Prediction_interval">prediction</a> intervals to add a measure of uncertainty to your visualization. For plotting purposes you may want to generate a uniform grid along the x-axis and make predictions for these values. Here’s how you can do that. I’ve used summarize to determine the range of the years since 1950 (not shown). You should always be very cautious interpreting predictions, but especially predictions for values outside the observed values in your original data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">year1950 =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">57</span>, <span class="at">by =</span> <span class="dv">1</span>))</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>predictions1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(m3, new_data, <span class="at">interval =</span> <span class="st">"prediction"</span>) <span class="sc">|&gt;</span> <span class="fu">as_tibble</span>()</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>predictions2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(m5, new_data, <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">as_tibble</span>()</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(new_data, predictions1) <span class="sc">|&gt;</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year1950, <span class="at">y =</span> fit)) <span class="sc">+</span> </span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr), <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span> </span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> gp, <span class="fu">aes</span>(<span class="at">x =</span> year1950, <span class="at">y =</span> logGDP))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_data</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>year1950 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">2</span>, to <span class="op">=</span> <span class="fl">57</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">predictions1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m3</span>, <span class="va">new_data</span>, interval <span class="op">=</span> <span class="st">"prediction"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">predictions2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m5</span>, <span class="va">new_data</span>, se<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">bind_cols</span><span class="op">(</span><span class="va">new_data</span>, <span class="va">predictions1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year1950</span>, y <span class="op">=</span> <span class="va">fit</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">lwr</span>, ymax <span class="op">=</span> <span class="va">upr</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"blue"</span>, alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gp</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year1950</span>, y <span class="op">=</span> <span class="va">logGDP</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_cols</span>(new_data, predictions2) <span class="sc">|&gt;</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year1950, <span class="at">y =</span> fit)) <span class="sc">+</span> </span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> fit <span class="sc">-</span>se.fit, <span class="at">ymax =</span> fit <span class="sc">+</span> se.fit), <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span> </span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> gp, <span class="fu">aes</span>(<span class="at">x =</span> year1950, <span class="at">y =</span> logGDP))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">bind_cols</span><span class="op">(</span><span class="va">new_data</span>, <span class="va">predictions2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year1950</span>, y <span class="op">=</span> <span class="va">fit</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">fit</span> <span class="op">-</span><span class="va">se.fit</span>, ymax <span class="op">=</span> <span class="va">fit</span> <span class="op">+</span> <span class="va">se.fit</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"blue"</span>, alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gp</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year1950</span>, y <span class="op">=</span> <span class="va">logGDP</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-23-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The confidence intervals are a lot narrower than the prediction intervals. The confidence interval gives you a measure of the uncertainty in the mean value of log GDP per capita for each year, while the prediction interval gives you a measure of uncertainty in a prediction for a new observation of log GDP per capita. The prediction of a new observation should be much more uncertain than your knowledge of the mean from all the data.</p>
 <p>A few technical observations. <code>predict</code> does not generate a data frame; it makes a matrix, so we use <code>as_tibble</code> to convert it to a tibble so that variable names work as expected. The <code>predict</code> functions for linear models, GAMs, LOESS, etc are all different functions and have some important differences. Here you can see that the spline can calculate prediction or confidence intervals and the output is the upper and lower limits of the interval. The LOESS predict function only calculates the standard error of the estimated value; this value must be scaled and added to the predicted value to generate an uncertainty estimate.</p>
-</section>
-</section>
-<section id="further-reading" class="level2" data-number="16.6">
-<h2 data-number="16.6" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">16.6</span> Further reading</h2>
+</section></section><section id="further-reading" class="level2" data-number="16.6"><h2 data-number="16.6" class="anchored" data-anchor-id="further-reading">
+<span class="header-section-number">16.6</span> Further reading</h2>
 <ul>
-<li>Healy <a href="https://socviz.co/modeling.html#modeling">Chapter 6 Work with models</a></li>
+<li>Healy <a href="https://socviz.co/modeling.html#modeling">Chapter 6 Work with models</a>
+</li>
 <li>Documentation for <a href="https://github.com/datalorax/equatiomatic">equationomatic</a> including instructions for installation.</li>
 </ul>
 <div class="cell">
@@ -974,10 +935,7 @@ year1950    0.00939      0.00692  0.01221 </code></pre>
 </div>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1073,9 +1031,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="../lessons/118-working-with-models.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Working with models</span></span>
       </a>          

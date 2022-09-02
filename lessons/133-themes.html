@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.37">
-
+<meta name="generator" content="quarto-1.0.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>Data Visualization notes - 32&nbsp; Themes</title>
 <style>
 code{white-space: pre-wrap;}
@@ -80,7 +77,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -98,8 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -118,29 +113,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Themes</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -152,7 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome</a>
   </div>
@@ -358,28 +344,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Table of contents</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#example-plots-for-customization" id="toc-example-plots-for-customization" class="nav-link active" data-scroll-target="#example-plots-for-customization"> <span class="header-section-number">32.1</span> Example plots for customization</a></li>
+<li><a href="#example-plots-for-customization" id="toc-example-plots-for-customization" class="nav-link active" data-scroll-target="#example-plots-for-customization"> <span class="header-section-number">32.1</span> Example plots for customization</a></li>
   <li><a href="#built-in-themes" id="toc-built-in-themes" class="nav-link" data-scroll-target="#built-in-themes"> <span class="header-section-number">32.2</span> Built-in themes</a></li>
   <li><a href="#customizing-text-on-a-figure" id="toc-customizing-text-on-a-figure" class="nav-link" data-scroll-target="#customizing-text-on-a-figure"> <span class="header-section-number">32.3</span> Customizing text on a figure</a></li>
   <li><a href="#customizing-borders-ticks-axis-labels" id="toc-customizing-borders-ticks-axis-labels" class="nav-link" data-scroll-target="#customizing-borders-ticks-axis-labels"> <span class="header-section-number">32.4</span> Customizing borders, ticks, axis labels</a></li>
   <li><a href="#enhanced-text" id="toc-enhanced-text" class="nav-link" data-scroll-target="#enhanced-text"> <span class="header-section-number">32.5</span> Enhanced text</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"> <span class="header-section-number">32.6</span> Further reading</a></li>
-  </ul>
-</nav>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="theme" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Themes</span></span></h1>
 </div>
 
@@ -392,56 +371,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header>
-
-<p>The theme of a plot refers to all the parts that are not linked to data. This includes titles, axis lables, as well as the labelling of the axis labels or legends (also known as guides). It also includes text characteristics (font, size, colour, bold, italics) and the colour and placement of axes, tick marks, boxes around the plot and legend.</p>
+</header><p>The theme of a plot refers to all the parts that are not linked to data. This includes titles, axis lables, as well as the labelling of the axis labels or legends (also known as guides). It also includes text characteristics (font, size, colour, bold, italics) and the colour and placement of axes, tick marks, boxes around the plot and legend.</p>
 <p>There is a single function, <code>theme</code> that controls most of these features, with many options. I’ll give examples showing how to control many aspects of the theme.</p>
 <p>Within a presentation or report, we often want to use a consistent theme for all figures. You can define many features of a theme and store them in an object in your R environment. You can then use this theme for all your figures. Changing the theme for many figures is then possible with only a single change in one location.</p>
 <p>There are many add on packages for working with themes. I’ll give examples from <a href="">ggtext</a>, <a href="">ggthemes</a>, and <a href="">patchwork</a>.</p>
-<section id="example-plots-for-customization" class="level2" data-number="32.1">
-<h2 data-number="32.1" class="anchored" data-anchor-id="example-plots-for-customization"><span class="header-section-number">32.1</span> Example plots for customization</h2>
+<section id="example-plots-for-customization" class="level2" data-number="32.1"><h2 data-number="32.1" class="anchored" data-anchor-id="example-plots-for-customization">
+<span class="header-section-number">32.1</span> Example plots for customization</h2>
 <p>We’ll use a couple of plots repeatedly: one with facets, and one with many other elements, but no facets.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm, </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">color =</span> species, <span class="at">shape =</span> sex)) <span class="sc">+</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">body_mass_g</span>, y <span class="op">=</span> <span class="va">flipper_length_mm</span>, </span>
+<span>                              color <span class="op">=</span> <span class="va">species</span>, shape <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">p1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 11 rows containing missing values (geom_point).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="133-themes_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> mpg <span class="sc">|&gt;</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unglue_unnest</span>(trans, <span class="st">"{trans_type}({trans_code})"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>           <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> trans_type)) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="fu">factor</span>(cyl))</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">mpg</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">unglue_unnest</span><span class="op">(</span><span class="va">trans</span>, <span class="st">"{trans_type}({trans_code})"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>           <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">displ</span>, y <span class="op">=</span> <span class="va">hwy</span>, color <span class="op">=</span> <span class="va">trans_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>                    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>                    <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">p2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="133-themes_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
-<section id="built-in-themes" class="level2" data-number="32.2">
-<h2 data-number="32.2" class="anchored" data-anchor-id="built-in-themes"><span class="header-section-number">32.2</span> Built-in themes</h2>
+</section><section id="built-in-themes" class="level2" data-number="32.2"><h2 data-number="32.2" class="anchored" data-anchor-id="built-in-themes">
+<span class="header-section-number">32.2</span> Built-in themes</h2>
 <p>There are <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">many themes available</a> that change the whole look of your plot. I’ve used <code>theme_bw</code> many times already, so here are a couple of other examples. For each you can use the <code>base_size</code> option (default value 11) to scale text elements and <code>base_line_size</code> to scale line elements of the figure.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">theme_linedraw</span>(<span class="at">base_size =</span> <span class="dv">15</span>, <span class="at">base_line_size =</span> <span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">theme_linedraw</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">15</span>, base_line_size <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 11 rows containing missing values (geom_point).</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="133-themes_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="sc">+</span> <span class="fu">theme_dark</span>(<span class="at">base_size =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p2</span> <span class="op">+</span> <span class="fu">theme_dark</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="133-themes_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>There are also add-in packages with more themes: <code>ggthemes</code> has <code>theme_tufte</code> and <code>theme_economist</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">theme_economist</span>() <span class="sc">+</span> <span class="fu">scale_fill_economist</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">theme_economist</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">scale_fill_economist</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 11 rows containing missing values (geom_point).</code></pre>
 </div>
@@ -450,53 +426,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Another collection of themes is available in <a href="https://github.com/Mikata-Project/ggthemr">ggthemer</a>. The main goal of this lesson is to give you the vocabulary and skills to customize the theme of your plot, so I won’t spend any more time on theme packages. On to the details!</p>
-</section>
-<section id="customizing-text-on-a-figure" class="level2" data-number="32.3">
-<h2 data-number="32.3" class="anchored" data-anchor-id="customizing-text-on-a-figure"><span class="header-section-number">32.3</span> Customizing text on a figure</h2>
+</section><section id="customizing-text-on-a-figure" class="level2" data-number="32.3"><h2 data-number="32.3" class="anchored" data-anchor-id="customizing-text-on-a-figure">
+<span class="header-section-number">32.3</span> Customizing text on a figure</h2>
 <p>The most common change I want to make to a plot’s theme (after axis and guide labels) is to increase the size of the text. This can be done using <code>theme(text= ...)</code> or for specific elements, <code>theme(axis.title=...)</code> (see the help page for more elements of the theme that can be set with a text element.) On the right side of the equals sign, you need the function <code>element_text</code> which allows you to control 10 different characteristics of your text. Here is an example of a few of the features.</p>
 <p>Themes are controlled hierarchically, so adjusting <code>text</code> affects all text on the plot. Adjusting <code>axis.title</code> affects both <code>axis.title.x</code> and <code>axis.title.y</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p2  <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>),</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>),</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"blue"</span>),</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">1</span>),</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"serif"</span>),</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#FF00FF"</span>, <span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">family =</span> <span class="st">"mono"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p2</span>  <span class="op">+</span> <span class="fu">theme</span><span class="op">(</span>text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>,</span>
+<span>            axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span><span class="op">)</span>,</span>
+<span>            axis.title.y <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span>,</span>
+<span>            strip.text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,</span>
+<span>            legend.text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>            legend.title <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span>,</span>
+<span>            axis.title.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#FF00FF"</span>, size <span class="op">=</span> <span class="fl">18</span>, face <span class="op">=</span> <span class="st">"italic"</span>, family <span class="op">=</span> <span class="st">"mono"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="133-themes_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Compare this with the original version of the plot and play “spot the differences”.</p>
-</section>
-<section id="customizing-borders-ticks-axis-labels" class="level2" data-number="32.4">
-<h2 data-number="32.4" class="anchored" data-anchor-id="customizing-borders-ticks-axis-labels"><span class="header-section-number">32.4</span> Customizing borders, ticks, axis labels</h2>
+</section><section id="customizing-borders-ticks-axis-labels" class="level2" data-number="32.4"><h2 data-number="32.4" class="anchored" data-anchor-id="customizing-borders-ticks-axis-labels">
+<span class="header-section-number">32.4</span> Customizing borders, ticks, axis labels</h2>
 <p>There are many elements on a plot drawn with lines. These too can be customized all at once using <code>theme(line = ...)</code> or element by element using, for example <code>theme(axis.line.x=...)</code> or <code>theme(axis.ticks.y=...)</code>. The grid lines can be adjusted using <code>panel.grid.major</code> and <code>panel.grid.minor</code>. These elements are named and controlled hierarchically as well. The right hand size of the expressions above must have an <code>element_line</code> function which allows you to control color, size, linetype and other features like arrows.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">line =</span> <span class="fu">element_line</span>(<span class="at">size =</span> <span class="dv">1</span>),</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">axis.ticks.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"pink"</span>),</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">axis.line.x =</span> <span class="fu">element_line</span>(<span class="at">linetype =</span> <span class="dv">3</span>, <span class="at">size =</span> <span class="fl">0.25</span>),</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">linetype =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">0.25</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p2</span> <span class="op">+</span> <span class="fu">theme</span><span class="op">(</span>line <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>           axis.ticks.y <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"pink"</span><span class="op">)</span>,</span>
+<span>           axis.line.x <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>linetype <span class="op">=</span> <span class="fl">3</span>, size <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span>,</span>
+<span>           panel.grid.minor.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>           panel.grid.major <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>linetype <span class="op">=</span> <span class="fl">3</span>, color <span class="op">=</span> <span class="st">"black"</span>, size <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="133-themes_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
-<section id="enhanced-text" class="level2" data-number="32.5">
-<h2 data-number="32.5" class="anchored" data-anchor-id="enhanced-text"><span class="header-section-number">32.5</span> Enhanced text</h2>
+</section><section id="enhanced-text" class="level2" data-number="32.5"><h2 data-number="32.5" class="anchored" data-anchor-id="enhanced-text">
+<span class="header-section-number">32.5</span> Enhanced text</h2>
 <p>The <code>ggtext</code> package allows you to use markdown and HTML code in any text element on your plot. You need to use <code>element_markdown</code> (or <code>element_textbox_simple</code>) instead of <code>element_text</code> for each element you want to use this enhanced formatting method with.</p>
 <p>Unlike other theme elements, you can’t easily use <code>ggtext</code> formatting hierarchically: you can’t simply set all text to use <code>elemment_markdown</code> or even both axis labels. You must control each element individually.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"_Penguin data from **Palmer station**, Antarctica_&lt;sup&gt;1&lt;/sup&gt;"</span>,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"&lt;span style = 'color:red;'&gt;body mass (g)&lt;/span&gt;"</span>,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"flipper length (mm)"</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">caption =</span> <span class="st">"&lt;sup&gt;1&lt;/sup&gt;Collected by K. Gorman"</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>          ) <span class="sc">+</span> </span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_markdown</span>(<span class="at">lineheight =</span> <span class="fl">1.2</span>),</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_markdown</span>(),</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_textbox_simple</span>(<span class="at">halign =</span> <span class="fl">0.5</span>)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"_Penguin data from **Palmer station**, Antarctica_&lt;sup&gt;1&lt;/sup&gt;"</span>,</span>
+<span>          x <span class="op">=</span> <span class="st">"&lt;span style = 'color:red;'&gt;body mass (g)&lt;/span&gt;"</span>,</span>
+<span>          y <span class="op">=</span> <span class="st">"flipper length (mm)"</span>,</span>
+<span>          caption <span class="op">=</span> <span class="st">"&lt;sup&gt;1&lt;/sup&gt;Collected by K. Gorman"</span></span>
+<span>          <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">theme</span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu">element_markdown</span><span class="op">(</span>lineheight <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span>,</span>
+<span>        plot.caption <span class="op">=</span> <span class="fu">element_markdown</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>        axis.title.x <span class="op">=</span> <span class="fu">element_textbox_simple</span><span class="op">(</span>halign <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span>        <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 11 rows containing missing values (geom_point).</code></pre>
 </div>
@@ -506,38 +479,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>You can also add formatted boxes for the titles of facets and at any location on a plot.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="sc">+</span> <span class="fu">theme</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_textbox</span>(</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">12</span>,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">fill =</span> <span class="st">"#5D729D"</span>, <span class="at">box.color =</span> <span class="st">"#4A618C"</span>,</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">halign =</span> <span class="fl">0.5</span>, <span class="at">linetype =</span> <span class="dv">1</span>, <span class="at">r =</span> <span class="fu">unit</span>(<span class="dv">5</span>, <span class="st">"pt"</span>), <span class="at">width =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"npc"</span>),</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">padding =</span> <span class="fu">margin</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p2</span> <span class="op">+</span> <span class="fu">theme</span><span class="op">(</span></span>
+<span>    strip.background <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    strip.text <span class="op">=</span> <span class="fu">element_textbox</span><span class="op">(</span></span>
+<span>      size <span class="op">=</span> <span class="fl">12</span>,</span>
+<span>      color <span class="op">=</span> <span class="st">"white"</span>, fill <span class="op">=</span> <span class="st">"#5D729D"</span>, box.color <span class="op">=</span> <span class="st">"#4A618C"</span>,</span>
+<span>      halign <span class="op">=</span> <span class="fl">0.5</span>, linetype <span class="op">=</span> <span class="fl">1</span>, r <span class="op">=</span> <span class="fu">unit</span><span class="op">(</span><span class="fl">5</span>, <span class="st">"pt"</span><span class="op">)</span>, width <span class="op">=</span> <span class="fu">unit</span><span class="op">(</span><span class="fl">1</span>, <span class="st">"npc"</span><span class="op">)</span>,</span>
+<span>      padding <span class="op">=</span> <span class="fu">margin</span><span class="op">(</span><span class="fl">2</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>, margin <span class="op">=</span> <span class="fu">margin</span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="133-themes_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>text_annotations <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="fu">c</span>(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Some text **in bold.**"</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Linebreaks&lt;br&gt;Linebreaks&lt;br&gt;Linebreaks"</span>,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"*x*&lt;sup&gt;2&lt;/sup&gt; + 5*x* + *C*&lt;sub&gt;*i*&lt;/sub&gt;"</span>,</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Some &lt;span style='color:blue'&gt;blue text **in bold.**&lt;/span&gt;"</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">4000</span>, <span class="dv">5200</span>, <span class="dv">5700</span>, <span class="dv">5000</span>),</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">220</span>, <span class="dv">200</span>, <span class="dv">175</span>, <span class="dv">150</span>),</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">hjust =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>),</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">vjust =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.5</span>),</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">angle =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">45</span>, <span class="sc">-</span><span class="dv">45</span>),</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sex = c("male", "male", "male", "male")</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">geom_richtext</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">label =</span> label,</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">angle =</span> angle, <span class="at">hjust =</span> hjust, <span class="at">vjust =</span> vjust),</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> text_annotations,</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>                   <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>                   <span class="at">fill =</span> <span class="cn">NA</span>,</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>                   <span class="at">color =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">text_annotations</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span></span>
+<span>  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Some text **in bold.**"</span>,</span>
+<span>    <span class="st">"Linebreaks&lt;br&gt;Linebreaks&lt;br&gt;Linebreaks"</span>,</span>
+<span>    <span class="st">"*x*&lt;sup&gt;2&lt;/sup&gt; + 5*x* + *C*&lt;sub&gt;*i*&lt;/sub&gt;"</span>,</span>
+<span>    <span class="st">"Some &lt;span style='color:blue'&gt;blue text **in bold.**&lt;/span&gt;"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4000</span>, <span class="fl">5200</span>, <span class="fl">5700</span>, <span class="fl">5000</span><span class="op">)</span>,</span>
+<span>  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">220</span>, <span class="fl">200</span>, <span class="fl">175</span>, <span class="fl">150</span><span class="op">)</span>,</span>
+<span>  hjust <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  vjust <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0.5</span><span class="op">)</span>,</span>
+<span>  angle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">45</span>, <span class="op">-</span><span class="fl">45</span><span class="op">)</span>,</span>
+<span>  <span class="co"># sex = c("male", "male", "male", "male")</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">p1</span> <span class="op">+</span> <span class="fu">geom_richtext</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, label <span class="op">=</span> <span class="va">label</span>,</span>
+<span>                                 angle <span class="op">=</span> <span class="va">angle</span>, hjust <span class="op">=</span> <span class="va">hjust</span>, vjust <span class="op">=</span> <span class="va">vjust</span><span class="op">)</span>,</span>
+<span>                   data <span class="op">=</span> <span class="va">text_annotations</span>,</span>
+<span>                   inherit.aes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                   fill <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>                   color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 11 rows containing missing values (geom_point).</code></pre>
 </div>
@@ -545,22 +518,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="133-themes_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
-<section id="further-reading" class="level2" data-number="32.6">
-<h2 data-number="32.6" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">32.6</span> Further reading</h2>
+</section><section id="further-reading" class="level2" data-number="32.6"><h2 data-number="32.6" class="anchored" data-anchor-id="further-reading">
+<span class="header-section-number">32.6</span> Further reading</h2>
 <ul>
-<li><a href="https://ggplot2.tidyverse.org/reference/theme.html">ggplot tidyverse documentation</a> - like the <code>theme</code> help page, but shows the results of the examples</li>
-<li>Documentation for <a href="https://github.com/wilkelab/ggtext">ggtext</a></li>
+<li>
+<a href="https://ggplot2.tidyverse.org/reference/theme.html">ggplot tidyverse documentation</a> - like the <code>theme</code> help page, but shows the results of the examples</li>
+<li>Documentation for <a href="https://github.com/wilkelab/ggtext">ggtext</a>
+</li>
 </ul>
 <div class="cell">
 
 </div>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -656,9 +627,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="../lessons/201-colour.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Using colour well</span></span>
       </a>          

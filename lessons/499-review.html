@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.37">
-
+<meta name="generator" content="quarto-1.0.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>Data Visualization notes - R Review</title>
 <style>
 code{white-space: pre-wrap;}
@@ -16,7 +13,6 @@ div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 </style>
-
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
@@ -35,8 +31,7 @@ ul.task-list{list-style: none;}
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -54,40 +49,25 @@ ul.task-list{list-style: none;}
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit"
   }
-}</script>
-
-<script src="../site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<link href="../site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="../site_libs/datatables-binding-0.23/datatables.js"></script>
-<script src="../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="../site_libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+}</script><script src="../site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="../site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="../site_libs/datatables-binding-0.22/datatables.js"></script><script src="../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="../site_libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="../site_libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="../site_libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
-<link href="../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="../site_libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
 <script src="../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
-
-
 </head>
-
 <body class="nav-sidebar floating">
 
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title">R Review</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -99,7 +79,7 @@ ul.task-list{list-style: none;}
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome</a>
   </div>
@@ -305,17 +285,12 @@ ul.task-list{list-style: none;}
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title d-none d-lg-block">R Review</h1>
 </div>
 
@@ -328,25 +303,22 @@ ul.task-list{list-style: none;}
   </div>
   
 
-</header>
-
-<p>This page summarizes the most important R functions, datasets, and packages described in the course. You can sort the following table by object (function or dataset), lesson, or package. You can also search the table by function name or description. There is a simple example of how to use most functions. Take a look at the help pages for more examples.</p>
+</header><p>This page summarizes the most important R functions, datasets, and packages described in the course. You can sort the following table by object (function or dataset), lesson, or package. You can also search the table by function name or description. There is a simple example of how to use most functions. Take a look at the help pages for more examples.</p>
 <p>This table will be updated and expanded throughout the term.</p>
 <p>I strongly encourage you to make your own notes about functions you learn to use.</p>
 <div class="cell page-columns page-full">
 <div class="cell-output-display column-page">
 
-<div id="htmlwidget-3e6967fa5d234771b73d" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3e6967fa5d234771b73d">{"x":{"filter":"none","vertical":false,"data":[["diamonds","ggplot","%&gt;%","|&gt;","+","aes","geom_histogram","scale_x_log10","mutate","filter","group_by","summarize","mtcars","head","select","arrange","slice_sample","distinct","mean","median","min","max","n","count","ungroup","read_csv","read_excel","skim","iris","penguins","glimpse","facet_grid","facet_wrap","scale_color_viridis_d","geom_jitter","kable","kable_styling","rename","pivot_wider","pivot_longer","is.na","str_remove","str_replace","separate","unite","lm","summary","geom_smooth"],["Price and description of 54,000 diamonds","The main function to start creating a plot.","The pipe takes the output of the expression on the left and provides it as the first argument to the function on the right.","The pipe takes the output of the expression on the left and provides it as the first argument to the function on the right.","Adds a new feature to a plot. (Can also be used to add numbers!)","Associates a column of a data frame with an aesthetic feature of a graph (x or y axis, colour, shape)","Makes a histogram","Transforms the x-axis by computing logarithms","Add a new column to a table","Subset a table by including only rows matching a condition","Group the rows of a table by one or more columns, in preparation for the next calculation","Summarize a table using functions to condense many rows into one","Data on cars from Motor Trend magazine","Show only the first few rows of a table","Select and reorder columns from a table","Order the rows of a table","Randomly select some rows from a table","Remove duplicate rows from a table","Compute the mean of some numbers","Compute the median of some numbers","Compute the minimum of some numbers","Compute the maximum of some numbers","Count the number of rows in a table within summarize()","Count the number of rows in a table, with grouping variables","Stop grouping rows in a table","Read data from a comma separated values formatted file into a table","Read data from a sheet in an Excel format workbook","Summarize variables in a dataset","Size data for 3 species of iris, 50 observations each","Size, sex, and location data for 3 species of penguin","Shows a concise overview of part of a table","Arrange facets of a plot in a matrix","Arrange facets like a block of text","The viridis colour scale for discrete variables","Randomly shifts points; useful when they would all appear on top of each other","Formats a table nicely","Additional formatting of kable tables","Renames a column in a table","Reduce the number of rows in a table by making extra columns","Stack rows of a table by combining columns","Tests for missing values, returning a vector of TRUE or FALSE","Removes text from a string","Replaces text with new text","Splits a column in a table into two or more columns","Combines two or more columns in a table together","Make a linear model (regression line)","Summarize a model or data table","Add a smoothing line to a scatter plot"],[null,"ggplot(diamonds)","9 %&gt;% sqrt  == 3","9 |&gt; sqrt()  == 3","ggplot(diamonds) + geom_histogram(aes(price))","ggplot(diamonds) + geom_histogram(aes( y = price))","ggplot(diamonds) + geom_histogram(aes( x = price))",null,"mtcars |&gt; mutate(disp_cyl = disp/cyl)","mtcars |&gt; filter(cyl == 6)","mtcars |&gt; group_by(cyl)","mtcars |&gt; group_by(cyl) |&gt; summarize(avg_mpg = mean(mpg))",null,"diamonds |&gt; head(10)","mtcars |&gt; select(mpg, cyl, wt)","mtcars |&gt; arrange(mpg)","diamonds |&gt; select_sample(20)","diamonds |&gt; select(cut, clarity, color) |&gt; distinct()","diamonds |&gt; summarize(mean_price = mean(price))","diamonds |&gt; summarize(median_price = median(price))","diamonds |&gt; summarize(min_price = min(price))","diamonds |&gt; summarize(max_price = max(price))","diamonds |&gt; summarize(n = n() )","diamonds |&gt; count(cut, clarity)","diamonds |&gt; group(cut) |&gt; ungroup()",null,null,"skim(diamonds)",null,null,"glimpse(pengunis)",null,null,null,null,"penguins |&gt; kable()","penguins |&gt; kable() |&gt; kable_styling()","rename(penguins, spp = species)",null,null,"is.na(c(1, 2, NA, 4))","str_remove(\"Andrew Irwin\", \"ndrew\")","str_replace(\"Dogs are great\", \"Dog\", \"Cat\")","mpg |&gt; separate(trans, sep = \"\\\\(\", into = c(\"trans_type\", \"trans_gears\"))","unite(penguins, \"sp-is\", species, island)","lm(price ~ carat, data = diamonds)",null,null],[8,8,8,8,8,8,8,8,9,9,9,9,null,9,9,9,9,9,9,9,9,9,9,9,9,11,11,11,null,13,10,10,10,10,10,13,13,13,12,12,12,12,12,12,12,16,16,16],["ggplot2","ggplot2","magrittr",null,"ggplot2","ggplot2","ggplot2","ggplot2","dplyr","dplyr","dplyr","dplyr","datasets","dplyr","dplyr","dplyr","dplyr","dplyr","base","base","base","base","dplyr","dplyr","dplyr","readr","readxl","skimr","base","palmerpenguins","dplyr","ggplot2","ggplot2",null,"ggplot2","knitr","kableExtra","dplyr","tidyr","tidyr","base","stringr","stringr","tidyr","tidyr","base","base","ggplot2"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Object<\/th>\n      <th>Description<\/th>\n      <th>Example<\/th>\n      <th>Lesson<\/th>\n      <th>Package<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":25,"columnDefs":[{"className":"dt-right","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5d53323e1211f8bdca7b" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5d53323e1211f8bdca7b">{"x":{"filter":"none","vertical":false,"data":[["%&gt;%","+","|&gt;","aes","diamonds","geom_histogram","ggplot","scale_x_log10","arrange","count","distinct","filter","group_by","head","max","mean","median","min","mutate","n","select","slice_sample","summarize","ungroup","facet_grid","facet_wrap","geom_jitter","glimpse","scale_color_viridis_d","read_csv","read_excel","skim","is.na","pivot_longer","pivot_wider","separate","str_remove","str_replace","unite","kable","kable_styling","penguins","rename","geom_smooth","lm","summary","iris","mtcars"],["The pipe takes the output of the expression on the left and provides it as the first argument to the function on the right.","Adds a new feature to a plot. (Can also be used to add numbers!)","The pipe takes the output of the expression on the left and provides it as the first argument to the function on the right.","Associates a column of a data frame with an aesthetic feature of a graph (x or y axis, colour, shape)","Price and description of 54,000 diamonds","Makes a histogram","The main function to start creating a plot.","Transforms the x-axis by computing logarithms","Order the rows of a table","Count the number of rows in a table, with grouping variables","Remove duplicate rows from a table","Subset a table by including only rows matching a condition","Group the rows of a table by one or more columns, in preparation for the next calculation","Show only the first few rows of a table","Compute the maximum of some numbers","Compute the mean of some numbers","Compute the median of some numbers","Compute the minimum of some numbers","Add a new column to a table","Count the number of rows in a table within summarize()","Select and reorder columns from a table","Randomly select some rows from a table","Summarize a table using functions to condense many rows into one","Stop grouping rows in a table","Arrange facets of a plot in a matrix","Arrange facets like a block of text","Randomly shifts points; useful when they would all appear on top of each other","Shows a concise overview of part of a table","The viridis colour scale for discrete variables","Read data from a comma separated values formatted file into a table","Read data from a sheet in an Excel format workbook","Summarize variables in a dataset","Tests for missing values, returning a vector of TRUE or FALSE","Stack rows of a table by combining columns","Reduce the number of rows in a table by making extra columns","Splits a column in a table into two or more columns","Removes text from a string","Replaces text with new text","Combines two or more columns in a table together","Formats a table nicely","Additional formatting of kable tables","Size, sex, and location data for 3 species of penguin","Renames a column in a table","Add a smoothing line to a scatter plot","Make a linear model (regression line)","Summarize a model or data table","Size data for 3 species of iris, 50 observations each","Data on cars from Motor Trend magazine"],["9 %&gt;% sqrt  == 3","ggplot(diamonds) + geom_histogram(aes(price))","9 |&gt; sqrt()  == 3","ggplot(diamonds) + geom_histogram(aes( y = price))",null,"ggplot(diamonds) + geom_histogram(aes( x = price))","ggplot(diamonds)",null,"mtcars |&gt; arrange(mpg)","diamonds |&gt; count(cut, clarity)","diamonds |&gt; select(cut, clarity, color) |&gt; distinct()","mtcars |&gt; filter(cyl == 6)","mtcars |&gt; group_by(cyl)","diamonds |&gt; head(10)","diamonds |&gt; summarize(max_price = max(price))","diamonds |&gt; summarize(mean_price = mean(price))","diamonds |&gt; summarize(median_price = median(price))","diamonds |&gt; summarize(min_price = min(price))","mtcars |&gt; mutate(disp_cyl = disp/cyl)","diamonds |&gt; summarize(n = n() )","mtcars |&gt; select(mpg, cyl, wt)","diamonds |&gt; select_sample(20)","mtcars |&gt; group_by(cyl) |&gt; summarize(avg_mpg = mean(mpg))","diamonds |&gt; group(cut) |&gt; ungroup()",null,null,null,"glimpse(pengunis)",null,null,null,"skim(diamonds)","is.na(c(1, 2, NA, 4))",null,null,"mpg |&gt; separate(trans, sep = \"\\\\(\", into = c(\"trans_type\", \"trans_gears\"))","str_remove(\"Andrew Irwin\", \"ndrew\")","str_replace(\"Dogs are great\", \"Dog\", \"Cat\")","unite(penguins, \"sp-is\", species, island)","penguins |&gt; kable()","penguins |&gt; kable() |&gt; kable_styling()",null,"rename(penguins, spp = species)",null,"lm(price ~ carat, data = diamonds)",null,null,null],[8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,10,10,10,10,11,11,11,12,12,12,12,12,12,12,13,13,13,13,16,16,16,null,null],["magrittr","ggplot2",null,"ggplot2","ggplot2","ggplot2","ggplot2","ggplot2","dplyr","dplyr","dplyr","dplyr","dplyr","dplyr","base","base","base","base","dplyr","dplyr","dplyr","dplyr","dplyr","dplyr","ggplot2","ggplot2","ggplot2","dplyr",null,"readr","readxl","skimr","base","tidyr","tidyr","tidyr","stringr","stringr","tidyr","knitr","kableExtra","palmerpenguins","dplyr","ggplot2","base","base","base","datasets"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Object<\/th>\n      <th>Description<\/th>\n      <th>Example<\/th>\n      <th>Lesson<\/th>\n      <th>Package<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":25,"columnDefs":[{"className":"dt-right","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>Note that the <code>tidyverse</code> package includes the following packages:</p>
-<p>broom, cli, crayon, dbplyr, dplyr, dtplyr, forcats, ggplot2, googledrive, googlesheets4, haven, hms, httr, jsonlite, lubridate, magrittr, modelr, pillar, purrr, readr, readxl, reprex, rlang, rstudioapi, rvest, stringr, tibble, tidyr, xml2, tidyverse</p>
+<p>broom, cli, crayon, dbplyr, dplyr, dtplyr, forcats, ggplot2, googledrive, googlesheets4, haven, hms, httr, jsonlite, lubridate, magrittr, modelr, pillar, purrr, readr, readxl, reprex, rlang, rstudioapi, rvest, stringr, tibble, tidyr, xml2</p>
 
 
 
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -442,9 +414,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="../lessons/134-reconstruction.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Reconstructing a visualization</span></span>
       </a>          

@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.37">
-
+<meta name="generator" content="quarto-1.0.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>Data Visualization notes - 34&nbsp; Reconstructing a visualization</title>
 <style>
 code{white-space: pre-wrap;}
@@ -36,7 +33,6 @@ div.csl-indent {
 }
 </style>
 
-
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -54,8 +50,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -74,29 +69,22 @@ div.csl-indent {
     "search-submit-button-title": "Submit"
   }
 }</script>
-
-
 </head>
-
 <body class="nav-sidebar floating slimcontent">
 
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Reconstructing a visualization</span></h1>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">
+<span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Reconstructing a visualization</span>
+</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -108,7 +96,7 @@ div.csl-indent {
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome</a>
   </div>
@@ -314,24 +302,20 @@ div.csl-indent {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Table of contents</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#goal" id="toc-goal" class="nav-link active" data-scroll-target="#goal"> <span class="header-section-number">34.1</span> Goal</a></li>
-  </ul>
-</nav>
+<li><a href="#goal" id="toc-goal" class="nav-link active" data-scroll-target="#goal"> <span class="header-section-number">34.1</span> Goal</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"> <span class="header-section-number">34.2</span> Exercise</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Reconstructing a visualization</span></h1>
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title d-none d-lg-block">
+<span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Reconstructing a visualization</span>
+</h1>
 </div>
 
 
@@ -343,21 +327,21 @@ div.csl-indent {
   </div>
   
 
-</header>
-
-<section id="goal" class="level2 page-columns page-full" data-number="34.1">
-<h2 data-number="34.1" class="anchored" data-anchor-id="goal"><span class="header-section-number">34.1</span> Goal</h2>
+</header><section id="goal" class="level2 page-columns page-full" data-number="34.1"><h2 data-number="34.1" class="anchored" data-anchor-id="goal">
+<span class="header-section-number">34.1</span> Goal</h2>
 <p>In this lesson we will find a visualization and try to reconstruct it using R.</p>
 <p>A reasonable challenge is to redraw a version of the <a href="https://www.google.ca/books/edition/Stats/muxnswEACAAJ">textbook</a> cover for STAT 1060 <span class="citation" data-cites="DeVeaux">(<a href="../references.html#ref-DeVeaux" role="doc-biblioref">De Veaux et al. 2018</a>)</span> using the <code>gapminder</code> data.</p>
 <div id="fig-book-cover" class="quarto-figure quarto-figure-center anchored page-columns page-full">
-<figure class="figure page-columns page-full">
-<p><img src="static/cover-stats-data-models.JPG" class="img-fluid figure-img"></p>
+<figure class="figure page-columns page-full"><p><img src="static/cover-stats-data-models.JPG" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption margin-caption">Figure 34.1: Cover of the textbook Stats: Data and Models</figcaption><p></p>
 </figure>
 </div>
 <div class="cell">
 
 </div>
+</section><section id="exercise" class="level2" data-number="34.2"><h2 data-number="34.2" class="anchored" data-anchor-id="exercise">
+<span class="header-section-number">34.2</span> Exercise</h2>
+<p>Reconstruct the WeatherSpark visualization for a location in Canada using Environment Canada weather data.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
@@ -365,10 +349,7 @@ div.csl-indent {
 De Veaux, Richard D., Paul F. Velleman, David E. Bock, Augustin M. Vukov, and Augustine C. M. Wong. 2018. <em>Stats: Data and Models</em>. Third Canadian Edition. Pearson Education Canada.
 </div>
 </div>
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -464,9 +445,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="../lessons/130-graphics-output.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Graphics formatting</span></span>
       </a>          
