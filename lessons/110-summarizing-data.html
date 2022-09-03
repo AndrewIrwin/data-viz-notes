@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.0.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Data Visualization notes - 9&nbsp; Summarizing data</title>
 <style>
@@ -415,14 +415,15 @@ div.csl-indent {
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 12
-  carat cut    color clarity depth table price     x     y     z   box box_ratio
-  &lt;dbl&gt; &lt;ord&gt;  &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
-1  0.23 Ideal  E     SI2      61.5    55   326  3.95  3.98  2.43  38.2   0.00602
-2  0.21 Premi… E     SI1      59.8    61   326  3.89  3.84  2.31  34.5   0.00609
-3  0.23 Good   E     VS1      56.9    65   327  4.05  4.07  2.31  38.1   0.00604
-4  0.29 Premi… I     VS2      62.4    58   334  4.2   4.23  2.63  46.7   0.00621
-5  0.31 Good   J     SI2      63.3    58   335  4.34  4.35  2.75  51.9   0.00597
-6  0.24 Very … J     VVS2     62.8    57   336  3.94  3.96  2.48  38.7   0.00620</code></pre>
+  carat cut      color clarity depth table price     x     y     z   box box_r…¹
+  &lt;dbl&gt; &lt;ord&gt;    &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+1  0.23 Ideal    E     SI2      61.5    55   326  3.95  3.98  2.43  38.2 0.00602
+2  0.21 Premium  E     SI1      59.8    61   326  3.89  3.84  2.31  34.5 0.00609
+3  0.23 Good     E     VS1      56.9    65   327  4.05  4.07  2.31  38.1 0.00604
+4  0.29 Premium  I     VS2      62.4    58   334  4.2   4.23  2.63  46.7 0.00621
+5  0.31 Good     J     SI2      63.3    58   335  4.34  4.35  2.75  51.9 0.00597
+6  0.24 Very Go… J     VVS2     62.8    57   336  3.94  3.96  2.48  38.7 0.00620
+# … with abbreviated variable name ¹​box_ratio</code></pre>
 </div>
 </div>
 <p>This function adds two new columns to the data table, computing values for every row in the table. It doesn’t change any of the other columns. You can also modify an existing column, for example to change units from dollars to thousands of dollars or carats to grams, by using the name of an existing column on the left hand side of the equals sign.</p>
@@ -536,11 +537,11 @@ div.csl-indent {
 <pre><code># A tibble: 5 × 10
   carat cut     color clarity depth table price     x     y     z
   &lt;dbl&gt; &lt;ord&gt;   &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  0.41 Premium D     SI2      61.2    59   683  4.77  4.8   2.93
-2  1.01 Premium D     SI2      58      60  3604  6.58  6.53  3.8 
-3  1.15 Ideal   G     SI2      62.4    56  4877  6.7   6.74  4.19
-4  1.01 Good    F     SI1      63.3    58  4479  6.31  6.4   4.02
-5  1.35 Fair    I     SI2      66.5    57  4423  6.79  6.74  4.5 </code></pre>
+1  0.39 Ideal   E     VVS2     61.9    55  1034  4.7   4.74  2.92
+2  0.7  Ideal   F     SI1      61.1    57  2516  5.75  5.71  3.5 
+3  1.2  Premium H     SI1      62.8    56  4980  6.76  6.68  4.22
+4  0.53 Ideal   E     VS1      60.4    57  1772  5.27  5.26  3.18
+5  0.52 Ideal   D     VS2      62.3    54  1822  5.14  5.19  3.22</code></pre>
 </div>
 </div>
 <p>You can use <code>arrange</code> to sort the data by any number of columns before slicing or displaying the data.</p>
