@@ -535,13 +535,13 @@ div.csl-indent {
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu">slice_sample</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 10
-  carat cut     color clarity depth table price     x     y     z
-  &lt;dbl&gt; &lt;ord&gt;   &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  0.39 Ideal   E     VVS2     61.9    55  1034  4.7   4.74  2.92
-2  0.7  Ideal   F     SI1      61.1    57  2516  5.75  5.71  3.5 
-3  1.2  Premium H     SI1      62.8    56  4980  6.76  6.68  4.22
-4  0.53 Ideal   E     VS1      60.4    57  1772  5.27  5.26  3.18
-5  0.52 Ideal   D     VS2      62.3    54  1822  5.14  5.19  3.22</code></pre>
+  carat cut       color clarity depth table price     x     y     z
+  &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1  0.44 Ideal     G     VVS1     62.3    56  1202  4.85  4.87  3.03
+2  0.3  Very Good G     VVS1     62.4    57   789  4.27  4.29  2.67
+3  0.41 Ideal     F     VS2      62.6    57   863  4.76  4.79  2.99
+4  1.22 Very Good G     SI1      61.8    58  6656  6.82  6.88  4.23
+5  0.43 Premium   D     VS2      59.7    59   963  4.93  4.89  2.93</code></pre>
 </div>
 </div>
 <p>You can use <code>arrange</code> to sort the data by any number of columns before slicing or displaying the data.</p>
@@ -718,7 +718,7 @@ div.csl-indent {
 </section><section id="further-reading" class="level2" data-number="9.7"><h2 data-number="9.7" class="anchored" data-anchor-id="further-reading">
 <span class="header-section-number">9.7</span> Further reading</h2>
 <ul>
-<li>R4DS <span class="citation" data-cites="wickham2014r4ds">(<a href="../references.html#ref-wickham2014r4ds" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>. Chapter 5 on <a href="https://r4ds.had.co.nz/transform.html">Data transformations</a>
+<li>R4DS <span class="citation" data-cites="wickham2014r4ds">(<a href="../references.html#ref-wickham2014r4ds" role="doc-biblioref">Wickham, Çetinkaya-Rundel, and Grolemund 2023</a>)</span>. Chapter 5 on <a href="https://r4ds.had.co.nz/transform.html">Data transformations</a>
 </li>
 </ul>
 <div class="cell">
@@ -728,7 +728,7 @@ div.csl-indent {
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
 <div id="ref-wickham2014r4ds" class="csl-entry" role="doc-biblioentry">
-Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. "O’Reilly Media". <a href="https://r4ds.had.co.nz/">https://r4ds.had.co.nz/</a>.
+Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 2nd ed. "O’Reilly Media". <a href="https://r4ds.had.co.nz/">https://r4ds.had.co.nz/</a>.
 </div>
 </div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
