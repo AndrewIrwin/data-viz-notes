@@ -13,15 +13,31 @@ quarto publish gh-pages
 ## or R snippet (to be written)
 
 
-# incomplete and crappy, but it helps.
+# untested for completeness
+library(autoharp)
 getLessons <- function(directory = "lessons") {
   fl_qmd <- list.files(here::here(directory), ".Rmd", full.names=TRUE)
-  lessons <- lapply(fl_qmd, readLines) |> unlist()
-  pkgs0 <- sort(unique(lessons[grep("library\\(", lessons)]))
-  needed <- str_remove(pkgs0, "^library") |> str_remove_all("\\(|\\)") |> str_squish()
+  lessons <- lapply(fl_qmd, get_libraries) |> unlist() 
   have <- installed.packages()[, "Package"]
-  setdiff(needed, have)
+  setdiff(lessons, have)
+  lessons |> unique() |> sort()
 }
 
-install.packages(c("vegan", "tidymodels", "statebins", "sf", "dlookr", "equatiomatic", "fields", "gapminder", "geojsonio", 
-  "caret", "leaflet", "ggvegan"))
+# install.packages(getLessons())
+
+# install.packages(c("vegan", "tidymodels", "statebins", "sf", "dlookr", "equatiomatic", "fields", "gapminder", "geojsonio", "caret", "leaflet", "ggvegan"))
+
+## count words
+
+# extract_non_chunks("lessons/101-introduction.Rmd") |> paste(collapse= " ") |> text_stats_chr()
+
+getWordCount <- function(directory = "lessons") {
+  fl_qmd <- list.files(here::here(directory), ".Rmd", full.names=TRUE)
+  map_dfr(fl_qmd, function(fn) {
+       extract_non_chunks(fn) |> paste(collapse= " ") |> 
+       text_stats_fn_() |> as_tibble() |>
+       mutate(source = fn)
+  })
+}
+# getWordCount() |> summarize(sumwords = sum(n_words_korp))
+# 49916 words (korp) as at 2022-09-03
