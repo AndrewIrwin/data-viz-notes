@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.37">
+<meta name="generator" content="quarto-1.0.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Data Visualization notes - 4&nbsp; Look at data</title>
 <style>
@@ -393,13 +393,21 @@ div.csl-indent {
 <span class="header-section-number">4.5</span> Perception guidelines and cautions</h2>
 <p>Many features of a visualization can make it harder to interpret than you, as a designer, intend. Once you know the message of a graph, it may be difficult to see problems with visualizations you create, since you know the intended message. So you must keep an eye out for unintended messages and difficult to decode graphs.</p>
 <p>Stacked bar charts (<a href="https://socviz.co/lookatdata.html#what-makes-bad-figures-bad">Healy</a> Figure 1.11) make some comparisons across groups difficult because the baseline of one colour does not line up to the corresponding region from one bar to the next.</p>
-<p><strong>FIX ME ADD GRAPH</strong></p>
+<div id="fig-stacked-bar" class="quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="figure page-columns page-full"><p><img src="https://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-preception-data-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure 4.3: Healy, Fig. 1.11. A stacked bar chart, where comparisons across groups is difficult.</figcaption><p></p>
+</figure>
+</div>
 <p>The aspect ratio (<a href="https://socviz.co/lookatdata.html#what-makes-bad-figures-bad">Healy</a> Figure 1.12) can make a small change look large, and the reverse by exploiting our perceptions.</p>
-<p><strong>FIX ME ADD GRAPH</strong></p>
-<p>The checkerboard illusion (<a href="https://socviz.co/lookatdata.html#perception-and-data-visualization">Healy</a> Figure 1.14) is an example of how our brains process brightness in the context of neighbouring parts of the image. The squares labeled A and B are the same colour, represented by the same underlying data, but look completely different. Colour or grayscale brightness, as a result, is not a good way to indicate a quantity to be compared across regions of a plot. (By contrast, a small number of colours can be very effective at distinguishing a small number of categories.)</p>
+<div id="fig-aspect-ratio" class="quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="figure page-columns page-full"><p><img src="https://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-perception-curves-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure 4.4: Healy, Fig. 1.12. A demonstration of the effect of aspect ratio on the appearance of rate of change.</figcaption><p></p>
+</figure>
+</div>
+<p>The checkerboard illusion (<a href="https://socviz.co/lookatdata.html#perception-and-data-visualization">Healy</a> Figure 1.14) is an example of how our brains process brightness in the context of neighbouring parts of the image. The squares labeled A and B are the same colour, represented by the same underlying data, but look completely different. Colour or greyscale brightness, as a result, is not always a reliable way to indicate a quantity to be compared across regions of a plot. (By contrast, a small number of colours can be very effective at distinguishing a small number of categories.)</p>
 <div id="fig-checker-shadow" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full"><p><img src="static/checker-shadow-illusion.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption margin-caption">Figure 4.3: The checker shadow illusion. <a href="https://en.wikipedia.org/wiki/Checker_shadow_illusion">Wikipedia</a>.</figcaption><p></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure 4.5: The checker shadow illusion. <a href="https://en.wikipedia.org/wiki/Checker_shadow_illusion">Wikipedia</a>.</figcaption><p></p>
 </figure>
 </div>
 </section><section id="decoding-graphs" class="level2" data-number="4.6"><h2 data-number="4.6" class="anchored" data-anchor-id="decoding-graphs">
@@ -409,12 +417,12 @@ div.csl-indent {
 <p>The options for categorical data are somewhat simpler: position is still useful, then colour hue, and shape (Figure 1.25). The number of categories should be kept small, particularly for colour and shape, or your message will likely be lost in the detail of the visualization.</p>
 </section><section id="where-to-put-0" class="level2 page-columns page-full" data-number="4.7"><h2 data-number="4.7" class="anchored" data-anchor-id="where-to-put-0">
 <span class="header-section-number">4.7</span> Where to put 0?</h2>
-<p>A common rule for quantitative displays using position is that you should always include 0 on your axis. The reason is simple, we often want to make comparisons of absolute differences and relative differences. Ratios of two quantities read from distances will only be sensible if the distance from 0 can be seen. Rules which are absolute and always true are rare. For the data shown below, which visualization is better? What if dots were used on the left and bars on the right?</p>
+<p>A common rule for quantitative displays using position is that you should always include 0 on your axis. The reason is simple: we often want to make comparisons of absolute differences and relative differences. Ratios of two quantities read from distances will only be sensible if the distance from 0 can be seen. Rules which are absolute and always true are rare. For the data shown below, which visualization is better? What if dots were used on the left and bars on the right?</p>
 <div class="cell page-columns page-full">
 <div class="cell-output-display page-columns page-full">
 <div id="fig-bar-dot-simple" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full"><p><img src="104-look-at-data_files/figure-html/fig-bar-dot-simple-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption margin-caption">Figure 4.4: A bar chart and dot chart version of the same data. The extent of the horizontal axis differs on the two panels.</figcaption><p></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure 4.6: A bar chart and dot chart version of the same data. The extent of the horizontal axis differs on the two panels.</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -426,7 +434,7 @@ div.csl-indent {
 <div class="cell-output-display page-columns page-full">
 <div id="fig-points-lines" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full"><p><img src="static/points-lines.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<p></p><figcaption class="figure-caption margin-caption">Figure 4.5: Points or lines?</figcaption><p></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure 4.7: Points or lines?</figcaption><p></p>
 </figure>
 </div>
 </div>
