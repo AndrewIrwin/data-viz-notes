@@ -96,8 +96,7 @@ In the Rstudio "terminal" window (not the "console" window), type the following,
 ## Set up a github account
 
 -   Create a free account at [github.com](https://github.com/join)
--   Tell me your github account name by filling in the brightspace survey for Task 1.
--   In a day or less you will get an invitation by email to join the course on github. Accept the invitation. If you don't see the invitation, check your junk mail. If you still can't find the invitation, please email me to let me know.
+-   Tell me your github account name by filling in the brightspace survey for Task 2.
 -   You need to tell Rstudio how to prove to github that you are allowed to use your own account. Most sites on the internet use passwords for this authentication process, but GitHub has found this to be insecure and a bit inconvenient. Instead we will use a Personal Access Token (PAT). Here are the steps to follow:
     - In the R console, type `usethis::create_github_token()`. This will open up a web browser. You will be asked to login and perhaps use two factor authentication. Eventually you will get a page that looks like the figure below. Enter a note to describe the token and pick an expiry date (my suggestions are shown in the screenshot.) Make sure you have at least the boxes shown below checked (repo, user, workflow). Click the green generate token at the bottom of the screen.
     - Copy the random numbers and letters that make up your token by clicking the two overlapping blue boxes (or highlight and select copy from the menu).
@@ -162,12 +161,6 @@ Repositories on github can be public (so anyone can see them) or private (so tha
 
 Congratulations! You are a git and github novice now.
 
-## Your first task from github
-
-In the *task* for this lesson you'll edit `task-06.Rmd` and follow the instructions in that file. Then you will stage, commit, and push your changes to github.
-
-Please watch the Task 4 [video](https://dal.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7cb26d66-a26e-4b24-89b1-acaf01321690) for step-by-step instructions. (The [slides](slides/06-demo-assignment-github.html) are also available.)
-
 ## Creating your own repositories
 
 For all coursework you will use repositories I have created. That is the workflow described above. If you want to create your own repositories for other work and learning, here are some steps to get you started.
@@ -231,6 +224,7 @@ Repositories on github can be public (so anyone can see them) or private (so tha
 ### Make and push another change
 
 You're all done the setup now. Now we will practice the normal day-to-day work on an R project.
+These are the same steps you would perform with a repository cloned from github (see the previous section).
 
 -   Make a change to your Rmd file. Perhaps change the title or add your middle initial.
 -   Save the file.
@@ -238,7 +232,6 @@ You're all done the setup now. Now we will practice the normal day-to-day work o
 -   Click the green up arrow in the Git tab to "push" your new changes to github.
 -   Reload the github window in your web browser. The start of your commit message should appear next to the files you changed.
 
-Congratulations! You are a git and github novice now.
 
 ## Clean up
 

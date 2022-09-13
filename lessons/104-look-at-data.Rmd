@@ -61,13 +61,13 @@ Many features of a visualization can make it harder to interpret than you, as a 
 
 Stacked bar charts ([Healy](https://socviz.co/lookatdata.html#what-makes-bad-figures-bad) Figure 1.11) make some comparisons across groups difficult because the baseline of one colour does not line up to the corresponding region from one bar to the next.
 
-**FIX ME ADD GRAPH**
+![Healy, Fig. 1.11. A stacked bar chart, where comparisons across groups is difficult.](https://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-preception-data-1.png){#fig-stacked-bar}
 
 The aspect ratio ([Healy](https://socviz.co/lookatdata.html#what-makes-bad-figures-bad) Figure 1.12) can make a small change look large, and the reverse by exploiting our perceptions.
 
-**FIX ME ADD GRAPH**
+![Healy, Fig. 1.12. A demonstration of the effect of aspect ratio on the appearance of rate of change.](https://socviz.co/dataviz-pdfl_files/figure-html4/ch-01-perception-curves-1.png){#fig-aspect-ratio}
 
-The checkerboard illusion ([Healy](https://socviz.co/lookatdata.html#perception-and-data-visualization) Figure 1.14) is an example of how our brains process brightness in the context of neighbouring parts of the image. The squares labeled A and B are the same colour, represented by the same underlying data, but look completely different. Colour or grayscale brightness, as a result, is not a good way to indicate a quantity to be compared across regions of a plot. (By contrast, a small number of colours can be very effective at distinguishing a small number of categories.)
+The checkerboard illusion ([Healy](https://socviz.co/lookatdata.html#perception-and-data-visualization) Figure 1.14) is an example of how our brains process brightness in the context of neighbouring parts of the image. The squares labeled A and B are the same colour, represented by the same underlying data, but look completely different. Colour or greyscale brightness, as a result, is not always a reliable way to indicate a quantity to be compared across regions of a plot. (By contrast, a small number of colours can be very effective at distinguishing a small number of categories.)
 
 ![The checker shadow illusion. [Wikipedia](https://en.wikipedia.org/wiki/Checker_shadow_illusion).](static/checker-shadow-illusion.png){#fig-checker-shadow}
 
@@ -82,7 +82,7 @@ The options for categorical data are somewhat simpler: position is still useful,
 
 ## Where to put 0?
 
-A common rule for quantitative displays using position is that you should always include 0 on your axis. The reason is simple, we often want to make comparisons of absolute differences and relative differences. Ratios of two quantities read from distances will only be sensible if the distance from 0 can be seen. Rules which are absolute and always true are rare. For the data shown below, which visualization is better? What if dots were used on the left and bars on the right?
+A common rule for quantitative displays using position is that you should always include 0 on your axis. The reason is simple: we often want to make comparisons of absolute differences and relative differences. Ratios of two quantities read from distances will only be sensible if the distance from 0 can be seen. Rules which are absolute and always true are rare. For the data shown below, which visualization is better? What if dots were used on the left and bars on the right?
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.height = 3}
 #| fig-cap: "A bar chart and dot chart version of the same data. The extent of the horizontal axis differs on the two panels."
