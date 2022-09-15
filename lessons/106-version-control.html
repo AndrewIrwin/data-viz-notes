@@ -297,9 +297,9 @@ ul.task-list{list-style: none;}
   <li>
 <a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"> <span class="header-section-number">6.9</span> Setup</a>
   <ul class="collapse">
-<li><a href="#on-rstudio.cloud" id="toc-on-rstudio.cloud" class="nav-link" data-scroll-target="#on-rstudio.cloud"> <span class="header-section-number">6.9.1</span> On rstudio.cloud</a></li>
-  <li><a href="#on-a-macintosh-osx-computer" id="toc-on-a-macintosh-osx-computer" class="nav-link" data-scroll-target="#on-a-macintosh-osx-computer"> <span class="header-section-number">6.9.2</span> On a Macintosh (OSX) computer</a></li>
-  <li><a href="#on-a-windows-computer" id="toc-on-a-windows-computer" class="nav-link" data-scroll-target="#on-a-windows-computer"> <span class="header-section-number">6.9.3</span> On a Windows computer</a></li>
+<li><a href="#on-a-macintosh-osx-computer" id="toc-on-a-macintosh-osx-computer" class="nav-link" data-scroll-target="#on-a-macintosh-osx-computer"> <span class="header-section-number">6.9.1</span> On a Macintosh (OSX) computer</a></li>
+  <li><a href="#on-a-windows-computer" id="toc-on-a-windows-computer" class="nav-link" data-scroll-target="#on-a-windows-computer"> <span class="header-section-number">6.9.2</span> On a Windows computer</a></li>
+  <li><a href="#on-rstudio.cloud" id="toc-on-rstudio.cloud" class="nav-link" data-scroll-target="#on-rstudio.cloud"> <span class="header-section-number">6.9.3</span> On rstudio.cloud</a></li>
   </ul>
 </li>
   <li><a href="#tell-git-your-name-and-email-address" id="toc-tell-git-your-name-and-email-address" class="nav-link" data-scroll-target="#tell-git-your-name-and-email-address"> <span class="header-section-number">6.10</span> Tell git your name and email address</a></li>
@@ -347,7 +347,7 @@ ul.task-list{list-style: none;}
 <p>In this lesson I will explain what version control is and why we use it. I will also demonstrate how we will use version control with Rstudio and github in this course for tasks, assignments, and the term project.</p>
 </section><section id="introduction" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="introduction">
 <span class="header-section-number">6.2</span> Introduction</h2>
-<p><a href="https://en.wikipedia.org/wiki/Version_control">Version control</a> software is used to manage the process of creating software. It is commonly used to track changes, manage the revision process of correcting errors and adding new features, track the history of a project through different versions, synchronize contributions from many different people, and facilitate the distribution of software to a broad audience. Version control software is most commonly applied to the production of complex projects like software, but it can be used for text documents, data, and many other applications.</p>
+<p><a href="https://en.wikipedia.org/wiki/Version_control">Version control</a> software is used to manage the process of creating software. It is commonly used to track changes, manage the revision process of correcting errors and adding new features, track the history of a project through different versions, synchronize contributions from many different people, and facilitate the distribution of software to a broad audience. Version control software is most commonly applied to the production of complex projects like software, but it can be used for text documents, data, web pages, and other applications.</p>
 </section><section id="what-software-is-used-for-version-control" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="what-software-is-used-for-version-control">
 <span class="header-section-number">6.3</span> What software is used for version control?</h2>
 <p>Version control software has a history dating back several decades, so there are <a href="https://en.wikipedia.org/wiki/Comparison_of_version-control_software">many different tools available</a>. We will be using one of the most popular packages, known as <a href="https://en.wikipedia.org/wiki/Git">git</a> (<a href="https://git-scm.com/">homepage</a>). Git keeps the entire history of a project on your own computer and does not require any central repository. Since version control software is often used to coordinate the work of many authors and to distribute the product, central repositories such as <a href="https://en.wikipedia.org/wiki/GitHub">GitHub</a> (<a href="https://github.com/">homepage</a>) have become very popular, to the point that some people see them as an integrated set of tools. Other popular version control software packages include <a href="https://en.wikipedia.org/wiki/Mercurial">Mercurial</a> and <a href="https://en.wikipedia.org/wiki/Apache_Subversion">Subversion</a>. There are several alternatives to GitHub such as <a href="https://en.wikipedia.org/wiki/Bitbucket">bitbucket</a>, <a href="https://en.wikipedia.org/wiki/GitLab">gitlab</a> and <a href="https://en.wikipedia.org/wiki/Comparison_of_source-code-hosting_facilities">more</a>.</p>
@@ -359,13 +359,13 @@ ul.task-list{list-style: none;}
 <p>In this course we will integrate just enough use of version control to help you see how it can be helpful and to get you past the uncomfortable stage of knowing what version control is without knowing the basics of how to use it. You will be fluent beginner users of the git model of version control by the end of the course.</p>
 </section><section id="how-will-we-use-version-control" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="how-will-we-use-version-control">
 <span class="header-section-number">6.5</span> How will we use version control?</h2>
-<p>Course work and evaluation from this lesson onwart in the course will require you to use git and github. As part of your final project, you will practice using them as tools for collaboration. This course will emphasize the most basic uses of git and give you an opportunity to practice core elements of using git.</p>
+<p>Course work and evaluation from this lesson onward in the course will require you to use git and github. As part of your final project, you will practice using them as tools for collaboration. This course will emphasize the most basic uses of git and give you an opportunity to practice core elements of using git.</p>
 </section><section id="introduction-to-git" class="level2" data-number="6.6"><h2 data-number="6.6" class="anchored" data-anchor-id="introduction-to-git">
 <span class="header-section-number">6.6</span> Introduction to git</h2>
 <p>Git organizes data in a <em>repository</em>, commonly called a <em>repo</em>. The repo contains a copy of all the files you ask git to track and it tracks all changes you make to the files. One you create a repository you must <em>stage</em> or add files to the repository. Staging is a declaration that the current version of a file is the one you want to added to the repository. Each file must be staged as a separate step. (In Rstudio this just means checking a box.) Once you have staged all the files you want, you <em>commit</em> them to the repository. This updates the repository, moving files from the staged area. Complete copies of new files are stored, but if a file has been changed, only the differences between the old and new versions are retained. All of these changes happen on your own computer, in a sub-folder called <code>.git</code> used by git to keep track of the repository. If you are using a service like github you can then <em>push</em> your changes to the <em>remote</em> location so that they can easily be obtained by others.</p>
 </section><section id="using-git-with-rstudio" class="level2" data-number="6.7"><h2 data-number="6.7" class="anchored" data-anchor-id="using-git-with-rstudio">
 <span class="header-section-number">6.7</span> Using git with Rstudio</h2>
-<p>Here are the most important steps for using git with Rstudio. It looks like a lot of steps, because I’ve broken down each task into simple steps. In practice, once you are used to the process, it’s all quite simple. I’ve prepared a video walkthrough (Brightspace, link to come) of each step that you can follow along with.</p>
+<p>Here are the most important steps for using git with Rstudio. It looks like a lot of steps, because I’ve broken down each task into simple steps. In practice, once you are used to the process, it’s all quite simple.</p>
 <ul>
 <li>Check to be sure git is working on your computer</li>
 <li>Create a new Rstudio project in a new folder and enable version control</li>
@@ -388,33 +388,33 @@ ul.task-list{list-style: none;}
 </ul></section><section id="setup" class="level2" data-number="6.9"><h2 data-number="6.9" class="anchored" data-anchor-id="setup">
 <span class="header-section-number">6.9</span> Setup</h2>
 <p>You should have already done this step as part of an earlier lesson. The instructions are repeated below in case you missed the step or something went wrong.</p>
-<section id="on-rstudio.cloud" class="level3" data-number="6.9.1"><h3 data-number="6.9.1" class="anchored" data-anchor-id="on-rstudio.cloud">
-<span class="header-section-number">6.9.1</span> On rstudio.cloud</h3>
-<p>Git is already installed on rstudio.cloud. There are several ways to confirm this.</p>
-<ul>
-<li>You can click on the “terminal” tab and type <code>git</code>. You will see a help message instead of an error message.</li>
-<li>Under the menu item Tools &gt; Version Control &gt; Project setup, you will see git as a choice in the popup menu for “version control system” instead of “none”.</li>
-<li>Using File &gt; New Project &gt; Version Control &gt; Git to create a new project using a remote repository (such as this sample) will work.</li>
-</ul></section><section id="on-a-macintosh-osx-computer" class="level3" data-number="6.9.2"><h3 data-number="6.9.2" class="anchored" data-anchor-id="on-a-macintosh-osx-computer">
-<span class="header-section-number">6.9.2</span> On a Macintosh (OSX) computer</h3>
+<section id="on-a-macintosh-osx-computer" class="level3" data-number="6.9.1"><h3 data-number="6.9.1" class="anchored" data-anchor-id="on-a-macintosh-osx-computer">
+<span class="header-section-number">6.9.1</span> On a Macintosh (OSX) computer</h3>
 <p>To install git, open the Terminal tab within Rstudio (or using the application Terminal found in the Applications &gt; Utilities folder) and type</p>
 <ul>
 <li><code>xcode-select --install</code></li>
 </ul>
 <p>and wait a few minutes.</p>
 <p>Type <code>git</code> at the terminal to check that the installation worked.</p>
-</section><section id="on-a-windows-computer" class="level3" data-number="6.9.3"><h3 data-number="6.9.3" class="anchored" data-anchor-id="on-a-windows-computer">
-<span class="header-section-number">6.9.3</span> On a Windows computer</h3>
+</section><section id="on-a-windows-computer" class="level3" data-number="6.9.2"><h3 data-number="6.9.2" class="anchored" data-anchor-id="on-a-windows-computer">
+<span class="header-section-number">6.9.2</span> On a Windows computer</h3>
 <p>Download git from <a href="https://git-scm.com/">git-scm</a> using the <a href="https://git-scm.com/downloads">download</a> link. Run the installer, accepting all the default options in the many dialog boxes that appear.</p>
 <p>When you are done, type <code>git</code> in the Rstudio terminal. If you see some help text displayed instead of an error message you know git is installed.</p>
 <p><strong>Do not move on to the next steps until you have git working properly on your computer.</strong> If you can’t get it working on your own computer, use <a href="https://rstudio.cloud/project/1998812">rstudio.cloud</a> for now.</p>
-</section></section><section id="tell-git-your-name-and-email-address" class="level2" data-number="6.10"><h2 data-number="6.10" class="anchored" data-anchor-id="tell-git-your-name-and-email-address">
+</section><section id="on-rstudio.cloud" class="level3" data-number="6.9.3"><h3 data-number="6.9.3" class="anchored" data-anchor-id="on-rstudio.cloud">
+<span class="header-section-number">6.9.3</span> On rstudio.cloud</h3>
+<p>Git is already installed on rstudio.cloud. There are several ways to confirm this.</p>
+<ul>
+<li>You can click on the “terminal” tab and type <code>git</code>. You will see a help message instead of an error message.</li>
+<li>Under the menu item Tools &gt; Version Control &gt; Project setup, you will see git as a choice in the popup menu for “version control system” instead of “none”.</li>
+<li>Using File &gt; New Project &gt; Version Control &gt; Git to create a new project using a remote repository (such as this sample) will work.</li>
+</ul></section></section><section id="tell-git-your-name-and-email-address" class="level2" data-number="6.10"><h2 data-number="6.10" class="anchored" data-anchor-id="tell-git-your-name-and-email-address">
 <span class="header-section-number">6.10</span> Tell git your name and email address</h2>
 <p>When you use git to communicate with GitHub, git needs to know your name and email address to help other people know who made the changes you are sending.</p>
 <p>In the Rstudio “terminal” window (not the “console” window), type the following, placing your name and email in the spaces indicated:</p>
 <ul>
-<li>git config –global user.email “you@example.com”</li>
-<li>git config –global user.name “Your Name”</li>
+<li><code>git config --global user.email "you\@example.com"</code></li>
+<li><code>git config --global user.name "Your Name"</code></li>
 </ul></section><section id="set-up-a-github-account" class="level2 page-columns page-full" data-number="6.11"><h2 data-number="6.11" class="anchored" data-anchor-id="set-up-a-github-account">
 <span class="header-section-number">6.11</span> Set up a github account</h2>
 <ul>
@@ -423,6 +423,7 @@ ul.task-list{list-style: none;}
 <li>Tell me your github account name by filling in the brightspace survey for Task 2.</li>
 <li>You need to tell Rstudio how to prove to github that you are allowed to use your own account. Most sites on the internet use passwords for this authentication process, but GitHub has found this to be insecure and a bit inconvenient. Instead we will use a Personal Access Token (PAT). Here are the steps to follow:
 <ul>
+<li>Install the <code>usethis</code> package. For example, type <code>install.packages("usethis")</code> in the R console.</li>
 <li>In the R console, type <code><a href="https://usethis.r-lib.org/reference/github-token.html">usethis::create_github_token()</a></code>. This will open up a web browser. You will be asked to login and perhaps use two factor authentication. Eventually you will get a page that looks like the figure below. Enter a note to describe the token and pick an expiry date (my suggestions are shown in the screenshot.) Make sure you have at least the boxes shown below checked (repo, user, workflow). Click the green generate token at the bottom of the screen.</li>
 <li>Copy the random numbers and letters that make up your token by clicking the two overlapping blue boxes (or highlight and select copy from the menu).</li>
 <li>In the R console, type <code><a href="https://rdrr.io/pkg/gitcreds/man/gitcreds_get.html">gitcreds::gitcreds_set()</a></code> and then enter the PAT by pasting it into the console.</li>
@@ -437,10 +438,10 @@ ul.task-list{list-style: none;}
 <pre><code>   These instructions are adapted from a guide called [Happy git with R](https://happygitwithr.com/).</code></pre>
 <section id="clone-a-project-from-github" class="level3" data-number="6.11.1"><h3 data-number="6.11.1" class="anchored" data-anchor-id="clone-a-project-from-github">
 <span class="header-section-number">6.11.1</span> Clone a project from github</h3>
-<p>Once you have joined the github “organization” for our course, I will create two repositories in your account, one for the Tasks for the whole term and one for the Assignments for the whole term.</p>
+<p>Once you have sent me your GitHub user ID, I will create two repositories in your account, one for the Tasks for the whole term and one for the Assignments for the whole term.</p>
 <ul>
 <li>Go to <a href="https://github.com/">github.com</a>. Make sure you are logged in. You will see a list of repositories on the left side of your screen.</li>
-<li>Click on the one called “data-viz-tasks”</li>
+<li>Click on the one called “data-viz-tasks-” followed by your ID</li>
 <li>Click on the green button labelled “Code” and copy the https link by clicking on the two overlapping squares (or cutting and pasting the URL).</li>
 <li>Start Rstudio.</li>
 <li>If you are already working on some other files, choose: Session &gt; New session</li>
