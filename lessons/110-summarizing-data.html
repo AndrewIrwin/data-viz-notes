@@ -404,7 +404,7 @@ div.csl-indent {
 </ul>
 <p>These tools mirror the methods used by database software for querying and summarizing data, such as the widely used SQL data query language. The correspondence is close enough that the tools can be used directly on databases by translating the tidyverse code into SQL with the <code>dbplyr</code> package. In databases, there are often links between two or more tables and information be combined using “joins”; R has all the standard joins for <a href="https://r4ds.had.co.nz/relational-data.html">combining data from two or more tables</a> into one.</p>
 <p>There are many other data manipulation and reduction tools to be learned, but these four functions are the foundation for a huge number of calculations to help you understand, simplify, summarize and communicate information about a dataset.</p>
-<p>We will work with the <code>diamonds</code> dataset; it’s fairly large and has a combination of quantitative and categorical data which can be used to illustrate these methods. R4DS <a href="https://r4ds.had.co.nz/transform.html">chapter 5</a> does many similar demostrations with a large database of flight data. You should practice all these calculations on a data set of your choice (some ideas are <a href="301-data-sources.html">here</a>).</p>
+<p>We will work with the <code>diamonds</code> dataset; it’s fairly large and has a combination of quantitative and categorical data which can be used to illustrate these methods. R4DS <a href="https://r4ds.had.co.nz/transform.html">chapter 5</a> does many similar demonstrations with a large database of flight data. You should practice all these calculations on a data set of your choice (some ideas are <a href="301-data-sources.html">here</a>).</p>
 <section id="creating-new-variables-with-mutate" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="creating-new-variables-with-mutate">
 <span class="header-section-number">9.1</span> Creating new variables with mutate</h2>
 <p>The diamonds data has dimensions (x, y, and z) and a mass (carat) of each diamond. It might be interesting to compare a <a href="https://en.wikipedia.org/wiki/Cuboid">cuboid</a> approximation of the diamond to its mass to get a quantitative measure of how different each diamond is from a box. To start, we’ll create a new variable called <code>box</code> defined by the product of x, y, and z. Then we’ll create the ratio <code>box_ratio</code> as the quotient of its mass (<code>carat</code>) and this volume.</p>
@@ -451,7 +451,8 @@ div.csl-indent {
 </div>
 <p>You can combine filtering operations by chaining them together with commas, pipes, or using boolean logic (<code>&amp;</code> for and; <code>|</code> for or). The following three expressions all do the same thing.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">color</span> <span class="op">==</span> <span class="st">"J"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">cut</span> <span class="op">==</span> <span class="st">"Premium"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">carat</span> <span class="op">&gt;</span> <span class="fl">3.0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">color</span> <span class="op">==</span> <span class="st">"J"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">cut</span> <span class="op">==</span> <span class="st">"Premium"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">carat</span> <span class="op">&gt;</span> <span class="fl">3.0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 10
   carat cut     color clarity depth table price     x     y     z
@@ -536,16 +537,18 @@ div.csl-indent {
 <pre><code># A tibble: 5 × 10
   carat cut       color clarity depth table price     x     y     z
   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  0.31 Very Good G     VVS1     59.6    59   642  4.4   4.42  2.63
-2  1.2  Ideal     G     VS1      61.7    56  5766  6.84  6.77  4.2 
-3  1.17 Very Good H     SI1      63.1    56  4652  6.76  6.71  4.25
-4  0.34 Very Good H     SI2      58.6    62   417  4.6   4.62  2.7 
-5  1.13 Premium   H     SI1      62.6    60  4256  6.68  6.62  4.16</code></pre>
+1  0.37 Very Good F     VS2      59.7    62   696  4.68  4.7   2.8 
+2  0.27 Good      D     VVS2     64.3    55   693  4.14  4.09  2.65
+3  0.31 Ideal     F     IF       62.1    56  1046  4.36  4.33  2.7 
+4  0.79 Very Good I     SI1      62.5    57  2425  5.89  5.91  3.69
+5  0.31 Premium   E     SI1      61.2    58   651  4.38  4.34  2.67</code></pre>
 </div>
 </div>
 <p>You can use <code>arrange</code> to sort the data by any number of columns before slicing or displaying the data.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu">arrange</span><span class="op">(</span><span class="va">cut</span>, <span class="op">-</span><span class="va">color</span>, <span class="op">-</span><span class="va">carat</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">slice_head</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="va">carat</span>, <span class="va">cut</span>, <span class="va">color</span>, <span class="va">price</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu">arrange</span><span class="op">(</span><span class="va">cut</span>, <span class="op">-</span><span class="va">color</span>, <span class="op">-</span><span class="va">carat</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">slice_head</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">carat</span>, <span class="va">cut</span>, <span class="va">color</span>, <span class="va">price</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in Ops.ordered(color): '-' is not meaningful for ordered factors</code></pre>
 </div>
@@ -567,7 +570,9 @@ div.csl-indent {
 </div>
 <p>You’ll notice that there are only a few levels of each of the categorical variables (cut, color, clarity). Suppose you want to see all combinations that exist? Use select to pick out those rows, then <code>distinct</code> to show only the rows that are different from each other. (There are 276 combinations, so I’m showing only the top 5, after sorting.)</p>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="va">cut</span>, <span class="va">clarity</span>, <span class="va">color</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">distinct</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">arrange</span><span class="op">(</span><span class="va">color</span>, <span class="va">clarity</span>, <span class="va">cut</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="va">cut</span>, <span class="va">clarity</span>, <span class="va">color</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">distinct</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">arrange</span><span class="op">(</span><span class="va">color</span>, <span class="va">clarity</span>, <span class="va">cut</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
   cut       clarity color
@@ -584,9 +589,9 @@ div.csl-indent {
 <p>These filtering and transformation functions are powerful and encourage a really useful way of probing a complext dataset. The <code>summarize</code> (or <code>summarise</code>) provides a way to apply a function to one or more variables across all the rows or colletions of rows. To use this effectively you want to think of functions that operate on a set of numbers and return just a single one, such as <code>mean</code>, <code>median</code>, <code>max</code>, <code>min</code>, <code>sd</code>, or the simplest of all <code>n</code> which counts the number of rows.</p>
 <div class="cell">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu">summarise</span><span class="op">(</span>n_rows <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>, </span>
-<span>                       mean_price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">price</span><span class="op">)</span>,</span>
-<span>                       median_price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">price</span><span class="op">)</span>,</span>
-<span>                       min_carat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">carat</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>                      mean_price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">price</span><span class="op">)</span>,</span>
+<span>                      median_price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">price</span><span class="op">)</span>,</span>
+<span>                      min_carat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">carat</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 4
   n_rows mean_price median_price min_carat
@@ -599,9 +604,9 @@ div.csl-indent {
 <div class="cell">
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">cut</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">summarise</span><span class="op">(</span>n_rows <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>, </span>
-<span>                       mean_price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">price</span><span class="op">)</span>,</span>
-<span>                       median_price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">price</span><span class="op">)</span>,</span>
-<span>                       min_carat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">carat</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>            mean_price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">price</span><span class="op">)</span>,</span>
+<span>            median_price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">price</span><span class="op">)</span>,</span>
+<span>            min_carat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">carat</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 5
   cut       n_rows mean_price median_price min_carat

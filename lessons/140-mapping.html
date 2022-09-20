@@ -610,10 +610,10 @@ geojson_write(canada_raw_sim, file = "static/canada_cd_sim.geojson") </code></pr
 </div>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">canada_cd</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">CDNAME</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "D'Autray"               "Pontiac"                "Matane"                
- [4] "Drummond"               "Rouyn-Noranda"          "Antoine-Labelle"       
- [7] "Les Maskoutains"        "Francheville"           "Essex"                 
-[10] "La Vallée-du-Richelieu"</code></pre>
+<pre><code> [1] "Matawinie"         "Columbia-Shuswap"  "Montréal"         
+ [4] "La Vallée-de-l'Or" "Rouyn-Noranda"     "Madawaska"        
+ [7] "Acton"             "Manitoulin"        "Cumberland"       
+[10] "Robert-Cliche"    </code></pre>
 </div>
 </div>
 <p>I’ve changed the latitude and longitude parameters for the projection to values more suitable for this part of Canada.</p>
