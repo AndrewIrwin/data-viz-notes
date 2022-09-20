@@ -8,8 +8,6 @@ library(tidyverse)
 
 In this lesson I will demonstrate how to use R and ggplot2 to make visualizations using the ideas from the previous lesson. The emphasis is on the mechanics of making the visualizations. In time we will integrate the ideas about what features of visualizations work best to convey an idea that were introduced at the start of the course.
 
-Your [task](#task-b4) for this lesson is to practice these skills by generating a series of graphs using different geometries and aesthetic mappings.
-
 ## Introduction
 
 By the end of this lesson you should understand how to make many different plots using ggplot. The mental model developed in the previous lesson will connect directly to the R commands in this lesson.
@@ -18,13 +16,13 @@ Incidentally, Hadley Wickham, who originally developed `ggplot2` is from New Zea
 
 ## Data
 
-We will use the `diamonds` dataset for examples in this lesson. As always, you should use `str` or `View` to take a look at the data to famiiarize yourself with the variables and the number of rows in the data before you begin to make a plot.
+We will use the `diamonds` dataset for examples in this lesson. As always, you should use `str` or `View` to take a look at the data to familiarize yourself with the variables and the number of rows in the data before you begin to make a plot.
 
 ```{r}
 str(diamonds)
 ```
 
-This is a large dataset, with over 50,000 rows. There are 7 quantiative variables and three categorical variables. Read the help page on the dataset to learn more.
+This is a large dataset, with over 50,000 rows. There are 7 quantitative variables and three categorical variables. Read the help page on the dataset to learn more.
 
 ## Aesthetic mappings and geometries
 
@@ -37,18 +35,21 @@ Let's draw a histogram of the price of diamonds in the dataset. We map price to 
 ```{r warning=FALSE}
 diamonds |> ggplot(aes(x=price)) + geom_histogram()
 ```
+
 This is  very skewed distribution -- with lots more observations at the low end of the price range.
 
 Maybe one of the categorical features will help us see features in the data. Let's break the bars down by cut using colour.
 
 ```{r warning=FALSE}
-diamonds |> ggplot(aes(x=price, fill=cut)) + geom_histogram()
+diamonds |> ggplot(aes(x=price, fill=cut)) + 
+  geom_histogram()
 ```
 
 For skewed distribution of positive numbers, a log transform can sometimes help reveal patterns. Let's change the scale to see if that works.
 
 ```{r warning=FALSE}
-diamonds |> ggplot(aes(x=price, fill=cut)) + geom_histogram() +
+diamonds |> ggplot(aes(x=price, fill=cut)) + 
+  geom_histogram() +
   scale_x_log10()
 ```
 
@@ -57,7 +58,9 @@ Stacked bar graphs like this are interesting, but they can be hard to read. Is t
 We can modify the geometry by modifing the histogram geom. It's helpful to have fewer bars in this histogram, so I've set the number of bars to 10 using `bins=10`.
 
 ```{r warning=FALSE}
-diamonds |> ggplot(aes(x=price, fill=cut)) + scale_x_log10() + geom_histogram(bins = 10, position="dodge")
+diamonds |> ggplot(aes(x=price, fill=cut)) + 
+  scale_x_log10() + 
+  geom_histogram(bins = 10, position="dodge")
 ```
 
 The peak for Ideal is definitely at a lower price than the peak for Premium or Very Good.
@@ -70,22 +73,28 @@ Box plots are useful for showing distributions too. You can draw a box plot with
 ```{r}
 diamonds |> ggplot(aes(x = price, y = clarity)) + geom_boxplot()
 ```
+
 As before the distributions are skewed, so let's use the log transform again. Notice how similar the code is to the boxplots.
 
 ```{r}
-diamonds |> ggplot(aes(x = price, y = clarity)) + geom_boxplot() + scale_x_log10()
+diamonds |> ggplot(aes(x = price, y = clarity)) + 
+  geom_boxplot() + scale_x_log10()
 ```
+
 If you are willing to read a complex plot, you can fill the boxes using cut. (Try `color=` instead of `fill=` to compare the two ways of using colour.) This figure is probably too complicated to show someone else, but might be useful as an exploratory plot to see a lot of information in a small space. Think of it -- this is a summary of over 50,000 prices across two cateogorical variables with 5 x 8 = 40 different combinations!
 
 ```{r}
-diamonds |> ggplot(aes(x = price, y = clarity, fill= cut)) + geom_boxplot() + scale_x_log10()
+diamonds |> ggplot(aes(x = price, y = clarity, fill = cut)) + 
+  geom_boxplot() + scale_x_log10()
 ```
+
 ## Scatter plot
 
 For our third geom, we will use `geom_point` to make a scatter plot. Just knowing that you can probably create the plot below by modifying the code above. In the code below, I changed `geom_boxplot` to `geom_point`, changed `fill` to `color` and changed `clarity` to `carat` to have a second quantative variable on the y axis.
 
 ```{r}
-diamonds |> ggplot(aes(x = price, y = carat, color= cut)) + geom_point() + scale_x_log10()
+diamonds |> ggplot(aes(x = price, y = carat, color= cut)) + 
+  geom_point() + scale_x_log10()
 ```
 
 That's too many points on a scatter plot! There are a few tricks you can use, like making the points smaller and making them partly transparent -- but they don't really help with this much data.
@@ -101,7 +110,8 @@ diamonds |> ggplot(aes(x = price, y = carat, color= cut)) +
 What to do? Let's create a histogram with two quantitative variables, and show the height of each bar using color.
 
 ```{r}
-diamonds |> ggplot(aes(x = price, y = carat)) + geom_bin2d() + scale_x_log10()
+diamonds |> ggplot(aes(x = price, y = carat)) + 
+  geom_bin2d() + scale_x_log10()
 ```
 
 Accurate quantitative assessment is hard to make (basically impossible) with colour brightness, but you can see the price and carat combinations for most of the diamonds. We had to give up using colour for clarity. We'll return to this data when we talk about facets in a future lesson to see how we can add in one more categorical variable.
@@ -109,7 +119,8 @@ Accurate quantitative assessment is hard to make (basically impossible) with col
 We can do a little better with a contour plot instead of colours. You can even add `color=cut` back in if you like. Try `geom_density_2d_filled` for an interesting variant.
 
 ```{r}
-diamonds |> ggplot(aes(x = price, y = carat)) + geom_density_2d() + scale_x_log10()
+diamonds |> ggplot(aes(x = price, y = carat)) + 
+  geom_density_2d() + scale_x_log10()
 ```
 
 ### Statistics
@@ -119,13 +130,15 @@ We said that in addition to connecting variables to aesthetic features, we could
 Instead of plotting a point for each diamond in the dataset, let's compute averages and standard errors for all the diamonds group by clarity.
 
 ```{r}
-diamonds |> ggplot(aes(x = price, y = clarity)) +  stat_summary(fun.data = "mean_se") + scale_x_log10()
+diamonds |> ggplot(aes(x = price, y = clarity)) + 
+  stat_summary(fun.data = "mean_se") + scale_x_log10()
 ```
 
 Now adding a colour for each cut doesn't make the plot too complicated.
 
 ```{r}
-diamonds |> ggplot(aes(x = price, y = clarity, color=cut)) +  stat_summary(fun.data = "mean_se") + scale_x_log10()
+diamonds |> ggplot(aes(x = price, y = clarity, color=cut)) +
+  stat_summary(fun.data = "mean_se") + scale_x_log10()
 ```
 
 Most of the `stat_` functions are directly linked to `geom_` functions, but a few like `stat_summary` or `stat_unique` are handy on their own.
@@ -137,7 +150,9 @@ We've seen how scales can be used to transform the x axis, but there is a lot mo
 First, we can set the limits of the axis anywhere we want, to highlight some values or expand the range. (Maybe we have a very specific price range in mind for our data analysis.)
 
 ```{r}
-diamonds |> ggplot(aes(x = price, y = clarity, color=cut)) +  stat_summary(fun.data = "mean_se") + scale_x_log10() +
+diamonds |> ggplot(aes(x = price, y = clarity, color=cut)) +
+  stat_summary(fun.data = "mean_se") +
+  scale_x_log10() +
   xlim(2000,4000)
 ```
 
@@ -146,17 +161,21 @@ This is an example of using the power of ggplot and accidentally shooting your o
 It's perfectly safe with raw unsummarized data. We still get a warning, but all the dots shown are untransformed, so we don't need to wonder if the axis limits were set before or after transforming the data.
 
 ```{r warning=FALSE, message=FALSE}
-diamonds |> ggplot(aes(x = price, y = carat, color=cut)) +  geom_point(size=0.1) + scale_x_log10() +
+diamonds |> ggplot(aes(x = price, y = carat, color=cut)) +
+  geom_point(size=0.1) + scale_x_log10() +
   xlim(2000,4000) + ylim(0,1.7)
 ```
+
 Colors are also controlled with a scale. We'll have a whole lesson on colour, so here is just one example.
 
 The yellow we used before didn't won't look good printed in a report, so let's change the range of the colours.
 
 ```{r warning=FALSE}
-diamonds |> ggplot(aes(x=price, fill=cut)) + scale_x_log10() + geom_histogram(bins = 10, position="dodge") +
+diamonds |> ggplot(aes(x=price, fill=cut)) + scale_x_log10() +
+  geom_histogram(bins = 10, position="dodge") +
   scale_fill_viridis_d(begin = 0.0, end = 0.8)
 ```
+
 The viridis colour scale is supposed to be colour-blind friendly and to translate well when printed in gray scale on paper. It's a range of colours selected between two extremes. Experiment with different values for `begin` and `end` between 0 and 1.
 
 ## Annotations
@@ -165,7 +184,8 @@ The most important annotations are labels for the axes, guides for colours and s
 
 
 ```{r warning=FALSE}
-diamonds |> ggplot(aes(x=price, fill=cut)) + scale_x_log10() + geom_histogram(bins = 10, position="dodge") +
+diamonds |> ggplot(aes(x=price, fill=cut)) + scale_x_log10() + 
+  geom_histogram(bins = 10, position="dodge") +
   scale_fill_viridis_d(begin = 0.0, end = 0.8) +
   labs(x = "Price ($, log scale)",
        y = "Number of diamonds",
@@ -178,8 +198,10 @@ diamonds |> ggplot(aes(x=price, fill=cut)) + scale_x_log10() + geom_histogram(bi
 Another kind of annotation adds text to a figure. It's called an annotation instead of a geom because the annotation is a custom thing you add that doesn't come from the data. Sometimes this is a corporate branding graphic. Or a cartoon reminding the reader what the data are about. Here I'll add a text message.
 
 ```{r warning=FALSE}
-diamonds |> ggplot(aes(x=price, fill=cut)) + scale_x_log10() + geom_histogram(bins = 10, position="dodge") +
-  annotate(geom="text", x = 1300, y = 4500, label = "Compare the peaks for\nIdeal and Good.",
+diamonds |> ggplot(aes(x=price, fill=cut)) + scale_x_log10() + 
+  geom_histogram(bins = 10, position="dodge") +
+  annotate(geom="text", x = 1300, y = 4500, 
+           label = "Compare the peaks for\nIdeal and Good.",
            hjust = 0, vjust = 0.5, size = 5)
 ```
 
@@ -189,7 +211,8 @@ A better way to annotate is to create a data frame with x and y locations and a 
 
 ```{r}
 s <- diamonds |> group_by(cut, clarity) |>
-  summarize(price = mean(price), carat = mean(carat))
+  summarize(price = mean(price), carat = mean(carat),
+            .groups = "drop")
 s |> ggplot(aes(x= price, y = carat, color = cut)) + scale_x_log10() +
   geom_point() +
   geom_text(aes(label = clarity ))
@@ -237,6 +260,7 @@ s |> ggplot(aes(x= price, y = carat, color = cut)) + scale_x_log10() +
   geom_point() + theme_bw() +
   theme(text = element_text(size=20))
 ```
+
 If you have room you can put the guide inside the plot. The coordinates range from 0 to 1 on both scales from left to right and bottom to top.
 
 ```{r}

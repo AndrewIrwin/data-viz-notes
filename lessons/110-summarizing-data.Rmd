@@ -15,7 +15,7 @@ These tools mirror the methods used by database software for querying and summar
 
 There are many other data manipulation and reduction tools to be learned, but these four functions are the foundation for a huge number of calculations to help you understand, simplify, summarize and communicate information about a dataset.
 
-We will work with the `diamonds` dataset; it's fairly large and has a combination of quantitative and categorical data which can be used to illustrate these methods. R4DS [chapter 5](https://r4ds.had.co.nz/transform.html) does many similar demostrations with a large database of flight data. You should practice all these calculations on a data set of your choice (some ideas are [here](#data-sources)).
+We will work with the `diamonds` dataset; it's fairly large and has a combination of quantitative and categorical data which can be used to illustrate these methods. R4DS [chapter 5](https://r4ds.had.co.nz/transform.html) does many similar demonstrations with a large database of flight data. You should practice all these calculations on a data set of your choice (some ideas are [here](#data-sources)).
 
 ## Creating new variables with mutate
 
@@ -50,7 +50,8 @@ diamonds |>
 You can combine filtering operations by chaining them together with commas, pipes, or using boolean logic (`&` for and; `|` for or). The following three expressions all do the same thing.
 
 ```{r}
-diamonds |> filter(color == "J") |> filter(cut == "Premium") |> filter(carat > 3.0)
+diamonds |> filter(color == "J") |> 
+  filter(cut == "Premium") |> filter(carat > 3.0)
 diamonds |> filter(color == "J", cut == "Premium", carat > 3.0)
 diamonds |> filter(color == "J" & cut == "Premium" & carat > 3.0)
 ```
@@ -88,13 +89,17 @@ diamonds |> slice_sample(n = 5)
 You can use `arrange` to sort the data by any number of columns before slicing or displaying the data.
 
 ```{r}
-diamonds |> arrange(cut, -color, -carat) |> slice_head(n = 10) |> select(carat, cut, color, price)
+diamonds |> arrange(cut, -color, -carat) |> 
+  slice_head(n = 10) |> 
+  select(carat, cut, color, price)
 ```
 
 You'll notice that there are only a few levels of each of the categorical variables (cut, color, clarity). Suppose you want to see all combinations that exist? Use select to pick out those rows, then `distinct` to show only the rows that are different from each other. (There are 276 combinations, so I'm showing only the top 5, after sorting.)
 
 ```{r}
-diamonds |> select(cut, clarity, color) |> distinct() |> arrange(color, clarity, cut) |> head(5)
+diamonds |> select(cut, clarity, color) |> 
+  distinct() |> arrange(color, clarity, cut) |> 
+  head(5)
 ```
 
 ## Summarizing data tables
@@ -103,9 +108,9 @@ These filtering and transformation functions are powerful and encourage a really
 
 ```{r}
 diamonds |> summarise(n_rows = n(), 
-                       mean_price = mean(price),
-                       median_price = median(price),
-                       min_carat = min(carat))
+                      mean_price = mean(price),
+                      median_price = median(price),
+                      min_carat = min(carat))
 ```
 All the original data is gone, replaced by these four functions applied to all the data in the corresponding column. The name of the new column appears on the left side of the `=` and the calculation on the right. This is the same way we wrote the `mutate` function, but instead of creating a new variable and computing a value for each row, we get one value computed using all the rows.
 
@@ -114,9 +119,9 @@ Rows can be grouped to get summaries for each level of the grouped varible. Let'
 ```{r message=FALSE}
 diamonds |> group_by(cut) |>
   summarise(n_rows = n(), 
-                       mean_price = mean(price),
-                       median_price = median(price),
-                       min_carat = min(carat))
+            mean_price = mean(price),
+            median_price = median(price),
+            min_carat = min(carat))
 ```
 
 Now we get 5 rows.
