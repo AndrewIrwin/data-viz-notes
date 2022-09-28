@@ -391,7 +391,7 @@ div.csl-indent {
   </div>
   
 
-</header><p>The tidyverse packages provide powerful tools for transforming and summarizing data. In this lesson we will explore the methods I use most frequently, including</p>
+</header><p>The tidyverse packages, specifically <code>dplyr</code>, provide powerful tools for transforming and summarizing data. In this lesson we will explore the methods I use most frequently, including</p>
 <ul>
 <li>
 <code>mutate</code> for defining new variables based on existing variables,</li>
@@ -402,33 +402,34 @@ div.csl-indent {
 <li>
 <code>summarise</code> for reducing a table to a single row or a single row for each value of a grouped variable.</li>
 </ul>
-<p>These tools mirror the methods used by database software for querying and summarizing data, such as the widely used SQL data query language. The correspondence is close enough that the tools can be used directly on databases by translating the tidyverse code into SQL with the <code>dbplyr</code> package. In databases, there are often links between two or more tables and information be combined using “joins”; R has all the standard joins for <a href="https://r4ds.had.co.nz/relational-data.html">combining data from two or more tables</a> into one.</p>
 <p>There are many other data manipulation and reduction tools to be learned, but these four functions are the foundation for a huge number of calculations to help you understand, simplify, summarize and communicate information about a dataset.</p>
 <p>We will work with the <code>diamonds</code> dataset; it’s fairly large and has a combination of quantitative and categorical data which can be used to illustrate these methods. R4DS <a href="https://r4ds.had.co.nz/transform.html">chapter 5</a> does many similar demonstrations with a large database of flight data. You should practice all these calculations on a data set of your choice (some ideas are <a href="301-data-sources.html">here</a>).</p>
+<p>These tools mirror the methods used by database software for querying and summarizing data, such as the widely used SQL data query language. The correspondence is close enough that the tools can be used directly on databases by translating the tidyverse code into SQL with the <code>dbplyr</code> package. In databases, there are often links between two or more tables and information be combined using “joins”; R has all the standard joins for <a href="https://r4ds.had.co.nz/relational-data.html">combining data from two or more tables</a> into one.</p>
 <section id="creating-new-variables-with-mutate" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="creating-new-variables-with-mutate">
 <span class="header-section-number">9.1</span> Creating new variables with mutate</h2>
-<p>The diamonds data has dimensions (x, y, and z) and a mass (carat) of each diamond. It might be interesting to compare a <a href="https://en.wikipedia.org/wiki/Cuboid">cuboid</a> approximation of the diamond to its mass to get a quantitative measure of how different each diamond is from a box. To start, we’ll create a new variable called <code>box</code> defined by the product of x, y, and z. Then we’ll create the ratio <code>box_ratio</code> as the quotient of its mass (<code>carat</code>) and this volume.</p>
+<p>The diamonds data has dimensions (x, y, and z) and a mass (carat) of each diamond. It might be interesting to compare a <a href="https://en.wikipedia.org/wiki/Cuboid">cuboid</a> approximation of the diamond to its mass to get a quantitative measure of how different each diamond is from a box. To start, we’ll create a new variable called <code>box_volume</code> defined by the product of x, y, and z. Then we’ll create the ratio <code>box_ratio</code> as the quotient of its mass (<code>carat</code>) and this volume.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">mutate</span><span class="op">(</span>box <span class="op">=</span> <span class="va">x</span><span class="op">*</span><span class="va">y</span><span class="op">*</span><span class="va">z</span>,</span>
-<span>         box_ratio <span class="op">=</span> <span class="va">carat</span> <span class="op">/</span> <span class="va">box</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>box_volume <span class="op">=</span> <span class="va">x</span><span class="op">*</span><span class="va">y</span><span class="op">*</span><span class="va">z</span>,</span>
+<span>         box_ratio <span class="op">=</span> <span class="va">carat</span> <span class="op">/</span> <span class="va">box_volume</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 12
-  carat cut    color clarity depth table price     x     y     z   box box_ratio
-  &lt;dbl&gt; &lt;ord&gt;  &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
-1  0.23 Ideal  E     SI2      61.5    55   326  3.95  3.98  2.43  38.2   0.00602
-2  0.21 Premi… E     SI1      59.8    61   326  3.89  3.84  2.31  34.5   0.00609
-3  0.23 Good   E     VS1      56.9    65   327  4.05  4.07  2.31  38.1   0.00604
-4  0.29 Premi… I     VS2      62.4    58   334  4.2   4.23  2.63  46.7   0.00621
-5  0.31 Good   J     SI2      63.3    58   335  4.34  4.35  2.75  51.9   0.00597
-6  0.24 Very … J     VVS2     62.8    57   336  3.94  3.96  2.48  38.7   0.00620</code></pre>
+  carat cut       color clarity depth table price     x     y     z box_volume
+  &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
+1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43       38.2
+2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31       34.5
+3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31       38.1
+4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63       46.7
+5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75       51.9
+6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48       38.7
+# … with 1 more variable: box_ratio &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>This function adds two new columns to the data table, computing values for every row in the table. It doesn’t change any of the other columns. You can also modify an existing column, for example to change units from dollars to thousands of dollars or carats to grams, by using the name of an existing column on the left hand side of the equals sign.</p>
 <p>A few things to note:</p>
 <ul>
-<li>We use the name of a column to create or modify on the left hand side of the equals sign/</li>
+<li>We use the name of a column to create or modify on the left hand side of the equals sign.</li>
 <li>We use an <code>=</code> instead of <code>&lt;-</code> when creating or modifying columns. The arrow is used to assign values to new R objects in your environment (see the Environment tab in R studio); here we are modifying the columns of a data frame so a different notation is appropriate.</li>
 <li>The transformation shown above does not modify the <code>diamonds</code> object – it creates a new object, which you can then store in a new R variable in your environment. I often perform transformations simply for the purposes of making a table or a plot without ever storing the the result.</li>
 </ul></section><section id="filtering-rows" class="level2" data-number="9.2"><h2 data-number="9.2" class="anchored" data-anchor-id="filtering-rows">
@@ -537,11 +538,11 @@ div.csl-indent {
 <pre><code># A tibble: 5 × 10
   carat cut       color clarity depth table price     x     y     z
   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  0.37 Very Good F     VS2      59.7    62   696  4.68  4.7   2.8 
-2  0.27 Good      D     VVS2     64.3    55   693  4.14  4.09  2.65
-3  0.31 Ideal     F     IF       62.1    56  1046  4.36  4.33  2.7 
-4  0.79 Very Good I     SI1      62.5    57  2425  5.89  5.91  3.69
-5  0.31 Premium   E     SI1      61.2    58   651  4.38  4.34  2.67</code></pre>
+1  0.31 Ideal     F     IF       61.7    56   901  4.38  4.41  2.71
+2  0.24 Very Good D     VVS2     62.4    58   552  3.94  4.01  2.48
+3  0.8  Ideal     G     VS2      62.2    56  2834  5.94  5.87  3.67
+4  0.62 Ideal     H     VS1      63      56  1808  5.43  5.36  3.4 
+5  1.05 Very Good D     SI1      61.6    61  5255  6.5   6.55  4.02</code></pre>
 </div>
 </div>
 <p>You can use <code>arrange</code> to sort the data by any number of columns before slicing or displaying the data.</p>
