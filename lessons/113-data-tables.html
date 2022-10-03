@@ -374,9 +374,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
-</header><p>We’re spending a lot of time in this course making graphic visualizations of data. In this one lesson we will take a detour and learn to make nice looking tables with text and numbers in them. There are a bunch of packages for doing this (see Assignment X). We’ll use the <code>kable</code> table formatting function in this lesson (from the packages <code>knitr</code> and <code>kableExtra</code>).</p>
+</header><p>We’re spending a lot of time in this course making graphic visualizations of data. In this one lesson we will take a detour and learn to make nice looking tables with text and numbers in them. There are a bunch of packages for doing this. We’ll use the <code>kable</code> table formatting function in this lesson (from the packages <code>knitr</code> and <code>kableExtra</code>).</p>
 <p>Let’s use a simple table to demonstrate the main features. I want some text, some numbers, and not too many rows or columns. I’ll summarize the data in the <code>palmerpenguins</code> table into a small table.</p>
 <div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">species</span>, <span class="va">island</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">summarize</span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">body_mass_g</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>            body_mass_g <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">body_mass_g</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>, </span>
+<span>            .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span></span>
+<span><span class="va">t1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
   species   island    count body_mass_g
@@ -390,7 +395,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The function <code>kable</code> turns this into a formatted table.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">t1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">t1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table>
@@ -439,7 +444,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">13.1</span> Header rows</h2>
 <p>Often you will want to rename or reformat the column headings. There are two ways to do this: using <code>rename</code> to change the actual column names before formatting the table, or using column formatting to just affect the table appearance. You can rename just one column using <code>rename</code>, but with the second version below (<code>col.names</code>) you need to provide all the column names in the correct order.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">rename</span><span class="op">(</span>`Body mass (g)` <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">rename</span><span class="op">(</span>`Body mass (g)` <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table>
@@ -485,7 +490,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Species"</span>, <span class="st">"Island"</span>, <span class="st">"Count"</span>,  <span class="st">"Body mass (g)"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Species"</span>, <span class="st">"Island"</span>, <span class="st">"Count"</span>,  <span class="st">"Body mass (g)"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table>
@@ -532,46 +537,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section><section id="column-alignment" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="column-alignment">
 <span class="header-section-number">13.2</span> Column alignment</h2>
-<p>Commonly numbers are right justified and text is left justified. That’s what’s done automatically. You can specify each column as left, centre, or right justified using the letters l, c, or r for each column. Here we’ll center the justify the numbers to demonstrate.</p>
+<p>Commonly numbers are right justified and text is left justified. That’s what’s done automatically. You can specify each column as left, centre, or right justified using the letters l, c, or r for each column. Here we’ll right justify the words and center the numbers to demonstrate.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>align <span class="op">=</span> <span class="st">"llcc"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>align <span class="op">=</span> <span class="st">"rrcc"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table>
 <thead><tr>
-<th style="text-align:left;"> species </th>
-   <th style="text-align:left;"> island </th>
+<th style="text-align:right;"> species </th>
+   <th style="text-align:right;"> island </th>
    <th style="text-align:center;"> count </th>
    <th style="text-align:center;"> body_mass_g </th>
   </tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;"> Adelie </td>
-   <td style="text-align:left;"> Biscoe </td>
+<td style="text-align:right;"> Adelie </td>
+   <td style="text-align:right;"> Biscoe </td>
    <td style="text-align:center;"> 44 </td>
    <td style="text-align:center;"> 3709.659 </td>
   </tr>
 <tr>
-<td style="text-align:left;"> Adelie </td>
-   <td style="text-align:left;"> Dream </td>
+<td style="text-align:right;"> Adelie </td>
+   <td style="text-align:right;"> Dream </td>
    <td style="text-align:center;"> 56 </td>
    <td style="text-align:center;"> 3688.393 </td>
   </tr>
 <tr>
-<td style="text-align:left;"> Adelie </td>
-   <td style="text-align:left;"> Torgersen </td>
+<td style="text-align:right;"> Adelie </td>
+   <td style="text-align:right;"> Torgersen </td>
    <td style="text-align:center;"> 51 </td>
    <td style="text-align:center;"> 3706.373 </td>
   </tr>
 <tr>
-<td style="text-align:left;"> Chinstrap </td>
-   <td style="text-align:left;"> Dream </td>
+<td style="text-align:right;"> Chinstrap </td>
+   <td style="text-align:right;"> Dream </td>
    <td style="text-align:center;"> 68 </td>
    <td style="text-align:center;"> 3733.088 </td>
   </tr>
 <tr>
-<td style="text-align:left;"> Gentoo </td>
-   <td style="text-align:left;"> Biscoe </td>
+<td style="text-align:right;"> Gentoo </td>
+   <td style="text-align:right;"> Biscoe </td>
    <td style="text-align:center;"> 123 </td>
    <td style="text-align:center;"> 5076.016 </td>
   </tr>
@@ -584,7 +589,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Any number that comes from a calculation (such as a mean) will have a lot of decimal places displayed unless you change this. You can control the number of decimal places to show using rounding. (Use a negative number of digits to round to the left of the decimal point, for example <code>digits=-1</code> to round to the tens place.) Give either one number to use for all columns, or provide a vector to control the number of digits separately for each column.</p>
 <p>You can add a comma (or space for SI or . for European styles) to separate the thousands or millions using <code>format.args = list(big.mark = ",")</code>. See the help for <code>format</code> for more options.</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">1</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>            format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table>
@@ -634,7 +640,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>There are a lot of options for changing the appearance of text in the <code>kableExtra</code> package. If you are interested, look at the <a href="https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html">vignette</a> linked in the further reading.</p>
 <p>The two styles I use frequently are alternating shading to help you read across rows and making the columns only wide enough to display your data.</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable_styling</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span>, bootstrap_options <span class="op">=</span> <span class="st">"striped"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">kable_styling</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span>, bootstrap_options <span class="op">=</span> <span class="st">"striped"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -683,7 +691,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">13.5</span> Captions</h2>
 <p>You can add a caption to a table with the <code>caption</code> argument to <code>kable</code>.</p>
 <div class="cell page-columns page-full">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"The number and average mass of penguins by species and island."</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">kable</span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"The number and average mass of penguins by species and island."</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display page-columns page-full">
 
 <table>
@@ -733,10 +742,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="header-section-number">13.6</span> Putting it all together</h2>
 <p>Usually you will want to combine these features to get the look you want. Your goal should always be to make a table that clearly displays your data.</p>
 <div class="cell page-columns page-full">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">1</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span>,</span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>            format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span>,</span>
 <span>             col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Species"</span>, <span class="st">"Island"</span>, <span class="st">"n"</span>, <span class="st">"Body mass (g)"</span><span class="op">)</span>,</span>
 <span>             caption<span class="op">=</span><span class="st">"The number and average mass of penguins by species and island."</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span>, bootstrap_options <span class="op">=</span> <span class="st">"striped"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">kable_styling</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>                bootstrap_options <span class="op">=</span> <span class="st">"striped"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display page-columns page-full">
 
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -787,18 +798,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We frequently make tables of counts of categorical variables. In these tables it can be helpful to add column or row totals. Sometimes we want to report those totals as percentages of a grand total. The <code>janitor</code> package makes it easy to add totals and percentages to rows and columns.</p>
 <p>We’ll start with a matrix of counts showing the number of countries with life expectancy more than 75 years in each year and continent.</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">lifeExp</span> <span class="op">&gt;</span> <span class="fl">75</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">lifeExp</span> <span class="op">&gt;</span> <span class="fl">75</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">year</span>, <span class="va">continent</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">"continent"</span>, values_from <span class="op">=</span> <span class="st">"n"</span>, values_fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by 'year'. You can override using the
 `.groups` argument.</code></pre>
 </div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 7 × 6
-# Groups:   year [7]
    year  Asia Europe Americas Oceania Africa
   &lt;int&gt; &lt;int&gt;  &lt;int&gt;    &lt;int&gt;   &lt;int&gt;  &lt;int&gt;
 1  1977     1      5        0       0      0
@@ -812,7 +823,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Now we will add row totals. No sum is computed for the first column since it is assumed to be a label.</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">adorn_totals</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">adorn_totals</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  year Asia Europe Americas Oceania Africa
   1977    1      5        0       0      0
@@ -827,7 +838,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>If you think about this, you’ll realize this doesn’t make much sense! So let’s add column totals instead. Again the first column is ignored, assuming it is a label.</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">adorn_totals</span><span class="op">(</span>where <span class="op">=</span> <span class="st">"col"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">adorn_totals</span><span class="op">(</span>where <span class="op">=</span> <span class="st">"col"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> year Asia Europe Americas Oceania Africa Total
  1977    1      5        0       0      0     6
@@ -842,24 +853,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>These tables are formatted differently compared to <code>data.frames</code> and <code>tibbles</code>, but they can still be reformatted as you would expect using <code>|&gt; kable() |&gt; kable_styling()</code>.</p>
 <p>Incidentally, the <code>janitor</code> package has a powerful table generating function <code>tabyl</code> which does the counting we started this section with. We still need the <code>filter</code> to retain only rows with life expectancy more than 75 years. The columns are reported alphabetically instead of according to the order they appear in the original dataset.</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">lifeExp</span> <span class="op">&gt;</span> <span class="fl">75</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">tabyl</span><span class="op">(</span><span class="va">year</span>, <span class="va">continent</span><span class="op">)</span> <span class="co">#  |&gt; adorn_totals(where="col")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">lifeExp</span> <span class="op">&gt;</span> <span class="fl">75</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">tabyl</span><span class="op">(</span><span class="va">year</span>, <span class="va">continent</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">adorn_totals</span><span class="op">(</span>where<span class="op">=</span><span class="st">"col"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> year Africa Americas Asia Europe Oceania
- 1977      0        0    1      5       0
- 1982      0        1    2      7       0
- 1987      0        2    3     11       1
- 1992      0        3    5     17       2
- 1997      0        5    6     19       2
- 2002      1        7    7     20       2
- 2007      1       10    9     22       2</code></pre>
+<pre><code> year Africa Americas Asia Europe Oceania Total
+ 1977      0        0    1      5       0     6
+ 1982      0        1    2      7       0    10
+ 1987      0        2    3     11       1    17
+ 1992      0        3    5     17       2    27
+ 1997      0        5    6     19       2    32
+ 2002      1        7    7     20       2    37
+ 2007      1       10    9     22       2    44</code></pre>
 </div>
 </div>
 </section><section id="adding-grouping-for-rows-and-columns" class="level2" data-number="13.8"><h2 data-number="13.8" class="anchored" data-anchor-id="adding-grouping-for-rows-and-columns">
 <span class="header-section-number">13.8</span> Adding grouping for rows and columns</h2>
 <p>Sometimes it is desirable to add a grouping label over a series of columns. For example, the in the table showing totals above, we can add a header “Continent” over the appropriate columns. We do this to a <code>kable</code> formatted table using the function <code>add_header_row</code>. This function takes an argument which is a vector of pairs: labels for each column and the number of columns that label should span. There must be enough lables to span all the columns. We will add a blank label for the first and last column (spanning 1 column each), and a label “Continent” spanning the 5 continents.</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">adorn_totals</span><span class="op">(</span>where <span class="op">=</span> <span class="st">"col"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">adorn_totals</span><span class="op">(</span>where <span class="op">=</span> <span class="st">"col"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">" "</span> <span class="op">=</span> <span class="fl">1</span>, </span>
 <span>                  <span class="st">"Continent"</span> <span class="op">=</span> <span class="fl">5</span>,</span>
@@ -954,7 +965,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>It can also be helpful to add grouping to rows. For example, we could label the first 5 rows as being part of the 20th century and the last 2 rows as being part of the 21st century. We add row labels one at a time, giving a label for the row and the numbers of the rows the header should span. We will do this with the <code>kableExtra</code> function <code>group_rows</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">adorn_totals</span><span class="op">(</span>where <span class="op">=</span> <span class="st">"col"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">adorn_totals</span><span class="op">(</span>where <span class="op">=</span> <span class="st">"col"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">group_rows</span><span class="op">(</span><span class="st">"20th century"</span>, <span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">group_rows</span><span class="op">(</span><span class="st">"21st century"</span>, <span class="fl">6</span>, <span class="fl">7</span><span class="op">)</span> <span class="op">|&gt;</span></span>

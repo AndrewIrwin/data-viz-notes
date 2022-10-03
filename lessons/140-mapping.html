@@ -610,10 +610,11 @@ geojson_write(canada_raw_sim, file = "static/canada_cd_sim.geojson") </code></pr
 </div>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">canada_cd</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">CDNAME</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Kenora"                "Peterborough"          "Le Haut-Saint-Laurent"
- [4] "Lotbinière"            "Lunenburg"             "Richmond"             
- [7] "Division No.  8"       "Region 2"              "Lambton"              
-[10] "Northern Rockies"     </code></pre>
+<pre><code> [1] "Argenteuil"               "Longueuil"               
+ [3] "Kenora"                   "Arthabaska"              
+ [5] "Haldimand-Norfolk"        "Mount Waddington"        
+ [7] "East Kootenay"            "Kootenay Boundary"       
+ [9] "Division No. 18"          "Le Saguenay-et-son-Fjord"</code></pre>
 </div>
 </div>
 <p>I’ve changed the latitude and longitude parameters for the projection to values more suitable for this part of Canada.</p>
