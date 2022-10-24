@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.0.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Data Visualization notes - 27&nbsp; Making maps</title>
 <style>
@@ -610,11 +610,10 @@ geojson_write(canada_raw_sim, file = "static/canada_cd_sim.geojson") </code></pr
 </div>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">canada_cd</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">CDNAME</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Argenteuil"               "Longueuil"               
- [3] "Kenora"                   "Arthabaska"              
- [5] "Haldimand-Norfolk"        "Mount Waddington"        
- [7] "East Kootenay"            "Kootenay Boundary"       
- [9] "Division No. 18"          "Le Saguenay-et-son-Fjord"</code></pre>
+<pre><code> [1] "Thérèse-De Blainville" "Greater Vancouver"     "Haldimand-Norfolk"    
+ [4] "Portneuf"              "Cape Breton"           "D'Autray"             
+ [7] "Lévis"                 "Baffin"                "Beauharnois-Salaberry"
+[10] "Division No. 12"      </code></pre>
 </div>
 </div>
 <p>I’ve changed the latitude and longitude parameters for the projection to values more suitable for this part of Canada.</p>
