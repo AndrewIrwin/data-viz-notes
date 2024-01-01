@@ -1,6 +1,5 @@
 # Welcome {.unnumbered}
 
-
 Data visualization is a critical skill for anyone interested in using data to think and persuade. 
 
 This course focuses on three aspects of data visualization: 
