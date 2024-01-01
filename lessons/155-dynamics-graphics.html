@@ -2,16 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.37">
+<meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Data Visualization notes - 26&nbsp; Dynamic graphics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -38,43 +44,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -110,256 +86,305 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
-}</script><script src="../site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="../site_libs/plotly-binding-4.10.0/plotly.js"></script><script src="../site_libs/typedarray-0.1/typedarray.min.js"></script><script src="../site_libs/jquery-3.5.1/jquery.min.js"></script><link href="../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
-<script src="../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><link href="../site_libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
-<script src="../site_libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+}</script><script src="../site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script><script src="../site_libs/plotly-binding-4.10.2/plotly.js"></script><script src="../site_libs/typedarray-0.1/typedarray.min.js"></script><script src="../site_libs/jquery-3.5.1/jquery.min.js"></script><link href="../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><link href="../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 </head>
 <body class="nav-sidebar floating">
 
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Dynamic graphics</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/155-dynamics-graphics.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Dynamic graphics</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome</a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/101-introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Invitation to Data Visualization</span></a>
+  <a href="../lessons/101-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Invitation to Data Visualization</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/102-intro-to-r.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Computer tools</span></a>
+  <a href="../lessons/102-intro-to-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Computer tools</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/103-setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Setting up your computer</span></a>
+  <a href="../lessons/103-setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Setting up your computer</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/104-look-at-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Look at data</span></a>
+  <a href="../lessons/104-look-at-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Look at data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/105-first-plot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Making your first plot</span></a>
+  <a href="../lessons/105-first-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Making your first plot</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/106-version-control.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">What is version control software?</span></a>
+  <a href="../lessons/106-version-control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">What is version control software?</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/302-staying-organized.html" class="sidebar-item-text sidebar-link">Staying organized</a>
+  <a href="../lessons/302-staying-organized.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Staying organized</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/107-grammar-graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Grammar of Graphics</span></a>
+  <a href="../lessons/107-grammar-graphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Grammar of Graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/108-ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Using the grammar of graphics</span></a>
+  <a href="../lessons/108-ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Using the grammar of graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/110-summarizing-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summarizing data</span></a>
+  <a href="../lessons/110-summarizing-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summarizing data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/115-facets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Facetted graphs</span></a>
+  <a href="../lessons/115-facets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Facetted graphs</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/111-reading-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Reading data</span></a>
+  <a href="../lessons/111-reading-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Reading data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/112-reshaping-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></a>
+  <a href="../lessons/112-reshaping-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/113-data-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Format tables</span></a>
+  <a href="../lessons/113-data-tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Format tables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/114-asking-questions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Getting help and asking questions</span></a>
+  <a href="../lessons/114-asking-questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Getting help and asking questions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/118-working-with-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Working with models</span></a>
+  <a href="../lessons/118-working-with-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Working with models</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/119-linear-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Linear models</span></a>
+  <a href="../lessons/119-linear-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Linear models</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/120-gam-loess.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">GAM and LOESS smoothing</span></a>
+  <a href="../lessons/120-gam-loess.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">GAM and LOESS smoothing</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/124-collaboration.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Collaborating with GitHub</span></a>
+  <a href="../lessons/124-collaboration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Collaborating with GitHub</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/301-data-sources.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Finding and accessing data</span></a>
+  <a href="../lessons/301-data-sources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Finding and accessing data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">Accessibility, Bias, and Ethics</a>
+  <a href="../lessons/911-ethics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Accessibility, Bias, and Ethics</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/133-reproducible-reports.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reproducible reports</span></a>
+  <a href="../lessons/133-reproducible-reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reproducible reports</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/121-PCA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Principal component analysis</span></a>
+  <a href="../lessons/121-PCA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Principal component analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/122-mds.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multidimensional scaling</span></a>
+  <a href="../lessons/122-mds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multidimensional scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/123-kmean.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">K-means clustering</span></a>
+  <a href="../lessons/123-kmean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">K-means clustering</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/125-slides.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Making slides for presentations</span></a>
+  <a href="../lessons/125-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Making slides for presentations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/127-test-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Checking your work</span></a>
+  <a href="../lessons/127-test-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Checking your work</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/155-dynamics-graphics.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Dynamic graphics</span></a>
+  <a href="../lessons/155-dynamics-graphics.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Dynamic graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/140-mapping.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Making maps</span></a>
+  <a href="../lessons/140-mapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Making maps</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/141-mapping-2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Mapping II</span></a>
+  <a href="../lessons/141-mapping-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Mapping II</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/142-mapping-3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Alternatives to maps</span></a>
+  <a href="../lessons/142-mapping-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Alternatives to maps</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/130-bonus-topics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Working with text, factors, dates and times</span></a>
+  <a href="../lessons/130-bonus-topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Working with text, factors, dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/201-colour.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Using colour well</span></a>
+  <a href="../lessons/201-colour.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Using colour well</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/133-themes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Themes</span></a>
+  <a href="../lessons/133-themes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Themes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/130-graphics-output.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Graphics formatting</span></a>
+  <a href="../lessons/130-graphics-output.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Graphics formatting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/134-reconstruction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Reconstructing a visualization</span></a>
+  <a href="../lessons/134-reconstruction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Reconstructing a visualization</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/499-review.html" class="sidebar-item-text sidebar-link">R Review</a>
+  <a href="../lessons/499-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R Review</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/901-TMI-R.html" class="sidebar-item-text sidebar-link">More details about R</a>
+  <a href="../lessons/901-TMI-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">More details about R</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lessons/999-metadata.html" class="sidebar-item-text sidebar-link">Metadata</a>
+  <a href="../lessons/999-metadata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Metadata</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
 </div>
-</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#reader-interactions" id="toc-reader-interactions" class="nav-link active" data-scroll-target="#reader-interactions"> <span class="header-section-number">26.1</span> Reader interactions</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"> <span class="header-section-number">26.2</span> Example</a></li>
-  <li><a href="#animations" id="toc-animations" class="nav-link" data-scroll-target="#animations"> <span class="header-section-number">26.3</span> Animations</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"> <span class="header-section-number">26.4</span> Further reading</a></li>
+<li><a href="#reader-interactions" id="toc-reader-interactions" class="nav-link active" data-scroll-target="#reader-interactions"><span class="header-section-number">26.1</span> Reader interactions</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">26.2</span> Example</a></li>
+  <li><a href="#animations" id="toc-animations" class="nav-link" data-scroll-target="#animations"><span class="header-section-number">26.3</span> Animations</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">26.4</span> Further reading</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="dynamic" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Dynamic graphics</span></span></h1>
+<h1 class="title"><span id="dynamic" class="quarto-section-identifier"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Dynamic graphics</span></span></h1>
 </div>
 
 
@@ -367,6 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -386,8 +412,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span>          y <span class="op">=</span> <span class="op">~</span> <span class="va">price</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">add_markers</span><span class="op">(</span>color <span class="op">=</span> <span class="op">~</span> <span class="va">color</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="htmlwidget-40466029d559a8991e42" style="width:100%;height:464px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-40466029d559a8991e42">{"x":{"visdat":{"f7854648c5d6":["function () ","plotlyVisDat"]},"cur_data":"f7854648c5d6","attrs":{"f7854648c5d6":{"x":{},"y":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","mode":"markers","color":{},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"carat"},"yaxis":{"domain":[0,1],"automargin":true,"title":"price"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[1.7,0.33,2.2,1.51,2.27,0.3,1.03,1.21,0.9,2.21,0.4,1.69,0.41,0.4,0.31,1.13,1.21,0.5,0.9,1.66,0.31,2.19,2.05,0.85,2.47,1.02,1.37,1.54,1.53,0.54,1.5,1,1.01,0.41,1.52,0.9,1.29,1.71,2.02,1.51,0.75,1.22,1.21,1.5,1.25,0.55,0.91,1.52,0.37,0.3,0.42,1.2,0.31,1.53,1.71,1],"y":[9586,456,15064,7848,17051,450,3921,5531,2753,12327,633,5182,565,606,363,5370,3694,1099,3830,8487,363,10179,14037,2372,15430,3796,5063,6194,9384,964,7832,4144,4099,604,7186,3197,5607,10309,12832,6851,1827,4612,4492,5141,5252,1133,3181,8258,451,394,680,5071,453,9596,7695,3422],"type":"scatter","mode":"markers","name":"J","marker":{"color":"rgba(253,231,37,1)","line":{"color":"rgba(253,231,37,1)"}},"textfont":{"color":"rgba(253,231,37,1)"},"error_y":{"color":"rgba(253,231,37,1)"},"error_x":{"color":"rgba(253,231,37,1)"},"line":{"color":"rgba(253,231,37,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1.01,0.25,0.32,0.78,1.51,1.51,1.51,0.9,0.4,1.76,1.58,2,0.32,2.03,0.9,0.74,0.69,1.22,1.22,1.2,1.74,1.8,1.14,0.61,1.13,1.02,1.2,1.5,0.52,0.28,1.53,1.26,1.64,0.33,2.08,0.3,0.39,1.23,1.2,1.12,0.9,0.9,1.23,0.4,0.9,0.33,0.26,1.02,0.36,2,1.2,0.52,1.17,0.39,1.01,0.7,1,0.43,1.18,0.52,2.09,0.7,1.13,1.06,0.37,1.57,1.54,2,0.72,1.7,1.52,0.41,1.52,0.41,1.04,2.01,1.01,1.2,1.64,0.82,1.24,0.4,1.01,0.3,1.19,0.41,1.02,0.38,1.51,0.4,0.28,0.3,0.52,1.56,0.52],"y":[4207,421,589,2228,8464,8400,12291,3447,882,9659,9973,10483,529,13182,3220,2440,2070,5466,6062,6167,15189,8457,5008,1713,4271,3084,5376,9900,978,379,8971,4704,10102,572,11313,709,787,5717,4785,5119,3308,3805,7299,1240,3377,445,417,3856,571,16459,4752,1105,4586,865,4525,1675,4081,726,3925,1074,13933,2010,4481,3579,603,10093,9942,16407,2654,8743,3541,843,9483,1107,4013,16149,4989,6558,9144,2075,5638,770,5041,442,4665,785,3713,874,9640,1050,497,506,1019,7155,1152],"type":"scatter","mode":"markers","name":"I","marker":{"color":"rgba(143,215,68,1)","line":{"color":"rgba(143,215,68,1)"}},"textfont":{"color":"rgba(143,215,68,1)"},"error_y":{"color":"rgba(143,215,68,1)"},"error_x":{"color":"rgba(143,215,68,1)"},"line":{"color":"rgba(143,215,68,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0.54,0.34,0.53,0.9,1.01,1.02,1.01,1.05,0.72,1.51,0.31,1,1.01,1.56,0.3,1.73,0.33,0.31,0.3,1.01,1.51,0.36,0.32,1.41,0.35,0.31,0.51,0.4,0.5,0.31,2.1,0.7,0.3,2.04,0.9,1.01,0.36,0.39,0.9,1.61,0.42,1.51,1.01,1.03,0.46,0.31,2.01,0.71,1.01,1.71,0.7,0.5,1.01,0.8,1,0.8,1.5,1.01,1,1.14,2.01,0.74,0.33,0.39,0.4,0.31,1,0.9,1.53,0.35,1.5,0.39,1.12,1,0.71,0.37,1,1.52,2.01,0.5,2.01,1.2,1.51,1.22,0.41,2.04,0.7,0.31,2.04,1.51,1.58,0.42,0.3,1.01,0.26,0.59,1.5,0.7,1.01,0.26,1.09,1.01,0.58,0.76,2.01,0.32,0.3,0.31,0.31,1.53,0.91,2,0.72,2.04,0.3,0.71,1.11,2.2,0.31,1.26,2.01,1.23,0.53,0.53,0.31,1.31,0.59,0.39,0.39,1.31,0.47,1.25,1.02,0.41,1.7,0.91,1.03],"y":[1723,689,1268,4064,4559,4004,4559,4739,2168,11580,628,5460,5189,10642,636,13102,521,625,473,4513,10939,794,628,9088,906,628,964,666,1426,558,12121,2010,764,15874,3388,4771,538,784,4155,9005,670,6511,5028,4283,1382,625,13849,2471,3167,12607,2294,958,4072,3030,3920,3111,4022,4836,3511,7079,16677,2138,610,698,1088,489,4861,4173,8034,1024,11464,855,5363,4722,2918,533,5219,11979,18561,1648,15618,6077,10277,5773,1043,12341,2184,573,15618,10225,9774,847,539,4836,382,1552,10206,2335,5166,482,4395,5777,1755,3363,15930,814,473,802,625,8499,3921,11200,2608,18026,776,2141,5315,11088,544,6239,14558,3168,1674,1268,802,6602,1106,921,661,8392,1244,8099,5565,1056,14058,4018,4382],"type":"scatter","mode":"markers","name":"H","marker":{"color":"rgba(53,183,121,1)","line":{"color":"rgba(53,183,121,1)"}},"textfont":{"color":"rgba(53,183,121,1)"},"error_y":{"color":"rgba(53,183,121,1)"},"error_x":{"color":"rgba(53,183,121,1)"},"line":{"color":"rgba(53,183,121,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0.5,0.32,0.44,0.44,0.55,0.9,0.31,1.12,0.85,1.6,0.35,0.31,0.56,0.7,0.62,1.23,0.58,1.06,0.26,0.51,0.43,0.52,0.51,0.41,0.47,1.24,0.27,0.38,1.61,1.25,0.71,0.32,0.41,0.53,0.42,0.31,1.21,1.5,1.01,0.32,0.71,1.3,0.31,0.52,1.14,1.2,0.6,0.42,0.41,0.52,1.01,1,0.31,0.31,1.7,0.41,1.61,1.26,0.33,1.04,1.01,1,0.3,0.59,1.7,0.52,0.49,0.98,0.77,0.51,1.02,0.42,1.08,0.82,0.31,0.31,0.51,0.93,1.22,0.32,1.2,0.35,0.91,0.35,0.5,0.31,0.54,0.31,1,0.57,1.58,0.43,0.9,1.02,0.32,1.03,0.91,0.7,0.34,0.42,0.34,1.43,0.5,0.5,1.55,0.56,1,0.42,0.42,0.92,1.39,1.56,1.01,1.21,0.83,0.3,0.31,0.53,0.36,0.51,1.2,1.02,1.12,1.04,0.43,1.17,0.31,0.32,1.51,0.31,0.32,1.07,0.32,0.95,2,1.55,0.33,1.01,0.33,0.31,0.54,0.9,0.31,2.05,1.59,0.3,1.28,0.31,0.58,0.7,1.1,1.08,0.9,0.73,1.26,0.51,1.2,0.36,0.98,2,0.51,1.17,1.22,1.01,0.54,0.41,0.32,1.12,0.9,0.7,0.42,1.03,0.39,0.7,0.4,1.06,0.52,0.9,1.1,0.51,1.28,0.5,0.31,0.5,0.25,0.71,1.23,1.05,1.5,0.71,0.36,0.32,1.11,0.58,0.33,0.34],"y":[1838,692,1235,1155,2398,4601,931,5551,4373,15000,906,1046,2004,2473,1552,8381,1701,4815,418,1662,903,1346,2111,961,1110,9788,439,587,11192,8820,3299,445,1148,1946,686,408,9003,13034,6291,628,3254,9051,924,1694,5548,6666,2800,847,1230,1911,4242,4838,853,687,18445,1007,6915,6362,838,7467,7805,3965,835,1355,18718,1641,1240,3332,3243,1343,3656,984,8347,3880,802,802,1781,3114,5714,954,7258,676,3340,669,1138,698,1760,802,6369,1728,17329,867,4320,7602,891,3018,3975,2106,765,1179,1014,8599,2260,1127,10499,1698,4195,945,1400,4243,12462,13079,7466,4637,2386,878,695,1993,892,1875,10786,6169,5181,6996,935,7550,802,1080,4167,544,561,4278,936,3671,15897,14174,743,6618,752,816,1684,4059,446,16446,9707,895,8139,924,1558,3543,6369,5439,4386,3183,4966,1741,8442,589,1932,18524,1919,5012,6492,4588,1982,671,905,7687,3521,2710,1087,6659,746,1966,1229,6128,1389,4479,5610,1781,11372,1883,698,1729,1186,2977,5550,6070,4140,2515,608,842,7917,1760,854,596],"type":"scatter","mode":"markers","name":"G","marker":{"color":"rgba(33,144,140,1)","line":{"color":"rgba(33,144,140,1)"}},"textfont":{"color":"rgba(33,144,140,1)"},"error_y":{"color":"rgba(33,144,140,1)"},"error_x":{"color":"rgba(33,144,140,1)"},"line":{"color":"rgba(33,144,140,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,0.46,0.32,0.43,1.02,0.56,1.01,0.41,1.01,0.34,0.82,0.3,0.42,1.5,1.01,0.3,1.52,1.01,1,0.5,0.52,0.32,0.52,0.53,0.41,1.5,0.53,1.01,0.73,1.15,1.12,1.01,1,0.71,0.37,1.03,0.54,1.01,1.02,0.23,0.84,0.38,1.01,0.73,0.59,0.93,0.25,1.03,0.32,0.33,0.35,0.51,0.57,0.31,0.52,0.41,1.14,0.83,0.59,0.41,0.43,0.23,0.9,0.25,1.01,0.64,0.33,0.73,1,1.29,0.31,1,0.29,2,0.71,0.4,1.51,0.28,1.01,1.06,0.7,1,0.79,1.29,0.82,1.01,0.37,0.3,0.75,0.7,0.4,1.03,1.03,0.5,0.5,1,0.27,0.54,1.01,0.52,0.91,0.73,0.55,0.31,1.04,0.67,1,0.32,1.5,1.01,0.82,0.38,0.7,0.57,0.31,0.32,0.26,0.26,0.41,0.42,0.53,0.36,0.3,0.8,1.01,0.35,1.01,0.57,0.5,0.51,0.9,1.24,1.14,1.24,0.24,0.5,1.71,1.11,1.01,0.53,0.9,1,0.31,0.72,0.42,1.51,1.01,0.97,0.7,1.24,0.25,0.4,0.91,0.4,0.71,0.4,0.4,0.4,0.9,0.32,1.39,0.7,0.28,0.24,0.7,0.92,0.31,0.53,0.67,0.38,0.57,1,0.51,0.9,0.51,0.41,0.7,0.33,1.2,0.31,0.4,1.51,0.32,1.01,1.9,0.55,1.01,0.36,1.02,1.72,0.34],"y":[5292,758,645,804,6479,2318,4355,863,6176,1020,3048,776,1221,14092,4796,886,11776,6416,8008,1181,1073,939,1338,2290,1076,12030,2281,7347,3193,4186,7589,4676,4372,3612,616,4414,1849,5345,4162,498,2656,1096,6501,2737,2000,3420,548,9290,874,854,842,2138,2052,821,1767,1356,10786,3198,1195,1107,681,462,4229,575,4561,2063,666,2939,5197,7790,761,4504,504,18759,3123,929,16613,825,6900,4357,2415,3881,2953,10437,3363,4497,791,573,2393,2792,1039,6922,8133,2210,1409,5292,620,1786,6626,1267,3195,3140,1580,679,4507,1897,4255,854,17279,4497,2799,870,2355,2039,802,828,768,453,904,1326,2802,869,1114,3429,6332,1027,3477,2339,1715,2025,3552,6503,4399,9738,419,2160,6971,6589,4008,1268,3210,4234,625,2670,1131,12141,4619,4063,3204,9333,595,842,3746,945,2633,1263,982,1163,3318,716,12744,2403,707,552,1158,3323,802,1631,2244,600,2797,8772,1046,4158,1602,1115,2453,666,8669,695,842,8287,841,7107,12812,1746,5345,1138,7539,14892,726],"type":"scatter","mode":"markers","name":"F","marker":{"color":"rgba(49,104,142,1)","line":{"color":"rgba(49,104,142,1)"}},"textfont":{"color":"rgba(49,104,142,1)"},"error_y":{"color":"rgba(49,104,142,1)"},"error_x":{"color":"rgba(49,104,142,1)"},"line":{"color":"rgba(49,104,142,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1.14,0.3,1.01,0.4,0.4,0.71,0.97,0.72,0.76,0.91,0.31,0.4,0.41,0.57,0.41,0.25,0.7,0.51,0.91,0.71,0.31,0.9,0.36,0.41,0.3,0.6,0.75,0.36,1.11,0.83,0.57,0.46,0.34,0.9,1.52,1.01,0.29,1.01,1.11,0.56,0.3,0.35,0.41,0.57,0.33,0.65,0.57,0.71,0.54,1.27,0.61,0.6,0.32,0.41,0.38,1.18,0.7,0.7,0.32,1.51,0.28,0.82,0.81,0.9,0.73,0.31,0.5,0.36,0.7,0.35,0.32,1.62,0.4,0.5,0.23,0.56,0.73,0.4,0.63,0.34,1.18,0.5,0.3,0.42,1.14,0.7,0.43,0.9,0.31,0.4,0.32,1.02,0.23,0.51,1.08,0.46,0.7,0.49,0.26,1.08,0.75,0.31,0.7,0.41,0.36,0.57,1.02,0.23,0.26,0.35,0.57,1,1.11,0.7,0.41,0.37,0.38,0.24,0.41,0.31,1,0.24,1.02,0.4,0.71,0.75,0.7,1.27,0.55,0.4,1,0.31,0.51,0.52,0.9,0.4,0.54,0.41,1.5,0.51,0.53,0.59,0.36,0.72,0.3,1.11,0.51,1.01,0.3,1.5,0.37,0.33,0.5,0.33,1.01,0.7,1.09,1.04,1.01,0.7,0.7,0.25,0.71,0.31,1.07,1.04,1.06,0.32,0.72,0.51,0.3,0.51,0.92,0.32,1,0.26,0.51,0.58,0.5,1.08,0.7,0.93,0.71,0.51,0.51,0.41,0.29],"y":[10512,844,9002,975,837,2256,4078,2401,3249,3774,698,707,1249,1884,1079,740,2730,1413,4345,2629,1239,4165,505,1019,1013,1613,2760,789,5262,3365,1608,1042,596,3662,9405,4480,619,4118,4769,1297,742,849,1243,1942,723,1989,1320,2682,1440,9086,2214,1385,816,1745,1112,3278,2980,2952,960,13757,373,3380,4764,4209,3127,872,1077,878,1758,829,702,9526,1397,1090,465,2442,3198,1125,2513,1033,4229,1114,658,773,11206,2352,1433,4463,924,689,1018,5840,505,1970,4656,968,2164,1084,599,3861,2497,680,2386,904,1094,2615,4540,530,554,984,1732,4579,4102,2592,848,833,1318,710,904,734,5330,485,4813,1125,3061,3084,3154,7980,1668,1580,4004,1039,1656,1389,3187,1025,1847,1419,10777,2211,1607,1664,631,2907,766,11330,1709,4766,526,16409,1082,723,1806,532,6043,2800,7813,9552,9930,2858,2273,740,2516,1133,4284,10019,5642,808,2626,1402,844,1656,4637,702,4704,769,1546,1698,2437,3726,2889,4374,2817,2301,1717,1153,633],"type":"scatter","mode":"markers","name":"E","marker":{"color":"rgba(68,58,131,1)","line":{"color":"rgba(68,58,131,1)"}},"textfont":{"color":"rgba(68,58,131,1)"},"error_y":{"color":"rgba(68,58,131,1)"},"error_x":{"color":"rgba(68,58,131,1)"},"line":{"color":"rgba(68,58,131,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0.33,0.57,0.72,0.42,0.79,0.42,0.56,0.53,1.25,0.36,1.02,1.5,1,0.54,1,0.51,0.41,0.79,0.32,0.4,0.31,1.01,1.01,1.02,0.52,0.51,0.33,1.02,0.38,0.33,0.31,0.71,0.34,0.71,0.57,0.31,0.57,0.53,0.39,0.56,0.27,0.43,0.56,0.32,0.73,0.91,1.03,0.41,1.3,0.7,0.4,0.38,0.4,0.55,0.51,0.3,0.59,0.3,1.72,1.51,0.3,0.34,1.77,0.51,0.31,2,1,0.51,0.53,0.7,0.32,1.01,1.17,1,1.15,0.34,0.39,0.9,0.63,1.01,1,0.7,0.3,0.3,1,0.5,0.65,0.41,0.4,1.51,0.9,0.59,0.71,2.01,0.41,1.28,0.5,0.32,1,0.31,0.7,0.41,0.52,0.7,0.5,1,1.11,1.18,0.32,0.43,0.31,0.96,0.31,0.3,0.3,0.79,0.3,0.46,0.51,1.03,0.3,0.96,0.5,0.31,0.3,1.01,0.32,0.32,0.9,0.33,0.56,0.31,0.72,0.31,0.31,0.51,0.7,0.6],"y":[780,1754,3622,1326,3432,1009,2369,1956,4543,663,6047,11352,4155,1551,7812,1406,758,3058,477,1123,816,7001,4588,4459,2362,1619,739,5598,1140,631,1074,2764,803,2480,2099,533,1262,3827,1024,1723,470,774,2053,657,3140,3958,4478,727,6327,2358,1168,871,666,2585,1793,666,1431,911,8264,17111,662,1272,13026,1264,828,17760,4861,1716,1956,2222,829,8265,5567,4543,8114,626,1197,4078,2373,4690,4727,2339,670,515,5880,1654,4022,1413,741,11942,5081,1986,2747,16624,1007,9548,1792,612,4626,734,2560,791,1679,2367,1395,4543,6579,7093,758,931,734,5548,571,552,814,2539,835,1240,1359,5804,1041,4388,1627,571,814,4805,756,1015,5123,567,1963,734,3550,692,571,1644,1848,1799],"type":"scatter","mode":"markers","name":"D","marker":{"color":"rgba(68,1,84,1)","line":{"color":"rgba(68,1,84,1)"}},"textfont":{"color":"rgba(68,1,84,1)"},"error_y":{"color":"rgba(68,1,84,1)"},"error_x":{"color":"rgba(68,1,84,1)"},"line":{"color":"rgba(68,1,84,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-0d5aafad3e0940bac4b1" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-0d5aafad3e0940bac4b1">{"x":{"visdat":{"49b42a788150":["function () ","plotlyVisDat"]},"cur_data":"49b42a788150","attrs":{"49b42a788150":{"x":{},"y":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","mode":"markers","color":{},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"carat"},"yaxis":{"domain":[0,1],"automargin":true,"title":"price"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0.81000000000000005,0.79000000000000004,0.90000000000000002,2,0.57999999999999996,1.28,1.55,1,1.1200000000000001,0.70999999999999996,0.93000000000000005,1.23,0.70999999999999996,1.2,0.56000000000000005,1.1100000000000001,0.91000000000000003,0.90000000000000002,0.40000000000000002,1.24,1.24,0.56000000000000005,1.26,0.40000000000000002,1.01,1.27,2.6000000000000001,0.39000000000000001,0.39000000000000001,1.51,1.5,2.2799999999999998,2.1400000000000001,0.40999999999999998,0.96999999999999997,1.25,0.31,1.2],"y":[2626,2199,3643,11189,1227,4553,6890,3528,2898,1899,3250,5181,2001,5016,1131,4497,2905,2873,631,4687,5026,957,5038,567,3399,5455,17209,451,921,8770,8014,14220,14556,1061,2538,4690,453,5071],"type":"scatter","mode":"markers","name":"J","marker":{"color":"rgba(253,231,37,1)","line":{"color":"rgba(253,231,37,1)"}},"textfont":{"color":"rgba(253,231,37,1)"},"error_y":{"color":"rgba(253,231,37,1)"},"error_x":{"color":"rgba(253,231,37,1)"},"line":{"color":"rgba(253,231,37,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1.5,1.1100000000000001,1.04,0.29999999999999999,1.51,0.71999999999999997,0.29999999999999999,1.03,1.21,1.5,1.1299999999999999,1.1799999999999999,0.91000000000000003,0.34000000000000002,1.54,1.5,1.7,0.69999999999999996,0.31,1.53,1.7,2.0600000000000001,1.8300000000000001,0.52000000000000002,0.51000000000000001,0.77000000000000002,2.0099999999999998,0.58999999999999997,2.1800000000000002,1.04,1.51,1.5,1.5,0.34000000000000002,1.7,3.0099999999999998,0.32000000000000001,1.25,1.27,0.70999999999999996,0.29999999999999999,0.34000000000000002,0.37,0.23999999999999999,0.32000000000000001,0.92000000000000004,1.2,0.52000000000000002,0.42999999999999999,2.2200000000000002,1.03,2.1899999999999999,1.23,0.90000000000000002,1.1799999999999999,0.69999999999999996,0.26000000000000001,2.02,0.72999999999999998,0.33000000000000002,0.60999999999999999,1.01,1.1100000000000001,0.29999999999999999,0.31,1.26,1.5,0.90000000000000002,2.0099999999999998,0.52000000000000002,0.29999999999999999,0.29999999999999999,2.2200000000000002,1.01,0.90000000000000002,0.70999999999999996,1.1799999999999999,0.90000000000000002,1.53,1.1899999999999999,2.02,1.2,0.90000000000000002,0.34000000000000002,1.1599999999999999,0.40000000000000002,1.1699999999999999,0.54000000000000004,0.76000000000000001],"y":[8736,4196,4601,422,8400,1907,709,4326,5556,9759,4611,5412,3034,459,9314,9278,10796,2332,489,10098,11257,15517,13587,1376,1437,2184,12985,1392,13769,4423,9581,9033,8258,459,7140,18242,864,5259,5547,2327,552,457,681,397,589,4457,4368,1619,998,15184,4434,15254,5600,3162,5551,2106,417,13991,2908,572,2048,4584,4028,709,489,4551,8161,3720,16003,1316,526,405,18531,2323,3473,2525,4555,3196,7859,7328,14238,5107,2873,695,5016,596,4826,1079,2399],"type":"scatter","mode":"markers","name":"I","marker":{"color":"rgba(143,215,68,1)","line":{"color":"rgba(143,215,68,1)"}},"textfont":{"color":"rgba(143,215,68,1)"},"error_y":{"color":"rgba(143,215,68,1)"},"error_x":{"color":"rgba(143,215,68,1)"},"line":{"color":"rgba(143,215,68,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1.0700000000000001,0.70999999999999996,0.91000000000000003,0.52000000000000002,2,0.82999999999999996,0.69999999999999996,0.40999999999999998,0.56000000000000005,1.51,1.1100000000000001,1.1100000000000001,1.0700000000000001,1.0800000000000001,2.1000000000000001,1.22,1.5,0.47999999999999998,0.90000000000000002,1.8300000000000001,1.51,0.90000000000000002,1.02,1.01,1.1000000000000001,1.3400000000000001,0.46000000000000002,1.2,1.7,0.33000000000000002,1.3400000000000001,0.70999999999999996,0.90000000000000002,0.92000000000000004,1.1100000000000001,0.23999999999999999,1.51,0.66000000000000003,0.31,0.90000000000000002,0.54000000000000004,1.21,1.01,1,1.02,0.29999999999999999,1,0.71999999999999997,0.37,0.94999999999999996,1.02,0.32000000000000001,1.1299999999999999,1.1599999999999999,0.32000000000000001,1.52,1.1000000000000001,1.21,1.28,0.52000000000000002,0.5,0.83999999999999997,1.02,0.80000000000000004,1.2,1.02,0.31,0.90000000000000002,0.56000000000000005,1.23,0.71999999999999997,1,0.31,0.32000000000000001,1.6200000000000001,1.0900000000000001,0.40999999999999998,1.7,1,2.0099999999999998,0.5,0.58999999999999997,0.54000000000000004,0.29999999999999999,2,0.69999999999999996,2.1600000000000001,1.0700000000000001,0.90000000000000002,0.5,0.69999999999999996,1.02,1.5700000000000001,0.71999999999999997,1.0600000000000001,0.91000000000000003,0.42999999999999999,1.1599999999999999,1.2,0.62,1.01,0.69999999999999996,1.6599999999999999,1.21,1.3100000000000001,1.02,1.05,1.2,1.02,0.52000000000000002,0.58999999999999997,1.04,1.6000000000000001,1.0900000000000001,0.31,2.1099999999999999,1,0.31,0.90000000000000002,1.0600000000000001,1.51,0.78000000000000003,0.37,0.29999999999999999,0.58999999999999997,1.23,2.2000000000000002,1.7,2.02,0.5,0.29999999999999999,1.0700000000000001,2.1400000000000001,0.34000000000000002,1.52,1.3,0.31,1.0900000000000001,1.72,0.77000000000000002,0.29999999999999999,0.52000000000000002,2.02,0.70999999999999996,0.81000000000000005],"y":[5055,3229,3302,1054,17447,2565,1982,829,1653,7823,5315,5433,5752,6411,13403,7201,10023,1270,4234,10162,9261,4016,4243,4208,5278,7636,1252,6487,7197,959,7630,2086,4637,4173,5450,449,11268,1609,446,3964,1774,5936,5515,3819,4796,473,5619,2197,603,3335,4796,708,3745,4979,645,9448,4725,6056,6946,1659,1024,2847,5565,2122,5746,5432,544,4201,2157,7260,1674,5169,544,720,11455,6288,1099,10337,4389,14364,1395,2317,1883,473,13134,2618,16400,3415,4234,1134,2176,4303,10149,2771,5188,3278,1016,5576,5174,1878,4642,2406,14859,7928,5429,4284,5833,5376,4604,1219,1552,4980,9229,4871,772,15530,4791,489,3989,4120,11263,2125,684,655,1590,7130,12747,9158,16985,1133,776,5424,14490,537,6086,7536,489,5219,9266,2393,638,1223,18207,2131,2313],"type":"scatter","mode":"markers","name":"H","marker":{"color":"rgba(53,183,121,1)","line":{"color":"rgba(53,183,121,1)"}},"textfont":{"color":"rgba(53,183,121,1)"},"error_y":{"color":"rgba(53,183,121,1)"},"error_x":{"color":"rgba(53,183,121,1)"},"line":{"color":"rgba(53,183,121,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1.52,1.26,0.29999999999999999,0.31,1.01,0.25,0.40000000000000002,1.52,1.01,1.0800000000000001,1,1.01,1,1.0700000000000001,0.81000000000000005,1.0700000000000001,0.31,2.1299999999999999,1.1000000000000001,0.52000000000000002,0.38,0.29999999999999999,0.54000000000000004,1.53,0.69999999999999996,1.02,0.53000000000000003,0.69999999999999996,0.29999999999999999,0.31,0.42999999999999999,0.5,1.01,0.34999999999999998,0.32000000000000001,1.03,1.01,0.45000000000000001,2.0299999999999998,0.92000000000000004,0.32000000000000001,1.1200000000000001,1.1799999999999999,2.2599999999999998,0.32000000000000001,0.51000000000000001,0.31,0.34999999999999998,2.1099999999999999,0.53000000000000003,0.34000000000000002,0.32000000000000001,1.02,1.3500000000000001,0.37,0.70999999999999996,0.23000000000000001,0.39000000000000001,1.1100000000000001,0.52000000000000002,1.0800000000000001,0.42999999999999999,0.40000000000000002,0.41999999999999998,1.02,0.40000000000000002,1.6399999999999999,0.75,0.5,0.29999999999999999,1.1200000000000001,0.38,0.85999999999999999,0.70999999999999996,0.69999999999999996,0.51000000000000001,0.37,0.29999999999999999,1.5,0.34000000000000002,1.02,0.29999999999999999,1.75,0.40999999999999998,0.31,0.73999999999999999,0.79000000000000004,1.01,0.90000000000000002,0.41999999999999998,0.70999999999999996,1.21,0.5,1.1399999999999999,0.94999999999999996,0.56999999999999995,0.40999999999999998,0.51000000000000001,1.25,0.29999999999999999,0.29999999999999999,0.37,0.52000000000000002,0.34000000000000002,0.40000000000000002,0.40999999999999998,0.34000000000000002,0.60999999999999999,0.42999999999999999,0.32000000000000001,1.3300000000000001,0.37,1.3100000000000001,0.80000000000000004,1.01,0.72999999999999998,2.5099999999999998,0.34000000000000002,1.01,0.53000000000000003,1.28,1.0600000000000001,1.1299999999999999,0.32000000000000001,1.71,0.32000000000000001,0.69999999999999996,0.32000000000000001,0.31,1.1200000000000001,1.02,0.34000000000000002,0.93000000000000005,0.37,0.29999999999999999,0.39000000000000001,1.2,1.01,0.29999999999999999,1.04,1.0800000000000001,0.31,1.01,1.03,1.1399999999999999,0.34000000000000002,0.54000000000000004,0.32000000000000001,1.72,0.83999999999999997,0.40000000000000002,0.29999999999999999,1.0700000000000001,0.69999999999999996,1.05,2,0.54000000000000004,0.29999999999999999,0.77000000000000002,0.70999999999999996,1.0600000000000001,0.31,0.32000000000000001,0.32000000000000001,0.5,0.33000000000000002,0.34000000000000002,0.78000000000000003,0.5,1,1,0.56999999999999995,1.03,0.90000000000000002,0.75,0.5,1,0.70999999999999996,1.01,0.37,1.01,1.3100000000000001,0.34999999999999998,0.29999999999999999,0.33000000000000002,0.40999999999999998,1.5800000000000001,1.0800000000000001,1.0800000000000001,1.52,2.02,1.05,1,0.70999999999999996,0.52000000000000002,1.1799999999999999,0.32000000000000001,0.35999999999999999,0.70999999999999996,1.5,1.1399999999999999,0.26000000000000001,1,0.69999999999999996,0.40999999999999998,0.41999999999999998,0.38,0.33000000000000002,0.29999999999999999,0.56000000000000005,1.22,0.81000000000000005],"y":[13287,6046,984,695,6108,459,1125,12596,5999,4241,4032,6335,5621,6998,2545,3595,1046,16778,4997,1689,710,574,1637,11230,3725,6126,1132,2460,684,707,818,1746,6247,898,936,5241,6618,1246,18257,5183,645,8202,4988,12831,796,1438,625,706,16188,2051,995,1080,4471,4643,833,2671,431,787,4834,1911,4544,943,1239,777,9596,651,7154,2617,1592,684,5088,833,3756,2386,2488,2111,957,545,9645,826,5581,491,16073,961,544,3495,2944,6587,4022,921,2215,9358,1569,8346,4150,1613,1076,1029,9282,484,506,586,1311,765,1035,788,765,2309,954,732,10732,817,11531,4193,4338,3411,14251,596,5999,1881,9335,3321,7016,796,11248,645,2074,645,802,4158,3787,507,4879,810,605,952,8938,5701,605,6669,7553,558,2993,4746,7042,1014,1804,477,10697,2573,1043,764,4201,2106,7283,9475,1389,1013,2986,2368,6212,698,559,954,1865,1040,775,3184,1569,4095,2398,2206,3018,3107,2939,1746,4163,2762,6027,608,4249,9891,1024,905,861,719,14451,4627,8873,8280,15014,9000,7572,2911,1306,9137,645,776,2766,4140,5424,394,3833,2633,1007,1103,929,810,1013,2357,8062,2725],"type":"scatter","mode":"markers","name":"G","marker":{"color":"rgba(33,144,140,1)","line":{"color":"rgba(33,144,140,1)"}},"textfont":{"color":"rgba(33,144,140,1)"},"error_y":{"color":"rgba(33,144,140,1)"},"error_x":{"color":"rgba(33,144,140,1)"},"line":{"color":"rgba(33,144,140,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1.01,0.26000000000000001,0.80000000000000004,0.91000000000000003,0.54000000000000004,0.53000000000000003,0.32000000000000001,0.72999999999999998,0.90000000000000002,1,1.4199999999999999,0.72999999999999998,0.90000000000000002,0.38,1,1.5,0.71999999999999997,0.45000000000000001,0.80000000000000004,0.33000000000000002,0.28999999999999998,1.1399999999999999,0.72999999999999998,0.33000000000000002,1.27,1.03,1.2,0.62,1.02,0.75,0.72999999999999998,0.40000000000000002,0.53000000000000003,1.3400000000000001,0.69999999999999996,0.42999999999999999,0.69999999999999996,0.37,1.1599999999999999,1.03,1.5,0.92000000000000004,1.22,0.90000000000000002,1.1899999999999999,0.20000000000000001,1.3999999999999999,1.1100000000000001,0.77000000000000002,1.51,1.3200000000000001,0.39000000000000001,0.70999999999999996,0.32000000000000001,2.0099999999999998,0.40000000000000002,0.26000000000000001,1,0.51000000000000001,1,0.34000000000000002,1,1.04,0.76000000000000001,1.22,0.56999999999999995,1.03,0.44,2.1800000000000002,0.31,0.5,0.45000000000000001,0.69999999999999996,0.39000000000000001,1.1100000000000001,0.59999999999999998,0.38,0.71999999999999997,0.31,0.35999999999999999,0.69999999999999996,0.31,0.92000000000000004,1.22,0.33000000000000002,0.40000000000000002,0.40000000000000002,0.98999999999999999,0.5,1.3,1,1.0800000000000001,0.35999999999999999,0.31,0.55000000000000004,0.31,0.31,0.55000000000000004,1.71,1.51,1,1.26,0.89000000000000001,0.53000000000000003,1.0600000000000001,2.0099999999999998,0.70999999999999996,1.02,1.0800000000000001,0.93999999999999995,1.01,0.29999999999999999,0.32000000000000001,0.77000000000000002,0.56999999999999995,0.40000000000000002,0.72999999999999998,2.0099999999999998,0.55000000000000004,0.40000000000000002,0.31,0.29999999999999999,0.69999999999999996,1,0.73999999999999999,0.38,0.72999999999999998,1.01,0.69999999999999996,0.32000000000000001,0.53000000000000003,0.55000000000000004,0.48999999999999999,1.04,0.80000000000000004,0.31,0.41999999999999998,0.40000000000000002,0.56999999999999995,1.5,0.41999999999999998,0.70999999999999996,0.91000000000000003,0.39000000000000001,1,1.01,0.53000000000000003,0.73999999999999999,0.31,1.01,1,1.27,0.29999999999999999,1.51,1.01,1.27,0.31,0.40000000000000002,1.24,0.57999999999999996,0.90000000000000002,0.73999999999999999,1.01,0.69999999999999996,0.22,0.31,0.64000000000000001,1.3,1.04,0.40999999999999998,1.5,0.56999999999999995,0.52000000000000002,0.71999999999999997,0.41999999999999998,0.58999999999999997,0.70999999999999996,0.92000000000000004,0.34999999999999998,0.40999999999999998,1.5,0.90000000000000002,1.0700000000000001,0.70999999999999996,0.41999999999999998,0.23999999999999999],"y":[3903,580,2762,3195,1600,1753,639,2549,2964,6183,7755,3888,3437,988,10046,9904,2802,1144,2862,666,731,4652,2855,828,6543,8089,11021,1329,6220,2840,3166,1404,1322,7893,2596,1250,2409,894,4395,7429,14586,3920,9581,3803,10748,367,8216,5483,3169,14165,11177,956,2801,828,13610,1088,453,4620,1046,5929,574,3259,5621,2631,10494,1760,4586,756,12099,802,2052,1262,992,718,7179,1367,700,2724,667,789,2401,766,3282,13029,801,1196,1080,5728,1447,6559,5058,7917,1021,872,1777,840,840,1692,17052,7441,4586,9896,3663,1142,4357,17220,2832,8616,7079,3938,4549,641,645,2667,1637,687,2527,17005,1368,1080,846,500,2313,3265,2583,1104,2961,7602,3683,1061,1078,1777,1426,5871,2914,700,945,982,1847,10479,663,2839,4108,987,3405,4011,1908,3170,625,6907,4749,13320,570,16402,7602,15377,749,945,5889,2001,6830,2410,9176,3399,342,1028,1816,5788,6606,863,5313,2321,1594,3420,992,1813,2221,3787,906,863,15478,4770,4700,2331,1103,419],"type":"scatter","mode":"markers","name":"F","marker":{"color":"rgba(49,104,142,1)","line":{"color":"rgba(49,104,142,1)"}},"textfont":{"color":"rgba(49,104,142,1)"},"error_y":{"color":"rgba(49,104,142,1)"},"error_x":{"color":"rgba(49,104,142,1)"},"line":{"color":"rgba(49,104,142,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0.58999999999999997,0.70999999999999996,1.01,0.35999999999999999,0.25,0.37,0.90000000000000002,0.58999999999999997,0.70999999999999996,0.92000000000000004,0.29999999999999999,0.31,0.69999999999999996,0.37,0.46999999999999997,0.23000000000000001,0.29999999999999999,1.21,0.64000000000000001,0.5,0.75,1,0.44,1.01,0.34999999999999998,0.55000000000000004,1.01,0.90000000000000002,0.70999999999999996,0.40000000000000002,0.41999999999999998,0.56999999999999995,0.52000000000000002,0.51000000000000001,1.21,1.5,0.26000000000000001,1.5,1.0700000000000001,0.70999999999999996,0.75,0.56000000000000005,0.32000000000000001,0.38,0.68000000000000005,0.40000000000000002,0.23999999999999999,1.51,1.54,0.48999999999999999,2,0.35999999999999999,0.72999999999999998,0.31,0.25,0.25,0.56999999999999995,0.33000000000000002,1,0.90000000000000002,0.52000000000000002,0.51000000000000001,0.33000000000000002,0.69999999999999996,0.46000000000000002,0.38,1.02,0.29999999999999999,0.5,1.5,0.5,0.91000000000000003,0.40000000000000002,0.32000000000000001,0.31,0.70999999999999996,1.01,1.2,0.38,0.69999999999999996,0.39000000000000001,0.37,0.28000000000000003,0.73999999999999999,0.39000000000000001,0.31,0.29999999999999999,0.34999999999999998,0.58999999999999997,1,0.29999999999999999,0.29999999999999999,0.40999999999999998,0.40999999999999998,1.2,0.69999999999999996,0.29999999999999999,0.23000000000000001,0.59999999999999998,0.69999999999999996,1.0900000000000001,0.51000000000000001,1.05,1.2,1.1799999999999999,0.29999999999999999,1.5600000000000001,0.37,0.69999999999999996,0.31,0.92000000000000004,0.40000000000000002,0.31,0.90000000000000002,0.38,1.02,1,1.1299999999999999,0.39000000000000001,0.34999999999999998,0.70999999999999996,0.40000000000000002,0.40999999999999998,1.2,1,0.41999999999999998,0.56999999999999995,0.70999999999999996,0.51000000000000001,0.32000000000000001,0.51000000000000001,0.40999999999999998,0.32000000000000001,0.34000000000000002,0.5,1,0.38,0.53000000000000003,0.52000000000000002,1.0600000000000001,0.72999999999999998,0.39000000000000001,0.80000000000000004,0.34000000000000002,0.75,0.75,0.56999999999999995,0.81000000000000005,0.29999999999999999,0.29999999999999999,0.52000000000000002,0.41999999999999998,0.29999999999999999,0.33000000000000002,1.0900000000000001,0.32000000000000001,0.40000000000000002,0.93999999999999995,0.52000000000000002,0.5,0.31,0.40000000000000002,0.31,0.91000000000000003,0.90000000000000002,0.44,0.69999999999999996,0.70999999999999996,0.40999999999999998,0.32000000000000001,0.35999999999999999,0.33000000000000002,0.34000000000000002,1.51,0.32000000000000001,0.70999999999999996,0.28000000000000003,1,0.51000000000000001,0.23000000000000001,0.40000000000000002,0.31,0.38,0.69999999999999996,0.56999999999999995,0.53000000000000003,0.90000000000000002,0.71999999999999997,1.5],"y":[1248,2891,5543,505,575,541,6892,2553,3381,4254,658,733,2518,649,1293,402,766,8348,1926,1316,3555,4321,1337,4853,984,2030,6399,4449,2398,737,1273,1853,3033,1909,7334,9157,569,10214,6561,3238,3718,1747,524,1047,1918,687,485,10935,14529,1609,18426,1013,3758,626,633,740,1949,579,4704,4463,1341,1662,984,2964,1661,813,6612,911,1181,12247,1128,2342,981,702,680,3527,4853,8563,1267,2475,1207,811,529,2447,1049,680,675,788,1748,6400,526,844,1079,904,8380,3585,844,472,1033,2307,9346,1781,3951,10214,4153,742,8518,593,2850,680,4482,1053,435,5068,1100,5681,6050,5012,951,738,2343,907,755,8279,3450,1105,1608,2964,1381,1080,1781,753,608,816,2105,6720,1267,1286,1689,4654,2707,1121,2640,765,3365,2609,2177,2559,763,468,1815,898,742,743,5771,672,945,3825,1668,1415,987,687,651,5252,3570,936,2872,2215,917,748,727,802,698,12644,801,2416,642,4805,1662,505,800,698,924,2324,1613,1607,4580,2345,11385],"type":"scatter","mode":"markers","name":"E","marker":{"color":"rgba(68,58,131,1)","line":{"color":"rgba(68,58,131,1)"}},"textfont":{"color":"rgba(68,58,131,1)"},"error_y":{"color":"rgba(68,58,131,1)"},"error_x":{"color":"rgba(68,58,131,1)"},"line":{"color":"rgba(68,58,131,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0.26000000000000001,1.26,1.03,0.34999999999999998,0.55000000000000004,0.53000000000000003,1.1000000000000001,2,0.55000000000000004,0.33000000000000002,1.73,0.5,0.31,0.40000000000000002,1.1200000000000001,0.93000000000000005,0.52000000000000002,1.0800000000000001,0.31,2.1400000000000001,0.33000000000000002,0.29999999999999999,0.29999999999999999,1.5900000000000001,0.31,0.31,0.5,0.34999999999999998,0.52000000000000002,0.29999999999999999,1.3400000000000001,0.32000000000000001,1.02,0.34999999999999998,0.76000000000000001,0.32000000000000001,1.52,0.53000000000000003,1,1.0700000000000001,0.33000000000000002,0.35999999999999999,0.40000000000000002,0.91000000000000003,1.05,0.32000000000000001,0.32000000000000001,1.02,0.90000000000000002,0.69999999999999996,0.5,0.32000000000000001,0.32000000000000001,1.24,0.51000000000000001,0.90000000000000002,1.2,0.31,0.90000000000000002,0.72999999999999998,0.77000000000000002,0.56999999999999995,0.5,1.55,0.5,0.5,0.93000000000000005,1.02,0.5,0.55000000000000004,0.34000000000000002,0.32000000000000001,1.0900000000000001,0.69999999999999996,1,0.69999999999999996,0.34000000000000002,1.51,0.70999999999999996,0.35999999999999999,0.5,0.31,1.02,0.70999999999999996,1.02,1.52,0.35999999999999999,0.31,1.1399999999999999,0.56000000000000005,0.23000000000000001,0.34000000000000002,0.32000000000000001,1.1200000000000001,0.55000000000000004,1.1899999999999999,1.0600000000000001,1.01,1.01,0.44,0.35999999999999999,1,0.40000000000000002,0.34000000000000002,0.34000000000000002,0.32000000000000001,0.69999999999999996,1.3600000000000001,0.40999999999999998,0.57999999999999996,1.0900000000000001,0.56999999999999995,0.23000000000000001,0.33000000000000002,0.32000000000000001,0.33000000000000002,0.40000000000000002,0.56000000000000005,0.72999999999999998,0.90000000000000002,0.38,0.51000000000000001,0.70999999999999996,0.29999999999999999,0.84999999999999998,1.5,0.32000000000000001,0.41999999999999998,0.34000000000000002,0.29999999999999999,0.69999999999999996,0.34000000000000002,0.38,2.02,0.53000000000000003,0.42999999999999999,2.0099999999999998,0.75,0.5,0.29999999999999999,1],"y":[599,7785,4764,669,2224,2067,6468,17760,3006,780,12770,1323,593,924,5966,3990,1919,5256,788,17127,1002,574,552,8975,997,804,1415,1266,1919,710,8930,756,4718,827,2706,589,13799,1956,3965,5872,781,1094,1050,3357,5351,756,589,6974,4007,2310,1683,589,972,7351,1787,5476,7191,593,5795,3047,2939,1847,1690,11284,1243,1845,3540,3839,1845,1894,749,804,3961,2596,4928,2104,626,11942,2797,663,1654,533,5219,3540,5890,9817,852,734,5047,1814,357,957,756,5243,1894,7916,7541,5731,8286,883,832,4419,855,753,626,758,3529,11793,1007,2617,6532,1998,373,608,713,978,1168,3496,3308,5123,992,2834,2694,914,4373,11933,1044,1210,805,710,2686,2346,812,17263,2147,1199,13811,2872,979,709,7026],"type":"scatter","mode":"markers","name":"D","marker":{"color":"rgba(68,1,84,1)","line":{"color":"rgba(68,1,84,1)"}},"textfont":{"color":"rgba(68,1,84,1)"},"error_y":{"color":"rgba(68,1,84,1)"},"error_x":{"color":"rgba(68,1,84,1)"},"line":{"color":"rgba(68,1,84,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>Plot_ly can do a lot more than this example shows, including animation. There is a lot of documentation you can find at the link under Further Reading.</p>
@@ -466,9 +492,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -480,7 +520,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -508,31 +565,136 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
