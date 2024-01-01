@@ -79,10 +79,12 @@ There are two steps. First download the tiles needed for your map by specifying
 
 Always start with a small zoom level -- if you make it too big you will download a lot of unnecessary data, which takes time and imposes a burden on the service.
 
+FIX ME
+
 ```{r message=FALSE}
-mymap_terrain <- get_stamenmap(bbox = c(left = -130, bottom = 41, right = -50, top = 60),
-                               zoom=4, maptype = "terrain")
-ggmap(mymap_terrain)  
+# mymap_terrain <- get_stamenmap(bbox = c(left = -130, bottom = 41, right = -50, top = 60),
+#                                zoom=4, maptype = "terrain")
+# ggmap(mymap_terrain)  
 ```
 
 This is a regular ggplot, so you can add lines and points to a map easily, using latitude and longitude as coordinates. Placing text on a map in a readable and attractive way can be quite a challenge.
@@ -92,18 +94,18 @@ my_points <- tibble(lat = c(43+57/60, 49+53/60),
                     lon = c(-59-55/60, -97-9/60),
                     label = c("Sable Is.", "Winnipeg")
 )
-ggmap(mymap_terrain)  +
-  geom_point(data =my_points, color="brown") + 
-  geom_text(data = my_points, aes(label=label))
+# ggmap(mymap_terrain)  +
+#   geom_point(data =my_points, color="brown") + 
+#   geom_text(data = my_points, aes(label=label))
 
 ```
 
 You can also zoom in on urban areas.
 
 ```{r message=FALSE}
-mymap_halifax <- get_stamenmap(bbox = c(left = -63.6-0.1, bottom = 44.60, right = -63.6+0.1, top = 44.75), 
-                               zoom=12, maptype = "toner-lite")
-ggmap(mymap_halifax)  
+# mymap_halifax <- get_stamenmap(bbox = c(left = -63.6-0.1, bottom = 44.60, right = -63.6+0.1, top = 44.75), 
+#                                zoom=12, maptype = "toner-lite")
+# ggmap(mymap_halifax)  
 ```
 
 ## Further reading 

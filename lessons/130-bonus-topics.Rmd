@@ -106,12 +106,15 @@ You should to practice working with strings and factors to develop flexible meth
 
 Next we extract the number of gears from the transmission and reorder transmission on this basis.
 
+FIX ME
+
 ```{r}
 mpg %>% unglue_unnest(trans, "{trans_desc}({trans_code})", 
                       remove=FALSE)  %>%
   mutate(gears = str_extract(trans_code, "[0-9]") %>% as.numeric()) %>%
   ggplot(aes(x = cty,
-             y = fct_reorder(trans, gears))) +
+             # y = fct_reorder(trans, gears)
+             )) +
   geom_boxplot() 
 ```
 

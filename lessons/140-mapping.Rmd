@@ -109,9 +109,10 @@ Here are some packages we need to get the job done.
 
 ```{r message=FALSE}
 library(sf) # the base package manipulating shapes
-library(rgdal) # geo data abstraction library
+# library(rgdal) # geo data abstraction library # replaced with sf, stars, terra
+# See https://r-spatial.org/r/2022/04/12/evolution.html
 library(geojsonio) # geo json input and output
-library(spdplyr) # the `dplyr` counterpart for shapes
+# library(spdplyr) # the `dplyr` counterpart for shapes # archived, don't use
 library(rmapshaper) # the package that allows geo shape transformation
 ```
 

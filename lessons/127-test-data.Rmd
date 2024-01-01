@@ -7,7 +7,7 @@ library(here)
 library(janitor)
 library(naniar)
 # library(pointblank) # causes problems with knitting: scan_data, interrogate, create_agent
-library(dlookr)
+# library(dlookr)
 library(DT)
 ```
 
@@ -107,8 +107,10 @@ Are those missing values are a problem? I might choose not to care about the per
 
 The `dlookr` package provides a similar table, plus it adds a count of the number of distinct values for each variable.
 
+FIX ME
+
 ```{r}
-diagnose(jelly) |> kable() |> kable_styling(full_width = FALSE)
+# diagnose(jelly) |> kable() |> kable_styling(full_width = FALSE)
 ```
 
 We still don't know what most of these variables mean, but already one thing should stand out. The variable `accuracy` (which originally also had the notation 0_incorrect_1_correct) presumably should only be 0 or 1, but has three different values. We may not care about the initials of the investigator, but we might be concerned about the fact that there are 56 missing values. The reaction time (measured in seconds) is text data, but should be a number.

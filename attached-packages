@@ -1,5 +1,6 @@
 gapminder
 patchwork
+lubridate
 forcats
 stringr
 dplyr
@@ -13,6 +14,7 @@ scales
 ggplot2
 gapminder
 ggrepel
+lubridate
 forcats
 stringr
 dplyr
@@ -22,6 +24,7 @@ tidyr
 tibble
 ggplot2
 tidyverse
+lubridate
 forcats
 stringr
 dplyr
@@ -33,6 +36,7 @@ ggplot2
 tidyverse
 patchwork
 gapminder
+lubridate
 forcats
 stringr
 dplyr
@@ -49,6 +53,7 @@ readxl
 kableExtra
 hablar
 gapminder
+lubridate
 forcats
 stringr
 dplyr
@@ -62,6 +67,7 @@ janitor
 gapminder
 kableExtra
 knitr
+lubridate
 forcats
 stringr
 dplyr
@@ -75,6 +81,7 @@ palmerpenguins
 quantreg
 SparseM
 gapminder
+lubridate
 forcats
 stringr
 dplyr
@@ -91,6 +98,7 @@ gapminder
 kableExtra
 quantreg
 SparseM
+lubridate
 forcats
 stringr
 dplyr
@@ -106,6 +114,7 @@ gratia
 mgcv
 nlme
 broom
+lubridate
 forcats
 stringr
 dplyr
@@ -116,6 +125,7 @@ tibble
 ggplot2
 tidyverse
 scales
+lubridate
 forcats
 stringr
 dplyr
@@ -131,6 +141,7 @@ styler
 gapminder
 here
 report
+lubridate
 forcats
 stringr
 dplyr
@@ -146,6 +157,7 @@ GGally
 palmerpenguins
 ggfortify
 broom
+lubridate
 forcats
 stringr
 dplyr
@@ -163,9 +175,9 @@ lattice
 permute
 ggmap
 fields
-viridis
 viridisLite
 spam
+lubridate
 forcats
 stringr
 dplyr
@@ -177,6 +189,7 @@ ggplot2
 tidyverse
 kableExtra
 broom
+lubridate
 forcats
 stringr
 dplyr
@@ -187,6 +200,7 @@ tibble
 ggplot2
 tidyverse
 palmerpenguins
+lubridate
 forcats
 stringr
 dplyr
@@ -197,11 +211,11 @@ tibble
 ggplot2
 tidyverse
 DT
-dlookr
 naniar
 janitor
 here
 kableExtra
+lubridate
 forcats
 stringr
 dplyr
@@ -214,6 +228,7 @@ tidyverse
 gapminder
 gganimate
 plotly
+lubridate
 forcats
 stringr
 dplyr
@@ -224,15 +239,13 @@ tibble
 ggplot2
 tidyverse
 rmapshaper
-spdplyr
 geojsonio
-rgdal
-sp
 sf
 patchwork
 mapproj
 maps
 ggmap
+lubridate
 forcats
 stringr
 dplyr
@@ -245,6 +258,7 @@ tidyverse
 geojsonio
 ggmap
 leaflet
+lubridate
 forcats
 stringr
 dplyr
@@ -257,6 +271,7 @@ tidyverse
 statebins
 ggheatmap
 cansim
+lubridate
 forcats
 stringr
 dplyr
@@ -282,6 +297,7 @@ tidyverse
 RColorBrewer
 paletteer
 palmerpenguins
+lubridate
 forcats
 stringr
 dplyr
@@ -295,6 +311,7 @@ ggtext
 ggthemes
 unglue
 palmerpenguins
+lubridate
 forcats
 stringr
 dplyr
@@ -308,6 +325,7 @@ ragg
 svglite
 palmerpenguins
 ggthemes
+lubridate
 forcats
 stringr
 dplyr
@@ -317,6 +335,7 @@ tidyr
 tibble
 ggplot2
 tidyverse
+lubridate
 forcats
 stringr
 dplyr

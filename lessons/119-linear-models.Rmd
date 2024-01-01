@@ -32,7 +32,7 @@ linear_model2 <- lm(price ~ carat + clarity + color,
 summary(linear_model2)
 ```
 
-You can write the formulas for the regression lines using the `equatiomatic` package. (To get the equations formatted properly, you need to add `results='asis'` to the `{r}` line in your R markdown document. The equations display correctly in the knitted document, but are show as LaTeX code in the Rstudio preview.) At present this does not work correctly for functions with mathematical transformations like `log`, `exp`, `poly(x, 2)`, so I'll only show the linear models here.
+You can write the formulas for the regression lines using the `equatiomatic` package. This package must be installed from GitHub using `remotes::install_github("datalorax/equatiomatic")`. To get the equations formatted properly, you need to add `results='asis'` to the `{r}` line in your R markdown document. The equations display correctly in the knitted document, but are show as LaTeX code in the Rstudio preview. At present this does not work correctly for functions with mathematical transformations like `log`, `exp`, `poly(x, 2)`, so I'll only show the linear models here.
 
 ```{r results = "asis"}
 library(equatiomatic)
