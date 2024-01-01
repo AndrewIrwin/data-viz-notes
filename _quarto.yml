@@ -5,7 +5,7 @@ project:
 book:
   title: "Data Visualization notes"
   author: "Andrew Irwin"
-  date: "2022-09-06"
+  date: "2024-01-08"
   chapters:
     - index.qmd
     - lessons/101-introduction.Rmd
