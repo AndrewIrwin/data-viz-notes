@@ -2,7 +2,7 @@
 
 ## Goals
 
-In this lesson I will explain the concept behind the "grammar of graphics". The emphasis is on the idea and not the particular computing environment (R and ggplot2) that we will use.
+In this lesson I will explain the concept behind the "grammar of graphics". The emphasis is on the idea and not the particular computing environment (R and ggplot2) that we will use. This will provide a vocabulary for describing and designing visualizations.
 
 ## Introduction
 
@@ -30,23 +30,21 @@ Data always come from a data frame (or tibble) with columns representing variabl
 
 Variables in your data are connected to features of your visualization, such as position on the x and y axes, colours, shapes, sizes, and other features with a mapping that connects the two.
 
-Each mapping has an associated scale. If a variable is represented on the x axis, the scale translates a numerical value onto a position. For the aesthetic shape, the scale converts a categorical value into a square, circle or other shape. Similarly there are scales for colours, line types, symbol sizes and more.
+Each mapping has an associated scale. If a variable is represented on the x axis, the scale translates a numerical value onto a position. Categorical variables can be shown on an axis as well and you should think about how to order the categories so that your visualization makes the most sense. For the aesthetic shape, the scale converts a categorical value into a square, circle or other shape. Similarly there are scales for colours, line types, symbol sizes and more.
 
-Aesthetic mappings can be used in several ways in the same plot, for example to help place symbols and text labels. A process called inheritance allows this to happen. Inherited aesthetics can be overridden too; thinking this through can be a subtle but have dramatic effects on your plot. Be on the lookout when we get to examples.
-
-Sometimes you will want to customize a plot by making all symbols squares or changing all the lines to green. You don't use aesthetic mappings for this, because you are not connecting a variable to a feature of the graph. Instead you will override the default plot appearance specifying a particular colour or shape as part of the geometry.
+Sometimes you will want to customize a plot by making all symbols squares or changing all the lines to green. In this situation you are not connecting data to a feature of the plot. You don't use aesthetic mappings for this, because you are not connecting a variable to a feature of the graph. Instead you will override the default plot appearance specifying a particular colour or shape as part of the geometry.
 
 ## Geometries
 
-A geometry is a visual representation of data: points, lines, shaded regions, boxplots, histograms, tiles, text labels, and many, many more. The representation is defined by the geometry using the data mapped to aesthetic features (position, colour) of the geometry. You need at least one geometry to create a plot, but you can combine two or more geometries (lines and points for example) to make more complex plots.
+A geometry is a visual representation of data. Data can be used to place points, lines, shaded regions, boxplots, histograms, tiles, text labels, and many, many more objects. The representation is defined by the geometry using the data mapped to aesthetic features (position, colour) of the geometry. You need at least one geometry to create a plot. You can combine two or more geometries (lines and points for example) to make more complex plots.
 
 ## Facets
 
-A simple plot has one facet -- think about standard x-y plots that show all the data in one panel. You can also separate out the data in one plot into many facets (or panels, subplots), using a variable from the dataset to define which data appear on each facet. Depending on the data you might arrange facets in a grid with common x and y axes on all the facets. Or you might arrange them in a line with different scales on each facet. Facets can make complex plots! We will skip over facets on our discussion of making plots in the next lesson, but come back to them later.
+A simple plot has one facet -- think about standard x-y plots that show all the data in one panel. You can also separate out the data in one plot into many facets (also called panels or subplots), using a variable from the dataset to define which data appear on each facet. Depending on the data you might arrange facets in a grid with common x and y axes on all the facets. Or you might arrange them in a line with different scales on each facet. Facets can make complex plots! We will skip over facets on our discussion of making plots in the next lesson, but come back to them later.
 
 ## Statistics
 
-Sometimes you want to use a variable for a feature -- position on the y axis -- but before you do that, you want to perform some computations. Perhaps you want to plot a mean or compute a standard error of the mean. Or maybe you want to count the number of occurrences of a level of a categorical variable. There are two ways to go about this. You can compute the derived variables "by hand" -- writing R code to do it. Or you can use `stat` features of ggplot to compute these for you. For routine plots like bar graphs, histograms, and boxplots, its generally easiest to let ggplot do these calculations for you. For less commonly used plot types, or custom plots you invent, you will want do to the calculations yourself. We'll talk about summarizing data in a future lesson.
+Sometimes you want to use a variable for a feature -- position on the y axis -- but before you do that, you want to perform some computations. Perhaps you want to plot a mean or compute a standard error of the mean. Or maybe you want to count the number of occurrences of a level of a categorical variable. There are two ways to go about this. You can compute the derived variables "by hand" -- writing R code to transform your data before plotting. Alternatively you can use ggplot to compute these for you. For routine plots like bar graphs, histograms, and boxplots, its generally easiest to let ggplot do these calculations for you. For less commonly used plot types, or custom plots you invent, you will want do to the calculations yourself. When you reduce many rows of data to a single row to simplify your plot (by showing means, for example), we say that you have summarized your data. We'll talk about summarizing data in a future lesson.
 
 ## Coordinates
 
@@ -54,15 +52,20 @@ Usually we plot data on the familiar (Cartesian) x-y axes. But you can use polar
 
 ## Themes {#themes}
 
-All other features of the visualization are combined into the idea of the theme. This includes colour schemes, line thicknesses, how tick marks are drawn, the font type and size, and where legends are placed. We will look at these features -- in fact we've already seen a simple example of changing font size -- throughout the course and collect a bunch of examples at the end.
+All other features of the visualization are combined into the idea of the theme. This includes colour schemes, line thicknesses, how tick marks are drawn, the font type and size, and where legends are placed. We will look at these features -- in fact we've already seen a simple example of changing font size -- throughout the course and collect the most important examples at the end of the course.
 
 ## Extensions
 
-There are several kinds of extensions to the basic `ggplot` plots. Many R packages define new geometries, colour palettes, map projections, and themes. A few packages define amazing new ways of transforming ggplots, for example to create [animations](https://gganimate.com/articles/gganimate.html) or three dimensional rendering using [raytracing](https://github.com/tylermorganwall/rayshader).
+There are many extensions to the basic `ggplot` plots we will learn to make. Many R packages define new geometries, colour palettes, map projections, and themes. A few packages define amazing new ways of transforming ggplots, for example to create [animations](https://gganimate.com/articles/gganimate.html) or three dimensional rendering using [raytracing](https://github.com/tylermorganwall/rayshader). You should be aware that the core ideas described here can be used to build up even more complex visualizations than we will study in this course.
 
 ## Summary
 
 That's the basic idea behind the grammar of graphics approach to plotting. It takes a bit of getting used to, and seems like a lot of work when you first get started, but you'll see that the flexibility and structure the grammar provides allows you to think creatively to build a huge number of visualizations from these few elements. Even more important, a consistent language for describing the visualization of data has made very complex tools relatively easy to use, even when many different people develop those tools.
+
+The key elements are:
+
+* the concept of layers of a visualization and which features of a plot are defined by each layer, and
+* the connection between data, or summarized data, and features of each layer.
 
 ## Further reading
 
