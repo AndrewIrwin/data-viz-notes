@@ -468,14 +468,14 @@ ul.task-list li input[type="checkbox"] {
 <p>When you use git to communicate with GitHub, git needs to know your name and email address to help other people know who made the changes you are sending.</p>
 <p>In the Rstudio “terminal” window (not the “console” window), type the following, placing your name and email in the spaces indicated:</p>
 <ul>
-<li><code>git config --global user.email "you\@example.com"</code></li>
+<li><code>git config --global user.email "you@example.com"</code></li>
 <li><code>git config --global user.name "Your Name"</code></li>
 </ul></section><section id="set-up-a-github-account" class="level2 page-columns page-full" data-number="6.11"><h2 data-number="6.11" class="anchored" data-anchor-id="set-up-a-github-account">
 <span class="header-section-number">6.11</span> Set up a github account</h2>
 <ul>
 <li>Create a free account at <a href="https://github.com/join">github.com</a>
 </li>
-<li>Tell me your github account name by filling in the brightspace survey for Task 2.</li>
+<li>Tell me your github account name by filling in the brightspace survey.</li>
 <li>You need to tell Rstudio how to prove to github that you are allowed to use your own account. Most sites on the internet use passwords for this authentication process, but GitHub has found this to be insecure and a bit inconvenient. Instead we will use a Personal Access Token (PAT). Here are the steps to follow:
 <ul>
 <li>Install the <code>usethis</code> package. For example, type <code>install.packages("usethis")</code> in the R console.</li>
@@ -489,13 +489,13 @@ ul.task-list li input[type="checkbox"] {
 <figure class="figure page-columns page-full"><p><img src="static/github-PAT.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption margin-caption">Figure&nbsp;6.1: GitHub Personal Access Token creation menu</figcaption></figure>
 </div>
-<pre><code>   These instructions are adapted from a guide called [Happy git with R](https://happygitwithr.com/).</code></pre>
+<p>These instructions are adapted from a guide called <a href="https://happygitwithr.com/">Happy git with R</a>.</p>
 <section id="clone-a-project-from-github" class="level3" data-number="6.11.1"><h3 data-number="6.11.1" class="anchored" data-anchor-id="clone-a-project-from-github">
 <span class="header-section-number">6.11.1</span> Clone a project from github</h3>
-<p>Once you have sent me your GitHub user ID, I will create two repositories in your account, one for the Tasks for the whole term and one for the Assignments for the whole term.</p>
+<p>Once you have sent me your GitHub user ID, I will create a repository in your account for the Assignments for the whole term.</p>
 <ul>
 <li>Go to <a href="https://github.com/">github.com</a>. Make sure you are logged in. You will see a list of repositories on the left side of your screen.</li>
-<li>Click on the one called “data-viz-tasks-” followed by your ID</li>
+<li>Click on the one called “data-viz-assignments-” followed by your ID</li>
 <li>Click on the green button labelled “Code” and copy the https link by clicking on the two overlapping squares (or cutting and pasting the URL).</li>
 <li>Start Rstudio.</li>
 <li>If you are already working on some other files, choose: Session &gt; New session</li>

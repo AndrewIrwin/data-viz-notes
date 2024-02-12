@@ -385,7 +385,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#computing-and-plotting-residuals" id="toc-computing-and-plotting-residuals" class="nav-link" data-scroll-target="#computing-and-plotting-residuals"><span class="header-section-number">16.5.2</span> Computing and plotting residuals</a></li>
   </ul>
 </li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">16.6</span> Further reading</a></li>
+  <li><a href="#packages-used" id="toc-packages-used" class="nav-link" data-scroll-target="#packages-used"><span class="header-section-number">16.6</span> Packages used</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">16.7</span> Further reading</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -549,11 +550,7 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span>  <span class="fu">facet_grid</span><span class="op">(</span><span class="va">color</span> <span class="op">~</span> <span class="va">clarity</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">scale_colour_viridis_d</span><span class="op">(</span>begin<span class="op">=</span><span class="fl">0</span>, end <span class="op">=</span><span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>,<span class="fl">2</span><span class="op">)</span>,</span>
-<span>              color <span class="op">=</span> <span class="st">"black"</span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-ℹ Please use `linewidth` instead.</code></pre>
-</div>
+<span>              color <span class="op">=</span> <span class="st">"black"</span>, linewidth <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -565,7 +562,7 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>We demonstrated the importance of visualizing data at the start of the course by appealing to the example of Anscombe’s quartet. This is a set of four data sets which all have the same means, standard deviations, and correlation. Here I’ll show how to plot four lines on a single plot and how to avoid at least one of the problems with outliers by using robust regression from the <code>MASS</code> package.</p>
 <p>Robust regression is designed to be less influenced by outliers. Robust regression is a big improvement for group 3, but has little effect on any of the other problems. (Try <code>formula = y ~ poly(x,2)</code> to fix panel 2. There is no fix for the problem in panel 4.)</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">anscombe</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">anscombe</span> <span class="op">|&gt;</span></span>
 <span> <span class="fu">pivot_longer</span><span class="op">(</span><span class="fu">everything</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>   names_to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">".value"</span>, <span class="st">"set"</span><span class="op">)</span>,</span>
 <span>   names_pattern <span class="op">=</span> <span class="st">"(.)(.)"</span></span>
@@ -582,7 +579,7 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span class="header-section-number">16.4</span> Predicting quantiles</h2>
 <p>You can also try to predict quantiles of your data. Here we make a linear model for the 0.05, 0.50 (median), and 0.95 quantiles.</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">cut</span> <span class="op">==</span> <span class="st">"Ideal"</span>, <span class="va">color</span> <span class="op">==</span> <span class="st">"G"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">cut</span> <span class="op">==</span> <span class="st">"Ideal"</span>, <span class="va">color</span> <span class="op">==</span> <span class="st">"G"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">carat</span>, y <span class="op">=</span> <span class="va">price</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_quantile</span><span class="op">(</span>method <span class="op">=</span> <span class="va">rqss</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>,</span>
@@ -601,12 +598,13 @@ contrasts.arg, : non-list contrasts argument ignored</code></pre>
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>(You can safely ignore this error message; <a href="https://stackoverflow.com/a/56637322">here is an explanation</a>.)</p>
 </section><section id="quantitative-model-output" class="level2" data-number="16.5"><h2 data-number="16.5" class="anchored" data-anchor-id="quantitative-model-output">
 <span class="header-section-number">16.5</span> Quantitative model output</h2>
 <p>The <code>broom</code> package has functions to obtain model coefficients and compute residuals, predictions, and confindence intervals. Healy also shows how to use <code>broom</code> to fit many models (such as a model for each facet) in his <a href="https://socviz.co/modeling.html#grouped-analysis-and-list-columns">Section 6.6</a>, but I will skip those steps.</p>
 <p>Get the coefficients (and standard errors, t-statistic, p-value and confidence intervals) from your model using <code>tidy</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tidy</span><span class="op">(</span><span class="va">linear_model1</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tidy</span><span class="op">(</span><span class="va">linear_model1</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead><tr class="header">
@@ -643,7 +641,7 @@ contrasts.arg, : non-list contrasts argument ignored</code></pre>
 </div>
 <p>The second model has the effect of each level of clarity on price (relative to the base case of I1). Here’s how we can plot the regression coefficients as dot plots with uncertainties using the output from <code>tidy</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tidy</span><span class="op">(</span><span class="va">linear_model2</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tidy</span><span class="op">(</span><span class="va">linear_model2</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fu">str_starts</span><span class="op">(</span><span class="va">term</span>, <span class="st">"clarity"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">term</span>, x <span class="op">=</span> <span class="va">estimate</span>, xmin <span class="op">=</span> <span class="va">conf.low</span>, xmax <span class="op">=</span> <span class="va">conf.high</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">geom_pointrange</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -653,7 +651,7 @@ contrasts.arg, : non-list contrasts argument ignored</code></pre>
 </div>
 <p>This can also be done easily using <code>coefplot</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">coefplot</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">coefplot</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/coefplot/man/coefplot.html">coefplot</a></span><span class="op">(</span><span class="va">linear_model2</span>, sort <span class="op">=</span> <span class="st">"magnitude"</span>, intercept <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
@@ -661,7 +659,7 @@ contrasts.arg, : non-list contrasts argument ignored</code></pre>
 </div>
 <p>You can get statistics for the model using <code>glance</code>. We don’t discuss these results, but if you have taken a statistics course with topics on regression you should recognize at least some of these results.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">glance</span><span class="op">(</span><span class="va">linear_model1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">glance</span><span class="op">(</span><span class="va">linear_model1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead><tr class="header">
@@ -697,7 +695,7 @@ contrasts.arg, : non-list contrasts argument ignored</code></pre>
 </div>
 <p>The <code>augment</code> function makes it easy to plot residuals and predicted values for many models (see <code>?augment</code>). We can use <code>augment</code> on the model object to get a data frame with the data used in the model plus fitted (predicted) values, residuals, and other quantities. You can add the other data not provided in the model object by including <code>data = diamonds</code> in the augment function (output not shown.)</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">augment</span><span class="op">(</span><span class="va">linear_model1</span>, interval <span class="op">=</span> <span class="st">"prediction"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">augment</span><span class="op">(</span><span class="va">linear_model1</span>, interval <span class="op">=</span> <span class="st">"prediction"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead><tr class="header">
@@ -788,11 +786,11 @@ contrasts.arg, : non-list contrasts argument ignored</code></pre>
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># augment(linear_model1, interval = "prediction", data = diamonds) |&gt; head()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># augment(linear_model1, interval = "prediction", data = diamonds) |&gt; head()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If you generate new data, you can make and plot predictions easily.</p>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_data</span> <span class="op">=</span> <span class="fu">tibble</span><span class="op">(</span>carat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.20</span>, <span class="fl">5.01</span>, <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_data</span> <span class="op">=</span> <span class="fu">tibble</span><span class="op">(</span>carat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.20</span>, <span class="fl">5.01</span>, <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">augment</span><span class="op">(</span><span class="va">linear_model1</span>, newdata <span class="op">=</span> <span class="va">new_data</span>, interval <span class="op">=</span> <span class="st">"prediction"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">carat</span>, y <span class="op">=</span> <span class="va">.fitted</span>, ymin <span class="op">=</span> <span class="va">.lower</span>, ymax <span class="op">=</span> <span class="va">.upper</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op">(</span>fill<span class="op">=</span><span class="st">"darkblue"</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -809,7 +807,7 @@ contrasts.arg, : non-list contrasts argument ignored</code></pre>
 <p>Here we will fit each of the models generated above and look at the <code>summary</code> output from each model. I’ll start by computing log(GDP) and the number of years since 1950 to use as variables in my models.</p>
 <p>A linear model fitting a straight line to the data (slope, intercept):</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gp</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">==</span> <span class="st">"Europe"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gp</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">==</span> <span class="st">"Europe"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>year1950 <span class="op">=</span> <span class="va">year</span> <span class="op">-</span> <span class="fl">1950</span>,</span>
 <span>         logGDP <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">logGDP</span> <span class="op">~</span> <span class="va">year1950</span>, data <span class="op">=</span> <span class="va">gp</span><span class="op">)</span></span>
@@ -837,7 +835,7 @@ F-statistic: 183.1 on 1 and 358 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p>A robust version of this line that is less influenced by outliers:</p>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a></span><span class="op">)</span></span>
 <span><span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MASS/man/rlm.html">rlm</a></span><span class="op">(</span><span class="va">logGDP</span> <span class="op">~</span> <span class="va">year1950</span>, data <span class="op">=</span> <span class="va">gp</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -857,20 +855,20 @@ Residual standard error: 0.2592 on 358 degrees of freedom</code></pre>
 </div>
 <p>Here I fit splines two ways: using lm and using generalized additive models:</p>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">logGDP</span> <span class="op">~</span> <span class="fu">splines</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/splines/bs.html">bs</a></span><span class="op">(</span><span class="va">year1950</span>, df <span class="op">=</span> <span class="fl">5</span>, degree<span class="op">=</span><span class="fl">3</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">gp</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">logGDP</span> <span class="op">~</span> <span class="fu">splines</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/splines/bs.html">bs</a></span><span class="op">(</span><span class="va">year1950</span>, df <span class="op">=</span> <span class="fl">5</span>, degree<span class="op">=</span><span class="fl">3</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">gp</span><span class="op">)</span></span>
 <span><span class="va">m4</span> <span class="op">&lt;-</span> <span class="fu">mgcv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam</a></span><span class="op">(</span><span class="va">logGDP</span> <span class="op">~</span> <span class="fu">s</span><span class="op">(</span><span class="va">year1950</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">gp</span><span class="op">)</span></span>
 <span><span class="co"># summary(m3) # this is a bit hard to read, so I don't show it here.</span></span>
 <span><span class="co"># summary(m4) # same comment here!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here is a LOESS smooth:</p>
 <div class="cell">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/loess.html">loess</a></span><span class="op">(</span><span class="va">logGDP</span> <span class="op">~</span> <span class="va">year1950</span>, data <span class="op">=</span> <span class="va">gp</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/loess.html">loess</a></span><span class="op">(</span><span class="va">logGDP</span> <span class="op">~</span> <span class="va">year1950</span>, data <span class="op">=</span> <span class="va">gp</span><span class="op">)</span></span>
 <span><span class="co"># summary(m5)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And finally here is a quantile regression. The quantile predicted by the model is given by <code>tau</code>; we’ve selected the 10 percentile here. <code>lambda</code> is a parameter that</p>
 <div class="cell">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m6</span> <span class="op">&lt;-</span> <span class="fu">quantreg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/quantreg/man/rq.html">rq</a></span><span class="op">(</span><span class="va">logGDP</span> <span class="op">~</span> <span class="va">year1950</span>, data<span class="op">=</span> <span class="va">gp</span>, </span>
-<span>                     tau <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m6</span> <span class="op">&lt;-</span> <span class="fu">quantreg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/quantreg/man/rq.html">rq</a></span><span class="op">(</span><span class="va">logGDP</span> <span class="op">~</span> <span class="va">year1950</span>, data<span class="op">=</span> <span class="va">gp</span>, </span>
+<span>                     tau <span class="op">=</span> <span class="fl">0.10</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m6</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in rq.fit.br(x, y, tau = tau, ci = TRUE, ...): Solution may be
@@ -893,7 +891,7 @@ year1950    0.00939      0.00692  0.01221 </code></pre>
 <p>An important visualization for any model is to compare observations with the predictions of the model. This difference is called the residual. (From the residual variation in the data not described by the model.) The function <code>residuals</code> applied to the model object gives you access to these values and makes them easy to plot.</p>
 <p>You can make histograms of residuals:</p>
 <div class="cell">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tibble</span><span class="op">(</span>residuals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tibble</span><span class="op">(</span>residuals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">residuals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
@@ -901,7 +899,7 @@ year1950    0.00939      0.00692  0.01221 </code></pre>
 </div>
 <p>Using <code>bind_cols</code> and <code>bind_rows</code> to combine variables and observations into one large table, you can plot the residuals of several models:</p>
 <div class="cell">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">residuals</span> <span class="op">&lt;-</span> <span class="fu">bind_rows</span><span class="op">(</span></span>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">residuals</span> <span class="op">&lt;-</span> <span class="fu">bind_rows</span><span class="op">(</span></span>
 <span>  <span class="fu">bind_cols</span><span class="op">(</span>model <span class="op">=</span> <span class="st">"linear"</span>, residual <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  <span class="fu">bind_cols</span><span class="op">(</span>model <span class="op">=</span> <span class="st">"spline"</span>, residual <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">m3</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  <span class="fu">bind_cols</span><span class="op">(</span>model <span class="op">=</span> <span class="st">"loess"</span>, residual <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">m5</span><span class="op">)</span><span class="op">)</span></span>
@@ -911,7 +909,7 @@ year1950    0.00939      0.00692  0.01221 </code></pre>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">residuals</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">residual</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">residuals</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">residual</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins<span class="op">=</span><span class="fl">20</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span><span class="va">model</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-21-2.png" class="img-fluid" width="672"></p>
@@ -920,7 +918,7 @@ year1950    0.00939      0.00692  0.01221 </code></pre>
 <p>We can see that the distribution (histogram) of the residuals is fairly similar for all three models. There are defintely negative residuals larger in magnitude than any of the positive residuals. The modal residuals are bigger than zero. This suggests there are some points where the model “over predicts” (model prediction larger than observed data) and the most common result is an under prediction (model prediction is smaller than observed value.)</p>
 <p>More commonly you will want to compare the residuals to one of the independent variable, dependent variable, or predicted values. This is easy to do by adding predictions and residuals to the original data.</p>
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gp1</span> <span class="op">&lt;-</span> <span class="va">gp</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>linear_residuals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span>,</span>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gp1</span> <span class="op">&lt;-</span> <span class="va">gp</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>linear_residuals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span>,</span>
 <span>              linear_predictions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">gp1</span> <span class="op">|&gt;</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">logGDP</span>, </span>
 <span>                    y <span class="op">=</span> <span class="va">linear_predictions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -929,7 +927,7 @@ year1950    0.00939      0.00692  0.01221 </code></pre>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gp1</span> <span class="op">|&gt;</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">linear_predictions</span>, </span>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gp1</span> <span class="op">|&gt;</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">linear_predictions</span>, </span>
 <span>                    y <span class="op">=</span> <span class="va">linear_residuals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -939,7 +937,7 @@ year1950    0.00939      0.00692  0.01221 </code></pre>
 <p>Note that models generally don’t make predictions from missing data, so if year or GDP data were missing, for any country or year, there would be some problems with the code above. The easiest solution is to filter out all rows from your data table that have missing data.</p>
 <p>When making predictions, you can also generate <a href="https://en.wikipedia.org/wiki/Confidence_interval">confidence</a> or <a href="https://en.wikipedia.org/wiki/Prediction_interval">prediction</a> intervals to add a measure of uncertainty to your visualization. For plotting purposes you may want to generate a uniform grid along the x-axis and make predictions for these values. Here’s how you can do that. I’ve used summarize to determine the range of the years since 1950 (not shown). You should always be very cautious interpreting predictions, but especially predictions for values outside the observed values in your original data.</p>
 <div class="cell">
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_data</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>year1950 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">2</span>, to <span class="op">=</span> <span class="fl">57</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_data</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>year1950 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">2</span>, to <span class="op">=</span> <span class="fl">57</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">predictions1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m3</span>, <span class="va">new_data</span>, interval <span class="op">=</span> <span class="st">"prediction"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">predictions2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m5</span>, <span class="va">new_data</span>, se<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">bind_cols</span><span class="op">(</span><span class="va">new_data</span>, <span class="va">predictions1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -950,7 +948,7 @@ year1950    0.00939      0.00692  0.01221 </code></pre>
 <div class="cell-output-display">
 <p><img src="119-linear-models_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">bind_cols</span><span class="op">(</span><span class="va">new_data</span>, <span class="va">predictions2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">bind_cols</span><span class="op">(</span><span class="va">new_data</span>, <span class="va">predictions2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year1950</span>, y <span class="op">=</span> <span class="va">fit</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">fit</span> <span class="op">-</span><span class="va">se.fit</span>, ymax <span class="op">=</span> <span class="va">fit</span> <span class="op">+</span> <span class="va">se.fit</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"blue"</span>, alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -961,8 +959,31 @@ year1950    0.00939      0.00692  0.01221 </code></pre>
 </div>
 <p>The confidence intervals are a lot narrower than the prediction intervals. The confidence interval gives you a measure of the uncertainty in the mean value of log GDP per capita for each year, while the prediction interval gives you a measure of uncertainty in a prediction for a new observation of log GDP per capita. The prediction of a new observation should be much more uncertain than your knowledge of the mean from all the data.</p>
 <p>A few technical observations. <code>predict</code> does not generate a data frame; it makes a matrix, so we use <code>as_tibble</code> to convert it to a tibble so that variable names work as expected. The <code>predict</code> functions for linear models, GAMs, LOESS, etc are all different functions and have some important differences. Here you can see that the spline can calculate prediction or confidence intervals and the output is the upper and lower limits of the interval. The LOESS predict function only calculates the standard error of the estimated value; this value must be scaled and added to the predicted value to generate an uncertainty estimate.</p>
-</section></section><section id="further-reading" class="level2" data-number="16.6"><h2 data-number="16.6" class="anchored" data-anchor-id="further-reading">
-<span class="header-section-number">16.6</span> Further reading</h2>
+</section></section><section id="packages-used" class="level2" data-number="16.6"><h2 data-number="16.6" class="anchored" data-anchor-id="packages-used">
+<span class="header-section-number">16.6</span> Packages used</h2>
+<p>In addition to the <code>tidyverse</code>, this lesson used</p>
+<ul>
+<li>
+<code>gapminder</code> for its data</li>
+<li>
+<code>quantreg</code> for quantile regression</li>
+<li>
+<code>kableExtra</code> for formatting tables</li>
+<li>
+<code>broom</code> for looking at output of models (glance, augment)</li>
+<li>
+<code>MASS</code> for <code>rlm</code>
+</li>
+<li>
+<code>mgcv</code> for <code>gam</code>
+</li>
+<li>
+<code>equatiomatic</code> for formatting regression equations from models</li>
+<li><code>coefplot</code></li>
+<li>
+<code>splines</code> for regression with splines</li>
+</ul></section><section id="further-reading" class="level2" data-number="16.7"><h2 data-number="16.7" class="anchored" data-anchor-id="further-reading">
+<span class="header-section-number">16.7</span> Further reading</h2>
 <ul>
 <li>Healy <a href="https://socviz.co/modeling.html#modeling">Chapter 6 Work with models</a>
 </li>

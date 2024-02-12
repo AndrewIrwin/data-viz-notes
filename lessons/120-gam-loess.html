@@ -376,7 +376,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
 <li><a href="#generalized-additive-models" id="toc-generalized-additive-models" class="nav-link active" data-scroll-target="#generalized-additive-models"><span class="header-section-number">17.1</span> Generalized Additive Models</a></li>
   <li><a href="#locally-estimated-scatterplot-smoothing-loess" id="toc-locally-estimated-scatterplot-smoothing-loess" class="nav-link" data-scroll-target="#locally-estimated-scatterplot-smoothing-loess"><span class="header-section-number">17.2</span> Locally Estimated Scatterplot Smoothing (LOESS)</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">17.3</span> Further reading</a></li>
+  <li><a href="#packages-used" id="toc-packages-used" class="nav-link" data-scroll-target="#packages-used"><span class="header-section-number">17.3</span> Packages used</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">17.4</span> Further reading</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -3907,8 +3908,17 @@ drop.square:  FALSE </code></pre>
 </div>
 </div>
 <p>LOESS fits are slow and take a lot of memory compared to other methods (both time and storage requirements increase like the square of the number of points), so they are usually only used for small data sets.</p>
-</section><section id="further-reading" class="level2" data-number="17.3"><h2 data-number="17.3" class="anchored" data-anchor-id="further-reading">
-<span class="header-section-number">17.3</span> Further reading</h2>
+</section><section id="packages-used" class="level2" data-number="17.3"><h2 data-number="17.3" class="anchored" data-anchor-id="packages-used">
+<span class="header-section-number">17.3</span> Packages used</h2>
+<p>In addition to <code>tidyverse</code>, <code>kableExtra</code> and <code>gapminder</code>, in this lesson we used</p>
+<ul>
+<li><code>broom</code></li>
+<li>
+<code>mgcv</code> for GAMs</li>
+<li>
+<code>gratia</code> for plotting and extracting information from GAMs</li>
+</ul></section><section id="further-reading" class="level2" data-number="17.4"><h2 data-number="17.4" class="anchored" data-anchor-id="further-reading">
+<span class="header-section-number">17.4</span> Further reading</h2>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Local_regression">LOESS (Wikipedia)</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Generalized_additive_model">Generalized additive models (Wikipedia)</a></li>
