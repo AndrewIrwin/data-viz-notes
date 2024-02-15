@@ -91,13 +91,13 @@ When you use git to communicate with GitHub, git needs to know your name and ema
 
 In the Rstudio "terminal" window (not the "console" window), type the following, placing your name and email in the spaces indicated:
 
--   `git config --global user.email "you\@example.com"`
+-   `git config --global user.email "you@example.com"`
 -   `git config --global user.name "Your Name"`
 
 ## Set up a github account
 
 -   Create a free account at [github.com](https://github.com/join)
--   Tell me your github account name by filling in the brightspace survey for Task 2.
+-   Tell me your github account name by filling in the brightspace survey.
 -   You need to tell Rstudio how to prove to github that you are allowed to use your own account. Most sites on the internet use passwords for this authentication process, but GitHub has found this to be insecure and a bit inconvenient. Instead we will use a Personal Access Token (PAT). Here are the steps to follow:
     - Install the `usethis` package. For example, type `install.packages("usethis")` in the R console.
     - In the R console, type `usethis::create_github_token()`. This will open up a web browser. You will be asked to login and perhaps use two factor authentication. Eventually you will get a page that looks like the figure below. Enter a note to describe the token and pick an expiry date (my suggestions are shown in the screenshot.) Make sure you have at least the boxes shown below checked (repo, user, workflow). Click the green generate token at the bottom of the screen.
@@ -108,15 +108,15 @@ In the Rstudio "terminal" window (not the "console" window), type the following,
 ![GitHub Personal Access Token creation menu](static/github-PAT.png){#fig-github-PAT}
        
        
-       These instructions are adapted from a guide called [Happy git with R](https://happygitwithr.com/).
+These instructions are adapted from a guide called [Happy git with R](https://happygitwithr.com/).
 
 
 ### Clone a project from github
 
-Once you have sent me your GitHub user ID, I will create two repositories in your account, one for the Tasks for the whole term and one for the Assignments for the whole term. 
+Once you have sent me your GitHub user ID, I will create a repository in your account for the Assignments for the whole term. 
 
  - Go to [github.com](https://github.com/). Make sure you are logged in. You will see a list of repositories on the left side of your screen. 
- - Click on the one called "data-viz-tasks-" followed by your ID
+ - Click on the one called "data-viz-assignments-" followed by your ID
  - Click on the green button labelled "Code" and copy the https link by clicking on the two overlapping squares (or cutting and pasting the URL).
  -   Start Rstudio.
  -   If you are already working on some other files, choose: Session \> New session

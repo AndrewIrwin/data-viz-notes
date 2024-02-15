@@ -106,6 +106,13 @@ This is not an ideal facetted plot -- there are too many facets (countries) and 
 
 You've learned how to add linear regressions (`lm`), and smooths (`gam`, `loess`) to plots.
 
+## Packages used
+
+In addition to the `tidyverse`, this lesson used 
+
+* `gapminder`
+* `quantreg`
+
 ## Further reading
 
 -   In the next lesson we look at linear models in a bit more detail, showing how to extract residuals, predictions, and confidence intervals.

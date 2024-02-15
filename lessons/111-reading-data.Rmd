@@ -142,6 +142,13 @@ A spreadsheet package (Excel, Numbers, LibreOffice Calc) is often used to enter 
 * stand alone csv editors, such as [TableTool](https://github.com/jakob/TableTool) for Macintosh, or [CSVed or many others](https://thegeekpage.com/best-free-csv-editor-for-windows-10/) for Windows, and
 * [DataEditR](https://github.com/DillonHammill/DataEditR) package for R
 
+## Packages used
+
+* `readr` which is part of `tidyverse`
+* `readxl` for reading Excel (xls, xlsx) format workbooks and spreadsheets
+* `skimr` for giving an overview of data
+* `naniar` for summarizing missing data
+
 ## Further reading
 
 * [R data import/export](https://cran.r-project.org/doc/manuals/r-release/R-data.html) manual

@@ -66,7 +66,7 @@ diamonds |>
   facet_grid(color ~ clarity) + 
   scale_colour_viridis_d(begin=0, end =0.8) +
   geom_smooth(method = "lm", formula = y ~ poly(x,2),
-              color = "black", size = 0.5) 
+              color = "black", linewidth = 0.5) 
 ```
 
 You can fit all these lines using `lm` as well, using color and clarity as variables in the regression equation. The way `facet_*` and `geom_smooth` combine together makes the visualization of these lines very easy.
@@ -96,13 +96,15 @@ p1 + geom_smooth(method=MASS::rlm) # , formula  = y ~ poly(x,2))
 
 You can also try to predict quantiles of your data. Here we make a linear model for the 0.05, 0.50 (median), and 0.95 quantiles.
 
-```{r}
+```{r warning=FALSE}
 diamonds |> filter(cut == "Ideal", color == "G") |>
   ggplot(aes(x=carat, y = price)) + 
   geom_point() +
   geom_quantile(method = rqss, formula = y ~ x,
                 lambda = 1, quantiles = c(0.05, 0.5, 0.95))
 ```
+
+(You can safely ignore this error message; [here is an explanation](https://stackoverflow.com/a/56637322).)
 
 ## Quantitative model output
 
@@ -200,8 +202,9 @@ m5 <- loess(logGDP ~ year1950, data = gp)
 And finally here is a quantile regression. The quantile predicted by the model is given by `tau`; we've selected the 10 percentile here. `lambda` is a parameter that 
 
 ```{r}
-m6 <- quantreg::rq(logGDP ~ year1950, data= gp, 
-                     tau = 0.1)
+m6 <- quantreg::rq(logGDP ~ year1950, data= gp,
+      # slice_sample(gp, n = 349, replace=TRUE), # no warning message
+                   tau = 0.10)
 summary(m6)
 ```
 
@@ -270,6 +273,25 @@ bind_cols(new_data, predictions2) |>
 The confidence intervals are a lot narrower than the prediction intervals. The confidence interval gives you a measure of the uncertainty in the mean value of log GDP per capita for each year, while the prediction interval gives you a measure of uncertainty in a prediction for a new observation of log GDP per capita. The prediction of a new observation should be much more uncertain than your knowledge of the mean from all the data.
 
 A few technical observations. `predict` does not generate a data frame; it makes a matrix, so we use `as_tibble` to convert it to a tibble so that variable names work as expected. The `predict` functions for linear models, GAMs, LOESS, etc are all different functions and have some important differences. Here you can see that the spline can calculate prediction or confidence intervals and the output is the upper and lower limits of the interval. The LOESS predict function only calculates the standard error of the estimated value; this value must be scaled and added to the predicted value to generate an uncertainty estimate.
+
+## Packages used
+
+In addition to the `tidyverse`, this lesson used 
+
+* `gapminder` for its data
+* `quantreg` for quantile regression
+* `kableExtra` for formatting tables
+* `broom` for looking at output of models (glance, augment)
+* `MASS` for `rlm`
+* `mgcv` for `gam`
+* `equatiomatic` for formatting regression equations from models
+* `coefplot` 
+* `splines` for regression with splines
+
+Notes:
+
+* `geom_quantile` may generate a warning message containing the phrase "non-list contrasts argument ignored". This message arises from a technical problem arising when one package is updated independently of another. You can safely ignore this warning message.
+* Quantile regression (function `rq`) may give a warning message containing the phrase "Solution may be nonunique". This arises from the difficulty of computing quantiles with an even number of data points or discrete data. It is usually safe to ignore this error. You can try a new analysis with a random sample of the data to see if the result changes if you want to be sure.
 
 ## Further reading
 

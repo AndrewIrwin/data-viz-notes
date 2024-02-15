@@ -173,6 +173,14 @@ pca2 %>%
   labs(x = "PC 1", y = "PC 2")
 ```
 
+## Packaged used
+
+In addition to `tidyverse`, `kableExtra` and `palmerpenguins`, in this lesson we used 
+
+* `broom`
+* `ggfortify` for autoplot
+* `GGally` for ggpairs
+* `ggrepel` to add labels that don't overlap data points
 
 
 ## Further reading
