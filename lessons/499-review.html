@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.538">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Data Visualization notes - R Review</title>
 <style>
@@ -42,7 +42,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -51,34 +57,34 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script><script src="../site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script><link href="../site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="../site_libs/datatables-binding-0.31/datatables.js"></script><script src="../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="../site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="../site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="../site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script><link href="../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="../site_libs/datatables-binding-0.29/datatables.js"></script><script src="../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="../site_libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="../site_libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="../site_libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script><link href="../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
 <script src="../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 </head>
 <body class="nav-sidebar floating">
 
-
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/499-review.html">R Review</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/499-review.html">R Review</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -338,7 +344,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
@@ -358,14 +364,14 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header><p>This page summarizes the most important R functions, datasets, and packages described in the course. You can sort the following table by object (function or dataset), lesson, or package. You can also search the table by function name or description. There is a simple example of how to use most functions. Take a look at the help pages for more examples.</p>
 <p>This table will be updated and expanded throughout the term.</p>
 <p>I strongly encourage you to make your own notes about functions you learn to use.</p>
 <div class="cell page-columns page-full">
 <div class="cell-output-display column-page">
-
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-dd599f2db7aac116c7ef" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-dd599f2db7aac116c7ef">{"x":{"filter":"none","vertical":false,"data":[["gapminder","iris","%&gt;%","+","aes","diamonds","geom_histogram","ggplot","scale_x_log10","|&gt;","arrange","count","distinct","filter","group_by","head","max","mean","median","min","mutate","n","select","slice_sample","summarize","ungroup","facet_grid","facet_wrap","geom_jitter","glimpse","scale_color_viridis_d","read_csv","read_excel","skim","is.na","pivot_longer","pivot_wider","separate","str_remove","str_replace","unite","kable","kable_styling","penguins","rename","geom_smooth","lm","summary","mtcars"],["Life expectancy, population, and GDP by country","Size data for 3 species of iris, 50 observations each","The pipe takes the output of the expression on the left and provides it as the first argument to the function on the right.","Adds a new feature to a plot. (Can also be used to add numbers!)","Associates a column of a data frame with an aesthetic feature of a graph (x or y axis, colour, shape)","Price and description of 54,000 diamonds","Makes a histogram","The main function to start creating a plot.","Transforms the x-axis by computing logarithms","The pipe takes the output of the expression on the left and provides it as the first argument to the function on the right.","Order the rows of a table","Count the number of rows in a table, with grouping variables","Remove duplicate rows from a table","Subset a table by including only rows matching a condition","Group the rows of a table by one or more columns, in preparation for the next calculation","Show only the first few rows of a table","Compute the maximum of some numbers","Compute the mean of some numbers","Compute the median of some numbers","Compute the minimum of some numbers","Add a new column to a table","Count the number of rows in a table within summarize()","Select and reorder columns from a table","Randomly select some rows from a table","Summarize a table using functions to condense many rows into one","Stop grouping rows in a table","Arrange facets of a plot in a matrix","Arrange facets like a block of text","Randomly shifts points; useful when they would all appear on top of each other","Shows a concise overview of part of a table","The viridis colour scale for discrete variables","Read data from a comma separated values formatted file into a table","Read data from a sheet in an Excel format workbook","Summarize variables in a dataset","Tests for missing values, returning a vector of TRUE or FALSE","Stack rows of a table by combining columns","Reduce the number of rows in a table by making extra columns","Splits a column in a table into two or more columns","Removes text from a string","Replaces text with new text","Combines two or more columns in a table together","Formats a table nicely","Additional formatting of kable tables","Size, sex, and location data for 3 species of penguin","Renames a column in a table","Add a smoothing line to a scatter plot","Make a linear model (regression line)","Summarize a model or data table","Data on cars from Motor Trend magazine"],[null,null,"9 %&gt;% sqrt  == 3","ggplot(diamonds) + geom_histogram(aes(price))","ggplot(diamonds) + geom_histogram(aes( y = price))",null,"ggplot(diamonds) + geom_histogram(aes( x = price))","ggplot(diamonds)",null,"9 |&gt; sqrt()  == 3","mtcars |&gt; arrange(mpg)","diamonds |&gt; count(cut, clarity)","diamonds |&gt; select(cut, clarity, color) |&gt; distinct()","mtcars |&gt; filter(cyl == 6)","mtcars |&gt; group_by(cyl)","diamonds |&gt; head(10)","diamonds |&gt; summarize(max_price = max(price))","diamonds |&gt; summarize(mean_price = mean(price))","diamonds |&gt; summarize(median_price = median(price))","diamonds |&gt; summarize(min_price = min(price))","mtcars |&gt; mutate(disp_cyl = disp/cyl)","diamonds |&gt; summarize(n = n() )","mtcars |&gt; select(mpg, cyl, wt)","diamonds |&gt; select_sample(20)","mtcars |&gt; group_by(cyl) |&gt; summarize(avg_mpg = mean(mpg))","diamonds |&gt; group(cut) |&gt; ungroup()",null,null,null,"glimpse(pengunis)",null,null,null,"skim(diamonds)","is.na(c(1, 2, NA, 4))",null,null,"mpg |&gt; separate(trans, sep = \"\\\\(\", into = c(\"trans_type\", \"trans_gears\"))","str_remove(\"Andrew Irwin\", \"ndrew\")","str_replace(\"Dogs are great\", \"Dog\", \"Cat\")","unite(penguins, \"sp-is\", species, island)","penguins |&gt; kable()","penguins |&gt; kable() |&gt; kable_styling()",null,"rename(penguins, spp = species)",null,"lm(price ~ carat, data = diamonds)",null,null],[4,4,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,10,10,10,10,11,11,11,12,12,12,12,12,12,12,13,13,13,13,16,16,16,null],["gapminder","base","magrittr","ggplot2","ggplot2","ggplot2","ggplot2","ggplot2","ggplot2",null,"dplyr","dplyr","dplyr","dplyr","dplyr","dplyr","base","base","base","base","dplyr","dplyr","dplyr","dplyr","dplyr","dplyr","ggplot2","ggplot2","ggplot2","dplyr",null,"readr","readxl","skimr","base","tidyr","tidyr","tidyr","stringr","stringr","tidyr","knitr","kableExtra","palmerpenguins","dplyr","ggplot2","base","base","datasets"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Object<\/th>\n      <th>Description<\/th>\n      <th>Example<\/th>\n      <th>Lesson<\/th>\n      <th>Package<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":25,"columnDefs":[{"className":"dt-right","targets":3},{"name":"Object","targets":0},{"name":"Description","targets":1},{"name":"Example","targets":2},{"name":"Lesson","targets":3},{"name":"Package","targets":4}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c1ee5da5a2656ab11ea1" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c1ee5da5a2656ab11ea1">{"x":{"filter":"none","vertical":false,"data":[["gapminder","iris","%&gt;%","+","aes","diamonds","geom_histogram","ggplot","scale_x_log10","|&gt;","arrange","count","distinct","filter","group_by","head","max","mean","median","min","mutate","n","select","slice_sample","summarize","ungroup","facet_grid","facet_wrap","geom_jitter","glimpse","scale_color_viridis_d","read_csv","read_excel","skim","is.na","pivot_longer","pivot_wider","separate","str_remove","str_replace","unite","kable","kable_styling","penguins","rename","geom_smooth","lm","summary","mtcars"],["Life expectancy, population, and GDP by country","Size data for 3 species of iris, 50 observations each","The pipe takes the output of the expression on the left and provides it as the first argument to the function on the right.","Adds a new feature to a plot. (Can also be used to add numbers!)","Associates a column of a data frame with an aesthetic feature of a graph (x or y axis, colour, shape)","Price and description of 54,000 diamonds","Makes a histogram","The main function to start creating a plot.","Transforms the x-axis by computing logarithms","The pipe takes the output of the expression on the left and provides it as the first argument to the function on the right.","Order the rows of a table","Count the number of rows in a table, with grouping variables","Remove duplicate rows from a table","Subset a table by including only rows matching a condition","Group the rows of a table by one or more columns, in preparation for the next calculation","Show only the first few rows of a table","Compute the maximum of some numbers","Compute the mean of some numbers","Compute the median of some numbers","Compute the minimum of some numbers","Add a new column to a table","Count the number of rows in a table within summarize()","Select and reorder columns from a table","Randomly select some rows from a table","Summarize a table using functions to condense many rows into one","Stop grouping rows in a table","Arrange facets of a plot in a matrix","Arrange facets like a block of text","Randomly shifts points; useful when they would all appear on top of each other","Shows a concise overview of part of a table","The viridis colour scale for discrete variables","Read data from a comma separated values formatted file into a table","Read data from a sheet in an Excel format workbook","Summarize variables in a dataset","Tests for missing values, returning a vector of TRUE or FALSE","Stack rows of a table by combining columns","Reduce the number of rows in a table by making extra columns","Splits a column in a table into two or more columns","Removes text from a string","Replaces text with new text","Combines two or more columns in a table together","Formats a table nicely","Additional formatting of kable tables","Size, sex, and location data for 3 species of penguin","Renames a column in a table","Add a smoothing line to a scatter plot","Make a linear model (regression line)","Summarize a model or data table","Data on cars from Motor Trend magazine"],[null,null,"9 %&gt;% sqrt  == 3","ggplot(diamonds) + geom_histogram(aes(price))","ggplot(diamonds) + geom_histogram(aes( y = price))",null,"ggplot(diamonds) + geom_histogram(aes( x = price))","ggplot(diamonds)",null,"9 |&gt; sqrt()  == 3","mtcars |&gt; arrange(mpg)","diamonds |&gt; count(cut, clarity)","diamonds |&gt; select(cut, clarity, color) |&gt; distinct()","mtcars |&gt; filter(cyl == 6)","mtcars |&gt; group_by(cyl)","diamonds |&gt; head(10)","diamonds |&gt; summarize(max_price = max(price))","diamonds |&gt; summarize(mean_price = mean(price))","diamonds |&gt; summarize(median_price = median(price))","diamonds |&gt; summarize(min_price = min(price))","mtcars |&gt; mutate(disp_cyl = disp/cyl)","diamonds |&gt; summarize(n = n() )","mtcars |&gt; select(mpg, cyl, wt)","diamonds |&gt; select_sample(20)","mtcars |&gt; group_by(cyl) |&gt; summarize(avg_mpg = mean(mpg))","diamonds |&gt; group(cut) |&gt; ungroup()",null,null,null,"glimpse(pengunis)",null,null,null,"skim(diamonds)","is.na(c(1, 2, NA, 4))",null,null,"mpg |&gt; separate(trans, sep = \"\\\\(\", into = c(\"trans_type\", \"trans_gears\"))","str_remove(\"Andrew Irwin\", \"ndrew\")","str_replace(\"Dogs are great\", \"Dog\", \"Cat\")","unite(penguins, \"sp-is\", species, island)","penguins |&gt; kable()","penguins |&gt; kable() |&gt; kable_styling()",null,"rename(penguins, spp = species)",null,"lm(price ~ carat, data = diamonds)",null,null],[4,4,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,10,10,10,10,11,11,11,12,12,12,12,12,12,12,13,13,13,13,16,16,16,null],["gapminder","base","magrittr","ggplot2","ggplot2","ggplot2","ggplot2","ggplot2","ggplot2",null,"dplyr","dplyr","dplyr","dplyr","dplyr","dplyr","base","base","base","base","dplyr","dplyr","dplyr","dplyr","dplyr","dplyr","ggplot2","ggplot2","ggplot2","dplyr",null,"readr","readxl","skimr","base","tidyr","tidyr","tidyr","stringr","stringr","tidyr","knitr","kableExtra","palmerpenguins","dplyr","ggplot2","base","base","datasets"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Object<\/th>\n      <th>Description<\/th>\n      <th>Example<\/th>\n      <th>Lesson<\/th>\n      <th>Package<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":25,"columnDefs":[{"className":"dt-right","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>Note that the <code>tidyverse</code> package includes the following packages:</p>
@@ -452,10 +458,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -465,8 +470,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -479,6 +493,120 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -522,6 +650,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -547,6 +676,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -606,12 +761,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../lessons/134-reconstruction.html" class="pagination-link">
+      <a href="../lessons/134-reconstruction.html" class="pagination-link  aria-label=" a="" visualization="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Reconstructing a visualization</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../lessons/901-TMI-R.html" class="pagination-link">
+      <a href="../lessons/901-TMI-R.html" class="pagination-link" aria-label="More details about R">
         <span class="nav-page-text">More details about R</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
