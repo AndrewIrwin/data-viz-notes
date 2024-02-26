@@ -175,6 +175,7 @@ lattice
 permute
 ggmap
 fields
+viridis
 viridisLite
 spam
 lubridate

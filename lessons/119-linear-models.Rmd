@@ -104,7 +104,7 @@ diamonds |> filter(cut == "Ideal", color == "G") |>
                 lambda = 1, quantiles = c(0.05, 0.5, 0.95))
 ```
 
-(You can safely ignore this error message; [here is an explanation](https://stackoverflow.com/a/56637322).)
+(You may get a warning message, but you can safely ignore it; [here is an explanation](https://stackoverflow.com/a/56637322).)
 
 ## Quantitative model output
 

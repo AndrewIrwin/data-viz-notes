@@ -5,7 +5,7 @@ library(tidyverse)
 library(scales)
 ```
 
-Data are available from a huge number of sites on the internet run by governments, NGOs, companies, industry associations, research projects, and individuals. These data come in a variety of formats and while many will be easy to read with R, some will be quite challenging. In this lesson I will introduce you to some sources of data. Partly this is to help you start to learn how to navigate a variety of data sources, but of course part of the reason is to get you thinking about data you might use in your project. For more information on the project see the [description](#project-description) on the evaluation page.
+Data are available from a huge number of sites on the internet run by governments, NGOs, companies, industry associations, research projects, and individuals. These data come in a variety of formats and while many will be easy to read with R, some will be quite challenging. In this lesson I will introduce you to some sources of data. Partly this is to help you start to learn how to navigate a variety of data sources, but of course part of the reason is to get you thinking about data you might use in your project. 
 
 ## Finding data
 
@@ -22,12 +22,10 @@ These are the go-to datasets that we have used for demonstrating many simple vis
 * nycflights13 in dbplyr package
 * gss_sm, gss_cat, gss_sib, gss_lon and gss_lon in socviz package
 
-The function `datasets` in the package `datasets.load` will display a list of all datasets in R packages you have installed on your computer. There is not much information about each dataset, but you once you know their names, you can read the help page for each dataset.
-
 ### Tidy Tuesday
 
 Tidy Tuesday is a project to encourage people to develop skills at data visualization and analysis using the tidyverse packages in R. 
-Each week a new data set is posted and participants experiment to create new visualzations. Some people share their work on GitHub and social media.
+Each week a new data set is posted and participants experiment to create new visualizations. Some people share their work on GitHub and social media.
 
 * The Tidy Tuesday [website](https://github.com/rfordatascience/tidytuesday) describes the project and has a catalog of available datasets from previous weeks.
 * The R package to access the data is called `tidytuesdayR`. Examples of using the package are [here](https://github.com/thebioengineer/tidytuesdayR)
@@ -47,13 +45,12 @@ Naturally there are websites that curate lists of data available from other site
 * [Our World In Data](https://ourworldindata.org/) is a curated set of over 3000 charts with documentation and open source data.
 * The [awesome public datasets](https://github.com/awesomedata/awesome-public-datasets) project collects high quality public data, organized thematically. 
 * This is one person's collection of [data](https://github.com/tacookson/data) of various sources
-* [r-dir](https://r-dir.com/reference/datasets.html) has a list of freely available datasets
 * World Bank [economic development indicators](https://datacatalog.worldbank.org/dataset/world-development-indicators)
 * [CORGIS](https://corgis-edu.github.io/corgis/) the collection of really great, interesting, situated datasets
 
 ### Canadian COVID data
 
-Many countries and other organizations have developed collections of COVID-related data. Here are some sources for Canada.
+Many countries and other organizations have developed collections of COVID-related data. Here are some sources for Canada that worked in 2022. Several of them are "retired" or missing in 2024.
 
 * [Federal](https://health-infobase.canada.ca/covid-19/visual-data-gallery/), [BC](https://experience.arcgis.com/experience/a6f23959a8b14bfa989e3cda29297ded), [AB](https://www.alberta.ca/stats/covid-19-alberta-statistics.htm), [SK](https://dashboard.saskatchewan.ca/health-wellness/covid-19/cases), [MB](https://www.arcgis.com/apps/opsdashboard/index.html#/29e86894292e449aa75763b077281b5b?rha=Winnipeg), [ON](https://covid-19.ontario.ca/data), [QC](https://www.inspq.qc.ca/covid-19/donnees/par-region), [NB](https://experience.arcgis.com/experience/8eeb9a2052d641c996dba5de8f25a8aa), [PE](https://www.princeedwardisland.ca/en/information/health-and-wellness/pei-covid-19-case-data), [NS](https://novascotia.ca/coronavirus/data/), 
 
@@ -102,6 +99,7 @@ cpi %>% filter(`Products and product groups` == "All-items",
        caption = "Scaled so that 2002 = 100") + 
   scale_y_log10()
 ```
+
 ### Causes of death worldwide
 
 [Our world in data](https://ourworldindata.org/) has many compliations of data across many countries. [Here](https://ourworldindata.org/causes-of-death) is a table listing causes of death over time and countries. There is a link to a csv file on that page that can be easily read with R. As is often the case, this is a large table (nearly 7000 observations of 37 variables). You will need to explore the data a bit to understand it. Here is one simple plot that can be made.
@@ -133,7 +131,7 @@ Sometimes data you want are only available on a graph -- just points or lines an
 
 ## Describing data
 
-Once you have done work to find data, you will also want to do some research to learn the "5 Ws" of data. In addition to what the variables are and what each observation represents, you will want to know who collected it, when, why, and how. It's a good idea to write a "readme" to summarize what you learn. For your term project you will be asked to provide some information on the datasets you analyze, but you should also be aware that there are [online guides](https://data.research.cornell.edu/content/readme) that provide advice on documenting data. 
+Once you have done work to find data, you will also want to do some research to learn the "5 Ws" of data. In addition to what the variables are and what each observation represents, you will want to know who collected it, what was collected, and where, when, why, and how the data were collected. It's a good idea to write a "readme" to summarize what you learn. For your term project you will be asked to provide some information on the dataset you analyze. There are [online guides](https://data.research.cornell.edu/content/readme) that provide advice on documenting data. 
 
 ## Distribution of data
 
@@ -141,7 +139,7 @@ If you want to distribute an analysis of data or redistribute the original data,
 
 ## Further reading
 
-* [Importing data](https://r4ds.had.co.nz/data-import.html) from R4DS
+* [Importing data](https://r4ds.hadley.nz/data-import.html) from R4DS
 * Roger Peng's notes on [importing data](https://bookdown.org/rdpeng/rprogdatascience/getting-data-in-and-out-of-r.html)
 * An older but comprehensive guide to [importing data](https://cran.r-project.org/doc/manuals/r-release/R-data.html)
 
