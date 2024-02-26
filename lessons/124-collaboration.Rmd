@@ -16,7 +16,7 @@ I suggest when you sit down to work that you start by pulling changes from GitHu
 
 ## Changes that don't conflict
 
-If person A edits file 1.rmd and person B edits file 2.rmd, then they both commit their edits and push them to GitHub, there will be no conflict with changes made by the other person. They both need to pull the changes made by their teammate to have a complete version.]
+If person A edits file 1.rmd and person B edits file 2.rmd, then they both commit their edits and push them to GitHub, there will be no conflict with changes made by the other person. They both need to pull the changes made by their teammate to have a complete version.
 
 If your teammate has pushed changes to GitHub, then you try to push changes without first getting their version, you will get an error message from git, displayed in a pop-up window:
 
@@ -45,7 +45,7 @@ knitr::include_graphics("static/collaboration-06-message.png")
 
 You need to edit the file to fix the problems. Git doesn't supervise you here, so there are no outside rules. Just read both versions, decide what you want, and delete anything you don't want. Then stage, commit, and push your changes.
 
-Note, the "conflict" resolution doesn't help you and your partner if you actually disagree about something! That is not a problem that can be solved by software. Git simply helps you manage editing the same file and knowing if your proposed changed disagree.
+Note, the "conflict" resolution doesn't help you and your partner if you actually disagree about something! That is not a problem that can be solved by software. Git simply helps you manage editing the same file and knowing if your proposed changes disagree.
 
 ## Reviewing diffs
 
@@ -55,7 +55,7 @@ Open up the "diff" pane and click on History (button in the upper left). By clic
 
 ## Working directly through the GitHub website
 
-I find the workflow described easy to use and I strongly suggest it because it lets you use all the features of Rstudio and the collaboration tools of GitHub. There are other ways to interact through GitHub and I'll describe some of these briefly.
+I find the workflow described above easy to use and I strongly suggest it because it lets you use all the features of Rstudio and the collaboration tools of GitHub. There are other ways to interact through GitHub and I'll describe some of these briefly.
 
 ### You can edit files directly through the GitHub website
 
@@ -70,7 +70,7 @@ In the main window for the project, beside the bright green 'Code' button, click
 
 ## Further reading
 
-The exercises in the first link are very helpful, although they are written using the git command line tutorial instead of the buttons in Rstudio.
+The exercises in the first link below are very helpful, although they are written using the git command line tutorial instead of the buttons in Rstudio.
 
 * [Collaboration tutorial](https://uoftcoders.github.io/studyGroup/lessons/git/collaboration/lesson/) from University of Toronto, including our case of two people working together without a team lead managing changes
 * Software Carpentry [lessons on git and github](https://swcarpentry.github.io/git-novice/)

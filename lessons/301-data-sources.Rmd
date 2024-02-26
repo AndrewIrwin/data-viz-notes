@@ -5,7 +5,7 @@ library(tidyverse)
 library(scales)
 ```
 
-Data are available from a huge number of sites on the internet run by governments, NGOs, companies, industry associations, research projects, and individuals. These data come in a variety of formats and while many will be easy to read with R, some will be quite challenging. In this lesson I will introduce you to some sources of data. Partly this is to help you start to learn how to navigate a variety of data sources, but of course part of the reason is to get you thinking about data you might use in your project. For more information on the project see the [description](#project-description) on the evaluation page.
+Data are available from a huge number of sites on the internet run by governments, NGOs, companies, industry associations, research projects, and individuals. These data come in a variety of formats and while many will be easy to read with R, some will be quite challenging. In this lesson I will introduce you to some sources of data. Partly this is to help you start to learn how to navigate a variety of data sources, but of course part of the reason is to get you thinking about data you might use in your project. 
 
 ## Finding data
 
@@ -22,12 +22,10 @@ These are the go-to datasets that we have used for demonstrating many simple vis
 * nycflights13 in dbplyr package
 * gss_sm, gss_cat, gss_sib, gss_lon and gss_lon in socviz package
 
-The function `datasets` in the package `datasets.load` will display a list of all datasets in R packages you have installed on your computer. There is not much information about each dataset, but you once you know their names, you can read the help page for each dataset.
-
 ### Tidy Tuesday
 
 Tidy Tuesday is a project to encourage people to develop skills at data visualization and analysis using the tidyverse packages in R. 
-Each week a new data set is posted and participants experiment to create new visualzations. Some people share their work on GitHub and social media.
+Each week a new data set is posted and participants experiment to create new visualizations. Some people share their work on GitHub and social media.
 
 * The Tidy Tuesday [website](https://github.com/rfordatascience/tidytuesday) describes the project and has a catalog of available datasets from previous weeks.
 * The R package to access the data is called `tidytuesdayR`. Examples of using the package are [here](https://github.com/thebioengineer/tidytuesdayR)
@@ -102,6 +100,7 @@ cpi %>% filter(`Products and product groups` == "All-items",
        caption = "Scaled so that 2002 = 100") + 
   scale_y_log10()
 ```
+
 ### Causes of death worldwide
 
 [Our world in data](https://ourworldindata.org/) has many compliations of data across many countries. [Here](https://ourworldindata.org/causes-of-death) is a table listing causes of death over time and countries. There is a link to a csv file on that page that can be easily read with R. As is often the case, this is a large table (nearly 7000 observations of 37 variables). You will need to explore the data a bit to understand it. Here is one simple plot that can be made.

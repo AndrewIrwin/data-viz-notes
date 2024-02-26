@@ -1,0 +1,127 @@
+---
+title: "Beyond tidy data"
+output: html_document
+date: "2024-02-20"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Throughout this course we have been using tidy data: every dataset is a table organized
+so that each column is a variable and each row is an observation. This design  is very 
+convenient for data visualizations and data analysis. The format makes it easy to 
+associate a column with an asethetic on a graph,  a predictor or response variable 
+in a regression, or a column in a clustering or multivariate analysis.
+
+There are at least two important ways many data sets differ from this tidy format: there 
+may be multiple tables that are related to each other, known as relational data, or the 
+data can be more irregular than a rectangular table. These formats can be reshaped into
+rectangular tidy data, but at a cost of some repetition or creating missing values, both of which 
+make the data larger to store and often harder to change or update.
+
+In this lesson I will show you an example of each dataset, explain why the non-tidy formats are 
+useful, and show you how to reshape the data for the tools we have studied in this course
+which demand tidy (rectangular) data.
+
+## Relational data
+
+The classic example of relational data is a business with a list of products, 
+a list of customers, and a combination of both describing sales of products to customers.
+Another common example is a list of students, a list of courses, and a list of courses
+taken by students (and their grades or other registration data).
+
+In both of these cases, you can see that there are data sets that are independent of 
+each other (products and customers; students and courses) and very important relationships 
+between the two tables of data (products sold to customers, courses taken by students).
+
+Here we will work with data on flights in and out of New York City, in a database.
+There are five separate tables: airlines, airports, planes, flights, and weather.
+
+```{r}
+library(tidyverse, quietly = TRUE)
+library(dbplyr)
+library(nycflights13)
+nyc <- nycflights13_sqlite()
+airlines <- tbl(nyc, "airlines")
+airports <- tbl(nyc, "airports")
+airplanes <- tbl(nyc, "planes")
+flights <- tbl(nyc, "flights")
+```
+
+Take a few minutes to familiarize yourself with each of these tables.
+You'll notice that they are not like normal tables (or tibbles) in R. The number of rows
+is unknown (reported as ??). This is because the data are not read into R; you 
+simply have access to them to make queries (using dplyr, which is translated into SQL
+for you.) This is convenient because there are 16 airlines, 3322 airplanes, 1458 airports, 
+and 336,776 flights.
+
+```{r}
+count(airports)
+count(flights)
+```
+
+You should notice that there are common variables between some pairs of tables:
+
+* airplanes and flights have codes to identify each airplane (tailnum)
+* airports and flights three letter codes for airports (faa, origin, dest)
+* airlines and flights have two letter codes for the airline (carrier)
+
+These allow the details of each airport, airline, and airplane to be connected
+to data about each flights.
+
+We can use these tables to find all the United Airlines ("UA") flights to Minneapolis ("MSP")
+on an Embrarer 145 (EMB-145, EMB-145LR, EMB-145XR).
+
+First, let's get the United Airlines flights to Minneapolis (operated by their subsiduary ExpressJet Airlines Inc.):
+
+```{r}
+flights_ev_msp <- flights |> filter(carrier == "EV", dest == "MSP")
+```
+
+We can get all the Embrarer airplanes:
+
+```{r}
+planes |> filter(substr(model, 1, 3) == "EMB")
+```
+
+Then we will use a join to get all the flights on one of these planes.
+
+```{r}
+inner_join(
+  planes |> filter(substr(model, 1, 3) == "EMB"),
+  flights_ev_msp,
+  by = "tailnum"
+)
+
+```
+
+## Irregular data
+
+
+You can download data from online accounts from many services. For example, Spotify will prepare a zip file of the
+music and podcasts you have listened to over the past year (or longer),
+
+JSON
+- e.g. Spotify data
+
+```{r}
+library(jsonlite)
+# sp0 <- read_json("~/Dropbox/Spotify Account Data/StreamingHistory_music_0.json")
+spotify0 <- fromJSON("~/Dropbox/Spotify Account Data/StreamingHistory_music_0.json", flatten = TRUE)
+spotify1 <- fromJSON("~/Dropbox/Spotify Account Data/StreamingHistory_music_1.json", flatten = TRUE)
+spotify2 <- fromJSON("~/Dropbox/Spotify Account Data/StreamingHistory_music_2.json", flatten = TRUE)
+spotify <- bind_rows(spotify0, spotify1, spotify2)
+spotify |> count(trackName) |> arrange(-n)
+spotify |> group_by(trackName) |> summarize(time = sum(msPlayed)/1000/3600) |> arrange(-time)
+spotify |> mutate(time = ymd_hm(endTime)) |>
+  summarize(min_date = min(time), max_date = max(time))
+spotify |> mutate(time = ymd_hm(endTime), jd = yday(time)) |>
+  group_by(jd) |>
+  summarize(duration = sum(msPlayed)/1000/86400) |>
+  ggplot(aes(jd, duration)) + geom_line() + theme_bw()
+
+```
+
+
+
