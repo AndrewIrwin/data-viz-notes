@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.538">
+<meta name="generator" content="quarto-1.4.537">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Data Visualization notes - 21&nbsp; Principal component analysis</title>
 <style>
@@ -380,14 +380,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li>
-<a href="#example" id="toc-example" class="nav-link active" data-scroll-target="#example"><span class="header-section-number">21.1</span> Example</a>
-  <ul class="collapse">
-<li><a href="#second-example-penguins." id="toc-second-example-penguins." class="nav-link" data-scroll-target="#second-example-penguins."><span class="header-section-number">21.1.1</span> Second example: penguins.</a></li>
-  </ul>
-</li>
-  <li><a href="#packaged-used" id="toc-packaged-used" class="nav-link" data-scroll-target="#packaged-used"><span class="header-section-number">21.2</span> Packaged used</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">21.3</span> Further reading</a></li>
+<li><a href="#example" id="toc-example" class="nav-link active" data-scroll-target="#example"><span class="header-section-number">21.1</span> Example</a></li>
+  <li><a href="#second-example-penguins" id="toc-second-example-penguins" class="nav-link" data-scroll-target="#second-example-penguins"><span class="header-section-number">21.2</span> Second example: penguins</a></li>
+  <li><a href="#packages-used" id="toc-packages-used" class="nav-link" data-scroll-target="#packages-used"><span class="header-section-number">21.3</span> Packages used</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">21.4</span> Further reading</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -407,14 +403,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </header><p>Datasets are said to be high-dimensional when several quantitative (or categorical) variables are recorded for each observation. Visualizing these datasets can be challenging, because visualizations work best with two dimensions and it is difficult to visualize 4 or more dimensions simultaneously. Many plots of pairs of variables can be displayed, but these projections require the viewer to try to reconstruct complex interactions among variables. <a href="https://en.wikipedia.org/wiki/Ordination_(statistics)">Ordination</a> is a suite of techniques for creating projections of high-dimensional data, usually in 2 or 3 dimensions. The name refers to the goal of <em>ordering</em> observations in a two dimensional plane so that observations which are close in the high-dimensional space are still close in the projected 2-dimensional space. Not all features of the original dataset can be maintained – information is lost – so some care must be taken when interpreting ordination plots. In this course we will examine Principal Component Analysis (in this lesson) and metric and non-metric dimensional analysis (in the next). There are many other techniques for <a href="https://en.wikipedia.org/wiki/Dimensionality_reduction">dimensionality reduction</a>.</p>
-<p>Principal component analysis (from now on, PCA) defines new variables which are weighted sums (a.k.a. linear combinations) of variables in your data. These sums are called principal components. The principal components can be used as new axes for your data, defining new coordinates for each point. The underlying transformation is a rotation (and usually a scaling) which is used to form a new coordinate system. The coordinate along each axis known as the first, second, etc., principal component. The rotation is chosen to maximize the variance in the first principal component. The second principal component is perpendicular to the first, but chosen so that as much of the remaining variation as possible is along that axis. And so on. In this way you can select as many of the first few principal components as you like to have a smaller set of variables that represent as much of the variation in the original data as possible.</p>
+<p>Principal component analysis (from now on, PCA) defines new variables which are weighted sums (a.k.a. linear combinations) of variables in your data. These sums are called principal components. The principal components can be used as new axes for your data, defining new coordinates for each point. The underlying transformation is a rotation (and usually a scaling) which is used to form a new coordinate system. The coordinate along each axis is known as the first, second, etc., principal component. The rotation is chosen to maximize the variance in the first principal component. The second principal component is perpendicular to the first, but chosen so that as much of the remaining variation as possible is along that axis. And so on. In this way you can select as many of the first few principal components as you like to have a smaller set of variables that represent as much of the variation in the original data as possible.</p>
 <p>If you have studied linear algebra, you will want to know that the principal component analysis is performed with the following steps:</p>
 <ul>
 <li>center the data at the origin by subtracting the mean of each variable (optionally scale each variable to have the same standard deviation),</li>
 <li>compute the covariance matrix (or optionally the correlation matrix),</li>
 <li>compute the eigenvalues of the covariance matrix.</li>
 </ul>
-<p>The eigenvalues and their corresponding eigenvectors are sorted from largest to smallest. The proportion of the variance explained by each principal component is proportional to the eigenvalues. The rotation matrix is the orthogonal matrix composed of these eigenvalues. This is explained in our applied linear algebra course (Math 2040) in section 11.12 of <a href="https://www.mathstat.dal.ca/~selinger/linear-algebra/">Peter Selinger’s book</a> textbook.</p>
+<p>The eigenvalues and their corresponding eigenvectors are sorted from largest to smallest. The proportion of the variance explained by each principal component is proportional to the eigenvalues. The rotation matrix is the orthogonal matrix composed of these eigenvalues. This is explained in our applied linear algebra course (Math 2040) in section 11.12 of <a href="https://www.mathstat.dal.ca/~selinger/linear-algebra/">Peter Selinger’s</a> textbook.</p>
 <section id="example" class="level2" data-number="21.1"><h2 data-number="21.1" class="anchored" data-anchor-id="example">
 <span class="header-section-number">21.1</span> Example</h2>
 <p>A simple example in two dimensions is really helpful. No one does PCA on two variables, because you can just plot the data in a normal scatterplot, but as a demonstration it shows how the principal components are chosen.</p>
@@ -439,14 +435,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>the original data transformed to the new principal component axes (scores)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pca1</span> <span class="op">%&gt;%</span> <span class="fu">tidy</span><span class="op">(</span>matrix <span class="op">=</span> <span class="st">"eigenvalues"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pca1</span> <span class="op">|&gt;</span> <span class="fu">tidy</span><span class="op">(</span>matrix <span class="op">=</span> <span class="st">"eigenvalues"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
 <thead><tr class="header">
-<th style="text-align: right;" data-quarto-table-cell-role="th">PC</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">std.dev</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">percent</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">cumulative</th>
+<th style="text-align: right;">PC</th>
+<th style="text-align: right;">std.dev</th>
+<th style="text-align: right;">percent</th>
+<th style="text-align: right;">cumulative</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -464,13 +460,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pca1</span> <span class="op">%&gt;%</span> <span class="fu">tidy</span><span class="op">(</span>matrix <span class="op">=</span> <span class="st">"rotation"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pca1</span> <span class="op">|&gt;</span> <span class="fu">tidy</span><span class="op">(</span>matrix <span class="op">=</span> <span class="st">"rotation"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
 <thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">column</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">PC</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">value</th>
+<th style="text-align: left;">column</th>
+<th style="text-align: right;">PC</th>
+<th style="text-align: right;">value</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -496,11 +492,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pca1</span> <span class="op">%&gt;%</span> <span class="fu">tidy</span><span class="op">(</span>matrix <span class="op">=</span> <span class="st">"scores"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">"PC"</span>, names_prefix <span class="op">=</span> <span class="st">"PC_"</span>, values_from <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">scroll_box</span><span class="op">(</span>height <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pca1</span> <span class="op">|&gt;</span> <span class="fu">tidy</span><span class="op">(</span>matrix <span class="op">=</span> <span class="st">"scores"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">"PC"</span>, names_prefix <span class="op">=</span> <span class="st">"PC_"</span>, values_from <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">scroll_box</span><span class="op">(</span>height <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:50; ">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:20; ">
 <table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead><tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">row</th>
@@ -780,18 +776,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [2,] 0.9861850  0.1656479</code></pre>
 </div>
 </div>
-<p>The the “scores” output is equal to the original data multiplied by the rotation matrix.</p>
+<p>The “scores” output is equal to the original data multiplied by the rotation matrix.</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rotation</span> <span class="op">&lt;-</span> <span class="va">pca1</span> <span class="op">%&gt;%</span> <span class="fu">tidy</span><span class="op">(</span>matrix <span class="op">=</span> <span class="st">"rotation"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">pull</span><span class="op">(</span><span class="va">value</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>  <span class="co"># also available as  pca1$rotation</span></span>
-<span><span class="va">center</span> <span class="op">&lt;-</span> <span class="va">cars</span> <span class="op">%&gt;%</span> <span class="fu">summarize</span><span class="op">(</span>speed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span>, dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">dist</span><span class="op">)</span><span class="op">)</span> <span class="co"># also available as pca1$center</span></span>
-<span><span class="va">scores1</span> <span class="op">&lt;-</span> <span class="va">pca1</span> <span class="op">%&gt;%</span> <span class="fu">tidy</span><span class="op">(</span>matrix <span class="op">=</span> <span class="st">"scores"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">pull</span><span class="op">(</span><span class="va">value</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co"># scores2 &lt;- t((t(cars) - pca1$center)) %*% pca1$rotation</span></span>
-<span><span class="va">scores2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">cars</span>, center <span class="op">=</span> <span class="cn">TRUE</span>, scale <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">rotation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rotation</span> <span class="op">&lt;-</span> <span class="va">pca1</span> <span class="op">|&gt;</span> <span class="fu">tidy</span><span class="op">(</span>matrix <span class="op">=</span> <span class="st">"rotation"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">pull</span><span class="op">(</span><span class="va">value</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>  </span>
+<span>   <span class="co"># also available as  pca1$rotation</span></span>
+<span><span class="va">center</span> <span class="op">&lt;-</span> <span class="va">cars</span> <span class="op">|&gt;</span> <span class="fu">summarize</span><span class="op">(</span>speed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">speed</span><span class="op">)</span>, dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">dist</span><span class="op">)</span><span class="op">)</span> </span>
+<span>   <span class="co"># also available as pca1$center</span></span>
+<span><span class="va">scores1</span> <span class="op">&lt;-</span> <span class="va">pca1</span> <span class="op">|&gt;</span> <span class="fu">tidy</span><span class="op">(</span>matrix <span class="op">=</span> <span class="st">"scores"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">pull</span><span class="op">(</span><span class="va">value</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">scores2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">cars</span>, center <span class="op">=</span> <span class="cn">TRUE</span>, scale <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">rotation</span></span>
+<span>   <span class="co"># alternative: scores2 &lt;- t((t(cars) - pca1$center)) %*% pca1$rotation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now I’ll plot the data projected onto the principal components. Notice that it is wide and thin (especially compared to the previous plot) because the data have been rotated to arrange as much of the variation as possible in the horizontal direction.</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pca1</span> <span class="op">%&gt;%</span> <span class="fu">tidy</span><span class="op">(</span>matrix <span class="op">=</span> <span class="st">"scores"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from<span class="op">=</span><span class="st">"PC"</span>, names_prefix <span class="op">=</span> <span class="st">"PC_"</span>, values_from <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pca1</span> <span class="op">|&gt;</span> <span class="fu">tidy</span><span class="op">(</span>matrix <span class="op">=</span> <span class="st">"scores"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from<span class="op">=</span><span class="st">"PC"</span>, names_prefix <span class="op">=</span> <span class="st">"PC_"</span>, </span>
+<span>              values_from <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">PC_1</span>, y<span class="op">=</span><span class="va">PC_2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">coord_fixed</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -802,7 +801,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>An easy way to display the results of the PCA is to make a biplot using the <code>ggfortify</code> package. The biplot shows the observations as black dots and the original axes as red vectors. The option <code>scale=0</code> keeps the same scaling as in the original plot. In normal usage you would not have <code>coord_fixed()</code> in the original plot and you would not use <code>scale=0</code> in this plot.</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">autoplot</span><span class="op">(</span><span class="va">pca1</span>, data<span class="op">=</span> <span class="va">cars</span>, loadings<span class="op">=</span><span class="cn">TRUE</span>, loadings.label<span class="op">=</span><span class="cn">TRUE</span>, scale<span class="op">=</span><span class="fl">0</span><span class="op">)</span> <span class="op">+</span> <span class="fu">coord_equal</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">autoplot</span><span class="op">(</span><span class="va">pca1</span>, data<span class="op">=</span><span class="va">cars</span>, loadings<span class="op">=</span><span class="cn">TRUE</span>, loadings.label<span class="op">=</span><span class="cn">TRUE</span>, scale<span class="op">=</span><span class="fl">0</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">coord_equal</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="121-PCA_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
@@ -812,7 +812,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Normal use of <code>autoplot</code> would be to allow changing the scale of the two principal components (<code>scale = 1</code>) and to allow the axes to be scaled independently of each other (no <code>coord_fixed()</code>):</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">autoplot</span><span class="op">(</span><span class="va">pca1</span>, data<span class="op">=</span> <span class="va">cars</span>, loadings<span class="op">=</span><span class="cn">TRUE</span>, loadings.label<span class="op">=</span><span class="cn">TRUE</span>, scale<span class="op">=</span><span class="fl">1</span>, variance_percentage <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">autoplot</span><span class="op">(</span><span class="va">pca1</span>, data<span class="op">=</span> <span class="va">cars</span>, loadings<span class="op">=</span><span class="cn">TRUE</span>, loadings.label<span class="op">=</span><span class="cn">TRUE</span>,</span>
+<span>         scale<span class="op">=</span><span class="fl">1</span>, variance_percentage <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="121-PCA_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
@@ -833,11 +834,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>               data <span class="op">=</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="va">rotation</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"PC1: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">ve</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="fl">100</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"%"</span><span class="op">)</span>,</span>
 <span>       y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"PC2: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">ve</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">*</span><span class="fl">100</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"%"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if
-`.name_repair` is omitted as of tibble 2.0.0.
-ℹ Using compatibility `.name_repair`.</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="121-PCA_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
@@ -847,8 +843,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>If all you want is the scores and you don’t care about the scaling, you can just use <code>augment</code> and <code>ggplot</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pca1</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">augment</span><span class="op">(</span><span class="va">cars</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pca1</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">augment</span><span class="op">(</span><span class="va">cars</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">.fittedPC1</span>, y<span class="op">=</span> <span class="va">.fittedPC2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>   <span class="co"># divide by lam[1] and lam[2] to get the scaled version</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -858,13 +854,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="second-example-penguins." class="level3" data-number="21.1.1"><h3 data-number="21.1.1" class="anchored" data-anchor-id="second-example-penguins.">
-<span class="header-section-number">21.1.1</span> Second example: penguins.</h3>
-<p>The palmer penguin data have 4 quantitative variables. We will scale them all to have mean 0 and standard deviation 1, since the units and magnitude of the numbers are not comparable. We will colour points by speices to make the patterns easier to see.</p>
+</section><section id="second-example-penguins" class="level2" data-number="21.2"><h2 data-number="21.2" class="anchored" data-anchor-id="second-example-penguins">
+<span class="header-section-number">21.2</span> Second example: penguins</h2>
+<p>The palmer penguin data have 4 quantitative variables. We will scale them all to have mean 0 and standard deviation 1, since the units and magnitude of the numbers are not comparable. We will colour points by species to make the patterns easier to see.</p>
 <p><code>autoplot</code> has some quirks: the variable names must be quoted and colour must be spelled with a ‘u’. (Most <code>ggplot</code> functions allow for alternate spellings - color with and without a ‘u’, summarize with an ‘s’ instead of a ‘z’.) I don’t know of an easy way to use the <code>ggrepel</code> package with autoplot to avoid overprinting the text on the arrows or dots.</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins_no_na</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">)</span></span>
-<span><span class="va">pca2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span><span class="op">(</span><span class="va">penguins_no_na</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">flipper_length_mm</span>, <span class="va">body_mass_g</span>, <span class="va">bill_length_mm</span>, <span class="va">bill_depth_mm</span><span class="op">)</span>, scale<span class="op">=</span><span class="cn">TRUE</span> <span class="op">)</span></span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins_no_na</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">)</span></span>
+<span><span class="va">pca2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html">prcomp</a></span><span class="op">(</span><span class="va">penguins_no_na</span> <span class="op">|&gt;</span></span>
+<span>                 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">flipper_length_mm</span>, <span class="va">body_mass_g</span>, <span class="va">bill_length_mm</span>, <span class="va">bill_depth_mm</span><span class="op">)</span>,</span>
+<span>               scale<span class="op">=</span><span class="cn">TRUE</span> <span class="op">)</span></span>
 <span><span class="fu">autoplot</span><span class="op">(</span><span class="va">pca2</span>, data <span class="op">=</span> <span class="va">penguins_no_na</span>, loadings<span class="op">=</span><span class="cn">TRUE</span>, loadings.label<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>         colour<span class="op">=</span><span class="st">'species'</span>, shape<span class="op">=</span><span class="st">'island'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -874,9 +872,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>This is the best separation between the data points using these four variables that can be achieved by a rotation of the data and projection into the plane.</p>
 <p>Gentoo penguins are mostly distinguished by having the highest body mass. Adélie and Chinstrap penguins have similar masses, but are distinguished by dimensions of their bills and flippers. You can use <code>frame.type</code> to shade the areas containing data from each species to highlight where the points are concentrated (by color).</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">autoplot</span><span class="op">(</span><span class="va">pca2</span>, data <span class="op">=</span> <span class="va">penguins_no_na</span>, loadings <span class="op">=</span> <span class="cn">TRUE</span>, loadings.label <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">autoplot</span><span class="op">(</span><span class="va">pca2</span>, data <span class="op">=</span> <span class="va">penguins_no_na</span>, loadings <span class="op">=</span> <span class="cn">TRUE</span>, loadings.label <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>         colour <span class="op">=</span> <span class="st">'species'</span>, shape <span class="op">=</span> <span class="st">'island'</span>, </span>
 <span>         frame.type <span class="op">=</span> <span class="st">"norm"</span>, frame.level <span class="op">=</span> <span class="fl">0.90</span><span class="op">)</span>   <span class="co"># frame.type convex, norm, euclid, t; see ?ggbiplot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -886,9 +885,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Without a PCA, you could attempt to see these patterns by making a complex array of scatterplots for each pair of variables.</p>
+<p>Without a PCA, you could attempt to see these patterns by making a complex array of scatterplots for each pair of variables. This is a complex plot that takes time and effort to understand.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins_no_na</span> <span class="op">%&gt;%</span> </span>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins_no_na</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">flipper_length_mm</span>, <span class="va">body_mass_g</span>, <span class="va">bill_length_mm</span>, <span class="va">bill_depth_mm</span>, <span class="va">species</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">ggpairs</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color<span class="op">=</span><span class="va">species</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -898,17 +897,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>You should practice seeing how many of the pairwise differences in this pairs plot can be revealed in the single PCA.</p>
-<p>Here is a customized ggplot of the PCA results. I simplifed the work in the first example by not using the conventional scaling; instead I just picked scales for the arrows that looked good. <strong>Need to fix this.</strong></p>
+<p>Here is a customized ggplot of the PCA results. I simplifed the work in the first example by not using the conventional scaling; instead I just picked scales for the arrows that looked good.</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rotation2</span> <span class="op">&lt;-</span> <span class="va">pca2</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">tidy</span><span class="op">(</span>matrix <span class="op">=</span> <span class="st">"rotation"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rotation2</span> <span class="op">&lt;-</span> <span class="va">pca2</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">tidy</span><span class="op">(</span>matrix <span class="op">=</span> <span class="st">"rotation"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">PC</span>, names_prefix <span class="op">=</span> <span class="st">"PC"</span>, values_from <span class="op">=</span> <span class="va">value</span><span class="op">)</span> </span>
-<span><span class="va">pca2</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">augment</span><span class="op">(</span><span class="va">penguins_no_na</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span><span class="va">pca2</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">augment</span><span class="op">(</span><span class="va">penguins_no_na</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">.fittedPC1</span>, y <span class="op">=</span> <span class="va">.fittedPC2</span>, color <span class="op">=</span> <span class="va">species</span>, shape <span class="op">=</span> <span class="va">island</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_segment</span><span class="op">(</span>data <span class="op">=</span> <span class="va">rotation2</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, xend <span class="op">=</span> <span class="fl">3</span><span class="op">*</span><span class="va">PC1</span>, y <span class="op">=</span> <span class="fl">0</span>, yend <span class="op">=</span> <span class="fl">3</span><span class="op">*</span><span class="va">PC2</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"blue"</span>,</span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">.fittedPC1</span>, y <span class="op">=</span> <span class="va">.fittedPC2</span>, </span>
+<span>                 color <span class="op">=</span> <span class="va">species</span>, shape <span class="op">=</span> <span class="va">island</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_segment</span><span class="op">(</span>data <span class="op">=</span> <span class="va">rotation2</span>, </span>
+<span>               mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, xend <span class="op">=</span> <span class="fl">3</span><span class="op">*</span><span class="va">PC1</span>, y <span class="op">=</span> <span class="fl">0</span>, yend <span class="op">=</span> <span class="fl">3</span><span class="op">*</span><span class="va">PC2</span><span class="op">)</span>, </span>
+<span>               color <span class="op">=</span> <span class="st">"blue"</span>,</span>
 <span>               arrow <span class="op">=</span> <span class="fu">arrow</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">20</span>, type <span class="op">=</span> <span class="st">"closed"</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span></span>
 <span>  <span class="fu">geom_label_repel</span><span class="op">(</span>data <span class="op">=</span> <span class="va">rotation2</span>,</span>
 <span>                  <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">3</span><span class="op">*</span><span class="va">PC1</span>, y <span class="op">=</span> <span class="fl">3</span><span class="op">*</span><span class="va">PC2</span>, label <span class="op">=</span> <span class="va">column</span><span class="op">)</span>, </span>
@@ -922,8 +923,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section></section><section id="packaged-used" class="level2" data-number="21.2"><h2 data-number="21.2" class="anchored" data-anchor-id="packaged-used">
-<span class="header-section-number">21.2</span> Packaged used</h2>
+</section><section id="packages-used" class="level2" data-number="21.3"><h2 data-number="21.3" class="anchored" data-anchor-id="packages-used">
+<span class="header-section-number">21.3</span> Packages used</h2>
 <p>In addition to <code>tidyverse</code>, <code>kableExtra</code> and <code>palmerpenguins</code>, in this lesson we used</p>
 <ul>
 <li><code>broom</code></li>
@@ -933,8 +934,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>GGally</code> for ggpairs</li>
 <li>
 <code>ggrepel</code> to add labels that don’t overlap data points</li>
-</ul></section><section id="further-reading" class="level2" data-number="21.3"><h2 data-number="21.3" class="anchored" data-anchor-id="further-reading">
-<span class="header-section-number">21.3</span> Further reading</h2>
+</ul></section><section id="further-reading" class="level2" data-number="21.4"><h2 data-number="21.4" class="anchored" data-anchor-id="further-reading">
+<span class="header-section-number">21.4</span> Further reading</h2>
 <ul>
 <li>Claus Wilke’s <a href="https://clauswilke.com/blog/2020/09/07/pca-tidyverse-style/">PCA tutorial</a>
 </li>

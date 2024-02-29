@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.538">
+<meta name="generator" content="quarto-1.4.537">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Data Visualization notes - 30&nbsp; Working with text, factors, dates and times</title>
 <style>
@@ -478,11 +478,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">text_and_numbers</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>numbers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span>, </span>
 <span>                            integers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
 <thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">text</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">numbers</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">integers</th>
+<th style="text-align: left;">text</th>
+<th style="text-align: right;">numbers</th>
+<th style="text-align: right;">integers</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -530,7 +530,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Thinking about patterns is a lot of work and prone to error, so the pair of functions <code>glue</code> and <code>unglue</code> were created to perform common tasks of combining text and data and then to separate them again.</p>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidyverse/glue">glue</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://glue.tidyverse.org/">glue</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">unglue</span><span class="op">)</span></span>
 <span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">6</span></span>
@@ -554,10 +554,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>              <span class="st">"My name is {name}."</span>, </span>
 <span>              remove<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
 <thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">greeting</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: left;">greeting</th>
+<th style="text-align: left;">name</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -644,15 +644,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">today</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2024-02-15"</code></pre>
+<pre><code>[1] "2024-02-29"</code></pre>
 </div>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">now</span><span class="op">(</span><span class="op">)</span> <span class="co"># for me this is: now(tz = "America/Halifax") </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2024-02-15 09:41:29 AST"</code></pre>
+<pre><code>[1] "2024-02-29 09:27:27 AST"</code></pre>
 </div>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">now</span><span class="op">(</span>tz <span class="op">=</span> <span class="st">"UTC"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2024-02-15 13:41:29 UTC"</code></pre>
+<pre><code>[1] "2024-02-29 13:27:27 UTC"</code></pre>
 </div>
 </div>
 <section id="reading-dates" class="level3" data-number="30.3.1"><h3 data-number="30.3.1" class="anchored" data-anchor-id="reading-dates">
@@ -667,10 +667,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt1</span> <span class="op">%&gt;%</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
 <thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">text_date</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">date</th>
+<th style="text-align: left;">text_date</th>
+<th style="text-align: left;">date</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -705,10 +705,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>             date_time <span class="op">=</span> <span class="fu">ymd_hm</span><span class="op">(</span><span class="va">text_date</span>, tz<span class="op">=</span><span class="st">"America/Halifax"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dt2</span> <span class="op">%&gt;%</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
 <thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">text_date</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">date_time</th>
+<th style="text-align: left;">text_date</th>
+<th style="text-align: left;">date_time</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -741,10 +741,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>               <span class="st">"December 31/99"</span>, <span class="st">"Jan 1, 01"</span><span class="op">)</span>,</span>
 <span>      decoded <span class="op">=</span> <span class="fu">mdy</span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
 <thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">date</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">decoded</th>
+<th style="text-align: left;">date</th>
+<th style="text-align: left;">decoded</th>
 </tr></thead>
 <tbody>
 <tr class="odd">

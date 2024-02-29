@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.538">
+<meta name="generator" content="quarto-1.4.537">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Data Visualization notes - 9&nbsp; Summarizing data</title>
 <style>
@@ -569,13 +569,13 @@ div.csl-indent {
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu">slice_sample</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 10
-  carat cut     color clarity depth table price     x     y     z
-  &lt;dbl&gt; &lt;ord&gt;   &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  0.42 Good    I     VVS1     59.2    61   867  4.88  4.91  2.9 
-2  1.01 Premium E     SI1      59.5    60  5301  6.54  6.46  3.87
-3  0.4  Good    H     SI1      60.2    63   681  4.7   4.73  2.84
-4  1.01 Premium E     SI1      62.4    60  5002  6.35  6.32  3.95
-5  0.5  Ideal   G     VVS2     62.3    56  1935  5.09  5.05  3.16</code></pre>
+  carat cut       color clarity depth table price     x     y     z
+  &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1  0.32 Ideal     E     VS2      61.1    56   846  4.46  4.48  2.73
+2  0.3  Very Good J     SI1      63.4    54   450  4.29  4.23  2.7 
+3  0.43 Ideal     I     VS1      62.4    56  1218  4.81  4.84  3.01
+4  1.02 Ideal     G     SI1      62.2    57  4988  6.43  6.49  4.02
+5  0.46 Very Good E     VS2      62.1    57  1194  4.89  4.93  3.05</code></pre>
 </div>
 </div>
 <p>You can use <code>arrange</code> to sort the data by any number of columns before slicing or displaying the data.</p>

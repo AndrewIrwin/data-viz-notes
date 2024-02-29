@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.538">
+<meta name="generator" content="quarto-1.4.537">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Data Visualization notes - 16&nbsp; Linear models</title>
 <style>
@@ -621,7 +621,7 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </div>
-<p>(You can safely ignore this error message; <a href="https://stackoverflow.com/a/56637322">here is an explanation</a>.)</p>
+<p>(You may get a warning message, but you can safely ignore it; <a href="https://stackoverflow.com/a/56637322">here is an explanation</a>.)</p>
 </section><section id="quantitative-model-output" class="level2" data-number="16.5"><h2 data-number="16.5" class="anchored" data-anchor-id="quantitative-model-output">
 <span class="header-section-number">16.5</span> Quantitative model output</h2>
 <p>The <code>broom</code> package has functions to obtain model coefficients and compute residuals, predictions, and confindence intervals. Healy also shows how to use <code>broom</code> to fit many models (such as a model for each facet) in his <a href="https://socviz.co/modeling.html#grouped-analysis-and-list-columns">Section 6.6</a>, but I will skip those steps.</p>
@@ -629,15 +629,24 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tidy</span><span class="op">(</span><span class="va">linear_model1</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 13%">
+<col style="width: 14%">
+</colgroup>
 <thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">std.error</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">conf.low</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">conf.high</th>
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">std.error</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">p.value</th>
+<th style="text-align: right;">conf.low</th>
+<th style="text-align: right;">conf.high</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -690,20 +699,34 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">glance</span><span class="op">(</span><span class="va">linear_model1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 2%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 11%">
+<col style="width: 10%">
+<col style="width: 5%">
+</colgroup>
 <thead><tr class="header">
-<th style="text-align: right;" data-quarto-table-cell-role="th">r.squared</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">adj.r.squared</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">sigma</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">df</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">logLik</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">AIC</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">BIC</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">deviance</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">df.residual</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">nobs</th>
+<th style="text-align: right;">r.squared</th>
+<th style="text-align: right;">adj.r.squared</th>
+<th style="text-align: right;">sigma</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">p.value</th>
+<th style="text-align: right;">df</th>
+<th style="text-align: right;">logLik</th>
+<th style="text-align: right;">AIC</th>
+<th style="text-align: right;">BIC</th>
+<th style="text-align: right;">deviance</th>
+<th style="text-align: right;">df.residual</th>
+<th style="text-align: right;">nobs</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td style="text-align: right;">0.8493305</td>
@@ -726,18 +749,30 @@ F-statistic: 4.092e+04 on 14 and 53925 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">augment</span><span class="op">(</span><span class="va">linear_model1</span>, interval <span class="op">=</span> <span class="st">"prediction"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 14%">
+</colgroup>
 <thead><tr class="header">
-<th style="text-align: right;" data-quarto-table-cell-role="th">price</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">carat</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">.fitted</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">.lower</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">.upper</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">.resid</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">.hat</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">.sigma</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">.cooksd</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">.std.resid</th>
+<th style="text-align: right;">price</th>
+<th style="text-align: right;">carat</th>
+<th style="text-align: right;">.fitted</th>
+<th style="text-align: right;">.lower</th>
+<th style="text-align: right;">.upper</th>
+<th style="text-align: right;">.resid</th>
+<th style="text-align: right;">.hat</th>
+<th style="text-align: right;">.sigma</th>
+<th style="text-align: right;">.cooksd</th>
+<th style="text-align: right;">.std.resid</th>
 </tr></thead>
 <tbody>
 <tr class="odd">

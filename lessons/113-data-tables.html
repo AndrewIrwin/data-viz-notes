@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.538">
+<meta name="generator" content="quarto-1.4.537">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Data Visualization notes - 13&nbsp; Format tables</title>
 <style>
@@ -425,12 +425,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">t1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
 <thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">island</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">count</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">body_mass_g</th>
+<th style="text-align: left;">species</th>
+<th style="text-align: left;">island</th>
+<th style="text-align: right;">count</th>
+<th style="text-align: right;">body_mass_g</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -473,12 +473,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">rename</span><span class="op">(</span>`Body mass (g)` <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
 <thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">island</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">count</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Body mass (g)</th>
+<th style="text-align: left;">species</th>
+<th style="text-align: left;">island</th>
+<th style="text-align: right;">count</th>
+<th style="text-align: right;">Body mass (g)</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -518,12 +518,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Species"</span>, <span class="st">"Island"</span>, <span class="st">"Count"</span>,  <span class="st">"Body mass (g)"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
 <thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Species</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Island</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Count</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Body mass (g)</th>
+<th style="text-align: left;">Species</th>
+<th style="text-align: left;">Island</th>
+<th style="text-align: right;">Count</th>
+<th style="text-align: right;">Body mass (g)</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -566,12 +566,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>align <span class="op">=</span> <span class="st">"llcc"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
 <thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">island</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">count</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">body_mass_g</th>
+<th style="text-align: left;">species</th>
+<th style="text-align: left;">island</th>
+<th style="text-align: center;">count</th>
+<th style="text-align: center;">body_mass_g</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -615,12 +615,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">1</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
 <thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">island</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">count</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">body_mass_g</th>
+<th style="text-align: left;">species</th>
+<th style="text-align: left;">island</th>
+<th style="text-align: right;">count</th>
+<th style="text-align: right;">body_mass_g</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -712,13 +712,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell page-columns page-full">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"The number and average mass of penguins by species and island."</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display page-columns page-full">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
 
 <thead><tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">island</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">count</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">body_mass_g</th>
+<th style="text-align: left;">species</th>
+<th style="text-align: left;">island</th>
+<th style="text-align: right;">count</th>
+<th style="text-align: right;">body_mass_g</th>
 </tr></thead>
 <tbody>
 <tr class="odd">

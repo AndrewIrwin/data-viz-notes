@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.538">
+<meta name="generator" content="quarto-1.4.537">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Data Visualization notes - 20&nbsp; Reproducible reports</title>
 <style>
@@ -414,7 +414,8 @@ div.csl-indent {
   <li><a href="#customization-of-result-reporting-in-r-markdown" id="toc-customization-of-result-reporting-in-r-markdown" class="nav-link" data-scroll-target="#customization-of-result-reporting-in-r-markdown"><span class="header-section-number">20.5</span> Customization of result reporting in R markdown</a></li>
   <li><a href="#documenting-which-packages-you-use" id="toc-documenting-which-packages-you-use" class="nav-link" data-scroll-target="#documenting-which-packages-you-use"><span class="header-section-number">20.6</span> Documenting which packages you use</a></li>
   <li><a href="#using-other-languages" id="toc-using-other-languages" class="nav-link" data-scroll-target="#using-other-languages"><span class="header-section-number">20.7</span> Using other languages</a></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">20.8</span> Further reading</a></li>
+  <li><a href="#packages-used" id="toc-packages-used" class="nav-link" data-scroll-target="#packages-used"><span class="header-section-number">20.8</span> Packages used</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">20.9</span> Further reading</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -433,10 +434,10 @@ div.csl-indent {
   
 
 
-</header><p>We’ve seen throughout the course how to combine computer code, data, tabular and graphical resultss, and natural language writing to explain and communicate our work. R markdown documents are a great tool for writing reports and ensuring they are reproducible. In this lesson we will examine a few more features of R markdown to help customize your reports, make them easier to revise, and make them more effective data analysis communication tools.</p>
+</header><p>We’ve seen throughout the course how to combine computer code, data, tabular and graphical results, and natural language writing to explain and communicate our work. R markdown documents are a great tool for writing reports and ensuring they are reproducible. In this lesson we will examine a few more features of R markdown to help customize your reports, make them easier to revise, and make them more effective data analysis communication tools.</p>
 <section id="what-is-reproducibility-and-why-should-i-care" class="level2" data-number="20.1"><h2 data-number="20.1" class="anchored" data-anchor-id="what-is-reproducibility-and-why-should-i-care">
 <span class="header-section-number">20.1</span> What is reproducibility and why should I care?</h2>
-<p>Many people use R as an interactive computer tool. This means they sit at the keyboard, type a series of commands, and store the results they want. It’s like a very fancy calculator. This is a fantastic way to explore data, learn R, and test out ideas quickly. This work is not reproducible. You would need a recording of everything that was done to reproduce the analysis. If you need to change a small step in your work, you will need to repeat all the steps.</p>
+<p>Many people use R as an interactive computer tool. This means they sit at the keyboard, type a series of commands, and keep the results they want. It’s like a very fancy calculator. This is a fantastic way to explore data, learn R, and test out ideas quickly. This work is not reproducible. You would need a recording of everything that was done to reproduce the analysis. If you need to change a small step in your work, you will need to repeat many or all of the steps.</p>
 <p>In this course, we have been using R in a slightly more disciplined way, at least for assigned work. For every project, you create a new R markdown file, and then you write your computer instructions in code “chunks”, interspersed with English (or any other natural human language) explanations. With Rstudio, you can still use R interactively in this mode, clicking the “play” button on each chunk and seeing the output. When your analysis is done, you can “knit” the whole document. This does two important things:</p>
 <ul>
 <li>all the code is executed in order from top to bottom, and</li>
@@ -448,16 +449,16 @@ div.csl-indent {
 <span class="header-section-number">20.2</span> What are barriers to reproducibility and how I can overcome them?</h2>
 <section id="file-paths" class="level3" data-number="20.2.1"><h3 data-number="20.2.1" class="anchored" data-anchor-id="file-paths">
 <span class="header-section-number">20.2.1</span> File paths</h3>
-<p>If you have a complex project, you will have multiple directories, and possibly many data files. When reading a data file, you will need to refer to the file by name. Make sure you never use the way files are organized on your computer as part of the script. In particular never write anything like:</p>
+<p>If you have a complex project, you will have multiple directories (or folders), and possibly many data files. When reading a data file, you will need to refer to the file by name. Make sure you never use the way files are organized on your computer as part of the script. In particular never write anything like:</p>
 <pre><code>my_data &lt;- read_csv("/Users/airwin/Documents/Stats-project/data/my_data.csv")</code></pre>
 <p>because there is no way that will work on someone else’s computer! If you reorganize your Documents folder, it won’t even work on your computer! What should you do instead?</p>
 <p>We have been using R packages and organizing all files for a project in a folder (and sub-folders) created just for that project. This is a good first step. The <code>here</code> package provides a useful function that allows you refer to a file relative to the directory where your <code>.Rproj</code> file is stored. This is <a href="https://malco.io/2018/11/05/why-should-i-use-the-here-package-when-i-m-already-using-projects/">important</a> to make your R code work on someone else’s computer. Here’s how you use it:</p>
 <pre><code>my_data &lt;- read_csv(here("static", "annual-number-of-deaths-by-cause.csv"))</code></pre>
-<p>If this code works on your computer, with your R project, and you give the whole folder to a collaborator, you don’t need to worry how they organize their files.</p>
-<p>Sometimes you will think a dataset is too large to put in your project folder. Or the data may be used by multiple projects, and you don’t want to have multiple copies. What should you do? The best options are: put the common data files in a GitHub repository (public or private), deposit the data in an online repository such as <a href="https://osf.io/">osf.io</a>, or create an <a href="https://r-pkgs.org/data.html">R data package</a> of your own to manage the data on your computer and the computers of your collaborators. Which method you prefer will depend on many factors including the size of the data, how often it changes, whether it is public, or if you are allowed to redistribute it.</p>
+<p>This tells R to find a folder called <code>static</code> in your project, then look for a file called <code>annual-number-of-deaths-by-cause.csv</code> in that folder. If this code works on your computer, with your R project, and you give the whole folder to a collaborator, you don’t need to worry how they organize their files.</p>
+<p>Sometimes you will think a dataset is too large to put in your project folder. Or the data may be used by multiple projects, and you don’t want to have multiple copies. What should you do? The best options are: put the common data files in a GitHub repository (public or private), deposit the data in an online repository such as <a href="https://osf.io/">osf.io</a>, or create an <a href="https://r-pkgs.org/data.html">R data package</a> of your own to manage the data on your computer and the computers of your collaborators. The R data package can be pubic, available to anyone, or you can keep it completely private on your own computer. All of these methods have the advantage of separating the data collection and validating process from the analysis and visualization process. Which method you prefer will depend on many factors including the size of the data, how often it changes, whether it is public, or if you are allowed to redistribute it.</p>
 </section><section id="caching-time-consuming-computations" class="level3" data-number="20.2.2"><h3 data-number="20.2.2" class="anchored" data-anchor-id="caching-time-consuming-computations">
 <span class="header-section-number">20.2.2</span> Caching time-consuming computations</h3>
-<p>R markdown is a great way to manage a analysis notebook, but every time you want to update your analysis, you need to recalculate everything in your document. It is possible to store (cache) the results of a code chunk by giving it a name and setting <code>cache=TRUE</code>. This will store the results of that computation so that when the markdown file is recomputed, the stored results are used. This can save time, but also lead to unpredictable results depending on how the results of one code chunk and external data influence the cached code chunk.</p>
+<p>R markdown is a great way to manage an analysis notebook, but every time you want to update your analysis, you need to recalculate everything in your document. It is possible to store (cache) the results of a code chunk by giving it a name and setting <code>cache=TRUE</code>. This will store the results of that computation so that when the markdown file is recomputed, the stored results are used. This can save time, but also lead to unpredictable results depending on how the results of one code chunk and external data influence the cached code chunk.</p>
 <p>Here is an example using the code chunk header <code>{r test_caching, cache=TRUE}</code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s1</span> <span class="op">&lt;-</span> <span class="fu">summarize</span><span class="op">(</span><span class="va">mpg</span>, count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> </span>
@@ -472,20 +473,20 @@ div.csl-indent {
 <p>If you are going to use this feature, you should read more about <a href="https://bookdown.org/yihui/rmarkdown-cookbook/cache.html">caching in Rmarkdown</a>. This page describes a do-it-yourself caching method which I recommend as well.</p>
 </section><section id="finding-and-installing-r-packages" class="level3" data-number="20.2.3"><h3 data-number="20.2.3" class="anchored" data-anchor-id="finding-and-installing-r-packages">
 <span class="header-section-number">20.2.3</span> Finding and installing R packages</h3>
-<p>R packages can be obtained from several sources. The most common sources are <a href="https://cran.r-project.org/">CRAN</a>, <a href="http://www.bioconductor.org/">Bioconductor</a>, and GitHub. The most widely used packages are on CRAN and they are checked regularly to be sure they still work. Anyone can distribute a package on GitHub and make it available, but these packages are missing a level of quality control. We have not used Bioconductor in this course; it is a CRAN-like repository forcussed on bioinformatics computations.</p>
-<p>Installing a new package from CRAN is easy. If you put the appropriate <code>library</code> function call in your R markdown document, but you are missing the package, Rstudio will offer to download it for you. If the package is on GitHub, Rstudio won’t be able to help. The usual process is to search for the package on Google, then install it. You will help yourself and your colleagues if you write the installation command next to your <code>library</code> function call, but preface it with a comment character <code>#</code> to stop the code from being executed. (There is an example at the top of the source for this file: click on “view source” in the lower right of this window.)</p>
+<p>R packages can be obtained from several sources. The most common sources are <a href="https://cran.r-project.org/">CRAN</a>, <a href="http://www.bioconductor.org/">Bioconductor</a>, and GitHub. The most widely used packages are on CRAN and they are checked regularly to be sure they still work. Anyone can distribute a package on GitHub and make it available, but these packages are missing a level of quality control. We have not used Bioconductor in this course; it is a CRAN-like repository focused on bioinformatics computations.</p>
+<p>Installing a new package from CRAN is easy. If you put the appropriate <code>library</code> function call in your R markdown document, but you are missing the package, Rstudio will offer to download it for you. If the package is on GitHub, Rstudio won’t be able to help. The usual process is to search for the package on Google, then install it. You will help yourself and your colleagues if you write the installation command next to your <code>library</code> function call, but preface it with a comment character <code>#</code> to stop the code from being executed. (There is an example at the top of the source for this file: you can find the source for <a href="https://github.com/AndrewIrwin/data-viz-notes/tree/main/lessons">all these notes</a> on GitHub.)</p>
 </section></section><section id="make-your-report-look-good" class="level2" data-number="20.3"><h2 data-number="20.3" class="anchored" data-anchor-id="make-your-report-look-good">
 <span class="header-section-number">20.3</span> Make your report look good</h2>
-<p>An easy to read report is a better report. (Formatting will not turn a bad report into a good one, but good formatting can help make good results easier to digest.)</p>
-<p>Specific recommendations:</p>
+<p>An easy to read report is a better report. Formatting will not turn a bad report into a good one, but good formatting can help make good results easier to digest.</p>
+<p>Here are some specific recommendations for formatting your report:</p>
 <ul>
 <li>Use headings (lines starting with one or more <code>#</code>.) Always put a blank line before and after a heading row.</li>
-<li>Use bulletted or numbered lists (start a seqeunce of lines with a <code>*</code> or <code>1.</code>) when appropriate</li>
-<li>Format your code nicely. Use a <a href="https://style.tidyverse.org/">style guide</a>. Or use an automatic code formatter such as styler (see below). Leave a blank line before and after your code chunk blocks.</li>
+<li>Use bulleted or numbered lists (start a sequence of lines with a <code>*</code> or <code>1.</code>) when appropriate.</li>
+<li>Format your code nicely. Use a <a href="https://style.tidyverse.org/">style guide</a>. Or use an automatic code formatter such as styler (see below). Leave a blank line before and after your code chunks.</li>
 <li>Format your output nicely. This includes tables and figures. (See below.)</li>
-<li>knit your report, read the formatted version, revise the markdown source, and repeat.</li>
+<li>Knit your report, read the formatted version, revise the markdown source, and repeat.</li>
 </ul>
-<p>For examples of these formatting tips, see the source for this file: click on “view source” in the lower right of this window.</p>
+<p>For examples of these formatting tips, see the <a href="https://github.com/AndrewIrwin/data-viz-notes/blob/main/lessons/133-reproducible-reports.Rmd">source for this file</a>.</p>
 <p>Headings make your markdown document easier to navigate too. Look for the “show outline” button in the upper right of Rstudio’s editing pane.</p>
 </section><section id="code-formatting" class="level2" data-number="20.4"><h2 data-number="20.4" class="anchored" data-anchor-id="code-formatting">
 <span class="header-section-number">20.4</span> Code formatting</h2>
@@ -508,11 +509,11 @@ aes(color = mean_life_exp, x = log10(mean_GDP), y=fct_reorder(country, mean_life
 </div>
 </div>
 </div>
-<p>I suggest you write neat and easy to read code in your markdown documents. Don’t use automatic tidying as an excuse to make messy code.</p>
+<p>What makes code easier to read? Consistency, indentation when an idea continues from one line to the next, and keeping lines short. Consistency in spacing, use of upper and lower case, and naming of variables is valuable. I suggest you write neat and easy to read code in your R markdown documents. Don’t use automatic tidying as an excuse to make messy code.</p>
 </section><section id="customization-of-result-reporting-in-r-markdown" class="level2" data-number="20.5"><h2 data-number="20.5" class="anchored" data-anchor-id="customization-of-result-reporting-in-r-markdown">
 <span class="header-section-number">20.5</span> Customization of result reporting in R markdown</h2>
 <p>The first line of a code chunk can be as simple as <code>{r}</code> but you can also include many options between the braces. The <a href="https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html">markdown book</a> describes the options available. Here I will demonstrate a few chunk options related to figures and formatting output.</p>
-<p>Knitting a document usually stops when an error is encountered. This is a safety measure to alert you to a document which is not reproducible becuase of errors. On rare occasions you may want to use the option <code>error=TRUE</code> to allow error messages to appear in knitted output and not stop the knitting process.</p>
+<p>Knitting a document usually stops when an error is encountered. This is a safety measure to alert you to a document which is not reproducible because of errors. On rare occasions you may want to use the chunk option <code>error=TRUE</code> to allow error messages to appear in knitted output and not stop the knitting process.</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">+</span> <span class="st">"A"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -541,7 +542,7 @@ aes(color = mean_life_exp, x = log10(mean_GDP), y=fct_reorder(country, mean_life
 <p>You can also stop the code from being evaluated by setting <code>eval=FALSE</code>.</p>
 <p>If you have multiple lines of code with output in your chunk, the knitted document will contain several blocks of code and output with space between the blocks. These blocks can be combined into one by setting <code>collapse=TRUE</code>.</p>
 <p>R code that is formatted in standardized way is easier for others to read. You can get your code automatically reformatted using <code>tidy=TRUE</code> and the <code>formatR</code> package. The <code>styler</code> package is another approach to automatic reformatting of R code. Use <code>tidy='styler'</code> in the code chunk options.</p>
-<p>You can change the size of a figure using <code>fig.width = 6</code> and <code>fig.height=4</code> where 6 and 4 are lengths in inches. You can also use <code>out.width="85%"</code> to set the width of the figure as a proportion of the document width. You can center a figure horizontally using <code>fig.align='center'</code>.</p>
+<p>You can change the size of a figure using <code>fig.width = 6</code> and <code>fig.height = 4</code> where 6 and 4 are lengths in inches. You can also use <code>out.width="85%"</code> to set the width of the figure as a proportion of the document width. You can center a figure horizontally using <code>fig.align='center'</code>.</p>
 <p>You can use R <a href="https://bookdown.org/yihui/rmarkdown-cookbook/chunk-variable.html">variables and code</a> in the chunk options.</p>
 </section><section id="documenting-which-packages-you-use" class="level2" data-number="20.6"><h2 data-number="20.6" class="anchored" data-anchor-id="documenting-which-packages-you-use">
 <span class="header-section-number">20.6</span> Documenting which packages you use</h2>
@@ -549,66 +550,69 @@ aes(color = mean_life_exp, x = log10(mean_GDP), y=fct_reorder(country, mean_life
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.1.3 (2022-03-10)
-Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Big Sur/Monterey 10.16
+<pre><code>R version 4.3.2 (2023-10-31)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Big Sur 11.7.2
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: America/Halifax
+tzcode source: internal
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] styler_1.10.2   gapminder_1.0.0 here_1.0.1      report_0.5.7   
- [5] lubridate_1.9.2 forcats_1.0.0   stringr_1.5.0   dplyr_1.1.2    
- [9] purrr_1.0.1     readr_2.1.4     tidyr_1.3.0     tibble_3.2.1   
-[13] ggplot2_3.4.3   tidyverse_2.0.0
+ [1] styler_1.10.2   gapminder_1.0.0 here_1.0.1      report_0.5.8   
+ [5] lubridate_1.9.3 forcats_1.0.0   stringr_1.5.1   dplyr_1.1.4    
+ [9] purrr_1.0.2     readr_2.1.5     tidyr_1.3.1     tibble_3.2.1   
+[13] ggplot2_3.5.0   tidyverse_2.0.0
 
 loaded via a namespace (and not attached):
- [1] compiler_4.1.3    pillar_1.9.0      R.utils_2.12.2    R.methodsS3_1.8.2
- [5] tools_4.1.3       digest_0.6.31     R.cache_0.16.0    timechange_0.2.0 
- [9] jsonlite_1.8.4    evaluate_0.21     lifecycle_1.0.3   gtable_0.3.4     
-[13] pkgconfig_2.0.3   rlang_1.1.1       cli_3.6.1         rstudioapi_0.15.0
-[17] xfun_0.39         fastmap_1.1.1     withr_2.5.0       knitr_1.43       
-[21] generics_0.1.3    vctrs_0.6.2       htmlwidgets_1.6.2 hms_1.1.3        
-[25] rprojroot_2.0.3   grid_4.1.3        tidyselect_1.2.0  glue_1.6.2       
-[29] R6_2.5.1          fansi_1.0.4       rmarkdown_2.24    farver_2.1.1     
-[33] tzdb_0.3.0        magrittr_2.0.3    codetools_0.2-19  scales_1.2.1     
-[37] htmltools_0.5.5   insight_0.19.3    colorspace_2.1-0  labeling_0.4.3   
-[41] utf8_1.2.3        stringi_1.7.12    munsell_0.5.0     R.oo_1.25.0      </code></pre>
+ [1] utf8_1.2.3        generics_0.1.3    stringi_1.7.12    hms_1.1.3        
+ [5] digest_0.6.33     magrittr_2.0.3    evaluate_0.21     grid_4.3.2       
+ [9] timechange_0.2.0  fastmap_1.1.1     R.oo_1.26.0       R.cache_0.16.0   
+[13] rprojroot_2.0.3   jsonlite_1.8.8    R.utils_2.12.3    fansi_1.0.4      
+[17] scales_1.3.0      cli_3.6.1         rlang_1.1.3       R.methodsS3_1.8.2
+[21] munsell_0.5.0     withr_2.5.0       tools_4.3.2       tzdb_0.4.0       
+[25] colorspace_2.1-0  vctrs_0.6.5       R6_2.5.1          lifecycle_1.0.3  
+[29] htmlwidgets_1.6.2 insight_0.19.8    pkgconfig_2.0.3   pillar_1.9.0     
+[33] gtable_0.3.3      glue_1.7.0        xfun_0.39         tidyselect_1.2.0 
+[37] rstudioapi_0.14   knitr_1.45        farver_2.1.1      htmltools_0.5.5  
+[41] labeling_0.4.2    rmarkdown_2.22    compiler_4.3.2   </code></pre>
 </div>
 </div>
 <p>If you want to produce bibliographic citations for your packages you can use the <code>report</code> package:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">report</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/report/reference/report.sessionInfo.html">cite_packages</a></span><span class="op">(</span><span class="op">)</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Bryan J (2023). <em>gapminder: Data from Gapminder</em>. R package version 1.0.0, &lt;URL: https://CRAN.R-project.org/package=gapminder&gt;.</li>
-<li>Grolemund G, Wickham H (2011). “Dates and Times Made Easy with lubridate.” <em>Journal of Statistical Software</em>, <em>40</em>(3), 1-25. &lt;URL: https://www.jstatsoft.org/v40/i03/&gt;.</li>
-<li>Makowski D, Lüdecke D, Patil I, Thériault R, Ben-Shachar M, Wiernik B (2023). “Automated Results Reporting as a Practical Tool to Improve Reproducibility and Methodological Best Practices Adoption.” <em>CRAN</em>. &lt;URL: https://easystats.github.io/report/&gt;.</li>
-<li>Müller K (2020). <em>here: A Simpler Way to Find Your Files</em>. R package version 1.0.1, &lt;URL: https://CRAN.R-project.org/package=here&gt;.</li>
-<li>Müller K, Walthert L (2023). <em>styler: Non-Invasive Pretty Printing of R Code</em>. R package version 1.10.2, &lt;URL: https://CRAN.R-project.org/package=styler&gt;.</li>
-<li>Müller K, Wickham H (2023). <em>tibble: Simple Data Frames</em>. R package version 3.2.1, &lt;URL: https://CRAN.R-project.org/package=tibble&gt;.</li>
-<li>R Core Team (2022). <em>R: A Language and Environment for Statistical Computing</em>. R Foundation for Statistical Computing, Vienna, Austria. &lt;URL: https://www.R-project.org/&gt;.</li>
-<li>Wickham H (2016). <em>ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. ISBN 978-3-319-24277-4, &lt;URL: https://ggplot2.tidyverse.org&gt;.</li>
-<li>Wickham H (2022). <em>stringr: Simple, Consistent Wrappers for Common String Operations</em>. R package version 1.5.0, &lt;URL: https://CRAN.R-project.org/package=stringr&gt;.</li>
-<li>Wickham H (2023). <em>forcats: Tools for Working with Categorical Variables (Factors)</em>. R package version 1.0.0, &lt;URL: https://CRAN.R-project.org/package=forcats&gt;.</li>
-<li>Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” <em>Journal of Open Source Software</em>, <em>4</em>(43), 1686. doi: 10.21105/joss.01686 (URL: https://doi.org/10.21105/joss.01686).</li>
-<li>Wickham H, François R, Henry L, Müller K, Vaughan D (2023). <em>dplyr: A Grammar of Data Manipulation</em>. R package version 1.1.2, &lt;URL: https://CRAN.R-project.org/package=dplyr&gt;.</li>
-<li>Wickham H, Henry L (2023). <em>purrr: Functional Programming Tools</em>. R package version 1.0.1, &lt;URL: https://CRAN.R-project.org/package=purrr&gt;.</li>
-<li>Wickham H, Hester J, Bryan J (2023). <em>readr: Read Rectangular Text Data</em>. R package version 2.1.4, &lt;URL: https://CRAN.R-project.org/package=readr&gt;.</li>
-<li>Wickham H, Vaughan D, Girlich M (2023). <em>tidyr: Tidy Messy Data</em>. R package version 1.3.0, &lt;URL: https://CRAN.R-project.org/package=tidyr&gt;.</li>
+<li>Bryan J (2023). <em>gapminder: Data from Gapminder</em>. R package version 1.0.0, <a href="https://CRAN.R-project.org/package=gapminder" class="uri">https://CRAN.R-project.org/package=gapminder</a>.</li>
+<li>Grolemund G, Wickham H (2011). “Dates and Times Made Easy with lubridate.” <em>Journal of Statistical Software</em>, <em>40</em>(3), 1-25. <a href="https://www.jstatsoft.org/v40/i03/" class="uri">https://www.jstatsoft.org/v40/i03/</a>.</li>
+<li>Makowski D, Lüdecke D, Patil I, Thériault R, Ben-Shachar M, Wiernik B (2023). “Automated Results Reporting as a Practical Tool to Improve Reproducibility and Methodological Best Practices Adoption.” <em>CRAN</em>. <a href="https://easystats.github.io/report/" class="uri">https://easystats.github.io/report/</a>.</li>
+<li>Müller K (2020). <em>here: A Simpler Way to Find Your Files</em>. R package version 1.0.1, <a href="https://CRAN.R-project.org/package=here" class="uri">https://CRAN.R-project.org/package=here</a>.</li>
+<li>Müller K, Walthert L (2023). <em>styler: Non-Invasive Pretty Printing of R Code</em>. R package version 1.10.2, <a href="https://CRAN.R-project.org/package=styler" class="uri">https://CRAN.R-project.org/package=styler</a>.</li>
+<li>Müller K, Wickham H (2023). <em>tibble: Simple Data Frames</em>. R package version 3.2.1, <a href="https://CRAN.R-project.org/package=tibble" class="uri">https://CRAN.R-project.org/package=tibble</a>.</li>
+<li>R Core Team (2023). <em>R: A Language and Environment for Statistical Computing</em>. R Foundation for Statistical Computing, Vienna, Austria. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</li>
+<li>Wickham H (2016). <em>ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. ISBN 978-3-319-24277-4, <a href="https://ggplot2.tidyverse.org" class="uri">https://ggplot2.tidyverse.org</a>.</li>
+<li>Wickham H (2023). <em>forcats: Tools for Working with Categorical Variables (Factors)</em>. R package version 1.0.0, <a href="https://CRAN.R-project.org/package=forcats" class="uri">https://CRAN.R-project.org/package=forcats</a>.</li>
+<li>Wickham H (2023). <em>stringr: Simple, Consistent Wrappers for Common String Operations</em>. R package version 1.5.1, <a href="https://CRAN.R-project.org/package=stringr" class="uri">https://CRAN.R-project.org/package=stringr</a>.</li>
+<li>Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” <em>Journal of Open Source Software</em>, <em>4</em>(43), 1686. doi:10.21105/joss.01686 <a href="https://doi.org/10.21105/joss.01686" class="uri">https://doi.org/10.21105/joss.01686</a>.</li>
+<li>Wickham H, François R, Henry L, Müller K, Vaughan D (2023). <em>dplyr: A Grammar of Data Manipulation</em>. R package version 1.1.4, <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</li>
+<li>Wickham H, Henry L (2023). <em>purrr: Functional Programming Tools</em>. R package version 1.0.2, <a href="https://CRAN.R-project.org/package=purrr" class="uri">https://CRAN.R-project.org/package=purrr</a>.</li>
+<li>Wickham H, Hester J, Bryan J (2024). <em>readr: Read Rectangular Text Data</em>. R package version 2.1.5, <a href="https://CRAN.R-project.org/package=readr" class="uri">https://CRAN.R-project.org/package=readr</a>.</li>
+<li>Wickham H, Vaughan D, Girlich M (2024). <em>tidyr: Tidy Messy Data</em>. R package version 1.3.1, <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a>.</li>
 </ul>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># See also report::report(sessionInfo())</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To absolutely guarantee you can use R code in the future, some applications will benefit from you keeping copies of all the required packages on your own computer system. The <a href="https://rstudio.github.io/packrat/">packrat</a> and <a href="https://github.com/RevolutionAnalytics/checkpoint">checkpoint</a> packages can help you manage packages. I have never felt the need to have this level of reproducibility, but I find it reassuring to know these tools exist.</p>
 </section><section id="using-other-languages" class="level2" data-number="20.7"><h2 data-number="20.7" class="anchored" data-anchor-id="using-other-languages">
 <span class="header-section-number">20.7</span> Using other languages</h2>
-<p>Quarto is a new publishing tool being developed based on the ideas of R markdown. Quarto is designed to work much like R markdown, but with extra features for publishing books, websites, and presentation slides. Quarto allows you to combine several different programming languages, including python and julia in the same document. For more information see the <a href="https://quarto.org/">Quarto</a> website. Quarto is already built-in to R and your Rmd documents work fine with Quarto, so if you wanto to learn more about this tool it should be easy to start.</p>
-<p>Related to the topic of inter-operation of computing languages, but departing from the topic of R markdown, you can also write C++ code in an R session and execute the compiled code directly from R.</p>
-<p><a href="https://en.wikipedia.org/wiki/SQL">SQL</a> is a language for describing queries to a widely used style of database. R contains tools for interacting with SQL databases, but it can aslo generate SQL code from <code>dplyr</code> functions.</p>
+<p>Quarto is a new publishing tool being developed based on the ideas of R markdown. Quarto is designed to work much like R markdown, but with extra features for publishing books, websites, and presentation slides. Quarto allows you to combine several different programming languages, including python and Julia in the same document. For more information see the <a href="https://quarto.org/">Quarto</a> website. Quarto is already built-in to R and your Rmd documents work fine with Quarto, so if you want to to learn more about this tool it should be easy to start. Look under the File &gt; New File… menu for Quarto options.</p>
+<p>Related to the topic of inter-operation of computing languages, but departing from the topic of R markdown, you can also write C++ code in an R session and execute the compiled code directly from R. This is very valuable if you have a calculation that is slow in R, but would be faster in a compiled language like C.</p>
+<p><a href="https://en.wikipedia.org/wiki/SQL">SQL</a> is a language for describing queries to a widely used style of database. R contains tools for interacting with SQL databases, but it can also generate SQL code from <code>dplyr</code> functions. Here’s an example showing how R can generate SQL queries from dplyr calculations.</p>
 <div class="cell">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbplyr.tidyverse.org/">dbplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rsqlite.r-dbi.org">RSQLite</a></span><span class="op">)</span></span>
@@ -626,7 +630,7 @@ loaded via a namespace (and not attached):
 <span><span class="va">penguins_aggr</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   SQL [3 x 8]
-# Database: sqlite 3.41.2 [:memory:]
+# Database: sqlite 3.45.0 [:memory:]
   species       N TOT_bill_length_mm TOT_bill_depth_mm TOT_flipper_length_mm
   &lt;chr&gt;     &lt;int&gt;              &lt;dbl&gt;             &lt;dbl&gt;                 &lt;int&gt;
 1 Adelie      152              5858.             2770.                 28683
@@ -653,8 +657,20 @@ loaded via a namespace (and not attached):
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What does using other tools have to do with making your work reproducible? R markdown is a flexible tool that lets you use more than just R, so if your workflow contains steps external to R, they can sometimes still be included in your report.</p>
-</section><section id="further-reading" class="level2" data-number="20.8"><h2 data-number="20.8" class="anchored" data-anchor-id="further-reading">
-<span class="header-section-number">20.8</span> Further reading</h2>
+</section><section id="packages-used" class="level2" data-number="20.8"><h2 data-number="20.8" class="anchored" data-anchor-id="packages-used">
+<span class="header-section-number">20.8</span> Packages used</h2>
+<p>In addition to <code>tidyverse</code> and <code>gapminder</code>, code in this lesson uses the packages</p>
+<ul>
+<li>
+<code>report</code> which is availbale on github and can be installed using <code>remotes::install_github("easystats/report")</code> for the <code>cite_packages</code> function,</li>
+<li>
+<code>here</code> to help find files in a project, even when you move the project to a new computer,</li>
+<li>
+<code>styler</code> for formatting R code,</li>
+<li>
+<code>dbplyr</code> and <code>RSQLite</code> for working with databases.</li>
+</ul></section><section id="further-reading" class="level2" data-number="20.9"><h2 data-number="20.9" class="anchored" data-anchor-id="further-reading">
+<span class="header-section-number">20.9</span> Further reading</h2>
 <ul>
 <li>
 <a href="https://r4ds.had.co.nz/workflow-projects.html">Project workflow</a> from R4DS</li>

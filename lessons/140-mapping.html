@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.538">
+<meta name="generator" content="quarto-1.4.537">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Data Visualization notes - 27&nbsp; Making maps</title>
 <style>
@@ -603,6 +603,11 @@ geojson_write(canada_raw_sim, file = "static/canada_cd_sim.geojson") </code></pr
 <pre><code>Warning: The `&lt;scale&gt;` argument of `guides()` cannot be `FALSE`. Use "none" instead as
 of ggplot2 3.3.4.</code></pre>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
+3.5.0.
+ℹ Please use the `legend.position.inside` argument of `theme()` instead.</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="140-mapping_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
@@ -612,7 +617,7 @@ of ggplot2 3.3.4.</code></pre>
 </div>
 <p>If we have a list of latitudes and longitudes, we can add points to the map.</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">city_coords</span> <span class="op">&lt;-</span> <span class="fu">tribble</span><span class="op">(</span> <span class="op">~</span><span class="va">city</span>, <span class="op">~</span><span class="va">lat</span>, <span class="op">~</span><span class="va">long</span>,</span>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">city_coords</span> <span class="op">&lt;-</span> <span class="fu">tribble</span><span class="op">(</span> <span class="op">~</span><span class="va">city</span>, <span class="op">~</span><span class="va">lat</span>, <span class="op">~</span><span class="va">long</span>,</span>
 <span><span class="st">"Vancouver"</span>,    <span class="fl">49.2827</span>,    <span class="op">-</span><span class="fl">123.1207</span>,</span>
 <span><span class="st">"Calgary"</span>,  <span class="fl">51.0447</span>,    <span class="op">-</span><span class="fl">114.0719</span>,</span>
 <span><span class="st">"Edmonton"</span>, <span class="fl">53.5461</span>,    <span class="op">-</span><span class="fl">113.4938</span>,</span>
@@ -623,7 +628,7 @@ of ggplot2 3.3.4.</code></pre>
 </div>
 <p>Convert the latitude and longitudes to map coordinates.</p>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sf_cities</span> <span class="op">=</span> <span class="va">city_coords</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sf_cities</span> <span class="op">=</span> <span class="va">city_coords</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">select</span><span class="op">(</span><span class="va">long</span>, <span class="va">lat</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># 1</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># 2</span></span>
 <span>    <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html">st_multipoint</a></span><span class="op">(</span>dim <span class="op">=</span> <span class="st">'XY'</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -632,7 +637,7 @@ of ggplot2 3.3.4.</code></pre>
 </div>
 <p>Make the map with projected points.</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_sf</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">PRUID</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"gray60"</span>, size <span class="op">=</span> <span class="fl">0.1</span>, data <span class="op">=</span> <span class="va">canada_cd</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_sf</span><span class="op">(</span>data <span class="op">=</span> <span class="va">sf_cities</span>, color <span class="op">=</span> <span class="st">'#001e73'</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="co"># 17</span></span>
 <span>    <span class="fu">coord_sf</span><span class="op">(</span>crs <span class="op">=</span> <span class="va">crs_string</span><span class="op">)</span> <span class="op">+</span></span>
@@ -654,7 +659,7 @@ of ggplot2 3.3.4.</code></pre>
 </div>
 <p>It’s easy to focus in on the Maritimes region of Canada – just filter the data to include only the province or census districts you want. Here are some of the names in the map data that you can use for filtering.</p>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">canada_cd</span> <span class="op">|&gt;</span> <span class="fu">pull</span><span class="op">(</span><span class="va">PRNAME</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">canada_cd</span> <span class="op">|&gt;</span> <span class="fu">pull</span><span class="op">(</span><span class="va">PRNAME</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Manitoba"                                           
  [2] "British Columbia / Colombie-Britannique"            
@@ -670,17 +675,18 @@ of ggplot2 3.3.4.</code></pre>
 [12] "Nunavut"                                            
 [13] "Yukon"                                              </code></pre>
 </div>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">canada_cd</span> <span class="op">|&gt;</span> <span class="fu">pull</span><span class="op">(</span><span class="va">CDNAME</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">canada_cd</span> <span class="op">|&gt;</span> <span class="fu">pull</span><span class="op">(</span><span class="va">CDNAME</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Nanaimo"              "Region 6"             "Columbia-Shuswap"    
- [4] "Renfrew"              "Division No.  7"      "Division No. 20"     
- [7] "Keewatin"             "Prescott and Russell" "Témiscamingue"       
-[10] "Lambton"             </code></pre>
+<pre><code> [1] "Cowichan Valley"                     "Les Basques"                        
+ [3] "Richmond"                            "Minganie--Le Golfe-du-Saint-Laurent"
+ [5] "Inverness"                           "Kitikmeot"                          
+ [7] "Strathcona"                          "Division No. 13"                    
+ [9] "Le Rocher-Percé"                     "Division No. 10"                    </code></pre>
 </div>
 </div>
 <p>I’ve changed the latitude and longitude parameters for the projection to values more suitable for this part of Canada.</p>
 <div class="cell">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">crs_string2</span> <span class="op">=</span> <span class="st">"+proj=lcc +lat_1=40 +lat_2=50 +lon_0=-75 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs"</span></span>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">crs_string2</span> <span class="op">=</span> <span class="st">"+proj=lcc +lat_1=40 +lat_2=50 +lon_0=-75 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs"</span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_sf</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">PRUID</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"gray60"</span>, size <span class="op">=</span> <span class="fl">0.1</span>, </span>
 <span>            data <span class="op">=</span> <span class="va">canada_cd</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">PRNAME</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Nova Scotia / Nouvelle-Écosse"</span>, <span class="st">"New Brunswick / Nouveau-Brunswick"</span>, <span class="st">"Prince Edward Island / Île-du-Prince-Édouard"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -700,7 +706,7 @@ of ggplot2 3.3.4.</code></pre>
 </div>
 <p>You can also <a href="https://datascience.blog.wzb.eu/2019/04/30/zooming-in-on-maps-with-sf-and-ggplot2/">crop</a> the data to be drawn or the projected map. This is a bit more complex than you might expect since you need to be sure you are specifying the area to be plotted and the actual projected coordinates in the same coordinate system. You can easily get errors (invalid points in a projection), empty maps, or croppings that don’t look right. See the link at the start of this paragraph for several approaches.</p>
 <div class="cell">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">crs_string2</span> <span class="op">=</span> <span class="st">"+proj=lcc +lat_1=40 +lat_2=50 +lon_0=-75 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs"</span></span>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">crs_string2</span> <span class="op">=</span> <span class="st">"+proj=lcc +lat_1=40 +lat_2=50 +lon_0=-75 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs"</span></span>
 <span><span class="va">zoom_to</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">64.3683</span>, <span class="fl">45.8979</span><span class="op">)</span> <span class="co"># Sackville, New Brunswick; could try c(-63.5752, 44.6488)  # Halifax</span></span>
 <span><span class="va">zoom_level</span> <span class="op">&lt;-</span> <span class="fl">6</span></span>
 <span><span class="va">C</span> <span class="op">&lt;-</span> <span class="fl">40075016.686</span>   <span class="co"># ~ circumference of Earth in meters</span></span>
@@ -737,7 +743,7 @@ of ggplot2 3.3.4.</code></pre>
 <span class="header-section-number">27.2.2</span> Just the map, please</h3>
 <p><a href="https://gist.githubusercontent.com/mikelotis/2156d7c170d10d2c77cb79424fe2137d/raw/7a13748ed7ea5ba64876c77c53b6cb64dd5c3ab0/canada-province.geojson">Here</a> is a file of province boundaries that can be used without showing the census district regions. I’ve added a latitude-longitude grid to the map.</p>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">canada_prov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/geojsonio/reference/geojson_read.html">geojson_read</a></span><span class="op">(</span><span class="st">"https://gist.githubusercontent.com/mikelotis/2156d7c170d10d2c77cb79424fe2137d/raw/7a13748ed7ea5ba64876c77c53b6cb64dd5c3ab0/canada-province.geojson"</span>, what<span class="op">=</span><span class="st">"sp"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">canada_prov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/geojsonio/reference/geojson_read.html">geojson_read</a></span><span class="op">(</span><span class="st">"https://gist.githubusercontent.com/mikelotis/2156d7c170d10d2c77cb79424fe2137d/raw/7a13748ed7ea5ba64876c77c53b6cb64dd5c3ab0/canada-province.geojson"</span>, what<span class="op">=</span><span class="st">"sp"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_sf</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, </span>
