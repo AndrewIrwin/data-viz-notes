@@ -1,6 +1,6 @@
 # Reproducible reports {#reproduce}
 
-We've seen throughout the course how to combine computer code, data, tabular and graphical resultss, and natural language writing to explain and communicate our work. R markdown documents are a great tool for writing reports and ensuring they are reproducible. In this lesson we will examine a few more features of R markdown to help customize your reports, make them easier to revise, and make them more effective data analysis communication tools.
+We've seen throughout the course how to combine computer code, data, tabular and graphical results, and natural language writing to explain and communicate our work. R markdown documents are a great tool for writing reports and ensuring they are reproducible. In this lesson we will examine a few more features of R markdown to help customize your reports, make them easier to revise, and make them more effective data analysis communication tools.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -14,7 +14,7 @@ library(styler)
 
 ## What is reproducibility and why should I care?
 
-Many people use R as an interactive computer tool. This means they sit at the keyboard, type a series of commands, and store the results they want. It's like a very fancy calculator. This is a fantastic way to explore data, learn R, and test out ideas quickly. This work is not reproducible. You would need a recording of everything that was done to reproduce the analysis. If you need to change a small step in your work, you will need to repeat all the steps.
+Many people use R as an interactive computer tool. This means they sit at the keyboard, type a series of commands, and keep the results they want. It's like a very fancy calculator. This is a fantastic way to explore data, learn R, and test out ideas quickly. This work is not reproducible. You would need a recording of everything that was done to reproduce the analysis. If you need to change a small step in your work, you will need to repeat many or all of the steps.
 
 In this course, we have been using R in a slightly more disciplined way, at least for assigned work. For every project, you create a new R markdown file, and then you write your computer instructions in code "chunks", interspersed with English (or any other natural human language) explanations. With Rstudio, you can still use R interactively in this mode, clicking the "play" button on each chunk and seeing the output. When your analysis is done, you can "knit" the whole document. This does two important things:
 
@@ -29,7 +29,7 @@ We have stressed the value of communication in this course. For some purposes yo
 
 ### File paths
 
-If you have a complex project, you will have multiple directories, and possibly many data files. When reading a data file, you will need to refer to the file by name. Make sure you never use the way files are organized on your computer as part of the script. In particular never write anything like:
+If you have a complex project, you will have multiple directories (or folders), and possibly many data files. When reading a data file, you will need to refer to the file by name. Make sure you never use the way files are organized on your computer as part of the script. In particular never write anything like:
 
     my_data <- read_csv("/Users/airwin/Documents/Stats-project/data/my_data.csv")
 
@@ -39,13 +39,13 @@ We have been using R packages and organizing all files for a project in a folder
 
     my_data <- read_csv(here("static", "annual-number-of-deaths-by-cause.csv"))
 
-If this code works on your computer, with your R project, and you give the whole folder to a collaborator, you don't need to worry how they organize their files.
+This tells R to find a folder called `static` in your project, then look for a file called `annual-number-of-deaths-by-cause.csv` in that folder. If this code works on your computer, with your R project, and you give the whole folder to a collaborator, you don't need to worry how they organize their files.
 
-Sometimes you will think a dataset is too large to put in your project folder. Or the data may be used by multiple projects, and you don't want to have multiple copies. What should you do? The best options are: put the common data files in a GitHub repository (public or private), deposit the data in an online repository such as [osf.io](https://osf.io/), or create an [R data package](https://r-pkgs.org/data.html) of your own to manage the data on your computer and the computers of your collaborators. Which method you prefer will depend on many factors including the size of the data, how often it changes, whether it is public, or if you are allowed to redistribute it.
+Sometimes you will think a dataset is too large to put in your project folder. Or the data may be used by multiple projects, and you don't want to have multiple copies. What should you do? The best options are: put the common data files in a GitHub repository (public or private), deposit the data in an online repository such as [osf.io](https://osf.io/), or create an [R data package](https://r-pkgs.org/data.html) of your own to manage the data on your computer and the computers of your collaborators. The R data package can be pubic, available to anyone, or you can keep it completely private on your own computer. All of these methods have the advantage of separating the data collection and validating process from the analysis and visualization process. Which method you prefer will depend on many factors including the size of the data, how often it changes, whether it is public, or if you are allowed to redistribute it.
 
 ### Caching time-consuming computations
 
-R markdown is a great way to manage a analysis notebook, but every time you want to update your analysis, you need to recalculate everything in your document. It is possible to store (cache) the results of a code chunk by giving it a name and setting `cache=TRUE`. This will store the results of that computation so that when the markdown file is recomputed, the stored results are used. This can save time, but also lead to unpredictable results depending on how the results of one code chunk and external data influence the cached code chunk.
+R markdown is a great way to manage an analysis notebook, but every time you want to update your analysis, you need to recalculate everything in your document. It is possible to store (cache) the results of a code chunk by giving it a name and setting `cache=TRUE`. This will store the results of that computation so that when the markdown file is recomputed, the stored results are used. This can save time, but also lead to unpredictable results depending on how the results of one code chunk and external data influence the cached code chunk.
 
 Here is an example using the code chunk header `{r test_caching, cache=TRUE}`:
 
@@ -58,23 +58,23 @@ If you are going to use this feature, you should read more about [caching in Rma
 
 ### Finding and installing R packages
 
-R packages can be obtained from several sources. The most common sources are [CRAN](https://cran.r-project.org/), [Bioconductor](http://www.bioconductor.org/), and GitHub. The most widely used packages are on CRAN and they are checked regularly to be sure they still work. Anyone can distribute a package on GitHub and make it available, but these packages are missing a level of quality control. We have not used Bioconductor in this course; it is a CRAN-like repository forcussed on bioinformatics computations.
+R packages can be obtained from several sources. The most common sources are [CRAN](https://cran.r-project.org/), [Bioconductor](http://www.bioconductor.org/), and GitHub. The most widely used packages are on CRAN and they are checked regularly to be sure they still work. Anyone can distribute a package on GitHub and make it available, but these packages are missing a level of quality control. We have not used Bioconductor in this course; it is a CRAN-like repository focused on bioinformatics computations.
 
-Installing a new package from CRAN is easy. If you put the appropriate `library` function call in your R markdown document, but you are missing the package, Rstudio will offer to download it for you. If the package is on GitHub, Rstudio won't be able to help. The usual process is to search for the package on Google, then install it. You will help yourself and your colleagues if you write the installation command next to your `library` function call, but preface it with a comment character `#` to stop the code from being executed. (There is an example at the top of the source for this file: click on "view source" in the lower right of this window.)
+Installing a new package from CRAN is easy. If you put the appropriate `library` function call in your R markdown document, but you are missing the package, Rstudio will offer to download it for you. If the package is on GitHub, Rstudio won't be able to help. The usual process is to search for the package on Google, then install it. You will help yourself and your colleagues if you write the installation command next to your `library` function call, but preface it with a comment character `#` to stop the code from being executed. (There is an example at the top of the source for this file: you can find the source for [all these notes](https://github.com/AndrewIrwin/data-viz-notes/tree/main/lessons) on GitHub.)
 
 ## Make your report look good
 
-An easy to read report is a better report. (Formatting will not turn a bad report into a good one, but good formatting can help make good results easier to digest.)
+An easy to read report is a better report. Formatting will not turn a bad report into a good one, but good formatting can help make good results easier to digest.
 
-Specific recommendations:
+Here are some specific recommendations for formatting your report:
 
 -   Use headings (lines starting with one or more `#`.) Always put a blank line before and after a heading row.
--   Use bulletted or numbered lists (start a seqeunce of lines with a `*` or `1.`) when appropriate
--   Format your code nicely. Use a [style guide](https://style.tidyverse.org/). Or use an automatic code formatter such as styler (see below). Leave a blank line before and after your code chunk blocks.
+-   Use bulleted or numbered lists (start a sequence of lines with a `*` or `1.`) when appropriate.
+-   Format your code nicely. Use a [style guide](https://style.tidyverse.org/). Or use an automatic code formatter such as styler (see below). Leave a blank line before and after your code chunks.
 -   Format your output nicely. This includes tables and figures. (See below.)
--   knit your report, read the formatted version, revise the markdown source, and repeat.
+-   Knit your report, read the formatted version, revise the markdown source, and repeat.
 
-For examples of these formatting tips, see the source for this file: click on "view source" in the lower right of this window.
+For examples of these formatting tips, see the [source for this file](https://github.com/AndrewIrwin/data-viz-notes/blob/main/lessons/133-reproducible-reports.Rmd).
 
 Headings make your markdown document easier to navigate too. Look for the "show outline" button in the upper right of Rstudio's editing pane.
 
@@ -95,13 +95,13 @@ gapminder |> filter(continent =="Europe") |> group_by(country) |>
   ggplot(aes(color = mean_life_exp, x = log10(mean_GDP), y=fct_reorder(country, mean_life_exp))) + geom_point()
 ```
 
-I suggest you write neat and easy to read code in your markdown documents. Don't use automatic tidying as an excuse to make messy code.
+What makes code easier to read? Consistency, indentation when an idea continues from one line to the next, and keeping lines short. Consistency in spacing, use of upper and lower case, and naming of variables is valuable. I suggest you write neat and easy to read code in your R markdown documents. Don't use automatic tidying as an excuse to make messy code.
 
 ## Customization of result reporting in R markdown
 
 The first line of a code chunk can be as simple as `{r}` but you can also include many options between the braces. The [markdown book](https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html) describes the options available. Here I will demonstrate a few chunk options related to figures and formatting output.
 
-Knitting a document usually stops when an error is encountered. This is a safety measure to alert you to a document which is not reproducible becuase of errors. On rare occasions you may want to use the option `error=TRUE` to allow error messages to appear in knitted output and not stop the knitting process.
+Knitting a document usually stops when an error is encountered. This is a safety measure to alert you to a document which is not reproducible because of errors. On rare occasions you may want to use the chunk option `error=TRUE` to allow error messages to appear in knitted output and not stop the knitting process.
 
 ```{r error=TRUE}
 1 + "A"
@@ -128,7 +128,7 @@ If you have multiple lines of code with output in your chunk, the knitted docume
 
 R code that is formatted in standardized way is easier for others to read. You can get your code automatically reformatted using `tidy=TRUE` and the `formatR` package. The `styler` package is another approach to automatic reformatting of R code. Use `tidy='styler'` in the code chunk options.
 
-You can change the size of a figure using `fig.width = 6` and `fig.height=4` where 6 and 4 are lengths in inches. You can also use `out.width="85%"` to set the width of the figure as a proportion of the document width. You can center a figure horizontally using `fig.align='center'`.
+You can change the size of a figure using `fig.width = 6` and `fig.height = 4` where 6 and 4 are lengths in inches. You can also use `out.width="85%"` to set the width of the figure as a proportion of the document width. You can center a figure horizontally using `fig.align='center'`.
 
 You can use R [variables and code](https://bookdown.org/yihui/rmarkdown-cookbook/chunk-variable.html) in the chunk options.
 
@@ -151,11 +151,12 @@ To absolutely guarantee you can use R code in the future, some applications will
 
 ## Using other languages
 
-Quarto is a new publishing tool being developed based on the ideas of R markdown. Quarto is designed to work much like R markdown, but with extra features for publishing books, websites, and presentation slides. Quarto allows you to combine several different programming languages, including python and julia in the same document. For more information see the [Quarto](https://quarto.org/) website. Quarto is already built-in to R and your Rmd documents work fine with Quarto, so if you wanto to learn more about this tool it should be easy to start.
+Quarto is a new publishing tool being developed based on the ideas of R markdown. Quarto is designed to work much like R markdown, but with extra features for publishing books, websites, and presentation slides. Quarto allows you to combine several different programming languages, including python and Julia in the same document. For more information see the [Quarto](https://quarto.org/) website. Quarto is already built-in to R and your Rmd documents work fine with Quarto, so if you want to to learn more about this tool it should be easy to start. Look under the File > New File... menu for Quarto options.
 
-Related to the topic of inter-operation of computing languages, but departing from the topic of R markdown, you can also write C++ code in an R session and execute the compiled code directly from R.
+Related to the topic of inter-operation of computing languages, but departing from the topic of R markdown, you can also write C++ code in an R session and execute the compiled code directly from R. This is very valuable if you have a calculation that is slow in R, but would be faster in a compiled language like C.
 
-[SQL](https://en.wikipedia.org/wiki/SQL) is a language for describing queries to a widely used style of database. R contains tools for interacting with SQL databases, but it can aslo generate SQL code from `dplyr` functions.
+[SQL](https://en.wikipedia.org/wiki/SQL) is a language for describing queries to a widely used style of database. R contains tools for interacting with SQL databases, but it can also generate SQL code from `dplyr` functions.
+Here's an example showing how R can generate SQL queries from dplyr calculations.
 
 ```{r message=FALSE, warning=FALSE}
 library(dbplyr)
@@ -177,6 +178,15 @@ rm(con)
 ```
 
 What does using other tools have to do with making your work reproducible? R markdown is a flexible tool that lets you use more than just R, so if your workflow contains steps external to R, they can sometimes still be included in your report.
+
+## Packages used
+
+In addition to `tidyverse` and `gapminder`, code in this lesson uses the packages
+
+* `report` which is availbale on github and can be installed using `remotes::install_github("easystats/report")` for the `cite_packages` function,
+* `here` to help find files in a project, even when you move the project to a new computer,
+* `styler` for formatting R code,
+* `dbplyr` and `RSQLite` for working with databases.
 
 ## Further reading
 
