@@ -84,8 +84,10 @@ There is a [tidyverse style guide](https://style.tidyverse.org/). Google has the
 
 Here is some carelessly formatted code.
 
+```{r eval=FALSE}
     gapminder |> filter(continent =="Europe") |> group_by(country) |> summarize(mean_life_exp = mean(lifeExp), mean_GDP = mean(gdpPercap)) |> ggplot(
     aes(color = mean_life_exp, x = log10(mean_GDP), y=fct_reorder(country, mean_life_exp))) + geom_point()
+```
 
 Here is the same code (and its output) formatted using `styler`:
 
@@ -94,6 +96,8 @@ gapminder |> filter(continent =="Europe") |> group_by(country) |>
   summarize(mean_life_exp = mean(lifeExp), mean_GDP = mean(gdpPercap)) |>
   ggplot(aes(color = mean_life_exp, x = log10(mean_GDP), y=fct_reorder(country, mean_life_exp))) + geom_point()
 ```
+
+If you have loaded the `styler` package, you can use the Addins menu to style a selection of code. Highlight some code and try it out!
 
 What makes code easier to read? Consistency, indentation when an idea continues from one line to the next, and keeping lines short. Consistency in spacing, use of upper and lower case, and naming of variables is valuable. I suggest you write neat and easy to read code in your R markdown documents. Don't use automatic tidying as an excuse to make messy code.
 
@@ -190,11 +194,11 @@ In addition to `tidyverse` and `gapminder`, code in this lesson uses the package
 
 ## Further reading
 
--   [Project workflow](https://r4ds.had.co.nz/workflow-projects.html) from R4DS
+-   [Repository of these course notes](https://github.com/AndrewIrwin/data-viz-notes) for ideas on formatting and preparing R markdown documents
+-   [Project workflow](https://r4ds.hadley.nz/workflow-scripts.html) from R4DS
 -   [Generating SQL with dbplyr](https://emilyriederer.netlify.app/post/sql-generation/)
 -   Peng. Reproducible research in computational science. [@peng2011]
--   LeVeque et al. [Reproducible research for scientific computing](https://web.stanford.edu/~vcs/papers/CiSE2012-LMS.pdf)
--   Sandve et al. Ten simple rules for reproducible computational research. [@sandve2013]
+-   LeVeque et al. [Reproducible research for scientific computing](https://www.bitss.org/wp-content/uploads/2014/06/reproducible-research-for-scientific-computing-tools-and-strategies-for-changing-the-culture1.pdf) [@leveque2012]
 
 ```{r echo=FALSE}
 source("helper.R")
