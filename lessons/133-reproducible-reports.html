@@ -492,8 +492,10 @@ div.csl-indent {
 <span class="header-section-number">20.4</span> Code formatting</h2>
 <p>There is a <a href="https://style.tidyverse.org/">tidyverse style guide</a>. Google has their <a href="https://google.github.io/styleguide/Rguide.html">own</a>, revised from the tidyverse guide. It’s worthwhile reading these guides. Code that is formatted in a standard way is easier for you to read and easier for someone else to read.</p>
 <p>Here is some carelessly formatted code.</p>
-<pre><code>gapminder |&gt; filter(continent =="Europe") |&gt; group_by(country) |&gt; summarize(mean_life_exp = mean(lifeExp), mean_GDP = mean(gdpPercap)) |&gt; ggplot(
-aes(color = mean_life_exp, x = log10(mean_GDP), y=fct_reorder(country, mean_life_exp))) + geom_point()</code></pre>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>    <span class="va">gapminder</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">==</span><span class="st">"Europe"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">country</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">summarize</span><span class="op">(</span>mean_life_exp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lifeExp</span><span class="op">)</span>, mean_GDP <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span></span>
+<span>    <span class="fu">aes</span><span class="op">(</span>color <span class="op">=</span> <span class="va">mean_life_exp</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">mean_GDP</span><span class="op">)</span>, y<span class="op">=</span><span class="fu">fct_reorder</span><span class="op">(</span><span class="va">country</span>, <span class="va">mean_life_exp</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Here is the same code (and its output) formatted using <code>styler</code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span></span>
@@ -504,11 +506,12 @@ aes(color = mean_life_exp, x = log10(mean_GDP), y=fct_reorder(country, mean_life
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="133-reproducible-reports_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="133-reproducible-reports_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>If you have loaded the <code>styler</code> package, you can use the Addins menu to style a selection of code. Highlight some code and try it out!</p>
 <p>What makes code easier to read? Consistency, indentation when an idea continues from one line to the next, and keeping lines short. Consistency in spacing, use of upper and lower case, and naming of variables is valuable. I suggest you write neat and easy to read code in your R markdown documents. Don’t use automatic tidying as an excuse to make messy code.</p>
 </section><section id="customization-of-result-reporting-in-r-markdown" class="level2" data-number="20.5"><h2 data-number="20.5" class="anchored" data-anchor-id="customization-of-result-reporting-in-r-markdown">
 <span class="header-section-number">20.5</span> Customization of result reporting in R markdown</h2>
@@ -673,13 +676,13 @@ loaded via a namespace (and not attached):
 <span class="header-section-number">20.9</span> Further reading</h2>
 <ul>
 <li>
-<a href="https://r4ds.had.co.nz/workflow-projects.html">Project workflow</a> from R4DS</li>
+<a href="https://github.com/AndrewIrwin/data-viz-notes">Repository of these course notes</a> for ideas on formatting and preparing R markdown documents</li>
+<li>
+<a href="https://r4ds.hadley.nz/workflow-scripts.html">Project workflow</a> from R4DS</li>
 <li><a href="https://emilyriederer.netlify.app/post/sql-generation/">Generating SQL with dbplyr</a></li>
 <li>Peng. Reproducible research in computational science. <span class="citation" data-cites="peng2011">(<a href="../references.html#ref-peng2011" role="doc-biblioref">Peng 2011</a>)</span>
 </li>
-<li>LeVeque et al.&nbsp;<a href="https://web.stanford.edu/~vcs/papers/CiSE2012-LMS.pdf">Reproducible research for scientific computing</a>
-</li>
-<li>Sandve et al.&nbsp;Ten simple rules for reproducible computational research. <span class="citation" data-cites="sandve2013">(<a href="../references.html#ref-sandve2013" role="doc-biblioref">Sandve et al. 2013</a>)</span>
+<li>LeVeque et al.&nbsp;<a href="https://www.bitss.org/wp-content/uploads/2014/06/reproducible-research-for-scientific-computing-tools-and-strategies-for-changing-the-culture1.pdf">Reproducible research for scientific computing</a> <span class="citation" data-cites="leveque2012">(<a href="../references.html#ref-leveque2012" role="doc-biblioref">LeVeque, Mitchell, and Stodden 2012</a>)</span>
 </li>
 </ul>
 <div class="cell">
@@ -688,11 +691,11 @@ loaded via a namespace (and not attached):
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-leveque2012" class="csl-entry" role="listitem">
+LeVeque, Randall J., Ian M. Mitchell, and Victoria Stodden. 2012. <span>“Reproducible Research for Scientific Computing: Tools and Strategies for Changing the Culture.”</span> <em>Computing in Science &amp; Engineering</em> 14 (4): 13–17. <a href="https://doi.org/10.1109/MCSE.2012.38">https://doi.org/10.1109/MCSE.2012.38</a>.
+</div>
 <div id="ref-peng2011" class="csl-entry" role="listitem">
 Peng, Roger D. 2011. <span>“Reproducible Research in Computational Science.”</span> <em>Science</em> 334 (6060): 1226–27. <a href="https://doi.org/10.1126/science.1213847">https://doi.org/10.1126/science.1213847</a>.
-</div>
-<div id="ref-sandve2013" class="csl-entry" role="listitem">
-Sandve, Geir Kjetil, Anton Nekrutenko, James Taylor, and Eivind Hovig. 2013. <span>“Ten Simple Rules for Reproducible Computational Research.”</span> Edited by Philip E. Bourne. <em>PLoS Computational Biology</em> 9 (10): e1003285. <a href="https://doi.org/10.1371/journal.pcbi.1003285">https://doi.org/10.1371/journal.pcbi.1003285</a>.
 </div>
 </div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
