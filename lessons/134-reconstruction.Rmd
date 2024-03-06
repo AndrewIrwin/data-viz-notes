@@ -178,6 +178,17 @@ gapminder |> filter(year == 2007) |>
 final_plot
 ```
 
+
+## Packages used
+
+In addition to `tidyverse` and `gapminder`, in this lesson we used 
+
+* `ggrepel`
+* `rnaturalearth`
+* `rnaturalearthdata`
+* `rgeos`
+
+
 ```{r echo=FALSE}
 source("helper.R")
 writePackages()
