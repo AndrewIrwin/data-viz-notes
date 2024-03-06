@@ -137,27 +137,103 @@ The `waldo` package has functions for testing equality of data frames and showin
 
 ## Numbers
 
-R is 
+R has several different kinds of ways of storing numbers that are encountered in data analysis and statistics. Two are familiar: integers and numbers with a decimal point (called floating point numbers). You can create, test, and convert numbers to integers using the functions `integer`, `is.integer`, and `as.integer`:
 
-NA nan inf -inf
-Testing for Na. Replacing. If then functions.
+```{r}
+integer(5) # makes a vector of 5 integers
+is.integer(5.6) # FALSE (not an integer)
+as.integer(5.6) # makes an integer
+```
+
+Strangely, `5` is not an integer, because R assumes you want to be more flexible and have a general numeric type:
+
+```{r}
+is.integer(5)
+class(5)
+```
+
+There are also functions `numeric`, `is.numeric` and `as.numeric` that do similar things for the numeric data type:
+
+```{r}
+is.numeric(5.5)
+```
+
+There are some special numbers: positive and negative infinity, not a number (`NaN`) and a missing number (or other kind of data) `NA`. You get plus or minus infinity when you divide a non-zero number by 0 and NaN is the result when you divide 0 by 0.
+
+```{r}
+5/0
+-2/0
+0/0
+```
+
+`NA` works to protect you from getting numeric answers when you are missing data:
+
+```{r}
+mean(c(1, 2, NA))
+```
+
+unless you want to ignore missing data
+
+```{r}
+mean(na.omit(c(1,2,NA)))
+```
+
+Sometimes you want to replace NA with a numeric value, such as 0. 
+
+```{r}
+replace_na(c(1, 2, NA, 4), 0)
+```
+
+Other times you want to replace a value (like -999) with NA:
+
+```{r}
+na_if(c(1, 2, -999, 4), -999)
+```
+
+Finally, there are things that look like numbers but are really text:
+
+```{r, error=FALSE}
+"42" 
+"42" + 58
+```
+
+You can convert text to numbers (if a computer can figure out what you mean) using `as.numeric` (or `as.integer`):
+
+```{r}
+as.numeric("42")
+as.numeric("42") + 58
+as.integer("3.1415")  # fractional part is ignored
+as.numeric("three") # get NA instead of an error, which can be handy or annoying
+```
+
 
 ## What’s a function?
 
-## What’s a formula?
-Lm facet also t.test gam
+We'll use the same definition offered in math class: a function is a rule that maps items in one set to items in another set. For example $f(x) = x^2 - x + 3$. But R works with a lot more than numbers, so its functions do too.
 
+All the code we have used with R in this course is built up from functions: library, ggplot, aes, geom_point, lm, tidy, summarize, unite, mean, sd, and the list goes on and on.
+
+We can write our own functions too. This is handy in plotting, for example.
+
+```{r}
+f <- function(x) x^2 -x + 3
+tibble(x = runif(10, -4, 4), 
+       y = rnorm(10, f(x), 3)) |>
+  ggplot() + 
+  geom_function(fun = f) +
+  geom_point(aes(x, y))
+  theme_bw() + 
+  labs(x = "x", y = "f(x)") + 
+  xlim(-4, 4)
+```
+
+For more on writing functions, see the [R for Data Science](https://r4ds.hadley.nz/functions) book.
 
 ## Programming styles
 
-Grammar? Gg gt
-Descriptive vs imperative
-SQL as another example
+We have been using a consistent style of programming with R in this course. Wherever possible we use functions from the tidyverse package that accept tables (tibbles) as their first input and output tibbles when it makes sense to do so. (Plots are not tibbles for example, so ggplot doesn't make them. But the result of using `tidy` on a linear regression model is a tibble.) Functions are connected together with the pipe (`|>` or `%>%`) to achieve a particular style of easy to read code and to avoid creating new temporary variables that don't help with understanding the computation very much. This style of computing works very well in conjunction with the grammar of graphics style of plotting data.
 
-
-## Comparing SQL to dplyr
-
-## Using databases with R
+There are lots of other ways to write code. One is known as [base R](https://r4ds.hadley.nz/base-r). Another is based on tables, but using something called a `data.table` which is optimized for speed and a certain kind of concise notation. (Here is a [concise introduction](https://atrebas.github.io/post/2020-06-17-datatable-introduction/) to some key concepts.)
 
 
 
