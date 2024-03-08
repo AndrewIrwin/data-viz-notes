@@ -67,6 +67,20 @@ These edits are particularly handy if you are trying to edit on a tablet or some
 
 In the main window for the project, beside the bright green 'Code' button, click "Add file". Here you can upload a new file to the repository.
 
+## Comparison with other file synchronization services
+
+Microsoft OneDrive, Google Drive, Dropbox and other services also allow you to share files with other people and keep your work synchronized across many computers. Some of these services let you go "back in time" to get old versions or deleted files. How does using git and GitHub differ from these services?
+
+There are several important differences. These are the most important for this course and data visualization:
+
+* Conflicts arise easily when two people are working on the same file. Most file synchronization services don't resolve compatible "simultaneous" changes well. Our tools do.
+* If you need to change something in two files at the same time (data format and the visualization code), git lets you bundle these changes together into a single commit so you don't transmit incomplete changes to a collaborator.
+* git makes it easy to see what changes were made between two versions
+* Github and similar services are widely used to share computer code and data
+* Github makes it easy to distribute your formatted report and your code (I use these tools to write the course notes)
+* git is well integrated into Rstudio so that routine use of the version control software is just a few clicks of the mouse
+
+Synchronized editing tools like Google Docs help you manage multiple people working on a single document. But they are not designed to work with computer code or R and Rstudio.
 
 ## Further reading
 
