@@ -3,9 +3,10 @@
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(ggrepel)
+library(gapminder)
 library(rnaturalearth)
 library(rnaturalearthdata)
-library(rgeos)
+# library(rgeos)
 library(tidyverse, quietly = TRUE)
 ```
 
@@ -186,7 +187,6 @@ In addition to `tidyverse` and `gapminder`, in this lesson we used
 * `ggrepel`
 * `rnaturalearth`
 * `rnaturalearthdata`
-* `rgeos`
 
 
 ```{r echo=FALSE}

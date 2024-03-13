@@ -294,6 +294,20 @@ ggplot() +
 
 Map making is complex for at least two reasons: obtaining the data to describe complex political boundaries and using suitable projections for your data. This lesson introduced you to some simple solutions to both problems and gave a starting point for learning more about the complexity of making customized maps.
 
+## Packages used
+
+In addition to `tidyverse` this lesson uses the following packages:
+
+* `ggmap` to get data for maps and draw them
+* `mapproj` to project latitude and longitude coordinates onto a map
+* `sf` for working with map data in data tables
+* `geojsonio` for reading a map of Canada from the internet
+* `rmapshaper`
+* `patchwork` for combining ggplots together
+
+If you are not sure a package is needed, don't include it in your R markdown document, but if something doesn't work, you have this list to help you figure out what package is required.
+
+
 ## Further reading
 
 * [Wilke](https://clauswilke.com/dataviz/geospatial-data.html)
