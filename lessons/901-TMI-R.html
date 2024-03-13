@@ -416,10 +416,7 @@ window.Quarto = {
   <li><a href="#why-are-there-so-many-kinds-of-equals-signs" id="toc-why-are-there-so-many-kinds-of-equals-signs" class="nav-link" data-scroll-target="#why-are-there-so-many-kinds-of-equals-signs">Why are there so many kinds of “equals signs”?</a></li>
   <li><a href="#numbers" id="toc-numbers" class="nav-link" data-scroll-target="#numbers">Numbers</a></li>
   <li><a href="#whats-a-function" id="toc-whats-a-function" class="nav-link" data-scroll-target="#whats-a-function">What’s a function?</a></li>
-  <li><a href="#whats-a-formula" id="toc-whats-a-formula" class="nav-link" data-scroll-target="#whats-a-formula">What’s a formula?</a></li>
   <li><a href="#programming-styles" id="toc-programming-styles" class="nav-link" data-scroll-target="#programming-styles">Programming styles</a></li>
-  <li><a href="#comparing-sql-to-dplyr" id="toc-comparing-sql-to-dplyr" class="nav-link" data-scroll-target="#comparing-sql-to-dplyr">Comparing SQL to dplyr</a></li>
-  <li><a href="#using-databases-with-r" id="toc-using-databases-with-r" class="nav-link" data-scroll-target="#using-databases-with-r">Using databases with R</a></li>
   <li><a href="#computing-notes" id="toc-computing-notes" class="nav-link" data-scroll-target="#computing-notes">Computing notes</a></li>
   </ul></nav>
     </div>
@@ -606,15 +603,140 @@ Levels: Apple Bananna Cat Orange</code></pre>
 </ul>
 <p>The <code>waldo</code> package has functions for testing equality of data frames and showing differences.</p>
 </section><section id="numbers" class="level2"><h2 class="anchored" data-anchor-id="numbers">Numbers</h2>
-<p>R is</p>
-<p>NA nan inf -inf Testing for Na. Replacing. If then functions.</p>
+<p>R has several different kinds of ways of storing numbers that are encountered in data analysis and statistics. Two are familiar: integers and numbers with a decimal point (called floating point numbers). You can create, test, and convert numbers to integers using the functions <code>integer</code>, <code>is.integer</code>, and <code>as.integer</code>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">integer</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span> <span class="co"># makes a vector of 5 integers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 0 0 0 0</code></pre>
+</div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">is.integer</a></span><span class="op">(</span><span class="fl">5.6</span><span class="op">)</span> <span class="co"># FALSE (not an integer)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fl">5.6</span><span class="op">)</span> <span class="co"># makes an integer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<p>Strangely, <code>5</code> is not an integer, because R assumes you want to be more flexible and have a general numeric type:</p>
+<div class="cell">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">is.integer</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+</div>
+<p>There are also functions <code>numeric</code>, <code>is.numeric</code> and <code>as.numeric</code> that do similar things for the numeric data type:</p>
+<div class="cell">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="fl">5.5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>There are some special numbers: positive and negative infinity, not a number (<code>NaN</code>) and a missing number (or other kind of data) <code>NA</code>. You get plus or minus infinity when you divide a non-zero number by 0 and NaN is the result when you divide 0 by 0.</p>
+<div class="cell">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">5</span><span class="op">/</span><span class="fl">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Inf</code></pre>
+</div>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">-</span><span class="fl">2</span><span class="op">/</span><span class="fl">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -Inf</code></pre>
+</div>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">0</span><span class="op">/</span><span class="fl">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NaN</code></pre>
+</div>
+</div>
+<p><code>NA</code> works to protect you from getting numeric answers when you are missing data:</p>
+<div class="cell">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+</div>
+<p>unless you want to ignore missing data</p>
+<div class="cell">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.5</code></pre>
+</div>
+</div>
+<p>Sometimes you want to replace NA with a numeric value, such as 0.</p>
+<div class="cell">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">replace_na</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="cn">NA</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 0 4</code></pre>
+</div>
+</div>
+<p>Other times you want to replace a value (like -999) with NA:</p>
+<div class="cell">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">na_if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="op">-</span><span class="fl">999</span>, <span class="fl">4</span><span class="op">)</span>, <span class="op">-</span><span class="fl">999</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  1  2 NA  4</code></pre>
+</div>
+</div>
+<p>Finally, there are things that look like numbers but are really text:</p>
+<div class="cell">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="st">"42"</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "42"</code></pre>
+</div>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="st">"42"</span> <span class="op">+</span> <span class="fl">58</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in "42" + 58: non-numeric argument to binary operator</code></pre>
+</div>
+</div>
+<p>You can convert text to numbers (if a computer can figure out what you mean) using <code>as.numeric</code> (or <code>as.integer</code>):</p>
+<div class="cell">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="st">"42"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 42</code></pre>
+</div>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="st">"42"</span><span class="op">)</span> <span class="op">+</span> <span class="fl">58</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100</code></pre>
+</div>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="st">"3.1415"</span><span class="op">)</span>  <span class="co"># fractional part is ignored</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="st">"three"</span><span class="op">)</span> <span class="co"># get NA instead of an error, which can be handy or annoying</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: NAs introduced by coercion</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+</div>
 </section><section id="whats-a-function" class="level2"><h2 class="anchored" data-anchor-id="whats-a-function">What’s a function?</h2>
-</section><section id="whats-a-formula" class="level2"><h2 class="anchored" data-anchor-id="whats-a-formula">What’s a formula?</h2>
-<p>Lm facet also t.test gam</p>
+<p>We’ll use the same definition offered in math class: a function is a rule that maps items in one set to items in another set. For example <span class="math inline">\(f(x) = x^2 - x + 3\)</span>. But R works with a lot more than numbers, so its functions do too.</p>
+<p>All the code we have used with R in this course is built up from functions: library, ggplot, aes, geom_point, lm, tidy, summarize, unite, mean, sd, and the list goes on and on.</p>
+<p>We can write our own functions too. This is handy in plotting, for example.</p>
+<div class="cell">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span><span class="va">x</span> <span class="op">+</span> <span class="fl">3</span></span>
+<span><span class="fu">tibble</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">4</span>, <span class="fl">4</span><span class="op">)</span>, </span>
+<span>       y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fu">f</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">geom_function</span><span class="op">(</span>fun <span class="op">=</span> <span class="va">f</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"x"</span>, y <span class="op">=</span> <span class="st">"f(x)"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">xlim</span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>, <span class="fl">4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="901-TMI-R_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>For more on writing functions, see the <a href="https://r4ds.hadley.nz/functions">R for Data Science</a> book.</p>
 </section><section id="programming-styles" class="level2"><h2 class="anchored" data-anchor-id="programming-styles">Programming styles</h2>
-<p>Grammar? Gg gt Descriptive vs imperative SQL as another example</p>
-</section><section id="comparing-sql-to-dplyr" class="level2"><h2 class="anchored" data-anchor-id="comparing-sql-to-dplyr">Comparing SQL to dplyr</h2>
-</section><section id="using-databases-with-r" class="level2"><h2 class="anchored" data-anchor-id="using-databases-with-r">Using databases with R</h2>
+<p>We have been using a consistent style of programming with R in this course. Wherever possible we use functions from the tidyverse package that accept tables (tibbles) as their first input and output tibbles when it makes sense to do so. (Plots are not tibbles for example, so ggplot doesn’t make them. But the result of using <code>tidy</code> on a linear regression model is a tibble.) Functions are connected together with the pipe (<code>|&gt;</code> or <code>%&gt;%</code>) to achieve a particular style of easy to read code and to avoid creating new temporary variables that don’t help with understanding the computation very much. This style of computing works very well in conjunction with the grammar of graphics style of plotting data.</p>
+<p>There are lots of other ways to write code. One is known as <a href="https://r4ds.hadley.nz/base-r">base R</a>. Another is based on tables, but using something called a <code>data.table</code> which is optimized for speed and a certain kind of concise notation. (Here is a <a href="https://atrebas.github.io/post/2020-06-17-datatable-introduction/">concise introduction</a> to some key concepts.)</p>
 </section><section id="computing-notes" class="level2"><h2 class="anchored" data-anchor-id="computing-notes">Computing notes</h2>
 <p>There are thousands of different programming languages. Why? Partly different ideas have arisen over time. Sometimes, languages have been created for particular problems. But most often, languages are created to enable a new kind of interaction between programmer and computer. Over time, as computing power increases and the kinds of problems solved by computer change, new opportunities and new needs arise and new languages are developed.</p>
 <p>What are some of the constraints and trade-offs when using a computer? The three most important are * the amount of storage required to solve a problem, * the number of computations to solve a problem, and * the amount of human time required to design and implement a solution.</p>

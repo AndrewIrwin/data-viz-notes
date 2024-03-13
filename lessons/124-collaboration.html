@@ -358,7 +358,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#you-can-upload-or-download-files-directly-to-your-repository-through-the-website." id="toc-you-can-upload-or-download-files-directly-to-your-repository-through-the-website." class="nav-link" data-scroll-target="#you-can-upload-or-download-files-directly-to-your-repository-through-the-website."><span class="header-section-number">18.6.2</span> You can upload or download files directly to your repository through the website.</a></li>
   </ul>
 </li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">18.7</span> Further reading</a></li>
+  <li><a href="#comparison-with-other-file-synchronization-services" id="toc-comparison-with-other-file-synchronization-services" class="nav-link" data-scroll-target="#comparison-with-other-file-synchronization-services"><span class="header-section-number">18.7</span> Comparison with other file synchronization services</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">18.8</span> Further reading</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -433,8 +434,21 @@ ul.task-list li input[type="checkbox"] {
 </section><section id="you-can-upload-or-download-files-directly-to-your-repository-through-the-website." class="level3" data-number="18.6.2"><h3 data-number="18.6.2" class="anchored" data-anchor-id="you-can-upload-or-download-files-directly-to-your-repository-through-the-website.">
 <span class="header-section-number">18.6.2</span> You can upload or download files directly to your repository through the website.</h3>
 <p>In the main window for the project, beside the bright green ‘Code’ button, click “Add file”. Here you can upload a new file to the repository.</p>
-</section></section><section id="further-reading" class="level2" data-number="18.7"><h2 data-number="18.7" class="anchored" data-anchor-id="further-reading">
-<span class="header-section-number">18.7</span> Further reading</h2>
+</section></section><section id="comparison-with-other-file-synchronization-services" class="level2" data-number="18.7"><h2 data-number="18.7" class="anchored" data-anchor-id="comparison-with-other-file-synchronization-services">
+<span class="header-section-number">18.7</span> Comparison with other file synchronization services</h2>
+<p>Microsoft OneDrive, Google Drive, Dropbox and other services also allow you to share files with other people and keep your work synchronized across many computers. Some of these services let you go “back in time” to get old versions or deleted files. How does using git and GitHub differ from these services?</p>
+<p>There are several important differences. These are the most important for this course and data visualization:</p>
+<ul>
+<li>Conflicts arise easily when two people are working on the same file. Most file synchronization services don’t resolve compatible “simultaneous” changes well. Our tools do.</li>
+<li>If you need to change something in two files at the same time (data format and the visualization code), git lets you bundle these changes together into a single commit so you don’t transmit incomplete changes to a collaborator.</li>
+<li>git makes it easy to see what changes were made between two versions</li>
+<li>Github and similar services are widely used to share computer code and data</li>
+<li>Github makes it easy to distribute your formatted report and your code (I use these tools to write the course notes)</li>
+<li>git is well integrated into Rstudio so that routine use of the version control software is just a few clicks of the mouse</li>
+</ul>
+<p>Synchronized editing tools like Google Docs help you manage multiple people working on a single document. But they are not designed to work with computer code or R and Rstudio.</p>
+</section><section id="further-reading" class="level2" data-number="18.8"><h2 data-number="18.8" class="anchored" data-anchor-id="further-reading">
+<span class="header-section-number">18.8</span> Further reading</h2>
 <p>The exercises in the first link below are very helpful, although they are written using the git command line tutorial instead of the buttons in Rstudio.</p>
 <ul>
 <li>
