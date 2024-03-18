@@ -131,7 +131,8 @@ Once you have made a graphic look just the way you want, you can adjust the scal
 ```{r}
 pngfile <- fs::path(knitr::fig_path(),  "penguins-ragg.png")
 ggsave(pngfile, p2, device = agg_png, 
-        width = 45, height = 30, units = "cm", res = 300, scaling = 3)
+        width = 45, height = 30, units = "cm", res = 300, scaling = 3,
+       create.dir = TRUE)
 knitr::include_graphics(pngfile)
 # agg_png("static/penguins-ragg.png", width = 45, height = 30, units = "cm", res = 300, scaling = 3)
 # p2

@@ -192,7 +192,7 @@ na_if(c(1, 2, -999, 4), -999)
 
 Finally, there are things that look like numbers but are really text:
 
-```{r, error=FALSE}
+```{r, error=TRUE}
 "42" 
 "42" + 58
 ```
@@ -221,7 +221,7 @@ tibble(x = runif(10, -4, 4),
        y = rnorm(10, f(x), 3)) |>
   ggplot() + 
   geom_function(fun = f) +
-  geom_point(aes(x, y))
+  geom_point(aes(x, y)) +
   theme_bw() + 
   labs(x = "x", y = "f(x)") + 
   xlim(-4, 4)

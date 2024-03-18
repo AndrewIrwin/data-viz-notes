@@ -308,6 +308,10 @@ In addition to `tidyverse` which has ggplot and the `geom_map` function, I've us
 * `sf` for working with "simple features", meaning points, lines, regions and other features to draw on maps
 * `geojsonio` for working with some map data you might find on the internet
 * `RColorBrewer` for making colour scales; more on this in a later lesson
+* `rmapshaper`
+* `patchwork` for combining ggplots together
+
+If you are not sure a package is needed, don't include it in your R markdown document, but if something doesn't work, you have this list to help you figure out what package is required.
 
 ## Further reading
 
