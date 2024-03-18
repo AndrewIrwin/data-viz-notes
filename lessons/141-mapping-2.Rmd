@@ -7,8 +7,9 @@ always_allow_html: true
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
-library(leaflet)
-library(ggmap)
+library(leaflet) # sliding maps
+library(ggmap) # static maps
+library(osmdata) # for geolocation
 ```
 
 Many online services generate tile maps. Generally a small number of maps are available for free and then further maps require a subscription. For causal use the free service tier is almost always sufficient. To keep track of your usage you sometimes need to sign up for an API key. The first example below is unusual because you can use these maps without any account. Tools and services for this sort of mapping change frequently, so this lesson shows how to use two different services.
@@ -21,19 +22,24 @@ In this lesson we will look at making maps that build on detailed basemaps from 
 Let's make a map and place a marker at the location of the Mathematics and Statistics Department. You can pan and zoom this map from within Rstudio and in the knitted output.
 
 ```{r}
-m <- leaflet() %>%
-  addTiles() %>%  # Add default OpenStreetMap map tiles
+m <- leaflet() |>
+  addTiles() |>  # Add default OpenStreetMap map tiles
   addMarkers(lng=-63.5932, lat=44.63697, popup="Math & Stats, Dalhousie U")
 m  # Print the map
 ```
 
+If you want to connect a name to a location, you can use the `getbb` function from `osmdata` (OpenStreetMap data). This gives the bounding box (upper left and lower right latitude and longitude coordinates):
+
+```{r}
+getbb('halifax')
+```
 
 Let's use the city database we used in the MDS lesson to label the 61 cities we selected in that lesson.
 
 ```{r}
 cities <- read_csv("static/selected_cities.csv", show_col_types = FALSE)
-m2 <- leaflet(data = cities) %>%
-  addTiles() %>%
+m2 <- leaflet(data = cities) |>
+  addTiles() |>
   addCircleMarkers(~ lng, ~lat, label = ~city)
 m2
 ```
@@ -41,72 +47,77 @@ m2
 There are several different [basemaps](https://rstudio.github.io/leaflet/basemaps.html), or tiles, that you can use. A fun one to look at -- because it changes frequently is a radar map for the USA from Iowa State.
 
 ```{r}
-m3 <- leaflet(data = cities) %>%
-  addTiles() %>%
+m3 <- leaflet(data = cities) |>
+  addTiles() |>
   addCircleMarkers(~ lng, ~lat, label = ~city) %>%
   addWMSTiles("http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
     layers = "nexrad-n0r-900913",
     options = WMSTileOptions(format = "image/png", transparent = TRUE),
-    attribution = "Weather data © 2012 IEM Nexrad") %>%
+    attribution = "Weather data © 2012 IEM Nexrad") |>
   setView(-93.65, 42.0285, zoom = 4)
 m3
 ```
 
-It's common to see "chloropleth" maps of the USA in which geographic regions are coloured to show a quantitative or categorical variable, such as population density or election results. These maps are less common in Canada due to two main factors: the geographic concentration of the population in cities means that area maps are even less informative than for the USA and the latitude range of Canada makes for some severe challenges when plotting whole-country territory and province chloropleth maps on commonly used projections. Nevertheless, it is possible. Here's a demonstration with some random numbers for "data".
+It's common to see "chloropleth" maps of the USA in which geographic regions are coloured to show a quantitative or categorical variable, such as population density or election results. These maps are less common in Canada due to two main factors: the geographic concentration of the population in cities means that area maps are even less informative than for the USA and the latitude range of Canada makes for some severe challenges when plotting whole-country chloropleth maps on commonly used projections. Nevertheless, it is possible. Here's a demonstration with some random numbers for "data".
 
 ```{r message=FALSE}
 library(geojsonio)
 pal <- colorNumeric("viridis", NULL)  # make a viridis palette
 canada <- geojson_read("https://gist.githubusercontent.com/mikelotis/2156d7c170d10d2c77cb79424fe2137d/raw/7a13748ed7ea5ba64876c77c53b6cb64dd5c3ab0/canada-province.geojson", what="sp")
 my_values = runif(13, 0, 10) # random numbers between 0 and 10
-canada %>% 
-  leaflet() %>%
-  addTiles() %>%
-  addPolygons(fillColor = ~ pal(my_values)) %>%
+leaflet() |>
+  addTiles() |>
+  addPolygons(data = canada, fillColor = ~ pal(my_values)) |>
   addLegend(pal = pal, values = my_values, opacity = 1.0)
 ```
 
 
 ## Tiled map with ggmap
 
-In this section we will use tile maps from the [openstreetmap](https://www.openstreetmap.org/) database rendered by [Stamen Maps](http://maps.stamen.com/). We will use the `ggmap` package to download and draw the map.
+In this section we will use tile maps from Google. To use google maps, you need to have an API key (which may cost money). We will use the `ggmap` package to download and draw the map.
 
 There are two steps. First download the tiles needed for your map by specifying
 
-* the bounding box in degrees latitude and longitude,
-* the [zoom level](https://wiki.openstreetmap.org/wiki/Zoom_levels) of the map, and
-* the type of the tiles (terrain, terrain-background, etc. See the help for `get_stamenmap` for more.)
+* the bounding box in degrees latitude and longitude, and
+* the [zoom level](https://wiki.openstreetmap.org/wiki/Zoom_levels) of the map.
 
 Always start with a small zoom level -- if you make it too big you will download a lot of unnecessary data, which takes time and imposes a burden on the service.
 
-FIX ME
-
-```{r message=FALSE}
-# mymap_terrain <- get_stamenmap(bbox = c(left = -130, bottom = 41, right = -50, top = 60),
-#                                zoom=4, maptype = "terrain")
-# ggmap(mymap_terrain)  
+```{r message=FALSE, eval=FALSE}
+mymap_terrain <- get_googlemap(bbox = c(left = -130, bottom = 41, right = -50, top = 60),
+                                zoom=4, maptype = "terrain")
+ggmap(mymap_terrain)  
 ```
 
 This is a regular ggplot, so you can add lines and points to a map easily, using latitude and longitude as coordinates. Placing text on a map in a readable and attractive way can be quite a challenge.
 
-```{r}
+```{r eval=FALSE}
 my_points <- tibble(lat = c(43+57/60, 49+53/60),
                     lon = c(-59-55/60, -97-9/60),
                     label = c("Sable Is.", "Winnipeg")
 )
-# ggmap(mymap_terrain)  +
-#   geom_point(data =my_points, color="brown") + 
-#   geom_text(data = my_points, aes(label=label))
+ggmap(mymap_terrain)  +
+   geom_point(data =my_points, color="brown") + 
+   geom_text(data = my_points, aes(label=label))
 
 ```
 
 You can also zoom in on urban areas.
 
-```{r message=FALSE}
-# mymap_halifax <- get_stamenmap(bbox = c(left = -63.6-0.1, bottom = 44.60, right = -63.6+0.1, top = 44.75), 
-#                                zoom=12, maptype = "toner-lite")
-# ggmap(mymap_halifax)  
+```{r message=FALSE, eval=FALSE}
+mymap_halifax <- get_googlemap(bbox = c(left = -63.6-0.1, bottom = 44.60, right = -63.6+0.1, top = 44.75), 
+                              zoom=12, maptype = "toner-lite")
+ggmap(mymap_halifax)  
 ```
+
+## Packages used
+
+In addition to `tidyverse`, I've used the following packages
+
+* `leaflet` for making interactive (zoomable, draggable) maps
+* `ggmap`
+* `osmdata` for geolocation function `getbb`
+* `geojsonio`
 
 ## Further reading 
 

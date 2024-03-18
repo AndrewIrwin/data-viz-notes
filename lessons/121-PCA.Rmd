@@ -189,7 +189,7 @@ pca2 |>
 In addition to `tidyverse`, `kableExtra` and `palmerpenguins`, in this lesson we used 
 
 * `broom`
-* `ggfortify` for autoplot
+* `ggfortify` for PCA autoplot. Thera are autoplot methods for many kinds of data analysis, but there is no package with all the `autoplot` functions. Autoplot is a function defined in the tidyverse package, but you often need an additional package. For principal component analysis, you want the autoplot in the packge “ggfortify”.
 * `GGally` for ggpairs
 * `ggrepel` to add labels that don't overlap data points
 

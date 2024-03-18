@@ -90,6 +90,14 @@ Maps are commonly used in data visualization to display data (quantitative or ca
 
 For these reasons, you should consider alternatives to maps even when your data are clearly geographic. All the visualizations we have used in this course that permit a categorical variable can be useful. In this lesson we added one more, the heatmap, which is like a map, except all the regions are the same area and the "geographic" trend is arranged along one axis.
 
+## Packages used
+
+In addition to `tidyverse` I've used the following packages:
+
+* `cansim` for Statistics Canada data
+* `ggheatmap` available on github using `remotes::install_github("tleonardi/ggheatmap")`
+* `statebins` for drawing maps with one block per state
+
 ## Further reading
 
 * Healy [@healy2018data] Chapter 7 [Maps](https://socviz.co/maps.html)

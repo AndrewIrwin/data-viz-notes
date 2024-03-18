@@ -2,12 +2,11 @@
 
 ```{r include=FALSE}
 library(tidyverse)
-library(ggmap)
+# library(ggmap)
 library(mapproj)
 library(patchwork)
 # library(leaflet)
 ```
-
 
 There are many ways to make maps with R. The two general types are: vector maps where regions are represented by a set of points and lines around region boundaries and tile maps where a pre-drawn map is downloaded from a cloud service such as Google maps. In both cases, points, lines, and colour tiles can be added to display data on the map. Vector maps are drawn from a series of points and so can be drawn using many different projections, giving you the freedom to choose the projection most suitable for your map. Tile maps are images and can't be reprojected, but can have a lot of information on them in the form of colours for terrain, labels, and points of interest. Tile maps can be used in a pan-and-zoom mode like many familiar online mapping tools.
 
@@ -15,7 +14,7 @@ In this lesson we will look at drawing vector maps.
 
 ## Vector map
 
-Here is a map of the 48 continental US states, with a quantiative variable used to shade each region. To change the variable used to colour the states, simply provide a new dataset with a numeric column and a text column called "state". The map is drawn with ggplot, so the other features of ggplot including annotation, setting colour scales, labelling axes, etc., are all available to you and work the same way as for other visualizations we have created.
+Here is a map of the 48 continental US states, with a quantitative variable used to shade each region. To change the variable used to colour the states, simply provide a new dataset with a numeric column and a text column called "state". The map is drawn with ggplot, so the other features of ggplot including annotation, setting colour scales, labeling axes, etc., are all available to you and work the same way as for other visualizations we have created. The function `expand_limits` sets the range of latitudes and longitudes that will be displayed. Here I'm using a base-R syntax (`states_map$long`) to access these data and get the range (smallest and largest) longitude and latitude. Finally, the `coord_map` function creates a projection from a piece of a sphere onto a flat page. Other projections you can try include Mollweide (`coord_map("mollweide")`) and azimuthal equal area (`coord_map("azequalarea")`). There are many projections. See the help for `coord_map` for more information.
 
 ```{r}
 states_map <- map_data("state")
@@ -26,72 +25,91 @@ ggplot(crimes, aes(map_id = state)) +
   coord_map("albers", 40, 100)
 ```
 
-The `map_data` function works with maps from the `maps` package, including two world maps (`world` and `world2`) and detailed maps of France, Italy, New Zealand, the USA and its states. The `maps` package has several other datasets including a list of canadian cities with population greater than about 1000. The world is a large and complex place and you will often need to obtain data and map boundaries for regions which are not readily available in this package. Some guidance appears at the end of the lesson, but this can be a challenging task.
+The `map_data` function works with maps from the `maps` package, including two world maps (`world` and `world2`) and detailed maps of France, Italy, New Zealand, the USA and its states. The `maps` package has several other datasets including a list of Canadian cities with population greater than about 1000. The world is a large and complex place and you will often need to obtain data and map boundaries for regions which are not readily available in this package. Some guidance appears at the end of the lesson, but this can be a challenging task.
 
 The surface of the Earth is curved, so choices need to be made when plotting it on a flat surface. These choices are called [projections](https://en.wikipedia.org/wiki/List_of_map_projections).
-Here's a map of France using an azimuthal equal area projection (see `mapproj::mapproject()` for more)
+Here's a map of France using an azimuthal equidistant projection (see `mapproj::mapproject()` for more examples):
+
+```{r} 
+map_data <- map_data('france') 
+ggplot() + 
+       geom_map(map = map_data,
+                data = map_data,
+                aes(map_id=region),
+                fill = "white", colour = "#7f7f7f")  +
+  expand_limits(x = map_data$long, y = map_data$lat) +
+  coord_map("azequidistant")
+```
+
+Not all maps are political: here is a map of large lakes throughout the world.
 
 ```{r warning=FALSE, message=FALSE}
-map_data <- map_data('france') 
-ggplot(data = map_data, aes(group = group, map_id=region)) + 
-       geom_map(map = map_data,
-                  aes(x = long, y = lat),
-                  fill = "white", colour = "#7f7f7f", alpha = 0.5, size=0.5)  +
-  coord_map("azequalarea")
+lake_data <- map_data('lakes') 
+ggplot() + 
+       geom_map(data = lake_data, 
+                aes(map_id=region),
+                map = lake_data,
+                fill = "blue", colour = NA, alpha = 1.0)  +
+  expand_limits(x = c(-130, 120), y = c(-50, 70)) + 
+  coord_map("albers", 0, 0) +
+  labs(x= "", y = "")
 ```
+
 
 Incidentally, a frequently used projection for the USA is the Bonne. Revise the USA map to use that projection by adding the following code `+ coord_map("bonne", 45)`. (Albers:  `coord_map("albers", 40, 100)`  and Lambert: `coord_map("lambert", 40, 100)`
 are also used, although Lambert makes the USA look very wide in the North.)
 
-Political boundaries for the world are available as "world" (centered on the Atlantic Ocean) or "world2" (centered on the Pacific Ocean.)
+Political boundaries for the world are available as "world" (centred on the Atlantic Ocean) or "world2" (centered on the Pacific Ocean.)
 
 ```{r}
 WorldData <- map_data('world')  
-ggplot(WorldData, aes(map_id=region)) + 
-  geom_map(map = WorldData,
-           aes(x = long, y = lat),
-                  fill = "lightgray", colour = "#7f7f7f", alpha = 0.5, size=0.5) +
-  theme_bw()
+ggplot() + 
+  geom_map(data = WorldData, 
+           aes(map_id=region),
+           map = WorldData,
+           fill = "white", colour = "#7f7f7f", alpha = 1, linewidth=0.25) +
+  expand_limits(x = c(-180, 180), y = c(-80, 80)) + 
+  theme_bw() +
+  theme(panel.background = element_rect(fill = "darkblue")) +
+  labs(x="", y="")
 ```
-You can select a specific country if you want, for example, Canada:
+You can select a specific country if you want, for example, Canada. This is a reasonable map of Canada made up of 141 regions (main land mass plus islands), but it doesn't have any provincial boundaries, lakes, or other detail:
 
 ```{r}
 my_map <- map_data('world', region='Canada')  
-ggplot(my_map, aes(map_id=region)) + 
-  geom_map(map = my_map,
-           aes(x = long, y = lat),
-                  fill = "white", colour = "#7f7f7f", alpha = 0.5, size=0.5) +
+ggplot() + 
+  geom_map(data = my_map, aes(map_id=region),
+           map = my_map,
+           fill = "#5C4033", colour = "white") +
   theme_bw() +
+  expand_limits(x = my_map$long, y = my_map$lat) + 
+  theme(panel.background = element_rect(fill = "#00AAAA"),
+        panel.border = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank()) +
+  labs(x="", y="") +
   coord_map("albers", 60, 90)
 ```
 
-This map of Canada is made of 141 regions, separating islands, but does not contain provincial boundaries.
+Here is a list of 252 regions available in the world map (abbreviated here to the first 40).
 
 ```{r}
-ggplot(my_map, aes(map_id=region)) + 
-  geom_map(map = my_map,
-           aes(x = long, y = lat),
-           size=0.5) +
-  theme_bw() +  coord_map("albers", 60, 90)
+WorldData |> pull(region) |> unique() |> sort() |> head(40) |> cat(sep = ", ")
 ```
 
-Here is a list of 252 regions available in the world map (abbreviated here).
+The map of the globe and even of Canada does not look good at high latitudes, especially if either pole is included. Here is a projection that is a bit more suitable for those regions. The `geom_map` function is not perfect; it creates stray lines when a region is clipped by the projection.
 
 ```{r}
-WorldData |> pull(region) |> unique() |> head()
-```
-
-The map of the globe and even of Canada does not look good at high latitudes, espcially if either pole is included. Here is a projection that is a bit more suitable for those regions. The `geom_map` function is not perfect; it creates stray lines when a region is clipped by the projection.
-
-
-```{r}
-p1 <- ggplot(WorldData, aes(group=group, map_id=region)) + 
-  geom_map(map = WorldData, aes(long, lat),
-                  fill = "gray80", colour = "#7f7f7f", alpha = 0.5, size=0.5) +
+p1 <- ggplot() +
+  geom_map(data = WorldData, 
+           map = WorldData, 
+           aes(map_id = region),
+           fill = "gray80", colour = "#7f7f7f", alpha = 0.5, linewidth=0.5) +
   labs(x="", y="") + theme_bw() +
   theme(axis.text = element_blank(), 
         axis.ticks = element_blank(), 
-        rect = element_blank())
+        rect = element_blank()) +
+  expand_limits(x = c(-180, 180), y = c(-90, 90))
 p2a <- p1 + coord_map("perspective", 2.5, 
                       orientation=c(60, -100, 0))
       # observer distance 2.5 Earth radii 
@@ -101,42 +119,30 @@ p2b <- p1 + coord_map("perspective", 2.5,
 p2a + p2b
 ```
 
+You should experiment with the `geom_map` function. Here are the essential details you must include for each map:
+
+* You need a data frame with map data, including columns called `long` and `lat` and a categorical variable for each polygon usually called `region`
+* You need to provide `geom_map` with the name of the data frame (`data = `) and the name of the map data (we've used the same for both here, but see below for other examples)
+* You need to provide the aesthetic mapping from the variable `region` to the aesthetic `map_id`
+* If you are just showing a map (not plotting data -- see below) you need to set the limits of the plot (`expand_limits` is one way) or you will get an empty plot
+
 ## Detailed maps of Canada
 
-Detailed maps of Canada are not part of the `maps` package in R, so we need to do a bit of extra work. I will show you how to obtain map files called "shapefiles" from Statistics Canada and learn to use them with R. This is well worth learning as many maps are distributed in this format after being developed with GIS software. You don't need to repeat these steps unless you want to make your own custom maps of Canada.
+Detailed maps of Canada are not part of the `maps` package in R, but map data are available in many places on the internet. I obtained a "shapefile" from Statistics Canada and transformed it to work with R. The packages needed to do this have been reworked recently, so lots of advice on the internet is out of date. Look for the packages `sf`, `stars`, `terra`, `geojsonio` and `rmapshaper`.
 
-Here are some packages we need to get the job done.
-
-```{r message=FALSE}
-library(sf) # the base package manipulating shapes
-# library(rgdal) # geo data abstraction library # replaced with sf, stars, terra
-# See https://r-spatial.org/r/2022/04/12/evolution.html
-library(geojsonio) # geo json input and output
-# library(spdplyr) # the `dplyr` counterpart for shapes # archived, don't use
-library(rmapshaper) # the package that allows geo shape transformation
-```
-
-I  followed [these instructions](https://tengl.net/blog/2020/1/7/drawing-canada-maps-in-r) to get and transform the shape files for 2011 census divisions in Canada. There are many [other options](https://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/bound-limit-2016-eng.cfm).
-The [2011](https://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/bound-limit-2011-eng.cfm) files are marked as archived content, but I had trouble with the 2016 files. Choose ARCGis .shp file format. Pick the cartographic boundary file. You should get a zip file called `gpr_000b11a_e`.
-
-The shapefiles are very detailed and need to be simplified before being plotted with R. Here is some code to simplify these very detailed shapefiles down to simpler maps. This processing took about two hours on my computer, so when we are done we store the results in a file to enable rapid reuse.
-
-```
-canada_raw = readOGR(dsn = "~/Downloads/gcd_000b11a_e", layer = "gcd_000b11a_e", encoding = 'latin1') 
-canada_raw_json <- geojson_json(canada_raw)  # takes a few minutes
-canada_raw_sim <- ms_simplify(canada_raw_json) # also takes a few minutes
-geojson_write(canada_raw_sim, file = "static/canada_cd_sim.geojson") 
-```
+I used shape files for the 2011 census divisions in Canada. There are many [other options](https://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/bound-limit-2016-eng.cfm).
+Choose ARCGis .shp file format. Pick the cartographic boundary file. You should get a zip file called `gpr_000b11a_e`.
+The shapefiles are very detailed and need to be simplified before being plotted with R. You can obtain the simplified files [here](https://github.com/AndrewIrwin/data-viz-notes/blob/e0c7796a09fcaddd125a4b96a8fda6e7f2e197e4/lessons/static/canada_cd_sim.geojson).
 
 ### Draw the map
 
-Now that the preliminary work is done we can read the map data into R and get to mapmaking.
+Download the file, read the map data into R and get to mapmaking.
 
 ```{r}
 canada_cd <- st_read("static/canada_cd_sim.geojson", quiet = TRUE) 
 ```
 
-The official projection for maps of Canada is the Lambert conformal conic ("lcc") with the following latitude and longitude parameters.
+The official projection for maps of Canada is the Lambert conformal conic ("lcc") with the following latitude and longitude parameters. These complicated strings are now considered the old way of making projections. A function `crs` in the package `terra` can now be used instead -- details not shown!
 
 ```{r}
 crs_string = "+proj=lcc +lat_1=49 +lat_2=77 +lon_0=-91.52 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs"
@@ -146,7 +152,6 @@ Here is a theme for the map to remove axes, ticks, borders and more.
 
 ```{r}
 theme_map <- function(base_size=9, base_family="") { 
-	# require(grid)
 	theme_bw(base_size=base_size, base_family=base_family) %+replace%
 		theme(axis.line=element_blank(),
 			  axis.text=element_blank(),
@@ -169,8 +174,8 @@ Now we draw the map with some colours from a palette.
 map_colors <- RColorBrewer::brewer.pal(9, "Pastel1") |> rep(2)   # 18 colours, 9 repeated
 
 ggplot() +
-	geom_sf(aes(fill = PRUID), color = "gray60", size = 0.1, data = canada_cd ) +
-	coord_sf(crs = crs_string) + # 6
+	geom_sf(aes(fill = PRUID), color = "gray60", linewidth = 0.1, data = canada_cd ) +
+	coord_sf(crs = crs_string) + 
   scale_fill_manual(values = map_colors) +
 	guides(fill = FALSE) +
 	theme_map() +
@@ -190,29 +195,29 @@ city_coords <- tribble( ~city, ~lat, ~long,
 "Halifax", 44.6488, -63.5752)
 ```
 
-Convert the latitude and longitudes to map coordinates.
+Since our axes on our plot are not just longitude and latitude, we need to convert (project) the longitudes and latitudes to map coordinates. There are several steps: select only the numerical latitude and longitude coordinates, convert the data frame to a matrix, convert to a "simple feature" consisting of a set of points, make it back into a table, and add a projection onto to the data. 
 
 ```{r}
 sf_cities = city_coords |>
-	select(long, lat) |> # 1
-	as.matrix() |> # 2
+	select(long, lat) |> 
+	as.matrix() |> 
 	st_multipoint(dim = 'XY') |> 
 	st_sfc() |> 
-	st_set_crs(4269)
+	st_set_crs(4326) # 4269 also works
 ```
 
 Make the map with projected points.
 
 ```{r}
 ggplot() +
-	geom_sf(aes(fill = PRUID), color = "gray60", size = 0.1, data = canada_cd) +
+	geom_sf(aes(fill = PRUID), color = "gray60", linewidth = 0.1, data = canada_cd) +
 	geom_sf(data = sf_cities, color = '#001e73', alpha = 0.5, size = 3) + # 17
 	coord_sf(crs = crs_string) +
 	scale_fill_manual(values = map_colors) +
 	guides(fill = FALSE) +
 	theme_map() +
 	theme(panel.grid.major = element_line(color = "white"),
-		  legend.key = element_rect(color = "gray40", size = 0.1))
+	  	  legend.key = element_rect(color = "gray40", size = 0.1))
 ```
 
 It's easy to focus in on the Maritimes region of Canada -- just filter the data to include only the province or census districts you want. Here are some of the names in the map data that you can use for filtering.
@@ -227,9 +232,10 @@ I've changed the latitude and longitude parameters for the projection to values 
 ```{r}
 crs_string2 = "+proj=lcc +lat_1=40 +lat_2=50 +lon_0=-75 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs"
 ggplot() +
-	geom_sf(aes(fill = PRUID), color = "gray60", size = 0.1, 
-	        data = canada_cd |> filter(PRNAME %in% c("Nova Scotia / Nouvelle-Écosse", "New Brunswick / Nouveau-Brunswick", "Prince Edward Island / Île-du-Prince-Édouard"))) +
-	# geom_sf(data = sf_cities, color = '#001e73', alpha = 0.5, size = 3) + # 17
+	# geom_sf(data = sf_cities, color = '#001e73', alpha = 0.5, size = 3) +
+	geom_sf(aes(fill = PRUID), color = "gray60", linewidth = 0.1, 
+	        data = canada_cd |> 
+	          filter(PRNAME %in% c("Nova Scotia / Nouvelle-Écosse", "New Brunswick / Nouveau-Brunswick", "Prince Edward Island / Île-du-Prince-Édouard"))) +
 	coord_sf(crs = crs_string2) +
 	scale_fill_manual(values = map_colors) +
 	guides(fill = FALSE) +
@@ -261,8 +267,8 @@ ggplot() +
   # geom_sf(data = sf_cities, color = '#001e73', alpha = 0.5, size = 3) + # 17
   geom_sf(data = zoom_to_xy, color = 'red') +
   coord_sf(xlim = st_coordinates(disp_window)[,'X'],
-             ylim = st_coordinates(disp_window)[,'Y'],
-             crs = crs_string2, datum = crs_string2) +
+           ylim = st_coordinates(disp_window)[,'Y'],
+           crs = crs_string2, datum = crs_string2) +
 	scale_fill_manual(values = map_colors) +
 	guides(fill = FALSE) +
 	theme_map() +
@@ -293,6 +299,15 @@ ggplot() +
 ## Summary
 
 Map making is complex for at least two reasons: obtaining the data to describe complex political boundaries and using suitable projections for your data. This lesson introduced you to some simple solutions to both problems and gave a starting point for learning more about the complexity of making customized maps.
+
+## Packages used
+
+In addition to `tidyverse` which has ggplot and the `geom_map` function, I've used
+
+* `mapproj` for map projections
+* `sf` for working with "simple features", meaning points, lines, regions and other features to draw on maps
+* `geojsonio` for working with some map data you might find on the internet
+* `RColorBrewer` for making colour scales; more on this in a later lesson
 
 ## Further reading
 

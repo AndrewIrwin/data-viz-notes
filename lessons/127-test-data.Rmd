@@ -6,8 +6,8 @@ library(kableExtra)
 library(here)
 library(janitor)
 library(naniar)
-# library(pointblank) # causes problems with knitting: scan_data, interrogate, create_agent
-# library(dlookr)
+library(pointblank) # causes problems with knitting: scan_data, interrogate, create_agent
+library(dlookr)
 library(DT)
 ```
 
@@ -107,10 +107,8 @@ Are those missing values are a problem? I might choose not to care about the per
 
 The `dlookr` package provides a similar table, plus it adds a count of the number of distinct values for each variable.
 
-FIX ME
-
 ```{r}
-# diagnose(jelly) |> kable() |> kable_styling(full_width = FALSE)
+diagnose(jelly) |> kable() |> kable_styling(full_width = FALSE)
 ```
 
 We still don't know what most of these variables mean, but already one thing should stand out. The variable `accuracy` (which originally also had the notation 0_incorrect_1_correct) presumably should only be 0 or 1, but has three different values. We may not care about the initials of the investigator, but we might be concerned about the fact that there are 56 missing values. The reaction time (measured in seconds) is text data, but should be a number.
@@ -135,7 +133,7 @@ my_test <- jelly |>
   rows_distinct() 
 ```
 
-Now you can use the tests to get a report. (The report is not shown. Experiment with these functions on your own.)
+Now you can use the tests to get a report. The report is not shown because it doesn't fit well into a knitted document. Open up your own R session, read the data, clean it, and produce a report using the following code.
 
 ```{r eval=FALSE}
 my_test |> interrogate() 
@@ -156,7 +154,7 @@ jelly <- jelly |>
   filter(!is.na(reaction_s))
 ```
 
-The pointblank package also has a helpful function to produce a structured report on your whole dataset. (Again the results are not shown here.)
+The pointblank package also has a helpful function to produce a structured report on your whole dataset. Again the results are not shown here; create the report in your own R session to see what it looks like.
 
 ```{r eval=FALSE}
 jelly |> scan_data()
@@ -274,6 +272,16 @@ That's an introduction to testing calculations. These are good checks to make as
 ## Lessons for this course
 
 We are not integrating testing into our work in this course. This lesson is here to alert you to this problem, ensure you know many people think carefully about this, and to show you the first steps to developing a good quality assurance plan. Be aware that testing takes time -- possibly as much time as "the rest" of the work you do for data analysis.
+
+## Packages used
+
+In addition to `tidyverse`, `here` and `kableExtra` we've used the following packages
+
+* `janitor` for `clean_names` and to remove columns of purely missing data
+* `naniar` to summarize missing data
+* `pointblank` to make more detailed reports on data tables
+* `dlookr` to summarize data
+* `DT` for table formatting
 
 ## Further reading
 
