@@ -211,6 +211,8 @@ tibble
 ggplot2
 tidyverse
 DT
+dlookr
+pointblank
 naniar
 janitor
 here
@@ -238,13 +240,11 @@ tidyr
 tibble
 ggplot2
 tidyverse
-rmapshaper
 geojsonio
-sf
 patchwork
 mapproj
 maps
-ggmap
+sf
 lubridate
 forcats
 stringr
@@ -256,6 +256,7 @@ tibble
 ggplot2
 tidyverse
 geojsonio
+osmdata
 ggmap
 leaflet
 lubridate

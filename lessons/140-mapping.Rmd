@@ -2,9 +2,11 @@
 
 ```{r include=FALSE}
 library(tidyverse)
+library(sf) # for st_read, st_as_sf
 # library(ggmap)
 library(mapproj)
 library(patchwork)
+library(geojsonio)
 # library(leaflet)
 ```
 
@@ -296,6 +298,7 @@ ggplot() +
   scale_x_continuous(breaks = seq(-160, 0, 10)) +
   scale_y_continuous(breaks = seq(40, 85, 5))
 ```
+
 ## Summary
 
 Map making is complex for at least two reasons: obtaining the data to describe complex political boundaries and using suitable projections for your data. This lesson introduced you to some simple solutions to both problems and gave a starting point for learning more about the complexity of making customized maps.
@@ -305,7 +308,7 @@ Map making is complex for at least two reasons: obtaining the data to describe c
 In addition to `tidyverse` which has ggplot and the `geom_map` function, I've used
 
 * `mapproj` for map projections
-* `sf` for working with "simple features", meaning points, lines, regions and other features to draw on maps
+* `sf` for working with "simple features", meaning points, lines, regions and other features to draw on maps, e.g., functions `st_read`, `st_as_sf`
 * `geojsonio` for working with some map data you might find on the internet
 * `RColorBrewer` for making colour scales; more on this in a later lesson
 * `rmapshaper`
