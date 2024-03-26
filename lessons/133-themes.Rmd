@@ -134,6 +134,14 @@ p1 + geom_richtext(mapping = aes(x = x, y = y, label = label,
                    color = "black")
 ```
 
+## Packages used
+
+In addition to the `tidyverse` and `palmerpenguins` packages, in this lesson I've used functions from 
+
+* `glue`
+* `ggthemes`
+* `ggtext`
+
 
 ## Further reading
 

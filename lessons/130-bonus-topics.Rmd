@@ -6,9 +6,13 @@ library(tidyverse)
 library(stringr)
 library(lubridate)
 library(kableExtra)
+library(unglue)
+library(glue)
 ```
 
 In this lesson I'll show you how to work with the most common non-numeric data. Text (called [strings](https://en.wikipedia.org/wiki/String_(computer_science))) is composed of a sequence of characters (letters plus spaces, numbers, punctuation, emoij, and other symbols) that is not interpreted by R. In data visualization and statistics, strings can be interpreted as [categorical data](https://en.wikipedia.org/wiki/Categorical_variable) which usually means that there is a mapping from a set of text strings to natural numbers. The categories can be considered as ordered or unordered; when they are unordered, R usually arranges them in alphabetical order. Dates and times have familiar purposes in natural language, but there are many ways to represent them. Working with dates and times in computing is surprisingly complicated.
+
+There are an almost limitless number of tasks to perform with strings, factors, and dates or times. I will show you some of the manipulations I find most useful when visualizing data.
 
 ## Working with text
 
@@ -47,8 +51,8 @@ str_remove_all(my_string2, "[ ,\\.!]")
 ```{r warning=FALSE}
 text_and_numbers <- tibble( text = c("Andrew", "33", "12.45", 
                                      "-1.00", "Inf"))
-text_and_numbers %>% mutate(numbers = as.numeric(text), 
-                            integers = as.integer(text)) %>% kable()
+text_and_numbers |> mutate(numbers = as.numeric(text), 
+                            integers = as.integer(text)) |> kable()
 ```
 
 
@@ -77,7 +81,7 @@ my_strings1 <- tibble(greeting = c("My name is Andrew.",
 unglue_unnest(my_strings1, 
               greeting, 
               "My name is {name}.", 
-              remove=FALSE) %>% kable()
+              remove=FALSE) |> kable()
 ```
 
 ## Working with factors
@@ -89,7 +93,7 @@ The [forcats](https://forcats.tidyverse.org/) package has a series of functions 
 Here are a few examples using the `mpg` data set. First a visualization without any explicit reordering of factors. Notice the factors on the vertical axis are arranged alphabetically with the first one at the bottom of the axis (the order follows the usual increase along the y-axis since the factors are interpreted as the numbers 1, 2, 3, ... on the visualization.)
 
 ```{r}
-mpg %>% ggplot(aes(x = cty,
+mpg |> ggplot(aes(x = cty,
                    y = trans)) +
   geom_boxplot()
 ```
@@ -97,7 +101,7 @@ mpg %>% ggplot(aes(x = cty,
 Next we reorder the transmission categorical variable according to the minimum value of highway fuel economy. The three arguments to `fct_reorder` are the categorical variable to be reordered, the quantitative variable to use for the reordering, and a function that converts a vector of numbers to a single value for sorting (such as mean, median, min, max, length). The smallest value is plotted on the left of the horizontal axis or the bottom of the vertical axis. The option `.desc=TRUE` (descending = TRUE) is an easy way to reverse the order of factors and is especially useful for the vertical axis.
 
 ```{r}
-mpg %>% ggplot(aes(x = cty,
+mpg |> ggplot(aes(x = cty,
                    y = fct_reorder(trans, hwy, median, .desc=TRUE))) +
   geom_boxplot() 
 ```
@@ -106,14 +110,14 @@ You should to practice working with strings and factors to develop flexible meth
 
 Next we extract the number of gears from the transmission and reorder transmission on this basis.
 
-FIX ME
-
 ```{r}
-mpg %>% unglue_unnest(trans, "{trans_desc}({trans_code})", 
-                      remove=FALSE)  %>%
-  mutate(gears = str_extract(trans_code, "[0-9]") %>% as.numeric()) %>%
+mpg |> unglue_unnest(trans, "{trans_desc}({trans_code})", 
+                      remove=FALSE)  |>
+  mutate(gears = str_extract(trans_code, "[0-9]") |> as.numeric()) |>
+  filter(!is.na(gears)) |>
   ggplot(aes(x = cty,
-             # y = fct_reorder(trans, gears)
+             y = fct_reorder(trans_code, gears),
+             fill = factor(gears)
              )) +
   geom_boxplot() 
 ```
@@ -121,10 +125,11 @@ mpg %>% unglue_unnest(trans, "{trans_desc}({trans_code})",
 When there are too many cateogories to display on a graph, it can be helpful to pick out the ones with the most observations and to group the remaining observations together in an "other" category. Here's how you can accomplish that.
 
 ```{r}
-mpg %>% 
+mpg |> 
   ggplot(aes(x = cty,
-             y = fct_lump(trans, 4))) +
-  geom_boxplot() 
+             y = trans |> fct_lump(4) |> fct_rev() )) +
+  geom_boxplot() + 
+  labs(y = "Transmission (minor categories grouped together)")
 ```
 
 You can also use this function to keep the rare categories and lump the common ones, or group all categories appearing more or less often that some proportion of all observations. See the help for this function for details.
@@ -151,7 +156,7 @@ There are a family of functions `ymd`, `dmy`, `mdy`, and `ymd_hms` among others 
 dt1 <- tibble(text_date = c("1999-01-31", "2000-02-28", "2010-06-28",
                             "2024-03-14", "2021-02-29"),
              date = ymd(text_date))
-dt1 %>% kable()
+dt1 |> kable()
 ```
 
 Here is an example with times. You can specify a [time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) if you want, but sometimes you can get away with ignoring the problem. Here the timezone information tells the computer how to interpret the text representation of the time.
@@ -161,7 +166,7 @@ dt2 <- tibble(text_date = c("1999-01-31 09:14", "2000-02-28 12:15",
                             "2010-06-28 23:45", 
                             "2024-03-14 07:00 AM", "2021-03-01 6:16 PM"),
              date_time = ymd_hm(text_date, tz="America/Halifax"))
-dt2 %>% kable()
+dt2 |> kable()
 ```
 
 These functions are remarkably powerful, for example they work on formats like this:
@@ -169,7 +174,7 @@ These functions are remarkably powerful, for example they work on formats like t
 ```{r}
 tibble(date = c("Jan 5, 1999", "Saturday May 16, 70", "8-8-88",
                "December 31/99", "Jan 1, 01"),
-      decoded = mdy(date)) %>% kable()
+      decoded = mdy(date)) |> kable()
 ```
 
 As many people working in the [late 20th century](https://en.wikipedia.org/wiki/Year_2000_problem) discovered, 
@@ -178,7 +183,7 @@ you should be very careful with two digit years. Best not to use them.
 If you want to know how much time has passed since the earliest observation in a dataset, you can do arithmetic. Note the data types of each column (chr = character, date, time, dbl = double = numeric, drtn = duration).
 
 ```{r}
-dt1 %>% arrange(date) %>%
+dt1 |> arrange(date) |>
   mutate(elapsed = date - min(date, na.rm=TRUE),
          t_days = as.numeric(elapsed))
 ```
@@ -186,7 +191,7 @@ dt1 %>% arrange(date) %>%
 Let's add some random data to the second table and make a scatter graph. Special codes are used to format dates and times, but these are fairly well standardized (see the help for `strptime`).
 
 ```{r}
-dt2 %>% mutate(r = rnorm(n(), 20, 3)) %>%
+dt2 |> mutate(r = rnorm(n(), 20, 3)) |>
   ggplot(aes(x = date_time, y = r)) + 
   geom_point() +
   scale_x_datetime(date_labels = "%Y\n%b-%d")
@@ -218,14 +223,14 @@ When we use functions that turn a vector into a single number (mean, min, median
 
 ```{r}
 dt3 <- tibble(x = c(1, 5, 9, 14.5, NA, 21, NA))
-dt3 %>% summarize(mean_with_NA = mean(x),
+dt3 |> summarize(mean_with_NA = mean(x),
                   mean_no_NA = mean(x, na.rm = TRUE))
 ```
 
 If you want to know the number of observations, non-missing or missing data, use `n` or the idiom `sum(!is.na(...))` and `sum(is.na(...))` The exclamation mark (!, sometimes called [bang](https://en.wikipedia.org/wiki/Exclamation_mark)) means logical not so `!is.na` means not missing.
 
 ```{r}
-dt3 %>% summarize(n_with_NA = n(),
+dt3 |> summarize(n_with_NA = n(),
                   n_no_NA = sum(!is.na(x)),
                   n_is_NA = sum(is.na(x)))
 ```
@@ -233,7 +238,7 @@ dt3 %>% summarize(n_with_NA = n(),
 There are special functions `n_missing`, `n_complete` and more in the `skimr` package but I sometimes forget these and use the `sum(...)` calculations above.
 
 ```{r}
-dt3 %>% summarize(n_with_NA = n(),
+dt3 |> summarize(n_with_NA = n(),
                   n_no_NA = skimr::n_complete(x),
                   n_is_NA = skimr::n_missing(x))
 ```
@@ -243,6 +248,19 @@ If you have missing data in one or more columns and want to remove all observati
 ```{r}
 na.omit(dt3)
 ```
+
+## Packages
+
+The string and date/time manipulation functions are part of the tidyverse. A full list of tidyverse packages is
+
+```{r}
+tidyverse_packages() |> cat(sep = ", ")
+```
+
+In addition I have used functions from the following packages
+
+* `glue`
+* `unglue`
 
 ## Further reading
 

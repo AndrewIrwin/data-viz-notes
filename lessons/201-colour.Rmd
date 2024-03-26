@@ -183,6 +183,14 @@ Color is most useful
 Avoid using more than 5 colours. It is hard to make quantitative comparisons between two colours. There are lots of tools to help you select colour palettes that work together well. The `viridis` and `RColorBrewer` palettes are often good choices.
 
 
+## Packages used
+
+In addition to the `tidyverse` and `palmerpenguins` packages, in this lesson I've used functions from 
+
+* `ggthemes`
+* `paletteer`
+* `RColorBrewer`
+
 
 ## Suggested reading
 
