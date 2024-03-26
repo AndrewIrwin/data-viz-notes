@@ -282,8 +282,8 @@ tidyr
 tibble
 ggplot2
 tidyverse
-unglue
 glue
+unglue
 kableExtra
 lubridate
 forcats
