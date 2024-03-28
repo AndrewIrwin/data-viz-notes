@@ -6,6 +6,8 @@ date: "2024-02-20"
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(palmerpenguins)
 ```
 
 Throughout this course we have been using tidy data: every dataset is a table organized
@@ -34,6 +36,63 @@ taken by students (and their grades or other registration data).
 In both of these cases, you can see that there are data sets that are independent of 
 each other (products and customers; students and courses) and very important relationships 
 between the two tables of data (products sold to customers, courses taken by students).
+
+To flesh out the examples a bit more, imagine you are describing a list of courses, a list of students, a timetable, and the registration records. You might create three data tables with the following data
+
+* Courses
+  * Course ID (STAT 2430)
+  * Course name (Data visualization)
+  * Prerequisites, Course description, etc.
+  
+* Students
+  * Student ID
+  * Student name
+  * Program of study, registration status, etc.
+  
+* Time table
+  * Course ID
+  * Year and Term
+  * Room number
+  * Maximum enrollment
+  * Class meeting times
+  
+* Registration data
+  * Course ID
+  * Student ID
+  * Year and Term
+  * Grade
+
+Notice that the variables Student ID, Course ID, and Year and Term each appear in multiple tables and will be used to connect the data from different tables together. All of the data could be in a single table, with every row having a student, course, and time; but you'd need to have a lot of duplicated information. Some tasks like preparing the timetable wouldn't fit in to a single table well since there would be no students registered when the course was first created. Having four separate tables is a much more convenient way to represent these data.
+
+Another example is a list of books, authors, publishers, and libraries that bought the book:
+
+* Books
+  * Book ID number (e.g., [ISBN](https://en.wikipedia.org/wiki/ISBN))
+  * Book title
+  * Publisher
+  * Publication date
+  * Author list (using ID numbers -- no practical ID system exists for book authors)
+  
+* Authors
+  * Author name
+  * Author ID
+  
+* Publisher
+  * Publisher name
+  * Publisher address, website, other contact information
+  * Publisher ID (The first few digits of an ISBN identify the publisher; the remaining digits identify a specific book)
+  
+* Library
+  * Library name
+  * Book ID of purchased books
+  * Is book in library, or checked out
+  * Last date the book was checked out
+
+Incidentally, a similar database structure would work for academic research articles. In the last few years, an international standard for author ID numbers ([ORCID](https://en.wikipedia.org/wiki/ORCID)) has been developed to facilitate this sort of database construction.
+
+Each of these data structures is more complicated than the simple tables that we have used in this course. Generally managing these sort of data is done with a relational database. Software for relational databases provides ways to combine data from different tables together ("join" the data) and validate data to be sure for example that a book is only created using valid author and publisher IDs. R has tools for working with many different databases and their software. Fortunately databases are standardized enough that many of the common functions are available using a common syntax and this matches the `dplyr` tools we have been using nearly perfectly.
+
+### Example with airline flight data
 
 Here we will work with data on flights in and out of New York City, in a database.
 There are five separate tables: airlines, airports, planes, flights, and weather.
@@ -82,14 +141,14 @@ flights_ev_msp <- flights |> filter(carrier == "EV", dest == "MSP")
 We can get all the Embrarer airplanes:
 
 ```{r}
-planes |> filter(substr(model, 1, 3) == "EMB")
+airplanes |> filter(substr(model, 1, 3) == "EMB") |> DT::datatable()
 ```
 
 Then we will use a join to get all the flights on one of these planes.
 
 ```{r}
 inner_join(
-  planes |> filter(substr(model, 1, 3) == "EMB"),
+  airplanes |> filter(substr(model, 1, 3) == "EMB"),
   flights_ev_msp,
   by = "tailnum"
 )
@@ -98,31 +157,239 @@ inner_join(
 
 ## Irregular data
 
-
 You can download data from online accounts from many services. For example, Spotify will prepare a zip file of the
-music and podcasts you have listened to over the past year (or longer),
+music and podcasts you have listened to over the past year (or longer), with the correct authentication Google will 
+provide data in a structured format. A widely used format for data that is not strictly a table is JavaScript Object
+Notation (JSON). The R package `jsonlite` can convert data tables to and from this format.
 
-JSON
-- e.g. Spotify data
+
+Here is a relatively short, but complex example (see [this page](https://jsoneditoronline.org/indepth/datasets/json-file-example/) for more examples):
+
+```{r}
+json_example <- '[{
+  "name": "Chris",
+  "age": 23,
+  "address": {
+    "city": "New York",
+    "country": "America"
+  },
+  "friends": [
+    {
+      "name": "Emily",
+      "hobbies": [ "biking", "music", "gaming" ]
+    },
+    {
+      "name": "John",
+      "hobbies": [ "soccer", "gaming" ]
+    }
+  ]
+}]'
+jsonExample <- fromJSON(json_example)
+jsonExample
+flatten(jsonExample)
+jsonExample$friends[[1]]
+```
+
+Take a look at the list of repositories for a user on GitHub, for example, [Hadley Wickham](https://github.com/hadley?tab=repositories). 
+As I write, this query gives a list of 356 repositories with lots of metadata including short and full names for repositories, a description, and lots more.
+Some of these data, for example, data about the user associated with each repository are tables in their own right. One way to structure this data would be using 
+a set of tables and a relational database. The approach used here with JSON is to nest one table inside another. 
+
+How are nested tables managed in R data tables? The column of a data table can be, as we've seen, text, a number, or a date. It can also be another table. What we do below is [read the JSON text](https://api.github.com/users/hadley/repos) (follow the link
+to see the text format of this data) and then convert it into a table, including nested tables. GitHub just gives the first 30 results; this is common with web or database queries where the number of results could be large. You need to ask for more data using the language of the GitHub API if you want it. When you display the main table, the embedded table appears with prefix in the name (columns named `owner.XXX`).
+
 
 ```{r}
 library(jsonlite)
-# sp0 <- read_json("~/Dropbox/Spotify Account Data/StreamingHistory_music_0.json")
-spotify0 <- fromJSON("~/Dropbox/Spotify Account Data/StreamingHistory_music_0.json", flatten = TRUE)
-spotify1 <- fromJSON("~/Dropbox/Spotify Account Data/StreamingHistory_music_1.json", flatten = TRUE)
-spotify2 <- fromJSON("~/Dropbox/Spotify Account Data/StreamingHistory_music_2.json", flatten = TRUE)
-spotify <- bind_rows(spotify0, spotify1, spotify2)
-spotify |> count(trackName) |> arrange(-n)
-spotify |> group_by(trackName) |> summarize(time = sum(msPlayed)/1000/3600) |> arrange(-time)
-spotify |> mutate(time = ymd_hm(endTime)) |>
-  summarize(min_date = min(time), max_date = max(time))
-spotify |> mutate(time = ymd_hm(endTime), jd = yday(time)) |>
-  group_by(jd) |>
-  summarize(duration = sum(msPlayed)/1000/86400) |>
-  ggplot(aes(jd, duration)) + geom_line() + theme_bw()
-
+data2 <- fromJSON("https://api.github.com/users/hadley/repos")
+names(data2)
+names(data2$owner)
+names(data2$license)
 ```
 
+You can get the type of each column using `typeof` and `sapply`; a column of type list in this example means that column is made of up of tables.
+
+```{r}
+sapply(data2, typeof)
+# data2  |> select(where(function(x) typeof(x) == "list")) # to select list columns
+```
+
+If you don't want to deal with the nested table, you can flatten it into a regular table. The new columns appear at the right side.
+
+```{r}
+flatten(data2)
+```
+
+
+
+## Beyond CSV
+
+Problems: speed, data types, and other metadata.
+
+Parquet, Arrow
+
+### Frictionless metadata for tables
+
+Fictionless data package example using palmerpenguins::penguins
+
+```{r}
+# remotes::install_github("frictionlessdata/frictionless-r")
+library(frictionless)  
+# library(datapackage.r)  # for packages
+# remotes::install_github("https://github.com/frictionlessdata/datapackage-r")
+
+schema1 <- create_schema(penguins)
+schema2 <- create_schema(penguins_raw)
+package <- create_package()
+# filename and column names must contain only lower case letters, -, _, .
+# package <- add_resource(package, data = count_data, schema1)
+package <- add_resource(package, resource_name = "penguins", 
+                       data = "static/L160/penguins.csv", schema = schema1)
+package <- add_resource(package, resource_name = "penguins_raw", 
+                       data = "static/L160/penguins_raw.csv", schema = schema2)
+
+# add metadata to package
+package$resources[[1]]$schema$missingValues = list('', 'NA')
+package$resources[[2]]$schema$missingValues = list('', 'NA')
+package <- append(package, c(name = "palmerpenguins"), after = 0)
+package <- append(package, c(title = "Data about penguins from Palmer Station, Antarctica"), after = 1)
+package <- append(package, c(citation = "Horst, A and Kristen XX. XXX." ), after = 2)
+
+write_package(package, "static/L160/penguins-data-tables")
+```
+
+### CSVW
+
+The W3C’s CSV on the Web Working Group produced a series of recommendations for working with tabular data on the web.
+
+Read and write csv tables annotated with metadata according to the “CSV on the Web” standard (CSVW).
+
+The csvwr library implements parts of this standard in R. The overall goal of the project is to support reading and writing of annotated CSV tables, in order to ensure consistent processing and reduce the amount of manual work needed to parse and prepare data before it can be used in analysis.
+
+Practically speaking, you annotate a csv file by providing an accompanying json document containing the metadata. We benefit from annotating tables with csvw benefit because:
+
+the csv dialect (i.e. the choice of field separator or quoting characters) is explicitly defined, helping to avoid parsing mistakes
+columns can be given syntactically-valid variable names (while retaining human-readable labels for display)
+cell types are declared, obviating the need to e.g. parse dates (and figure-out formatting strings)
+
+
+```{r}
+library(csvwr)
+# Given a data frame (saved as a csv)
+write_csv(penguins, "static/L160/penguins-data.csv")
+
+# Derive a schema
+schema <- derive_table_schema(penguins)
+schema # Automatically generated; you can improve this information!
+
+# Create metadata (as a list)
+m <- create_metadata(tables=list(list(url="static/L160/penguins-data.csv", tableSchema=schema)))
+
+# Serialise the metadata to JSON
+j <- jsonlite::toJSON(m)
+
+# Write the json to a file
+cat(j, file="static/L160/penguins-metadata.json")
+```
+
+Read the data from the files
+
+```{r}
+csvw <- read_csvw_dataframe("static/L160/penguins-data.csv", "static/penguins-metadata.json")
+```
+
+### Data format examples
+
+A file with 1 million floating point numbers takes this much storage on disk
+* csv: 18.4 MB  # this format takes the most space on disk, does not contain data type information
+* csv.gz: 8.5 MB
+* SQLite: 9.3 MB 
+* parquet: 6.9 MB # fast to manipulate on disk, can accommodate very large data 
+* feather: 5.5 MB
+
+```{r}
+library(arrow) # for parquet and arrow format files
+library(RSQLite)
+library(dplyr)
+library(dbplyr)
+
+df <- matrix(runif(1000000), 100000, 10) 
+df <- df |> as_tibble()
+names(df) <- letters[1:10]
+
+# parquet compresses data on columns, try the nycflights13 data with 6.4m "entries" (336,776 observations of 19 variables)
+# 4.8 MB parquet, 9.9 MV feather, 29.6 MB csv, 7.9 MB csv.gz, 21.1 MB SQLite
+# df <- nycflights13::flights
+
+write_parquet(df, "static/L160/test.gz.parquet", compression="gzip")
+write_feather(df, "static/L160/test.feather", version=2, compression = "zstd") # lz4, zstd, uncompressed
+write_csv(df, "static/L160/test.csv")
+write_csv(df, "static/L160/test.csv.gz")
+
+con <- dbConnect(SQLite(), "static/L160/test.sqlite")
+# dbRemoveTable(con, "df")
+dbWriteTable(con, "df", df, overwrite=TRUE)
+dbDisconnect(con)
+
+# relative speeds:
+# parquet: 1.4, SQLite = 1.6, fst = 1.0, csv = 3.5, duckdb = 4.1, rds = 13 (to uncompress from xz)
+# SQLite is ~30% slower than Parquet
+#       test replications elapsed relative user.self sys.self user.child sys.child
+# 3     csv          100  14.305    3.794    57.823    4.076          0         0
+# 4     fst          100   3.770    1.000     3.309    0.462          0         0
+# 1 parquet          100   5.278    1.400    10.124    0.432          0         0
+# 5     rds          100  47.858   12.694    47.434    0.502          0         0
+# 2  sqlite          100   6.850    1.817     6.493    0.365          0         0
+```
+
+Read files 
+
+```{r}
+sw <- read_csv("static/L160/test.csv.gz", show_col_types = FALSE)
+sw <- read_csv("static/L160/test.csv", show_col_types = FALSE)
+sw <- read_parquet("static/L160/test.gz.parquet")
+sw <- read_feather("static/L160/test.feather")
+
+con <- dbConnect(SQLite(), "static/L160/test.sqlite")
+sw <- tbl(con, "df")
+```
+
+Do a calculation
+
+```{r}
+sw |> filter(a < 0.1, f > 0.9) |>
+   select(b, c) |>
+   summarize(mean_b = mean(b),
+             mean_c = mean(c))
+```
+
+Close SQLite database
+
+```{r}
+dbDisconnect(con)
+```
+
+Remove files to clean up
+
+```{r}
+unlink("static/L160/test.gz.parquet")
+unlink("static/L160/test.feather")
+unlink("static/L160/test.csv")
+unlink("static/L160/test.csv.gz")
+unlink("static/L160/test.sqlite")
+```
+
+
+## Packages used
+
+## References
+
+* For more on Frictionless data packages, see its [GitHub page](https://github.com/frictionlessdata/frictionless-r) or doi [10.5281/zenodo.5815355](https://doi.org/10.5281/zenodo.5815355)
+* A second, more elaborate package to create Frictionless data is the [datapackage](https://github.com/frictionlessdata/datapackage-r) tool
+* Another approach to improving CSV files is the CSV on the Web (CSVW) r package: [CSVWR](https://robsteranium.github.io/csvwr/)
+* The R4DS chapters on [databases](https://r4ds.hadley.nz/databases), [arrow format](https://r4ds.hadley.nz/arrow), and [hierarchical data](https://r4ds.hadley.nz/rectangling). In particular the chapter on hierarchical data has advice on working with JSON files.
+* More a more detailed approach to metadata, see [Dataspice](https://annakrystalli.me/rrresearchACCE20/dataspice.html)
+* Yet another approach to metadata is implemented by the [yamlet](https://cran.r-project.org/web/packages/yamlet/vignettes/yamlet-introduction.html) package
 
 ## Other data formats
 
