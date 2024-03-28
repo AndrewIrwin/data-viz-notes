@@ -6,6 +6,8 @@ date: "2024-02-20"
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(palmerpenguins)
 ```
 
 Throughout this course we have been using tidy data: every dataset is a table organized
@@ -124,4 +126,170 @@ spotify |> mutate(time = ymd_hm(endTime), jd = yday(time)) |>
 ```
 
 
+## Beyond CSV
+
+Problems: speed, data types, and other metadata.
+
+Parquet, Arrow
+
+### Frictionless metadata for tables
+
+Fictionless data package example using palmerpenguins::penguins
+
+```{r}
+# remotes::install_github("frictionlessdata/frictionless-r")
+library(frictionless)  
+# library(datapackage.r)  # for packages
+# remotes::install_github("https://github.com/frictionlessdata/datapackage-r")
+
+schema1 <- create_schema(penguins)
+schema2 <- create_schema(penguins_raw)
+package <- create_package()
+# filename and column names must contain only lower case letters, -, _, .
+# package <- add_resource(package, data = count_data, schema1)
+package <- add_resource(package, resource_name = "penguins", 
+                       data = "static/L160/penguins.csv", schema = schema1)
+package <- add_resource(package, resource_name = "penguins_raw", 
+                       data = "static/L160/penguins_raw.csv", schema = schema2)
+
+# add metadata to package
+package$resources[[1]]$schema$missingValues = list('', 'NA')
+package$resources[[2]]$schema$missingValues = list('', 'NA')
+package <- append(package, c(name = "palmerpenguins"), after = 0)
+package <- append(package, c(title = "Data about penguins from Palmer Station, Antarctica"), after = 1)
+package <- append(package, c(citation = "Horst, A and Kristen XX. XXX." ), after = 2)
+
+write_package(package, "static/L160/penguins-data-tables")
+```
+
+### CSVW
+
+The W3C’s CSV on the Web Working Group produced a series of recommendations for working with tabular data on the web.
+
+Read and write csv tables annotated with metadata according to the “CSV on the Web” standard (CSVW).
+
+The csvwr library implements parts of this standard in R. The overall goal of the project is to support reading and writing of annotated CSV tables, in order to ensure consistent processing and reduce the amount of manual work needed to parse and prepare data before it can be used in analysis.
+
+Practically speaking, you annotate a csv file by providing an accompanying json document containing the metadata. We benefit from annotating tables with csvw benefit because:
+
+the csv dialect (i.e. the choice of field separator or quoting characters) is explicitly defined, helping to avoid parsing mistakes
+columns can be given syntactically-valid variable names (while retaining human-readable labels for display)
+cell types are declared, obviating the need to e.g. parse dates (and figure-out formatting strings)
+
+
+```{r}
+library(csvwr)
+# Given a data frame (saved as a csv)
+write_csv(penguins, "static/L160/penguins-data.csv")
+
+# Derive a schema
+schema <- derive_table_schema(penguins)
+schema # Automatically generated; you can improve this information!
+
+# Create metadata (as a list)
+m <- create_metadata(tables=list(list(url="static/L160/penguins-data.csv", tableSchema=schema)))
+
+# Serialise the metadata to JSON
+j <- jsonlite::toJSON(m)
+
+# Write the json to a file
+cat(j, file="static/L160/penguins-metadata.json")
+```
+
+Read the data from the files
+
+```{r}
+csvw <- read_csvw_dataframe("static/L160/penguins-data.csv", "static/penguins-metadata.json")
+```
+
+### Data format examples
+
+A file with 1 million floating point numbers takes this much storage on disk
+* csv: 18.4 MB  # this format takes the most space on disk, does not contain data type information
+* csv.gz: 8.5 MB
+* SQLite: 9.3 MB 
+* parquet: 6.9 MB # fast to manipulate on disk, can accommodate very large data 
+* feather: 5.5 MB
+
+```{r}
+library(arrow) # for parquet and arrow format files
+library(RSQLite)
+library(dplyr)
+library(dbplyr)
+
+df <- matrix(runif(1000000), 100000, 10) 
+df <- df |> as_tibble()
+names(df) <- letters[1:10]
+
+# parquet compresses data on columns, try the nycflights13 data with 6.4m "entries" (336,776 observations of 19 variables)
+# 4.8 MB parquet, 9.9 MV feather, 29.6 MB csv, 7.9 MB csv.gz, 21.1 MB SQLite
+# df <- nycflights13::flights
+
+write_parquet(df, "static/L160/test.gz.parquet", compression="gzip")
+write_feather(df, "static/L160/test.feather", version=2, compression = "zstd") # lz4, zstd, uncompressed
+write_csv(df, "static/L160/test.csv")
+write_csv(df, "static/L160/test.csv.gz")
+
+con <- dbConnect(SQLite(), "static/L160/test.sqlite")
+# dbRemoveTable(con, "df")
+dbWriteTable(con, "df", df, overwrite=TRUE)
+dbDisconnect(con)
+
+# relative speeds:
+# parquet: 1.4, SQLite = 1.6, fst = 1.0, csv = 3.5, duckdb = 4.1, rds = 13 (to uncompress from xz)
+# SQLite is ~30% slower than Parquet
+#       test replications elapsed relative user.self sys.self user.child sys.child
+# 3     csv          100  14.305    3.794    57.823    4.076          0         0
+# 4     fst          100   3.770    1.000     3.309    0.462          0         0
+# 1 parquet          100   5.278    1.400    10.124    0.432          0         0
+# 5     rds          100  47.858   12.694    47.434    0.502          0         0
+# 2  sqlite          100   6.850    1.817     6.493    0.365          0         0
+```
+
+Read files 
+
+```{r}
+sw <- read_csv("static/L160/test.csv.gz", show_col_types = FALSE)
+sw <- read_csv("static/L160/test.csv", show_col_types = FALSE)
+sw <- read_parquet("static/L160/test.gz.parquet")
+sw <- read_feather("static/L160/test.feather")
+
+con <- dbConnect(SQLite(), "static/L160/test.sqlite")
+sw <- tbl(con, "df")
+```
+
+Do a calculation
+
+```{r}
+sw |> filter(a < 0.1, f > 0.9) |>
+   select(b, c) |>
+   summarize(mean_b = mean(b),
+             mean_c = mean(c))
+```
+
+Close SQLite database
+
+```{r}
+dbDisconnect(con)
+```
+
+Remove files to clean up
+
+```{r}
+unlink("static/L160/test.gz.parquet")
+unlink("static/L160/test.feather")
+unlink("static/L160/test.csv")
+unlink("static/L160/test.csv.gz")
+unlink("static/L160/test.sqlite")
+```
+
+
+## Packages used
+
+## References
+
+* For more on Frictionless data packages, see its [GitHub page](https://github.com/frictionlessdata/frictionless-r) or doi [10.5281/zenodo.5815355](https://doi.org/10.5281/zenodo.5815355)
+* A second, more elaborate package to create Frictionless data is the [datapackage](https://github.com/frictionlessdata/datapackage-r) tool
+* Another approach to improving CSV files is the CSV on the Web (CSVW) r package: [CSVWR](https://robsteranium.github.io/csvwr/)
+* The R4DS chapters on [databases](https://r4ds.hadley.nz/databases), [arrow format](https://r4ds.hadley.nz/arrow), and [hierarchical data](https://r4ds.hadley.nz/rectangling). In particular the chapter on hierarchical data has advice on working with JSON files.
 
