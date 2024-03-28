@@ -124,4 +124,29 @@ spotify |> mutate(time = ymd_hm(endTime), jd = yday(time)) |>
 ```
 
 
+## Other data formats
+
+We have relied heavily on the comma separated value format in this course, both becuase
+it is a very commonly used format and because it is relatively easy to use.
+The CSV format has several drawbacks
+
+* the data type for each column is not usually described, so the computer software need to "guess" the data type or the human operator needs to describe it explicitly,
+* there are no standard conventions for variable names, beyond the fact that usually -- but not always -- the names are given on a single line,
+* if a text value in a column has a comma in it, then quotation marks are usually used to delinate the content of the column, but then special "escaping" notation is needed to include a quotation mark in text data, and these mechanisms are not always implemented well or correctly,
+* in some locales, a different separator is used (e.g., a semicolon or tab) and number formatting can differ (the decimal separator can be a period or a comma), and
+* large files are relatively slow to read compared to some other formats.
+
+Here I will introduce two alternative formats. The first is a binary format called [parquet](https://en.wikipedia.org/wiki/Apache_Parquet) made by the non-profit [Apache Software Foundation](https://en.wikipedia.org/wiki/The_Apache_Software_Foundation) (where the earliest popular web servers were developed). The second is a database format called [SQLite](https://en.wikipedia.org/wiki/SQLite) which is freely and widely available. It is the most widely used database software in the world and is an archival format [recommended](https://www.loc.gov/preservation/resources/rfs/data.html) by the US Library of Congress.
+Both are easy to use with R.
+
+## Packages used
+
+In addition to the tidyverse, in this lesson I have used 
+
+* `dbplyr` for using dplyr functions on databases ("db")
+* `nycflights13` for access to a relatively large dataset
+* `jsonlite` for working with JSON data
+* `arrow` for the parquet format
+* `RSQLite` for SQLite database creation and access
+
 
