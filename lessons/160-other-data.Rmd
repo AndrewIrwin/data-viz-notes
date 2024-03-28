@@ -37,6 +37,63 @@ In both of these cases, you can see that there are data sets that are independen
 each other (products and customers; students and courses) and very important relationships 
 between the two tables of data (products sold to customers, courses taken by students).
 
+To flesh out the examples a bit more, imagine you are describing a list of courses, a list of students, a timetable, and the registration records. You might create three data tables with the following data
+
+* Courses
+  * Course ID (STAT 2430)
+  * Course name (Data visualization)
+  * Prerequisites, Course description, etc.
+  
+* Students
+  * Student ID
+  * Student name
+  * Program of study, registration status, etc.
+  
+* Time table
+  * Course ID
+  * Year and Term
+  * Room number
+  * Maximum enrollment
+  * Class meeting times
+  
+* Registration data
+  * Course ID
+  * Student ID
+  * Year and Term
+  * Grade
+
+Notice that the variables Student ID, Course ID, and Year and Term each appear in multiple tables and will be used to connect the data from different tables together. All of the data could be in a single table, with every row having a student, course, and time; but you'd need to have a lot of duplicated information. Some tasks like preparing the timetable wouldn't fit in to a single table well since there would be no students registered when the course was first created. Having four separate tables is a much more convenient way to represent these data.
+
+Another example is a list of books, authors, publishers, and libraries that bought the book:
+
+* Books
+  * Book ID number (e.g., [ISBN](https://en.wikipedia.org/wiki/ISBN))
+  * Book title
+  * Publisher
+  * Publication date
+  * Author list (using ID numbers -- no practical ID system exists for book authors)
+  
+* Authors
+  * Author name
+  * Author ID
+  
+* Publisher
+  * Publisher name
+  * Publisher address, website, other contact information
+  * Publisher ID (The first few digits of an ISBN identify the publisher; the remaining digits identify a specific book)
+  
+* Library
+  * Library name
+  * Book ID of purchased books
+  * Is book in library, or checked out
+  * Last date the book was checked out
+
+Incidentally, a similar database structure would work for academic research articles. In the last few years, an international standard for author ID numbers ([ORCID](https://en.wikipedia.org/wiki/ORCID)) has been developed to facilitate this sort of database construction.
+
+Each of these data structures is more complicated than the simple tables that we have used in this course. Generally managing these sort of data is done with a relational database. Software for relational databases provides ways to combine data from different tables together ("join" the data) and validate data to be sure for example that a book is only created using valid author and publisher IDs. R has tools for working with many different databases and their software. Fortunately databases are standardized enough that many of the common functions are available using a common syntax and this matches the `dplyr` tools we have been using nearly perfectly.
+
+### Example with airline flight data
+
 Here we will work with data on flights in and out of New York City, in a database.
 There are five separate tables: airlines, airports, planes, flights, and weather.
 
@@ -84,14 +141,14 @@ flights_ev_msp <- flights |> filter(carrier == "EV", dest == "MSP")
 We can get all the Embrarer airplanes:
 
 ```{r}
-planes |> filter(substr(model, 1, 3) == "EMB")
+airplanes |> filter(substr(model, 1, 3) == "EMB") |> DT::datatable()
 ```
 
 Then we will use a join to get all the flights on one of these planes.
 
 ```{r}
 inner_join(
-  planes |> filter(substr(model, 1, 3) == "EMB"),
+  airplanes |> filter(substr(model, 1, 3) == "EMB"),
   flights_ev_msp,
   by = "tailnum"
 )
@@ -100,30 +157,69 @@ inner_join(
 
 ## Irregular data
 
-
 You can download data from online accounts from many services. For example, Spotify will prepare a zip file of the
-music and podcasts you have listened to over the past year (or longer),
+music and podcasts you have listened to over the past year (or longer), with the correct authentication Google will 
+provide data in a structured format. A widely used format for data that is not strictly a table is JavaScript Object
+Notation (JSON). The R package `jsonlite` can convert data tables to and from this format.
 
-JSON
-- e.g. Spotify data
+
+Here is a relatively short, but complex example (see [this page](https://jsoneditoronline.org/indepth/datasets/json-file-example/) for more examples):
+
+```{r}
+json_example <- '[{
+  "name": "Chris",
+  "age": 23,
+  "address": {
+    "city": "New York",
+    "country": "America"
+  },
+  "friends": [
+    {
+      "name": "Emily",
+      "hobbies": [ "biking", "music", "gaming" ]
+    },
+    {
+      "name": "John",
+      "hobbies": [ "soccer", "gaming" ]
+    }
+  ]
+}]'
+jsonExample <- fromJSON(json_example)
+jsonExample
+flatten(jsonExample)
+jsonExample$friends[[1]]
+```
+
+Take a look at the list of repositories for a user on GitHub, for example, [Hadley Wickham](https://github.com/hadley?tab=repositories). 
+As I write, this query gives a list of 356 repositories with lots of metadata including short and full names for repositories, a description, and lots more.
+Some of these data, for example, data about the user associated with each repository are tables in their own right. One way to structure this data would be using 
+a set of tables and a relational database. The approach used here with JSON is to nest one table inside another. 
+
+How are nested tables managed in R data tables? The column of a data table can be, as we've seen, text, a number, or a date. It can also be another table. What we do below is [read the JSON text](https://api.github.com/users/hadley/repos) (follow the link
+to see the text format of this data) and then convert it into a table, including nested tables. GitHub just gives the first 30 results; this is common with web or database queries where the number of results could be large. You need to ask for more data using the language of the GitHub API if you want it. When you display the main table, the embedded table appears with prefix in the name (columns named `owner.XXX`).
+
 
 ```{r}
 library(jsonlite)
-# sp0 <- read_json("~/Dropbox/Spotify Account Data/StreamingHistory_music_0.json")
-spotify0 <- fromJSON("~/Dropbox/Spotify Account Data/StreamingHistory_music_0.json", flatten = TRUE)
-spotify1 <- fromJSON("~/Dropbox/Spotify Account Data/StreamingHistory_music_1.json", flatten = TRUE)
-spotify2 <- fromJSON("~/Dropbox/Spotify Account Data/StreamingHistory_music_2.json", flatten = TRUE)
-spotify <- bind_rows(spotify0, spotify1, spotify2)
-spotify |> count(trackName) |> arrange(-n)
-spotify |> group_by(trackName) |> summarize(time = sum(msPlayed)/1000/3600) |> arrange(-time)
-spotify |> mutate(time = ymd_hm(endTime)) |>
-  summarize(min_date = min(time), max_date = max(time))
-spotify |> mutate(time = ymd_hm(endTime), jd = yday(time)) |>
-  group_by(jd) |>
-  summarize(duration = sum(msPlayed)/1000/86400) |>
-  ggplot(aes(jd, duration)) + geom_line() + theme_bw()
-
+data2 <- fromJSON("https://api.github.com/users/hadley/repos")
+names(data2)
+names(data2$owner)
+names(data2$license)
 ```
+
+You can get the type of each column using `typeof` and `sapply`; a column of type list in this example means that column is made of up of tables.
+
+```{r}
+sapply(data2, typeof)
+# data2  |> select(where(function(x) typeof(x) == "list")) # to select list columns
+```
+
+If you don't want to deal with the nested table, you can flatten it into a regular table. The new columns appear at the right side.
+
+```{r}
+flatten(data2)
+```
+
 
 
 ## Beyond CSV
@@ -292,4 +388,7 @@ unlink("static/L160/test.sqlite")
 * A second, more elaborate package to create Frictionless data is the [datapackage](https://github.com/frictionlessdata/datapackage-r) tool
 * Another approach to improving CSV files is the CSV on the Web (CSVW) r package: [CSVWR](https://robsteranium.github.io/csvwr/)
 * The R4DS chapters on [databases](https://r4ds.hadley.nz/databases), [arrow format](https://r4ds.hadley.nz/arrow), and [hierarchical data](https://r4ds.hadley.nz/rectangling). In particular the chapter on hierarchical data has advice on working with JSON files.
+* More a more detailed approach to metadata, see [Dataspice](https://annakrystalli.me/rrresearchACCE20/dataspice.html)
+* Yet another approach to metadata is implemented by the [yamlet](https://cran.r-project.org/web/packages/yamlet/vignettes/yamlet-introduction.html) package
+
 
