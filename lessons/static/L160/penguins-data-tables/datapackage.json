@@ -1,0 +1,149 @@
+{
+  "name": "palmerpenguins",
+  "title": "Data about penguins from Palmer Station, Antarctica",
+  "citation": "Horst, A. and Gorman, K. Palmer Penguins Data. https://doi.org/10.5281/zenodo.3960218",
+  "profile": "tabular-data-package",
+  "resources": [
+    {
+      "name": "penguins",
+      "path": "penguins.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "UTF-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "species",
+            "type": "string",
+            "constraints": {
+              "enum": ["Adelie", "Chinstrap", "Gentoo"]
+            }
+          },
+          {
+            "name": "island",
+            "type": "string",
+            "constraints": {
+              "enum": ["Biscoe", "Dream", "Torgersen"]
+            }
+          },
+          {
+            "name": "bill_length_mm",
+            "type": "number"
+          },
+          {
+            "name": "bill_depth_mm",
+            "type": "number"
+          },
+          {
+            "name": "flipper_length_mm",
+            "type": "integer"
+          },
+          {
+            "name": "body_mass_g",
+            "type": "integer"
+          },
+          {
+            "name": "sex",
+            "type": "string",
+            "constraints": {
+              "enum": ["female", "male"]
+            }
+          },
+          {
+            "name": "year",
+            "type": "integer"
+          }
+        ],
+        "missingValues": [
+          "",
+          "NA"
+        ]
+      }
+    },
+    {
+      "name": "penguins_raw",
+      "path": "penguins_raw.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "UTF-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "studyName",
+            "type": "string"
+          },
+          {
+            "name": "Sample Number",
+            "type": "number"
+          },
+          {
+            "name": "Species",
+            "type": "string"
+          },
+          {
+            "name": "Region",
+            "type": "string"
+          },
+          {
+            "name": "Island",
+            "type": "string"
+          },
+          {
+            "name": "Stage",
+            "type": "string"
+          },
+          {
+            "name": "Individual ID",
+            "type": "string"
+          },
+          {
+            "name": "Clutch Completion",
+            "type": "string"
+          },
+          {
+            "name": "Date Egg",
+            "type": "date"
+          },
+          {
+            "name": "Culmen Length (mm)",
+            "type": "number"
+          },
+          {
+            "name": "Culmen Depth (mm)",
+            "type": "number"
+          },
+          {
+            "name": "Flipper Length (mm)",
+            "type": "number"
+          },
+          {
+            "name": "Body Mass (g)",
+            "type": "number"
+          },
+          {
+            "name": "Sex",
+            "type": "string"
+          },
+          {
+            "name": "Delta 15 N (o/oo)",
+            "type": "number"
+          },
+          {
+            "name": "Delta 13 C (o/oo)",
+            "type": "number"
+          },
+          {
+            "name": "Comments",
+            "type": "string"
+          }
+        ],
+        "missingValues": [
+          "",
+          "NA"
+        ]
+      }
+    }
+  ]
+}
