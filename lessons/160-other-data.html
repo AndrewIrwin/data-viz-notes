@@ -4,7 +4,6 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2024-02-20">
 <title>Data Visualization notes - 33&nbsp; Beyond tidy data</title>
 <style>
 code{white-space: pre-wrap;}
@@ -412,12 +411,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">February 20, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -512,55 +505,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Here we will work with data on flights in and out of New York City, in a database. There are five separate tables: airlines, airports, planes, flights, and weather.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbplyr.tidyverse.org/">dbplyr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'dbplyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:dplyr':
-
-    ident, sql</code></pre>
-</div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/nycflights13">nycflights13</a></span><span class="op">)</span></span>
-<span><span class="va">nyc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbplyr.tidyverse.org/reference/nycflights13.html">nycflights13_sqlite</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Caching nycflights db at /var/folders/nr/n31pl_p95tq7w0p_6pgv_t4h0000gn/T//RtmprT38z5/nycflights13.sqlite</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Creating table: airlines</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Creating table: airports</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Creating table: flights</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Creating table: planes</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Creating table: weather</code></pre>
-</div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">airlines</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">nyc</span>, <span class="st">"airlines"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbplyr.tidyverse.org/">dbplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/nycflights13">nycflights13</a></span><span class="op">)</span></span>
+<span><span class="va">nyc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbplyr.tidyverse.org/reference/nycflights13.html">nycflights13_sqlite</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">airlines</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">nyc</span>, <span class="st">"airlines"</span><span class="op">)</span></span>
 <span><span class="va">airports</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">nyc</span>, <span class="st">"airports"</span><span class="op">)</span></span>
 <span><span class="va">airplanes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">nyc</span>, <span class="st">"planes"</span><span class="op">)</span></span>
 <span><span class="va">flights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">nyc</span>, <span class="st">"flights"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Take a few minutes to familiarize yourself with each of these tables. You’ll notice that they are not like normal tables (or tibbles) in R. The number of rows is unknown (reported as ??). This is because the data are not read into R; you simply have access to them to make queries (using dplyr, which is translated into SQL for you.) This is convenient because there are 16 airlines, 3322 airplanes, 1458 airports, and 336,776 flights.</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">airports</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">airports</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   SQL [1 x 1]
-# Database: sqlite 3.44.2 [/var/folders/nr/n31pl_p95tq7w0p_6pgv_t4h0000gn/T//RtmprT38z5/nycflights13.sqlite]
+# Database: sqlite 3.44.2 [/var/folders/nr/n31pl_p95tq7w0p_6pgv_t4h0000gn/T//RtmpLfrVfV/nycflights13.sqlite]
       n
   &lt;int&gt;
 1  1458</code></pre>
 </div>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">flights</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">flights</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   SQL [1 x 1]
-# Database: sqlite 3.44.2 [/var/folders/nr/n31pl_p95tq7w0p_6pgv_t4h0000gn/T//RtmprT38z5/nycflights13.sqlite]
+# Database: sqlite 3.44.2 [/var/folders/nr/n31pl_p95tq7w0p_6pgv_t4h0000gn/T//RtmpLfrVfV/nycflights13.sqlite]
        n
    &lt;int&gt;
 1 336776</code></pre>
@@ -576,14 +542,14 @@ Attaching package: 'dbplyr'</code></pre>
 <p>We can use these tables to find all the United Airlines (“UA”) flights to Minneapolis (“MSP”) on an Embrarer 145 (EMB-145, EMB-145LR, EMB-145XR).</p>
 <p>First, let’s get the United Airlines flights to Minneapolis (operated by their subsiduary ExpressJet Airlines Inc.):</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights_ev_msp</span> <span class="op">&lt;-</span> <span class="va">flights</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">carrier</span> <span class="op">==</span> <span class="st">"EV"</span>, <span class="va">dest</span> <span class="op">==</span> <span class="st">"MSP"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights_ev_msp</span> <span class="op">&lt;-</span> <span class="va">flights</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">carrier</span> <span class="op">==</span> <span class="st">"EV"</span>, <span class="va">dest</span> <span class="op">==</span> <span class="st">"MSP"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can get all the Embraer airplanes:</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">airplanes</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">model</span>, <span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">==</span> <span class="st">"EMB"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">airplanes</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">model</span>, <span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">==</span> <span class="st">"EMB"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   SQL [6 x 9]
-# Database: sqlite 3.44.2 [/var/folders/nr/n31pl_p95tq7w0p_6pgv_t4h0000gn/T//RtmprT38z5/nycflights13.sqlite]
+# Database: sqlite 3.44.2 [/var/folders/nr/n31pl_p95tq7w0p_6pgv_t4h0000gn/T//RtmpLfrVfV/nycflights13.sqlite]
   tailnum  year type               manufacturer model engines seats speed engine
   &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;              &lt;chr&gt;        &lt;chr&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; 
 1 N10156   2004 Fixed wing multi … EMBRAER      EMB-…       2    55    NA Turbo…
@@ -596,14 +562,14 @@ Attaching package: 'dbplyr'</code></pre>
 </div>
 <p>Then we will use a join to get all the flights on one of these planes.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span></span>
 <span>  <span class="va">airplanes</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">model</span>, <span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">==</span> <span class="st">"EMB"</span><span class="op">)</span>,</span>
 <span>  <span class="va">flights_ev_msp</span>,</span>
 <span>  by <span class="op">=</span> <span class="st">"tailnum"</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   SQL [?? x 27]
-# Database: sqlite 3.44.2 [/var/folders/nr/n31pl_p95tq7w0p_6pgv_t4h0000gn/T//RtmprT38z5/nycflights13.sqlite]
+# Database: sqlite 3.44.2 [/var/folders/nr/n31pl_p95tq7w0p_6pgv_t4h0000gn/T//RtmpLfrVfV/nycflights13.sqlite]
    tailnum year.x type      manufacturer model engines seats speed engine year.y
    &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;        &lt;chr&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;int&gt;
  1 N11107    2002 Fixed wi… EMBRAER      EMB-…       2    55    NA Turbo…   2013
@@ -629,7 +595,7 @@ Attaching package: 'dbplyr'</code></pre>
 <p>You can download data from online accounts from many services. For example, Spotify will prepare a zip file of the music and podcasts you have listened to over the past year (or longer), with the correct authentication Google will provide data in a structured format. A widely used format for data that is not strictly a table is JavaScript Object Notation (JSON). The R package <code>jsonlite</code> can convert data tables to and from this format.</p>
 <p>Here is a relatively short, but complex example (see <a href="https://jsoneditoronline.org/indepth/datasets/json-file-example/">this page</a> for more examples):</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">json_example</span> <span class="op">&lt;-</span> <span class="st">'[{</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">json_example</span> <span class="op">&lt;-</span> <span class="st">'[{</span></span>
 <span><span class="st">  "name": "Chris",</span></span>
 <span><span class="st">  "age": 23,</span></span>
 <span><span class="st">  "address": {</span></span>
@@ -655,14 +621,14 @@ Attaching package: 'dbplyr'</code></pre>
                                              friends
 1 Emily, John, biking, music, gaming, soccer, gaming</code></pre>
 </div>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">flatten</span><span class="op">(</span><span class="va">jsonExample</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">flatten</span><span class="op">(</span><span class="va">jsonExample</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   name age                                            friends address.city
 1 Chris  23 Emily, John, biking, music, gaming, soccer, gaming     New York
   address.country
 1         America</code></pre>
 </div>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">jsonExample</span><span class="op">$</span><span class="va">friends</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">jsonExample</span><span class="op">$</span><span class="va">friends</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   name               hobbies
 1 Emily biking, music, gaming
@@ -673,7 +639,7 @@ Attaching package: 'dbplyr'</code></pre>
 <p>How are nested tables managed in R data tables? The column of a data table can be, as we’ve seen, text, a number, or a date. It can also be another table. What we do below is <a href="https://api.github.com/users/hadley/repos">read the JSON text</a> (follow the link to see the text format of this data) and then convert it into a table, including nested tables. GitHub just gives the first 30 results; this is common with web or database queries where the number of results could be large. You need to ask for more data using the language of the GitHub API if you want it. When you display the main table, the embedded table appears with prefix in the name (columns named <code>owner.XXX</code>).</p>
 <p>(Code output not shown here; run example in your own R session.)</p>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jeroen.r-universe.dev/jsonlite">jsonlite</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jeroen.r-universe.dev/jsonlite">jsonlite</a></span><span class="op">)</span></span>
 <span><span class="va">data2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="st">"https://api.github.com/users/hadley/repos"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">data2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">data2</span><span class="op">$</span><span class="va">owner</span><span class="op">)</span></span>
@@ -681,12 +647,12 @@ Attaching package: 'dbplyr'</code></pre>
 </div>
 <p>You can get the type of each column using <code>typeof</code> and <code>sapply</code>; a column of type list in this example means that column is made of up of tables.</p>
 <div class="cell">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">data2</span>, <span class="va">typeof</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">data2</span>, <span class="va">typeof</span><span class="op">)</span></span>
 <span><span class="co"># data2  |&gt; select(where(function(x) typeof(x) == "list")) # to select list columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If you don’t want to deal with the nested table, you can flatten it into a regular table. The new columns appear at the right side.</p>
 <div class="cell">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/flatten.html">flatten</a></span><span class="op">(</span><span class="va">data2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/flatten.html">flatten</a></span><span class="op">(</span><span class="va">data2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="beyond-csv-other-data-formats" class="level2" data-number="33.3"><h2 data-number="33.3" class="anchored" data-anchor-id="beyond-csv-other-data-formats">
 <span class="header-section-number">33.3</span> Beyond CSV: other data formats</h2>
@@ -710,15 +676,10 @@ Attaching package: 'dbplyr'</code></pre>
 </ul>
 <p>Here is an example using two tables from the palmerpenguins package.</p>
 <div class="cell">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># remotes::install_github("frictionlessdata/frictionless-r") # or order version from CRAN</span></span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># remotes::install_github("frictionlessdata/frictionless-r") # or order version from CRAN</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/frictionlessdata/frictionless-r">frictionless</a></span><span class="op">)</span>  </span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"lessons/static/L160"</span><span class="op">)</span>, recursive<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in dir.create(here::here("lessons/static/L160"), recursive = TRUE):
-'/Users/airwin/Library/CloudStorage/Dropbox/Teaching/STAT 2430 Data
-Viz/2024W/data-viz-notes/lessons/static/L160' already exists</code></pre>
-</div>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"lessons/static/L160"</span>, <span class="st">"penguins.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"lessons/static/L160"</span><span class="op">)</span>, recursive<span class="op">=</span><span class="cn">TRUE</span>, showWarnings <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"lessons/static/L160"</span>, <span class="st">"penguins.csv"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="va">penguins_raw</span>, <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"lessons/static/L160"</span>, <span class="st">"penguins_raw.csv"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">schema1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/create_schema.html">create_schema</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">)</span></span>
 <span><span class="va">schema2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/create_schema.html">create_schema</a></span><span class="op">(</span><span class="va">penguins_raw</span><span class="op">)</span></span>
@@ -740,518 +701,52 @@ Viz/2024W/data-viz-notes/lessons/static/L160' already exists</code></pre>
 </div>
 <p>Then you can give this directory (possibly as a zip file) to someone else who can open it with the following functions. You can be assured that the variable names, data types, and descriptions will all be transmitted with your data.</p>
 <div class="cell">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/read_package.html">read_package</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"lessons/static/L160/penguins-data-tables"</span>, <span class="st">"datapackage.json"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/read_package.html">read_package</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"lessons/static/L160/penguins-data-tables"</span>, <span class="st">"datapackage.json"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Please make sure you have the right to access data from this Data Package for your intended use.
 Follow applicable norms or requirements to credit the dataset and its authors.</code></pre>
 </div>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/resources.html">resources</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/resources.html">resources</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "penguins"     "penguins_raw"</code></pre>
 </div>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/read_resource.html">read_resource</a></span><span class="op">(</span><span class="va">p</span>, <span class="st">"penguins"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/read_resource.html">read_resource</a></span><span class="op">(</span><span class="va">p</span>, <span class="st">"penguins"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Data are reproduced faithfully except three columns were changed from int to double: flipper_length_mm, body_mass_g, and year.</p>
 <p>If your data package is distributed through a website like zenodo, you can read the data directly from that website.</p>
 <div class="cell">
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">package</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/read_package.html">read_package</a></span><span class="op">(</span><span class="st">"https://zenodo.org/record/5879096/files/datapackage.json"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">package</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/read_package.html">read_package</a></span><span class="op">(</span><span class="st">"https://zenodo.org/record/5879096/files/datapackage.json"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Please make sure you have the right to access data from this Data Package for your intended use.
 Follow applicable norms or requirements to credit the dataset and its authors.
 For more information, see https://doi.org/10.5281/zenodo.5879096</code></pre>
 </div>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/resources.html">resources</a></span><span class="op">(</span><span class="va">package</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/resources.html">resources</a></span><span class="op">(</span><span class="va">package</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "reference-data" "gps"            "acceleration"  </code></pre>
 </div>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/get_schema.html">get_schema</a></span><span class="op">(</span><span class="va">package</span>, <span class="st">"reference-data"</span><span class="op">)</span> <span class="co"># contains: name, title, description, type, format for each variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">schema_zenodo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/get_schema.html">get_schema</a></span><span class="op">(</span><span class="va">package</span>, <span class="st">"reference-data"</span><span class="op">)</span> <span class="co"># contains: name, title, description, type, format for each variable</span></span>
+<span><span class="va">schema_zenodo</span><span class="op">$</span><span class="va">fields</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># just a taste of the full output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$fields
-$fields[[1]]
-$fields[[1]]$name
+<pre><code>$name
 [1] "tag-id"
 
-$fields[[1]]$title
+$title
 [1] "tag ID"
 
-$fields[[1]]$description
+$description
 [1] "A unique identifier for the tag, provided by the data owner. If the data owner does not provide a tag ID, an internal Movebank tag identifier may sometimes be shown. Example: '2342'; Units: none; Entity described: tag"
 
-$fields[[1]]$type
+$type
 [1] "string"
 
-$fields[[1]]$format
+$format
 [1] "default"
 
-$fields[[1]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000181/2/"
-
-
-$fields[[2]]
-$fields[[2]]$name
-[1] "animal-id"
-
-$fields[[2]]$title
-[1] "animal ID"
-
-$fields[[2]]$description
-[1] "An individual identifier for the animal, provided by the data owner. If the data owner does not provide an Animal ID, an internal Movebank animal identifier is sometimes shown. Example: '91876A, Gary'; Units: none; Entity described: individual"
-
-$fields[[2]]$type
-[1] "string"
-
-$fields[[2]]$format
-[1] "default"
-
-$fields[[2]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000016/2/"
-
-
-$fields[[3]]
-$fields[[3]]$name
-[1] "animal-taxon"
-
-$fields[[3]]$title
-[1] "animal taxon"
-
-$fields[[3]]$description
-[1] "The scientific name of the species on which the tag was deployed, as defined by the Integrated Taxonomic Information System (ITIS, www.itis.gov). If the species name can not be provided, this should be the lowest level taxonomic rank that can be determined and that is used in the ITIS taxonomy. Additional information can be provided using the term 'taxon detail'. Format: controlled list; Entity described: individual"
-
-$fields[[3]]$type
-[1] "string"
-
-$fields[[3]]$format
-[1] "default"
-
-$fields[[3]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000024/3/"
-
-
-$fields[[4]]
-$fields[[4]]$name
-[1] "deploy-on-date"
-
-$fields[[4]]$title
-[1] "deploy on timestamp"
-
-$fields[[4]]$description
-[1] "The timestamp when the tag deployment started. Example: '2008-08-30 18:00:00.000'; Format: yyyy-MM-dd HH:mm:ss.SSS; Units: UTC or GPS time; Entity described: deployment"
-
-$fields[[4]]$type
-[1] "datetime"
-
-$fields[[4]]$format
-[1] "%Y-%m-%d %H:%M:%S.%f"
-
-$fields[[4]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000081/2/"
-
-
-$fields[[5]]
-$fields[[5]]$name
-[1] "deploy-off-date"
-
-$fields[[5]]$title
-[1] "deploy off timestamp"
-
-$fields[[5]]$description
-[1] "The timestamp when the tag deployment ended, as defined by the data owner. Example: '2009-10-01 12:00:00.000'; Format: yyyy-MM-dd HH:mm:ss.SSS; Units: UTC or GPS time; Entity described: deployment"
-
-$fields[[5]]$type
-[1] "datetime"
-
-$fields[[5]]$format
-[1] "%Y-%m-%d %H:%M:%S.%f"
-
-$fields[[5]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000077/3/"
-
-
-$fields[[6]]
-$fields[[6]]$name
-[1] "animal-comments"
-
-$fields[[6]]$title
-[1] "animal comments"
-
-$fields[[6]]$description
-[1] "Additional information about the animal that is not described by other reference data terms. Example: 'sibling of #1423'; Units: none; Entity described: individual"
-
-$fields[[6]]$type
-[1] "string"
-
-$fields[[6]]$format
-[1] "default"
-
-$fields[[6]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000012/2/"
-
-
-$fields[[7]]
-$fields[[7]]$name
-[1] "animal-life-stage"
-
-$fields[[7]]$title
-[1] "animal life stage"
-
-$fields[[7]]$description
-[1] "The age class or life stage of the animal at the beginning of the deployment. Can be years or months of age or terms such as 'adult', 'subadult' and 'juvenile'. Best practice is to define units in the values if needed (e.g. '2 years'). Example: 'juvenile, adult'; Units: not defined; Entity described: deployment"
-
-$fields[[7]]$type
-[1] "string"
-
-$fields[[7]]$format
-[1] "default"
-
-$fields[[7]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000018/2/"
-
-
-$fields[[8]]
-$fields[[8]]$name
-[1] "animal-mass"
-
-$fields[[8]]$title
-[1] "animal mass"
-
-$fields[[8]]$description
-[1] "The mass of the animal, typically at the beginning of the deployment. Example: '500'; Units: grams; Entity described: deployment"
-
-$fields[[8]]$type
-[1] "number"
-
-$fields[[8]]$format
-[1] "default"
-
-$fields[[8]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000019/2/"
-
-
-$fields[[9]]
-$fields[[9]]$name
-[1] "animal-nickname"
-
-$fields[[9]]$title
-[1] "animal nickname"
-
-$fields[[9]]$description
-[1] "An alternate identifier for the animal. Used as the display name for animals shown in the Animal Tracker App. Example: 'Ali'; Units: none; Entity described: individual"
-
-$fields[[9]]$type
-[1] "string"
-
-$fields[[9]]$format
-[1] "default"
-
-$fields[[9]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000020/2/"
-
-
-$fields[[10]]
-$fields[[10]]$name
-[1] "animal-ring-id"
-
-$fields[[10]]$title
-[1] "animal ring ID"
-
-$fields[[10]]$description
-[1] "A number or color scheme for a band or ring attached to the animal. Example: '26225'; Units: none; Entity described: individual"
-
-$fields[[10]]$type
-[1] "string"
-
-$fields[[10]]$format
-[1] "default"
-
-$fields[[10]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000022/2/"
-
-
-$fields[[11]]
-$fields[[11]]$name
-[1] "animal-sex"
-
-$fields[[11]]$title
-[1] "animal sex"
-
-$fields[[11]]$description
-[1] "The sex of the animal. Allowed values are m = male; f = female; u = unknown. Format: controlled list; Entity described: individual"
-
-$fields[[11]]$type
-[1] "string"
-
-$fields[[11]]$format
-[1] "default"
-
-$fields[[11]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000023/3/"
-
-
-$fields[[12]]
-$fields[[12]]$name
-[1] "attachment-type"
-
-$fields[[12]]$title
-[1] "attachment type"
-
-$fields[[12]]$description
-[1] "The way a tag is attached to an animal. Values are chosen from a controlled list: collar = The tag is attached by a collar around the animal's neck; fin mount = The tag is attached to the animal's fin; glue = The tag is attached to the animal using glue; harness = The tag is attached to the animal using a harness; implant = The tag is placed under the skin of the animal; tape = The tag is attached to the animal using tape; other = user specified. Format: controlled list; Entity described: deployment"
-
-$fields[[12]]$type
-[1] "string"
-
-$fields[[12]]$format
-[1] "default"
-
-$fields[[12]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000052/3/"
-
-
-$fields[[13]]
-$fields[[13]]$name
-[1] "deploy-on-latitude"
-
-$fields[[13]]$title
-[1] "deploy on latitude"
-
-$fields[[13]]$description
-[1] "The geographic latitude of the location where the animal was released. Intended primarily for cases in which the animal release location has higher accuracy than that derived from sensor data. Example: '27.3516'; Units: decimal degrees, WGS84 reference system; Entity described: deployment"
-
-$fields[[13]]$type
-[1] "number"
-
-$fields[[13]]$format
-[1] "default"
-
-$fields[[13]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000078/3/"
-
-
-$fields[[14]]
-$fields[[14]]$name
-[1] "deploy-on-longitude"
-
-$fields[[14]]$title
-[1] "deploy on longitude"
-
-$fields[[14]]$description
-[1] "The geographic longitude of the location where the animal was released. Intended primarily for cases in which the animal release location has higher accuracy than that derived from sensor data. Example: '-97.3321'; Units: decimal degrees, WGS84 reference system; Entity described: deployment"
-
-$fields[[14]]$type
-[1] "number"
-
-$fields[[14]]$format
-[1] "default"
-
-$fields[[14]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000079/3/"
-
-
-$fields[[15]]
-$fields[[15]]$name
-[1] "deployment-comments"
-
-$fields[[15]]$title
-[1] "deployment comments"
-
-$fields[[15]]$description
-[1] "Additional information about the tag deployment that is not described by other reference data terms. Example: 'body length 154 cm; condition good'; Units: none; Entity described: deployment"
-
-$fields[[15]]$type
-[1] "string"
-
-$fields[[15]]$format
-[1] "default"
-
-$fields[[15]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000082/2/"
-
-
-$fields[[16]]
-$fields[[16]]$name
-[1] "deployment-end-type"
-
-$fields[[16]]$title
-[1] "deployment end type"
-
-$fields[[16]]$description
-[1] "A categorical classification of the tag deployment end, from a controlled list: captured = The tag remained on the animal but the animal was captured or confined; dead = The deployment ended with the death of the animal that was carrying the tag; equipment failure = The tag stopped working; fall off = The attachment of the tag to the animal failed, and it fell of accidentally; other = other; released = The tag remained on the animal but the animal was released from captivity or confinement; removal = The tag was purposefully removed from the animal; unknown = The deployment ended by an unknown cause. Format: controlled list; Entity described: deployment"
-
-$fields[[16]]$type
-[1] "string"
-
-$fields[[16]]$format
-[1] "default"
-
-$fields[[16]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000084/3/"
-
-
-$fields[[17]]
-$fields[[17]]$name
-[1] "deployment-id"
-
-$fields[[17]]$title
-[1] "deployment ID"
-
-$fields[[17]]$description
-[1] "A unique identifier for the deployment of a tag on animal, provided by the data owner. If the data owner does not provide a Deployment ID, an internal Movebank deployment identifier may sometimes be shown. Example: 'Jane-Tag42'; Units: none; Entity described: deployment"
-
-$fields[[17]]$type
-[1] "string"
-
-$fields[[17]]$format
-[1] "default"
-
-$fields[[17]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000085/2/"
-
-
-$fields[[18]]
-$fields[[18]]$name
-[1] "location-accuracy-comments"
-
-$fields[[18]]$title
-[1] "location accuracy comments"
-
-$fields[[18]]$description
-[1] "Comments about the values provided in 'location error text', 'location error numerical', 'vertical error numerical', 'lat lower', 'lat upper', 'long lower' and/or 'long upper'. The percentile uncertainty can be provided using 'location error percentile'. Example: '1 standard deviation errors, assuming normal distribution, provided by the GPS unit'; Units: none; Entity described: deployment"
-
-$fields[[18]]$type
-[1] "string"
-
-$fields[[18]]$format
-[1] "default"
-
-$fields[[18]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000141/2/"
-
-
-$fields[[19]]
-$fields[[19]]$name
-[1] "manipulation-type"
-
-$fields[[19]]$title
-[1] "manipulation type"
-
-$fields[[19]]$description
-[1] "The way in which the animal was manipulated during the deployment. Additional information can be provided using 'manipulation comments'. Values are chosen from a controlled list: confined = The animal's movement was restricted to within a defined area; none = The animal received no treatment other than the tag attachment; relocated = The animal was released from a site other than the one at which it was captured; manipulated other = The animal was manipulated in some other way, such as a physiological manipulation. Format: controlled list; Entity described: deployment"
-
-$fields[[19]]$type
-[1] "string"
-
-$fields[[19]]$format
-[1] "default"
-
-$fields[[19]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000155/3/"
-
-
-$fields[[20]]
-$fields[[20]]$name
-[1] "study-site"
-
-$fields[[20]]$title
-[1] "study site"
-
-$fields[[20]]$description
-[1] "A location such as the deployment site or colony, or a location-related group such as the herd or pack name. Example: 'Pickerel Island North'; Units: none; Entity described: deployment"
-
-$fields[[20]]$type
-[1] "string"
-
-$fields[[20]]$format
-[1] "default"
-
-$fields[[20]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000175/2/"
-
-
-$fields[[21]]
-$fields[[21]]$name
-[1] "tag-manufacturer-name"
-
-$fields[[21]]$title
-[1] "tag manufacturer name"
-
-$fields[[21]]$description
-[1] "The company or person that produced the tag. Example: 'Holohil'; Units: none; Entity described: tag"
-
-$fields[[21]]$type
-[1] "string"
-
-$fields[[21]]$format
-[1] "default"
-
-$fields[[21]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000183/2/"
-
-
-$fields[[22]]
-$fields[[22]]$name
-[1] "tag-mass"
-
-$fields[[22]]$title
-[1] "tag mass"
-
-$fields[[22]]$description
-[1] "The mass of the tag. Example: '24'; Units: grams; Entity described: tag"
-
-$fields[[22]]$type
-[1] "number"
-
-$fields[[22]]$format
-[1] "default"
-
-$fields[[22]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000184/2/"
-
-
-$fields[[23]]
-$fields[[23]]$name
-[1] "tag-readout-method"
-
-$fields[[23]]$title
-[1] "tag readout method"
-
-$fields[[23]]$description
-[1] "The way the data are received from the tag. Values are chosen from a controlled list: satellite = Data are transferred via satellite; phone network = Data are transferred via a phone network, such as GSM or AMPS; other wireless = Data are transferred via another form of wireless data transfer, such as a VHF transmitter/receiver; tag retrieval = The tag must be physically retrieved in order to obtain the data. Format: controlled list; Entity described: deployment"
-
-$fields[[23]]$type
-[1] "string"
-
-$fields[[23]]$format
-[1] "default"
-
-$fields[[23]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000188/3/"
-
-
-$fields[[24]]
-$fields[[24]]$name
-[1] "tag-serial-no"
-
-$fields[[24]]$title
-[1] "tag serial no"
-
-$fields[[24]]$description
-[1] "The serial number of the tag. Example: 'MN93-33243'; Units: none; Entity described: tag"
-
-$fields[[24]]$type
-[1] "string"
-
-$fields[[24]]$format
-[1] "default"
-
-$fields[[24]]$`skos:exactMatch`
-[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000189/2/"
-
-
-
-$primaryKey
-[1] "tag-id"    "animal-id"</code></pre>
+$`skos:exactMatch`
+[1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000181/2/"</code></pre>
 </div>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ref_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/read_resource.html">read_resource</a></span><span class="op">(</span><span class="va">package</span>, <span class="st">"reference-data"</span><span class="op">)</span> <span class="co"># 13 rows, 24 variables</span></span>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ref_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/read_resource.html">read_resource</a></span><span class="op">(</span><span class="va">package</span>, <span class="st">"reference-data"</span><span class="op">)</span> <span class="co"># 13 rows, 24 variables</span></span>
 <span><span class="co"># gps &lt;- read_resource(package, "gps") # 73,047 rows, 21 variables</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="csvw" class="level3" data-number="33.3.2"><h3 data-number="33.3.2" class="anchored" data-anchor-id="csvw">
@@ -1266,7 +761,7 @@ $primaryKey
 </ul>
 <p>Here is an example of creating and reading a CSVW file:</p>
 <div class="cell">
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://robsteranium.github.io/csvwr/">csvwr</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://robsteranium.github.io/csvwr/">csvwr</a></span><span class="op">)</span></span>
 <span><span class="co"># Start with a data frame saved as a csv (we did this for the previous example already)</span></span>
 <span><span class="co"># write_csv(penguins, here::here("lessons/static/L160", "penguins.csv"))</span></span>
 <span><span class="co"># write_csv(penguins_raw, here::here("lessons/static/L160", "penguins_raw.csv"))</span></span>
@@ -1286,7 +781,7 @@ $primaryKey
 7               sex               sex   string
 8              year              year  integer</code></pre>
 </div>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">schema2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robsteranium.github.io/csvwr/reference/derive_table_schema.html">derive_table_schema</a></span><span class="op">(</span><span class="va">penguins_raw</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">schema2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robsteranium.github.io/csvwr/reference/derive_table_schema.html">derive_table_schema</a></span><span class="op">(</span><span class="va">penguins_raw</span><span class="op">)</span></span>
 <span><span class="co"># Alternatively, derive schema from the csv file</span></span>
 <span><span class="co"># schema1 &lt;- derive_metadata( here::here("lessons/static/L160", "penguins.csv"))</span></span>
 <span><span class="co"># schema2 &lt;- derive_metadata( here::here("lessons/static/L160", "penguins_raw.csv"))</span></span>
@@ -1304,19 +799,19 @@ $primaryKey
 </div>
 <p>Read the data from the files</p>
 <div class="cell">
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins_both_csvw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robsteranium.github.io/csvwr/reference/read_csvw.html">read_csvw</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"lessons/static/L160"</span>, <span class="st">"penguins-csvw-metadata.json"</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins_both_csvw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robsteranium.github.io/csvwr/reference/read_csvw.html">read_csvw</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"lessons/static/L160"</span>, <span class="st">"penguins-csvw-metadata.json"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">penguins_csvw</span> <span class="op">&lt;-</span> <span class="va">penguins_both_csvw</span><span class="op">$</span><span class="va">tables</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">dataframe</span></span>
 <span><span class="va">penguins_raw_csvw</span> <span class="op">&lt;-</span> <span class="va">penguins_both_csvw</span><span class="op">$</span><span class="va">tables</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">dataframe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The data are reproduced faithfully, except factor variables in the original data are read as text from the CSVW and some column names have been changed in <code>penguins_raw</code> (e.g., spaces changed to periods).</p>
 <div class="cell">
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html">all.equal</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">penguins_csvw</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html">all.equal</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">penguins_csvw</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Component \"species\": 'current' is not a factor"
 [2] "Component \"island\": 'current' is not a factor" 
 [3] "Component \"sex\": 'current' is not a factor"    </code></pre>
 </div>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html">all.equal</a></span><span class="op">(</span><span class="va">penguins_raw</span>, <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">penguins_raw_csvw</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html">all.equal</a></span><span class="op">(</span><span class="va">penguins_raw</span>, <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">penguins_raw_csvw</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Names: 10 string mismatches"                                      
 [2] "Attributes: &lt; Length mismatch: comparison on first 2 components &gt;"</code></pre>
@@ -1328,33 +823,14 @@ $primaryKey
 <p>A file with 1 million floating point numbers takes this much storage on disk: csv (18.4 MB), compressed csv (csv.gz, 8.5 MB), SQLite (9.3 MB), parquet (6.9 MB), and feather (5.5 MB). The binary formats parquet and feather are both smaller and faster to work with than a compressed text format (csv.gz).</p>
 <p>Here I demonstrate creating and reading these files.</p>
 <div class="cell">
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/apache/arrow/">arrow</a></span><span class="op">)</span> <span class="co"># for parquet and arrow format files</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'arrow'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:lubridate':
-
-    duration</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:utils':
-
-    timestamp</code></pre>
-</div>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rsqlite.r-dbi.org">RSQLite</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/apache/arrow/">arrow</a></span><span class="op">)</span> <span class="co"># for parquet and arrow format files</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rsqlite.r-dbi.org">RSQLite</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbplyr.tidyverse.org/">dbplyr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1000000</span><span class="op">)</span>, <span class="fl">100000</span>, <span class="fl">10</span><span class="op">)</span> </span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if
-`.name_repair` is omitted as of tibble 2.0.0.
-ℹ Using compatibility `.name_repair`.</code></pre>
-</div>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span>.name_repair <span class="op">=</span> <span class="st">"unique"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span>
 <span></span>
 <span><span class="co"># parquet compresses data on columns, try the nycflights13 data with 6.4m "entries" (336,776 observations of 19 variables)</span></span>
 <span><span class="co"># 4.8 MB parquet, 9.9 MV feather, 29.6 MB csv, 7.9 MB csv.gz, 21.1 MB SQLite</span></span>
@@ -1373,7 +849,7 @@ Attaching package: 'arrow'</code></pre>
 <p>The speeds of reading each file type, relative to csv (smaller is faster) is: csv (1.0), parquet (0.4), SQLite (0.46).</p>
 <p>This code block opens each file – uncomment the line you want to use.</p>
 <div class="cell">
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># sw &lt;- read_csv("static/L160/test.csv.gz", show_col_types = FALSE)</span></span>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># sw &lt;- read_csv("static/L160/test.csv.gz", show_col_types = FALSE)</span></span>
 <span><span class="co"># sw &lt;- read_csv("static/L160/test.csv", show_col_types = FALSE)</span></span>
 <span><span class="va">sw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://arrow.apache.org/docs/r/reference/read_parquet.html">read_parquet</a></span><span class="op">(</span><span class="st">"static/L160/test.gz.parquet"</span><span class="op">)</span></span>
 <span><span class="co"># sw &lt;- read_feather("static/L160/test.feather")</span></span>
@@ -1381,7 +857,7 @@ Attaching package: 'arrow'</code></pre>
 </div>
 <p>This code block reads data and does a dplyr calculation:</p>
 <div class="cell">
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sw</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">a</span> <span class="op">&lt;</span> <span class="fl">0.1</span>, <span class="va">f</span> <span class="op">&gt;</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sw</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">a</span> <span class="op">&lt;</span> <span class="fl">0.1</span>, <span class="va">f</span> <span class="op">&gt;</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span>,</span>
 <span>             mean_c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">c</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1389,19 +865,19 @@ Attaching package: 'arrow'</code></pre>
 <pre><code># A tibble: 1 × 2
   mean_b mean_c
    &lt;dbl&gt;  &lt;dbl&gt;
-1  0.500  0.492</code></pre>
+1  0.514  0.506</code></pre>
 </div>
 </div>
 <p>It is good practice to close the connection to your SQLite database when you are done.</p>
 <div class="cell">
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dbDisconnect</span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dbDisconnect</span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in connection_release(conn@ptr): Already disconnected</code></pre>
 </div>
 </div>
 <p>Remove files to clean up your storage, since you don’t need any of these files.</p>
 <div class="cell">
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="st">"static/L160/test.gz.parquet"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="st">"static/L160/test.gz.parquet"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="st">"static/L160/test.feather"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="st">"static/L160/test.csv"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="st">"static/L160/test.csv.gz"</span><span class="op">)</span></span>
