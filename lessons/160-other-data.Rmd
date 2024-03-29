@@ -221,12 +221,21 @@ flatten(data2)
 ```
 
 
+## Beyond CSV: Other data formats
 
-## Beyond CSV
+We have relied heavily on the comma separated value format in this course, both because
+it is a very commonly used format and because it is relatively easy to use.
+The CSV format has several drawbacks
 
-Problems: speed, data types, and other metadata.
+* the data type for each column is not usually described, so the computer software need to "guess" the data type or the human operator needs to describe it explicitly,
+* there are no standard conventions for variable names, beyond the fact that usually -- but not always -- the names are given on a single line,
+* if a text value in a column has a comma in it, then quotation marks are usually used to delinate the content of the column, but then special "escaping" notation is needed to include a quotation mark in text data, and these mechanisms are not always implemented well or correctly,
+* in some locales, a different separator is used (e.g., a semicolon or tab) and number formatting can differ (the decimal separator can be a period or a comma), and
+* large files are relatively slow to read compared to some other formats.
 
-Parquet, Arrow
+
+### Metadata solution
+
 
 ### Frictionless metadata for tables
 
@@ -298,7 +307,12 @@ Read the data from the files
 csvw <- read_csvw_dataframe("static/L160/penguins-data.csv", "static/penguins-metadata.json")
 ```
 
-### Data format examples
+
+
+### Speed and metadata solution
+
+Here I will introduce two alternative formats. The first is a binary format called [parquet](https://en.wikipedia.org/wiki/Apache_Parquet) made by the non-profit [Apache Software Foundation](https://en.wikipedia.org/wiki/The_Apache_Software_Foundation) (where the earliest popular web servers were developed). The second is a database format called [SQLite](https://en.wikipedia.org/wiki/SQLite) which is freely and widely available. It is the most widely used database software in the world and is an archival format [recommended](https://www.loc.gov/preservation/resources/rfs/data.html) by the US Library of Congress.
+Both are easy to use with R.
 
 A file with 1 million floating point numbers takes this much storage on disk
 * csv: 18.4 MB  # this format takes the most space on disk, does not contain data type information
@@ -380,7 +394,19 @@ unlink("static/L160/test.sqlite")
 ```
 
 
+
 ## Packages used
+
+
+In addition to the `tidyverse` and `palmerpenguins`, in this lesson I have used 
+
+* `dbplyr` for using dplyr functions on databases ("db")
+* `nycflights13` for access to a relatively large dataset
+* `jsonlite` for working with JSON data
+* `arrow` for the parquet and feather formats
+* `RSQLite` for SQLite database creation and access
+* `frictionless`
+* `csvwr`
 
 ## References
 
@@ -390,5 +416,4 @@ unlink("static/L160/test.sqlite")
 * The R4DS chapters on [databases](https://r4ds.hadley.nz/databases), [arrow format](https://r4ds.hadley.nz/arrow), and [hierarchical data](https://r4ds.hadley.nz/rectangling). In particular the chapter on hierarchical data has advice on working with JSON files.
 * More a more detailed approach to metadata, see [Dataspice](https://annakrystalli.me/rrresearchACCE20/dataspice.html)
 * Yet another approach to metadata is implemented by the [yamlet](https://cran.r-project.org/web/packages/yamlet/vignettes/yamlet-introduction.html) package
-
 
