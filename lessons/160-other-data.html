@@ -518,7 +518,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">airports</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   SQL [1 x 1]
-# Database: sqlite 3.44.2 [/var/folders/nr/n31pl_p95tq7w0p_6pgv_t4h0000gn/T//RtmpLfrVfV/nycflights13.sqlite]
+# Database: sqlite 3.44.2 [/var/folders/nr/n31pl_p95tq7w0p_6pgv_t4h0000gn/T//RtmpgCi3JY/nycflights13.sqlite]
       n
   &lt;int&gt;
 1  1458</code></pre>
@@ -526,7 +526,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">flights</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   SQL [1 x 1]
-# Database: sqlite 3.44.2 [/var/folders/nr/n31pl_p95tq7w0p_6pgv_t4h0000gn/T//RtmpLfrVfV/nycflights13.sqlite]
+# Database: sqlite 3.44.2 [/var/folders/nr/n31pl_p95tq7w0p_6pgv_t4h0000gn/T//RtmpgCi3JY/nycflights13.sqlite]
        n
    &lt;int&gt;
 1 336776</code></pre>
@@ -549,7 +549,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">airplanes</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">model</span>, <span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">==</span> <span class="st">"EMB"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   SQL [6 x 9]
-# Database: sqlite 3.44.2 [/var/folders/nr/n31pl_p95tq7w0p_6pgv_t4h0000gn/T//RtmpLfrVfV/nycflights13.sqlite]
+# Database: sqlite 3.44.2 [/var/folders/nr/n31pl_p95tq7w0p_6pgv_t4h0000gn/T//RtmpgCi3JY/nycflights13.sqlite]
   tailnum  year type               manufacturer model engines seats speed engine
   &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;              &lt;chr&gt;        &lt;chr&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; 
 1 N10156   2004 Fixed wing multi … EMBRAER      EMB-…       2    55    NA Turbo…
@@ -569,7 +569,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   SQL [?? x 27]
-# Database: sqlite 3.44.2 [/var/folders/nr/n31pl_p95tq7w0p_6pgv_t4h0000gn/T//RtmpLfrVfV/nycflights13.sqlite]
+# Database: sqlite 3.44.2 [/var/folders/nr/n31pl_p95tq7w0p_6pgv_t4h0000gn/T//RtmpgCi3JY/nycflights13.sqlite]
    tailnum year.x type      manufacturer model engines seats speed engine year.y
    &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;        &lt;chr&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;int&gt;
  1 N11107    2002 Fixed wi… EMBRAER      EMB-…       2    55    NA Turbo…   2013
@@ -678,17 +678,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># remotes::install_github("frictionlessdata/frictionless-r") # or order version from CRAN</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/frictionlessdata/frictionless-r">frictionless</a></span><span class="op">)</span>  </span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"lessons/static/L160"</span><span class="op">)</span>, recursive<span class="op">=</span><span class="cn">TRUE</span>, showWarnings <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"lessons/static/L160"</span>, <span class="st">"penguins.csv"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="va">penguins_raw</span>, <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"lessons/static/L160"</span>, <span class="st">"penguins_raw.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># dir.create(here::here("lessons/static/L160"), recursive=TRUE, showWarnings = FALSE)</span></span>
+<span><span class="co"># write_csv(penguins, here::here("lessons/static/L160", "penguins.csv"))</span></span>
+<span><span class="co"># write_csv(penguins_raw, here::here("lessons/static/L160", "penguins_raw.csv"))</span></span>
 <span><span class="va">schema1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/create_schema.html">create_schema</a></span><span class="op">(</span><span class="va">penguins</span><span class="op">)</span></span>
 <span><span class="va">schema2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/create_schema.html">create_schema</a></span><span class="op">(</span><span class="va">penguins_raw</span><span class="op">)</span></span>
 <span><span class="va">package</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/create_package.html">create_package</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co"># filename and column names must contain only lower case letters, -, _, .</span></span>
 <span><span class="va">package</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/add_resource.html">add_resource</a></span><span class="op">(</span><span class="va">package</span>, resource_name <span class="op">=</span> <span class="st">"penguins"</span>, </span>
-<span>                       data <span class="op">=</span> <span class="st">"static/L160/penguins.csv"</span>, schema <span class="op">=</span> <span class="va">schema1</span><span class="op">)</span></span>
+<span>                       <span class="co"># data = "static/L160/penguins.csv", </span></span>
+<span>                       data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>                       schema <span class="op">=</span> <span class="va">schema1</span><span class="op">)</span></span>
 <span><span class="va">package</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/add_resource.html">add_resource</a></span><span class="op">(</span><span class="va">package</span>, resource_name <span class="op">=</span> <span class="st">"penguins_raw"</span>, </span>
-<span>                       data <span class="op">=</span> <span class="st">"static/L160/penguins_raw.csv"</span>, schema <span class="op">=</span> <span class="va">schema2</span><span class="op">)</span></span>
+<span>                       <span class="co"># data = "static/L160/penguins_raw.csv", </span></span>
+<span>                       data <span class="op">=</span> <span class="va">penguins_raw</span>,</span>
+<span>                       schema <span class="op">=</span> <span class="va">schema2</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># add metadata to package</span></span>
 <span><span class="va">package</span><span class="op">$</span><span class="va">resources</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">schema</span><span class="op">$</span><span class="va">missingValues</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">''</span>, <span class="st">'NA'</span><span class="op">)</span></span>
@@ -698,34 +702,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">package</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/append.html">append</a></span><span class="op">(</span><span class="va">package</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>citation <span class="op">=</span> <span class="st">"Horst, A. and Gorman, K. Palmer Penguins Data. https://doi.org/10.5281/zenodo.3960218"</span> <span class="op">)</span>, after <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/write_package.html">write_package</a></span><span class="op">(</span><span class="va">package</span>, <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"lessons/static/L160"</span>, <span class="st">"penguins-data-tables"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: `package` must be a Data Package object.
+✖ `package` is missing a "datapackage" class.
+ℹ Create a valid Data Package object with `read_package()` or
+  `create_package()`.
+`package` must be a Data Package object.
+✖ `package` is missing a "datapackage" class.
+ℹ Create a valid Data Package object with `read_package()` or
+  `create_package()`.
+`package` must be a Data Package object.
+✖ `package` is missing a "datapackage" class.
+ℹ Create a valid Data Package object with `read_package()` or
+  `create_package()`.
+`package` must be a Data Package object.
+✖ `package` is missing a "datapackage" class.
+ℹ Create a valid Data Package object with `read_package()` or
+  `create_package()`.
+`package` must be a Data Package object.
+✖ `package` is missing a "datapackage" class.
+ℹ Create a valid Data Package object with `read_package()` or
+  `create_package()`.
+`package` must be a Data Package object.
+✖ `package` is missing a "datapackage" class.
+ℹ Create a valid Data Package object with `read_package()` or
+  `create_package()`.
+`package` must be a Data Package object.
+✖ `package` is missing a "datapackage" class.
+ℹ Create a valid Data Package object with `read_package()` or
+  `create_package()`.</code></pre>
+</div>
 </div>
 <p>Then you can give this directory (possibly as a zip file) to someone else who can open it with the following functions. You can be assured that the variable names, data types, and descriptions will all be transmitted with your data.</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/read_package.html">read_package</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"lessons/static/L160/penguins-data-tables"</span>, <span class="st">"datapackage.json"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Please make sure you have the right to access data from this Data Package for your intended use.
-Follow applicable norms or requirements to credit the dataset and its authors.</code></pre>
-</div>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/resources.html">resources</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/read_package.html">read_package</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"lessons/static/L160/penguins-data-tables"</span>, <span class="st">"datapackage.json"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/resources.html">resources</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "penguins"     "penguins_raw"</code></pre>
 </div>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/read_resource.html">read_resource</a></span><span class="op">(</span><span class="va">p</span>, <span class="st">"penguins"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/read_resource.html">read_resource</a></span><span class="op">(</span><span class="va">p</span>, <span class="st">"penguins"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Data are reproduced faithfully except three columns were changed from int to double: flipper_length_mm, body_mass_g, and year.</p>
 <p>If your data package is distributed through a website like zenodo, you can read the data directly from that website.</p>
 <div class="cell">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">package</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/read_package.html">read_package</a></span><span class="op">(</span><span class="st">"https://zenodo.org/record/5879096/files/datapackage.json"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Please make sure you have the right to access data from this Data Package for your intended use.
-Follow applicable norms or requirements to credit the dataset and its authors.
-For more information, see https://doi.org/10.5281/zenodo.5879096</code></pre>
-</div>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/resources.html">resources</a></span><span class="op">(</span><span class="va">package</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">package</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/read_package.html">read_package</a></span><span class="op">(</span><span class="st">"https://zenodo.org/record/5879096/files/datapackage.json"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/resources.html">resources</a></span><span class="op">(</span><span class="va">package</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "reference-data" "gps"            "acceleration"  </code></pre>
 </div>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">schema_zenodo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/get_schema.html">get_schema</a></span><span class="op">(</span><span class="va">package</span>, <span class="st">"reference-data"</span><span class="op">)</span> <span class="co"># contains: name, title, description, type, format for each variable</span></span>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">schema_zenodo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/get_schema.html">get_schema</a></span><span class="op">(</span><span class="va">package</span>, <span class="st">"reference-data"</span><span class="op">)</span> <span class="co"># contains: name, title, description, type, format for each variable</span></span>
 <span><span class="va">schema_zenodo</span><span class="op">$</span><span class="va">fields</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="co"># just a taste of the full output</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$name
@@ -746,7 +771,7 @@ $format
 $`skos:exactMatch`
 [1] "http://vocab.nerc.ac.uk/collection/MVB/current/MVB000181/2/"</code></pre>
 </div>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ref_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/read_resource.html">read_resource</a></span><span class="op">(</span><span class="va">package</span>, <span class="st">"reference-data"</span><span class="op">)</span> <span class="co"># 13 rows, 24 variables</span></span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ref_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/frictionless/reference/read_resource.html">read_resource</a></span><span class="op">(</span><span class="va">package</span>, <span class="st">"reference-data"</span><span class="op">)</span> <span class="co"># 13 rows, 24 variables</span></span>
 <span><span class="co"># gps &lt;- read_resource(package, "gps") # 73,047 rows, 21 variables</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="csvw" class="level3" data-number="33.3.2"><h3 data-number="33.3.2" class="anchored" data-anchor-id="csvw">
@@ -761,7 +786,7 @@ $`skos:exactMatch`
 </ul>
 <p>Here is an example of creating and reading a CSVW file:</p>
 <div class="cell">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://robsteranium.github.io/csvwr/">csvwr</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://robsteranium.github.io/csvwr/">csvwr</a></span><span class="op">)</span></span>
 <span><span class="co"># Start with a data frame saved as a csv (we did this for the previous example already)</span></span>
 <span><span class="co"># write_csv(penguins, here::here("lessons/static/L160", "penguins.csv"))</span></span>
 <span><span class="co"># write_csv(penguins_raw, here::here("lessons/static/L160", "penguins_raw.csv"))</span></span>
@@ -781,7 +806,7 @@ $`skos:exactMatch`
 7               sex               sex   string
 8              year              year  integer</code></pre>
 </div>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">schema2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robsteranium.github.io/csvwr/reference/derive_table_schema.html">derive_table_schema</a></span><span class="op">(</span><span class="va">penguins_raw</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">schema2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robsteranium.github.io/csvwr/reference/derive_table_schema.html">derive_table_schema</a></span><span class="op">(</span><span class="va">penguins_raw</span><span class="op">)</span></span>
 <span><span class="co"># Alternatively, derive schema from the csv file</span></span>
 <span><span class="co"># schema1 &lt;- derive_metadata( here::here("lessons/static/L160", "penguins.csv"))</span></span>
 <span><span class="co"># schema2 &lt;- derive_metadata( here::here("lessons/static/L160", "penguins_raw.csv"))</span></span>
@@ -799,19 +824,19 @@ $`skos:exactMatch`
 </div>
 <p>Read the data from the files</p>
 <div class="cell">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins_both_csvw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robsteranium.github.io/csvwr/reference/read_csvw.html">read_csvw</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"lessons/static/L160"</span>, <span class="st">"penguins-csvw-metadata.json"</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins_both_csvw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://robsteranium.github.io/csvwr/reference/read_csvw.html">read_csvw</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"lessons/static/L160"</span>, <span class="st">"penguins-csvw-metadata.json"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">penguins_csvw</span> <span class="op">&lt;-</span> <span class="va">penguins_both_csvw</span><span class="op">$</span><span class="va">tables</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">dataframe</span></span>
 <span><span class="va">penguins_raw_csvw</span> <span class="op">&lt;-</span> <span class="va">penguins_both_csvw</span><span class="op">$</span><span class="va">tables</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">dataframe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The data are reproduced faithfully, except factor variables in the original data are read as text from the CSVW and some column names have been changed in <code>penguins_raw</code> (e.g., spaces changed to periods).</p>
 <div class="cell">
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html">all.equal</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">penguins_csvw</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html">all.equal</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">penguins_csvw</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Component \"species\": 'current' is not a factor"
 [2] "Component \"island\": 'current' is not a factor" 
 [3] "Component \"sex\": 'current' is not a factor"    </code></pre>
 </div>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html">all.equal</a></span><span class="op">(</span><span class="va">penguins_raw</span>, <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">penguins_raw_csvw</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html">all.equal</a></span><span class="op">(</span><span class="va">penguins_raw</span>, <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">penguins_raw_csvw</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Names: 10 string mismatches"                                      
 [2] "Attributes: &lt; Length mismatch: comparison on first 2 components &gt;"</code></pre>
@@ -823,7 +848,9 @@ $`skos:exactMatch`
 <p>A file with 1 million floating point numbers takes this much storage on disk: csv (18.4 MB), compressed csv (csv.gz, 8.5 MB), SQLite (9.3 MB), parquet (6.9 MB), and feather (5.5 MB). The binary formats parquet and feather are both smaller and faster to work with than a compressed text format (csv.gz).</p>
 <p>Here I demonstrate creating and reading these files.</p>
 <div class="cell">
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/apache/arrow/">arrow</a></span><span class="op">)</span> <span class="co"># for parquet and arrow format files</span></span>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/apache/arrow/">arrow</a></span><span class="op">)</span> <span class="co"># for parquet and arrow format files</span></span>
+<span><span class="co"># On M1/2/3 Mac, instead of installing from CRAN do the following</span></span>
+<span><span class="co"># install.packages('arrow',  repos = c('https://apache.r-universe.dev', 'https://cloud.r-project.org'))</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rsqlite.r-dbi.org">RSQLite</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbplyr.tidyverse.org/">dbplyr</a></span><span class="op">)</span></span>
@@ -849,7 +876,7 @@ $`skos:exactMatch`
 <p>The speeds of reading each file type, relative to csv (smaller is faster) is: csv (1.0), parquet (0.4), SQLite (0.46).</p>
 <p>This code block opens each file – uncomment the line you want to use.</p>
 <div class="cell">
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># sw &lt;- read_csv("static/L160/test.csv.gz", show_col_types = FALSE)</span></span>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># sw &lt;- read_csv("static/L160/test.csv.gz", show_col_types = FALSE)</span></span>
 <span><span class="co"># sw &lt;- read_csv("static/L160/test.csv", show_col_types = FALSE)</span></span>
 <span><span class="va">sw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://arrow.apache.org/docs/r/reference/read_parquet.html">read_parquet</a></span><span class="op">(</span><span class="st">"static/L160/test.gz.parquet"</span><span class="op">)</span></span>
 <span><span class="co"># sw &lt;- read_feather("static/L160/test.feather")</span></span>
@@ -857,7 +884,7 @@ $`skos:exactMatch`
 </div>
 <p>This code block reads data and does a dplyr calculation:</p>
 <div class="cell">
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sw</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">a</span> <span class="op">&lt;</span> <span class="fl">0.1</span>, <span class="va">f</span> <span class="op">&gt;</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sw</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">a</span> <span class="op">&lt;</span> <span class="fl">0.1</span>, <span class="va">f</span> <span class="op">&gt;</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span>,</span>
 <span>             mean_c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">c</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -865,19 +892,19 @@ $`skos:exactMatch`
 <pre><code># A tibble: 1 × 2
   mean_b mean_c
    &lt;dbl&gt;  &lt;dbl&gt;
-1  0.514  0.506</code></pre>
+1  0.504  0.499</code></pre>
 </div>
 </div>
 <p>It is good practice to close the connection to your SQLite database when you are done.</p>
 <div class="cell">
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dbDisconnect</span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">dbDisconnect</span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in connection_release(conn@ptr): Already disconnected</code></pre>
 </div>
 </div>
 <p>Remove files to clean up your storage, since you don’t need any of these files.</p>
 <div class="cell">
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="st">"static/L160/test.gz.parquet"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="st">"static/L160/test.gz.parquet"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="st">"static/L160/test.feather"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="st">"static/L160/test.csv"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="st">"static/L160/test.csv.gz"</span><span class="op">)</span></span>
@@ -904,7 +931,8 @@ $`skos:exactMatch`
 <ul>
 <li>For more on Frictionless data packages, see its <a href="https://github.com/frictionlessdata/frictionless-r">GitHub page</a> or doi <a href="https://doi.org/10.5281/zenodo.5815355">10.5281/zenodo.5815355</a>
 </li>
-<li>A second, more elaborate package to create Frictionless data is the <a href="https://github.com/frictionlessdata/datapackage-r">datapackage</a> tool</li>
+<li>A second, more elaborate package to create frictionless data packages is the <a href="https://github.com/frictionlessdata/datapackage-r">datapackage</a> tool</li>
+<li>rOpenSci has a package <a href="https://docs.ropensci.org/deposits/index.html">deposits</a> to help ensure data submitted to repositories are complete and well documented</li>
 <li>Another approach to improving CSV files is the CSV on the Web (CSVW) r package: <a href="https://robsteranium.github.io/csvwr/">CSVWR</a>
 </li>
 <li>The R4DS chapters on <a href="https://r4ds.hadley.nz/databases">databases</a>, <a href="https://r4ds.hadley.nz/arrow">arrow format</a>, and <a href="https://r4ds.hadley.nz/rectangling">hierarchical data</a>. In particular the chapter on hierarchical data has advice on working with JSON files.</li>
