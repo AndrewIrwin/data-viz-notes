@@ -1,13 +1,13 @@
 ---
 title: "Beyond tidy data"
 output: html_document
-date: "2024-02-20"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(palmerpenguins)
+library(jsonlite)
 ```
 
 Throughout this course we have been using tidy data: every dataset is a table organized
@@ -121,7 +121,7 @@ Each of these data structures is more complicated than the simple tables that we
 Here we will work with data on flights in and out of New York City, in a database.
 There are five separate tables: airlines, airports, planes, flights, and weather.
 
-```{r}
+```{r message=FALSE}
 library(tidyverse, quietly = TRUE)
 library(dbplyr)
 library(nycflights13)
@@ -162,10 +162,10 @@ First, let's get the United Airlines flights to Minneapolis (operated by their s
 flights_ev_msp <- flights |> filter(carrier == "EV", dest == "MSP")
 ```
 
-We can get all the Embrarer airplanes:
+We can get all the Embraer airplanes:
 
 ```{r}
-airplanes |> filter(substr(model, 1, 3) == "EMB") |> DT::datatable()
+airplanes |> filter(substr(model, 1, 3) == "EMB") |> head()
 ```
 
 Then we will use a join to get all the flights on one of these planes.
@@ -222,8 +222,9 @@ a set of tables and a relational database. The approach used here with JSON is t
 How are nested tables managed in R data tables? The column of a data table can be, as we've seen, text, a number, or a date. It can also be another table. What we do below is [read the JSON text](https://api.github.com/users/hadley/repos) (follow the link
 to see the text format of this data) and then convert it into a table, including nested tables. GitHub just gives the first 30 results; this is common with web or database queries where the number of results could be large. You need to ask for more data using the language of the GitHub API if you want it. When you display the main table, the embedded table appears with prefix in the name (columns named `owner.XXX`).
 
+(Code output not shown here; run example in your own R session.)
 
-```{r}
+```{r eval=FALSE}
 library(jsonlite)
 data2 <- fromJSON("https://api.github.com/users/hadley/repos")
 names(data2)
@@ -233,14 +234,14 @@ names(data2$license)
 
 You can get the type of each column using `typeof` and `sapply`; a column of type list in this example means that column is made of up of tables.
 
-```{r}
+```{r eval=FALSE}
 sapply(data2, typeof)
 # data2  |> select(where(function(x) typeof(x) == "list")) # to select list columns
 ```
 
 If you don't want to deal with the nested table, you can flatten it into a regular table. The new columns appear at the right side.
 
-```{r}
+```{r eval=FALSE}
 flatten(data2)
 ```
 
@@ -276,17 +277,21 @@ Here is an example using two tables from the palmerpenguins package.
 ```{r}
 # remotes::install_github("frictionlessdata/frictionless-r") # or order version from CRAN
 library(frictionless)  
-dir.create(here::here("lessons/static/L160"), recursive=TRUE)
-write_csv(penguins, here::here("lessons/static/L160", "penguins.csv"))
-write_csv(penguins_raw, here::here("lessons/static/L160", "penguins_raw.csv"))
+# dir.create(here::here("lessons/static/L160"), recursive=TRUE, showWarnings = FALSE)
+# write_csv(penguins, here::here("lessons/static/L160", "penguins.csv"))
+# write_csv(penguins_raw, here::here("lessons/static/L160", "penguins_raw.csv"))
 schema1 <- create_schema(penguins)
 schema2 <- create_schema(penguins_raw)
 package <- create_package()
 # filename and column names must contain only lower case letters, -, _, .
 package <- add_resource(package, resource_name = "penguins", 
-                       data = "static/L160/penguins.csv", schema = schema1)
+                       # data = "static/L160/penguins.csv", 
+                       data = penguins,
+                       schema = schema1)
 package <- add_resource(package, resource_name = "penguins_raw", 
-                       data = "static/L160/penguins_raw.csv", schema = schema2)
+                       # data = "static/L160/penguins_raw.csv", 
+                       data = penguins_raw,
+                       schema = schema2)
 
 # add metadata to package
 package$resources[[1]]$schema$missingValues = list('', 'NA')
@@ -315,7 +320,8 @@ directly from that website.
 ```{r}
 package <- read_package("https://zenodo.org/record/5879096/files/datapackage.json")
 resources(package)
-get_schema(package, "reference-data") # contains: name, title, description, type, format for each variable
+schema_zenodo <- get_schema(package, "reference-data") # contains: name, title, description, type, format for each variable
+schema_zenodo$fields[[1]] # just a taste of the full output
 ref_data <- read_resource(package, "reference-data") # 13 rows, 24 variables
 # gps <- read_resource(package, "gps") # 73,047 rows, 21 variables
 ```
@@ -346,8 +352,8 @@ schema1 <- derive_table_schema(penguins)
 schema1 # Automatically generated; you can improve this information!
 schema2 <- derive_table_schema(penguins_raw)
 # Alternatively, derive schema from the csv file
-schema1 <- derive_metadata( here::here("lessons/static/L160", "penguins.csv"))
-schema2 <- derive_metadata( here::here("lessons/static/L160", "penguins_raw.csv"))
+# schema1 <- derive_metadata( here::here("lessons/static/L160", "penguins.csv"))
+# schema2 <- derive_metadata( here::here("lessons/static/L160", "penguins_raw.csv"))
 
 # Create metadata (as a list)
 table1 <- list(url = "penguins.csv", tableSchema = schema1)
@@ -364,7 +370,7 @@ cat(j, file=here::here("lessons/static/L160", "penguins-csvw-metadata.json"))
 Read the data from the files
 
 ```{r}
-penguins_both_csvw <- read_csvw("static/L160/penguins-csvw-metadata.json")
+penguins_both_csvw <- read_csvw(here::here("lessons/static/L160", "penguins-csvw-metadata.json"))
 penguins_csvw <- penguins_both_csvw$tables[[1]]$dataframe
 penguins_raw_csvw <- penguins_both_csvw$tables[[2]]$dataframe
 ```
@@ -389,14 +395,14 @@ and feather (5.5 MB). The binary formats parquet and feather are both smaller an
 
 Here I demonstrate creating and reading these files.
 
-```{r}
+```{r message=FALSE}
 library(arrow) # for parquet and arrow format files
 library(RSQLite)
 library(dplyr)
 library(dbplyr)
 
 df <- matrix(runif(1000000), 100000, 10) 
-df <- df |> as_tibble()
+df <- df |> as_tibble(.name_repair = "unique")
 names(df) <- letters[1:10]
 
 # parquet compresses data on columns, try the nycflights13 data with 6.4m "entries" (336,776 observations of 19 variables)
@@ -469,7 +475,8 @@ In addition to the `tidyverse` and `palmerpenguins`, in this lesson I have used
 ## References
 
 * For more on Frictionless data packages, see its [GitHub page](https://github.com/frictionlessdata/frictionless-r) or doi [10.5281/zenodo.5815355](https://doi.org/10.5281/zenodo.5815355)
-* A second, more elaborate package to create Frictionless data is the [datapackage](https://github.com/frictionlessdata/datapackage-r) tool
+* A second, more elaborate package to create frictionless data packages is the [datapackage](https://github.com/frictionlessdata/datapackage-r) tool
+* rOpenSci has a package [deposits](https://docs.ropensci.org/deposits/index.html) to help ensure data submitted to repositories are complete and well documented
 * Another approach to improving CSV files is the CSV on the Web (CSVW) r package: [CSVWR](https://robsteranium.github.io/csvwr/)
 * The R4DS chapters on [databases](https://r4ds.hadley.nz/databases), [arrow format](https://r4ds.hadley.nz/arrow), and [hierarchical data](https://r4ds.hadley.nz/rectangling). In particular the chapter on hierarchical data has advice on working with JSON files.
 * More a more detailed approach to metadata, see [Dataspice](https://annakrystalli.me/rrresearchACCE20/dataspice.html)
