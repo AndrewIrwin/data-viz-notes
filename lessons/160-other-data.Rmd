@@ -1,20 +1,20 @@
 ---
 title: "Beyond tidy data"
 output: html_document
-date: "2024-02-20"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(palmerpenguins)
+library(jsonlite)
 ```
 
 Throughout this course we have been using tidy data: every dataset is a table organized
 so that each column is a variable and each row is an observation. This design  is very 
 convenient for data visualizations and data analysis. The format makes it easy to 
-associate a column with an asethetic on a graph,  a predictor or response variable 
-in a regression, or a column in a clustering or multivariate analysis.
+associate a column with an aesthetic on a graph, a predictor or response variable 
+in a regression, or a dimension in a clustering or multivariate analysis.
 
 There are at least two important ways many data sets differ from this tidy format: there 
 may be multiple tables that are related to each other, known as relational data, or the 
@@ -25,6 +25,30 @@ make the data larger to store and often harder to change or update.
 In this lesson I will show you an example of each dataset, explain why the non-tidy formats are 
 useful, and show you how to reshape the data for the tools we have studied in this course
 which demand tidy (rectangular) data.
+
+Another reason databases are used is that they provide tools for working with very large datasets,
+including data which are too large to hold in the working memory of one computer. A useful distinction in 
+computing is between 
+
+1) long-term storage: the relatively slow, but large capacity to store data "permanently", meaning after the
+computer is turned off, and
+2) working storage: data that can be accessed thousands of times faster than slow storage, but is relatively scarce; 
+sometimes your computer will move data from working storage to long-term storage to complete the task you have set, slowing
+its work down while making the task possible.
+
+Long-term storage is commonly called "disk" (floppy disk, hard disk, solid state drive as technologies change)
+and working storage is commonly called RAM (random access memory). We talk about "saving" data in "files" on disk, and "reading" data from long-term storage into working storage.
+When you purchase a computer you make decisions about
+the relative amount of each to get; commonly a consumer-grade computer has 8-16 GB of RAM and 256-1024 GB (32-128 times more) disk.
+When you use a cell phone or a service accessed through the browser, these distinctions are blurred and you often have no idea how much 
+RAM you can access, you just know the capacity of the service for long-term storage. This simplification is generally a good thing.
+
+We have used comma separated values (CSV) format data throughout the course because the 
+format is very widely used and easy to understand. There are some drawbacks to this format
+which can been addressed by storing tidy table data in other formats when saving data to files on 
+a disk. Regardless of the long-term storage format, we aim to use the same tools in R to work
+with the data (data tables, tidyverse functions), but there are some special details when working 
+with very large data, even data that are too large for your computer's working storage.
 
 ## Relational data
 
@@ -97,7 +121,7 @@ Each of these data structures is more complicated than the simple tables that we
 Here we will work with data on flights in and out of New York City, in a database.
 There are five separate tables: airlines, airports, planes, flights, and weather.
 
-```{r}
+```{r message=FALSE}
 library(tidyverse, quietly = TRUE)
 library(dbplyr)
 library(nycflights13)
@@ -138,10 +162,10 @@ First, let's get the United Airlines flights to Minneapolis (operated by their s
 flights_ev_msp <- flights |> filter(carrier == "EV", dest == "MSP")
 ```
 
-We can get all the Embrarer airplanes:
+We can get all the Embraer airplanes:
 
 ```{r}
-airplanes |> filter(substr(model, 1, 3) == "EMB") |> DT::datatable()
+airplanes |> filter(substr(model, 1, 3) == "EMB") |> head()
 ```
 
 Then we will use a join to get all the flights on one of these planes.
@@ -198,8 +222,9 @@ a set of tables and a relational database. The approach used here with JSON is t
 How are nested tables managed in R data tables? The column of a data table can be, as we've seen, text, a number, or a date. It can also be another table. What we do below is [read the JSON text](https://api.github.com/users/hadley/repos) (follow the link
 to see the text format of this data) and then convert it into a table, including nested tables. GitHub just gives the first 30 results; this is common with web or database queries where the number of results could be large. You need to ask for more data using the language of the GitHub API if you want it. When you display the main table, the embedded table appears with prefix in the name (columns named `owner.XXX`).
 
+(Code output not shown here; run example in your own R session.)
 
-```{r}
+```{r eval=FALSE}
 library(jsonlite)
 data2 <- fromJSON("https://api.github.com/users/hadley/repos")
 names(data2)
@@ -209,119 +234,168 @@ names(data2$license)
 
 You can get the type of each column using `typeof` and `sapply`; a column of type list in this example means that column is made of up of tables.
 
-```{r}
+```{r eval=FALSE}
 sapply(data2, typeof)
 # data2  |> select(where(function(x) typeof(x) == "list")) # to select list columns
 ```
 
 If you don't want to deal with the nested table, you can flatten it into a regular table. The new columns appear at the right side.
 
-```{r}
+```{r eval=FALSE}
 flatten(data2)
 ```
 
 
-## Beyond CSV: Other data formats
+## Beyond CSV: other data formats
 
 We have relied heavily on the comma separated value format in this course, both because
 it is a very commonly used format and because it is relatively easy to use.
 The CSV format has several drawbacks
 
-* the data type for each column is not usually described, so the computer software need to "guess" the data type or the human operator needs to describe it explicitly,
+* the data type for each column is not described, so the computer software needs to "guess" the data type or you need to describe it explicitly,
 * there are no standard conventions for variable names, beyond the fact that usually -- but not always -- the names are given on a single line,
-* if a text value in a column has a comma in it, then quotation marks are usually used to delinate the content of the column, but then special "escaping" notation is needed to include a quotation mark in text data, and these mechanisms are not always implemented well or correctly,
-* in some locales, a different separator is used (e.g., a semicolon or tab) and number formatting can differ (the decimal separator can be a period or a comma), and
+* if a text value in a column has a comma in it (for example, an address), then quotation marks are usually used to delineate the content of the column, but then special "escaping" notation is needed to include a quotation mark in text data, and these mechanisms are not always implemented well or correctly,
+* in some locales, a different separator is used (e.g., a semicolon or tab) and number formatting can differ (the decimal separator can be a period or a comma), 
+* since the file is stored as text, the way the text is encoded will depend on the (human) language used and the country or "locale" where the computer is used, complicating retrieval of the data for someone from another locale,and
 * large files are relatively slow to read compared to some other formats.
 
-
-### Metadata solution
-
+We will explore two ways of providing metadata for a CSV file, focusing on variable names, data
+types, and human-readable descriptions for data. We will then look at data storage formats
+that permit faster work on large datasets.
 
 ### Frictionless metadata for tables
 
-Fictionless data package example using palmerpenguins::penguins
+The frictionless data approach to this problem is to combine a csv file and a metadata file in a "data package".
+The metadata includes
+
+* a short name and descriptive title for the package
+* a short name and description of each variable in each table
+* the data type of each variable
+
+Here is an example using two tables from the palmerpenguins package.
 
 ```{r}
-# remotes::install_github("frictionlessdata/frictionless-r")
+# remotes::install_github("frictionlessdata/frictionless-r") # or order version from CRAN
 library(frictionless)  
-# library(datapackage.r)  # for packages
-# remotes::install_github("https://github.com/frictionlessdata/datapackage-r")
-
+# dir.create(here::here("lessons/static/L160"), recursive=TRUE, showWarnings = FALSE)
+# write_csv(penguins, here::here("lessons/static/L160", "penguins.csv"))
+# write_csv(penguins_raw, here::here("lessons/static/L160", "penguins_raw.csv"))
 schema1 <- create_schema(penguins)
 schema2 <- create_schema(penguins_raw)
 package <- create_package()
 # filename and column names must contain only lower case letters, -, _, .
-# package <- add_resource(package, data = count_data, schema1)
 package <- add_resource(package, resource_name = "penguins", 
-                       data = "static/L160/penguins.csv", schema = schema1)
+                       # data = "static/L160/penguins.csv", 
+                       data = penguins,
+                       schema = schema1)
 package <- add_resource(package, resource_name = "penguins_raw", 
-                       data = "static/L160/penguins_raw.csv", schema = schema2)
+                       # data = "static/L160/penguins_raw.csv", 
+                       data = penguins_raw,
+                       schema = schema2)
 
 # add metadata to package
 package$resources[[1]]$schema$missingValues = list('', 'NA')
 package$resources[[2]]$schema$missingValues = list('', 'NA')
 package <- append(package, c(name = "palmerpenguins"), after = 0)
 package <- append(package, c(title = "Data about penguins from Palmer Station, Antarctica"), after = 1)
-package <- append(package, c(citation = "Horst, A and Kristen XX. XXX." ), after = 2)
+package <- append(package, c(citation = "Horst, A. and Gorman, K. Palmer Penguins Data. https://doi.org/10.5281/zenodo.3960218" ), after = 2)
 
-write_package(package, "static/L160/penguins-data-tables")
+write_package(package, here::here("lessons/static/L160", "penguins-data-tables"))
 ```
+
+Then you can give this directory (possibly as a zip file) to someone else who can open it with the following functions. 
+You can be assured that the variable names, data types, and descriptions will all be transmitted with your data.
+
+```{r}
+p <- read_package(here::here("lessons/static/L160/penguins-data-tables", "datapackage.json"))
+resources(p)
+p1 <- read_resource(p, "penguins")
+```
+
+Data are reproduced faithfully except three columns were changed from int to double: flipper_length_mm, body_mass_g, and year.
+
+If your data package is distributed through a website like zenodo, you can read the data
+directly from that website.
+
+```{r}
+package <- read_package("https://zenodo.org/record/5879096/files/datapackage.json")
+resources(package)
+schema_zenodo <- get_schema(package, "reference-data") # contains: name, title, description, type, format for each variable
+schema_zenodo$fields[[1]] # just a taste of the full output
+ref_data <- read_resource(package, "reference-data") # 13 rows, 24 variables
+# gps <- read_resource(package, "gps") # 73,047 rows, 21 variables
+```
+
 
 ### CSVW
 
-The W3C’s CSV on the Web Working Group produced a series of recommendations for working with tabular data on the web.
+A second solution to the problem of metadata for CSV files was produced by a working group at the World Wide Web Consortium ([W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium)). The solution is called CSV on the Web (CSVW).
 
-Read and write csv tables annotated with metadata according to the “CSV on the Web” standard (CSVW).
+The [csvwr](https://robsteranium.github.io/csvwr/) library implements parts of this standard in R. The goal is to support the reading and writing of annotated CSV tables, to ensure consistent processing and reduce the amount of manual work needed to parse and prepare data before it can be used.
 
-The csvwr library implements parts of this standard in R. The overall goal of the project is to support reading and writing of annotated CSV tables, in order to ensure consistent processing and reduce the amount of manual work needed to parse and prepare data before it can be used in analysis.
+As with frictionless data, the metadata is stored in an accompanying json document and describes
 
-Practically speaking, you annotate a csv file by providing an accompanying json document containing the metadata. We benefit from annotating tables with csvw benefit because:
+* the csv dialect (i.e. the choice of field separator or quoting characters),
+* short and descrpitive variable names,
+* data types for each variable.
 
-the csv dialect (i.e. the choice of field separator or quoting characters) is explicitly defined, helping to avoid parsing mistakes
-columns can be given syntactically-valid variable names (while retaining human-readable labels for display)
-cell types are declared, obviating the need to e.g. parse dates (and figure-out formatting strings)
-
+Here is an example of creating and reading a CSVW file:
 
 ```{r}
 library(csvwr)
-# Given a data frame (saved as a csv)
-write_csv(penguins, "static/L160/penguins-data.csv")
+# Start with a data frame saved as a csv (we did this for the previous example already)
+# write_csv(penguins, here::here("lessons/static/L160", "penguins.csv"))
+# write_csv(penguins_raw, here::here("lessons/static/L160", "penguins_raw.csv"))
 
-# Derive a schema
-schema <- derive_table_schema(penguins)
-schema # Automatically generated; you can improve this information!
+# Derive a schema from the data
+schema1 <- derive_table_schema(penguins)
+schema1 # Automatically generated; you can improve this information!
+schema2 <- derive_table_schema(penguins_raw)
+# Alternatively, derive schema from the csv file
+# schema1 <- derive_metadata( here::here("lessons/static/L160", "penguins.csv"))
+# schema2 <- derive_metadata( here::here("lessons/static/L160", "penguins_raw.csv"))
 
 # Create metadata (as a list)
-m <- create_metadata(tables=list(list(url="static/L160/penguins-data.csv", tableSchema=schema)))
+table1 <- list(url = "penguins.csv", tableSchema = schema1)
+table2 <- list(url = "penguins_raw.csv", tableSchema = schema2)
+m <- create_metadata(tables=list(table1, table2))
 
 # Serialise the metadata to JSON
 j <- jsonlite::toJSON(m)
 
 # Write the json to a file
-cat(j, file="static/L160/penguins-metadata.json")
+cat(j, file=here::here("lessons/static/L160", "penguins-csvw-metadata.json"))
 ```
 
 Read the data from the files
 
 ```{r}
-csvw <- read_csvw_dataframe("static/L160/penguins-data.csv", "static/penguins-metadata.json")
+penguins_both_csvw <- read_csvw(here::here("lessons/static/L160", "penguins-csvw-metadata.json"))
+penguins_csvw <- penguins_both_csvw$tables[[1]]$dataframe
+penguins_raw_csvw <- penguins_both_csvw$tables[[2]]$dataframe
 ```
 
+The data are reproduced faithfully, except factor variables in the original data are 
+read as text from the CSVW and some column names have been changed in `penguins_raw` (e.g., spaces changed to periods).
+
+```{r}
+all.equal(penguins, as_tibble(penguins_csvw))
+all.equal(penguins_raw, as_tibble(penguins_raw_csvw))
+```
 
 
 ### Speed and metadata solution
 
-Here I will introduce two alternative formats. The first is a binary format called [parquet](https://en.wikipedia.org/wiki/Apache_Parquet) made by the non-profit [Apache Software Foundation](https://en.wikipedia.org/wiki/The_Apache_Software_Foundation) (where the earliest popular web servers were developed). The second is a database format called [SQLite](https://en.wikipedia.org/wiki/SQLite) which is freely and widely available. It is the most widely used database software in the world and is an archival format [recommended](https://www.loc.gov/preservation/resources/rfs/data.html) by the US Library of Congress.
+A second problem with CSV is that reading the data from disk into memory is slow for large files. There are two reasons: the text data is larger than equivalent information stored in a binary format, and the reading process requires the software to infer the types of the data. Here I will introduce alternative storage formats that address both problems. The first is a binary format called [parquet](https://en.wikipedia.org/wiki/Apache_Parquet) made by the non-profit [Apache Software Foundation](https://en.wikipedia.org/wiki/The_Apache_Software_Foundation) (where the earliest popular web servers were developed). The second is a database format called [SQLite](https://en.wikipedia.org/wiki/SQLite) which is freely and widely available. It is the most widely used database software in the world and is an archival format [recommended](https://www.loc.gov/preservation/resources/rfs/data.html) by the US Library of Congress.
 Both are easy to use with R.
 
-A file with 1 million floating point numbers takes this much storage on disk
-* csv: 18.4 MB  # this format takes the most space on disk, does not contain data type information
-* csv.gz: 8.5 MB
-* SQLite: 9.3 MB 
-* parquet: 6.9 MB # fast to manipulate on disk, can accommodate very large data 
-* feather: 5.5 MB
+A file with 1 million floating point numbers takes this much storage on disk: 
+csv (18.4 MB), compressed csv (csv.gz, 8.5 MB), SQLite (9.3 MB), parquet (6.9 MB),
+and feather (5.5 MB). The binary formats parquet and feather are both smaller and faster to work with than a compressed text format (csv.gz).
 
-```{r}
+Here I demonstrate creating and reading these files.
+
+```{r message=FALSE}
 library(arrow) # for parquet and arrow format files
 # On M1/2/3 Mac, instead of installing from CRAN do the following
 # install.packages('arrow',  repos = c('https://apache.r-universe.dev', 'https://cloud.r-project.org'))
@@ -346,31 +420,21 @@ con <- dbConnect(SQLite(), "static/L160/test.sqlite")
 # dbRemoveTable(con, "df")
 dbWriteTable(con, "df", df, overwrite=TRUE)
 dbDisconnect(con)
-
-# relative speeds:
-# parquet: 1.4, SQLite = 1.6, fst = 1.0, csv = 3.5, duckdb = 4.1, rds = 13 (to uncompress from xz)
-# SQLite is ~30% slower than Parquet
-#       test replications elapsed relative user.self sys.self user.child sys.child
-# 3     csv          100  14.305    3.794    57.823    4.076          0         0
-# 4     fst          100   3.770    1.000     3.309    0.462          0         0
-# 1 parquet          100   5.278    1.400    10.124    0.432          0         0
-# 5     rds          100  47.858   12.694    47.434    0.502          0         0
-# 2  sqlite          100   6.850    1.817     6.493    0.365          0         0
 ```
 
-Read files 
+The speeds of reading each file type, relative to csv (smaller is faster) is: csv (1.0), parquet (0.4), SQLite (0.46).
+
+This code block opens each file -- uncomment the line you want to use.
 
 ```{r}
-sw <- read_csv("static/L160/test.csv.gz", show_col_types = FALSE)
-sw <- read_csv("static/L160/test.csv", show_col_types = FALSE)
+# sw <- read_csv("static/L160/test.csv.gz", show_col_types = FALSE)
+# sw <- read_csv("static/L160/test.csv", show_col_types = FALSE)
 sw <- read_parquet("static/L160/test.gz.parquet")
-sw <- read_feather("static/L160/test.feather")
-
-con <- dbConnect(SQLite(), "static/L160/test.sqlite")
-sw <- tbl(con, "df")
+# sw <- read_feather("static/L160/test.feather")
+# con <- dbConnect(SQLite(), "static/L160/test.sqlite"); sw <- tbl(con, "df")
 ```
 
-Do a calculation
+This code block reads data and does a dplyr calculation:
 
 ```{r}
 sw |> filter(a < 0.1, f > 0.9) |>
@@ -379,13 +443,13 @@ sw |> filter(a < 0.1, f > 0.9) |>
              mean_c = mean(c))
 ```
 
-Close SQLite database
+It is good practice to close the connection to your SQLite database when you are done.
 
 ```{r}
 dbDisconnect(con)
 ```
 
-Remove files to clean up
+Remove files to clean up your storage, since you don't need any of these files.
 
 ```{r}
 unlink("static/L160/test.gz.parquet")
@@ -405,15 +469,16 @@ In addition to the `tidyverse` and `palmerpenguins`, in this lesson I have used
 * `dbplyr` for using dplyr functions on databases ("db")
 * `nycflights13` for access to a relatively large dataset
 * `jsonlite` for working with JSON data
-* `arrow` for the parquet and feather formats
-* `RSQLite` for SQLite database creation and access
 * `frictionless`
 * `csvwr`
+* `arrow` for the parquet and feather formats
+* `RSQLite` for SQLite database creation and access
 
 ## References
 
 * For more on Frictionless data packages, see its [GitHub page](https://github.com/frictionlessdata/frictionless-r) or doi [10.5281/zenodo.5815355](https://doi.org/10.5281/zenodo.5815355)
-* A second, more elaborate package to create Frictionless data is the [datapackage](https://github.com/frictionlessdata/datapackage-r) tool
+* A second, more elaborate package to create frictionless data packages is the [datapackage](https://github.com/frictionlessdata/datapackage-r) tool
+* rOpenSci has a package [deposits](https://docs.ropensci.org/deposits/index.html) to help ensure data submitted to repositories are complete and well documented
 * Another approach to improving CSV files is the CSV on the Web (CSVW) r package: [CSVWR](https://robsteranium.github.io/csvwr/)
 * The R4DS chapters on [databases](https://r4ds.hadley.nz/databases), [arrow format](https://r4ds.hadley.nz/arrow), and [hierarchical data](https://r4ds.hadley.nz/rectangling). In particular the chapter on hierarchical data has advice on working with JSON files.
 * More a more detailed approach to metadata, see [Dataspice](https://annakrystalli.me/rrresearchACCE20/dataspice.html)

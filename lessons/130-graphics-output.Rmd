@@ -67,20 +67,20 @@ ggsave("static/penguin-plot.pdf", p2, width = 15, height = 10 , units = "cm")
 ggsave("static/penguin-plot.svg", p2, width = 15, height = 10 , units = "cm")
 ```
 
-Figures are often produced with an aspect ratio (height / width) in the range of 0.6-0.7. Square images almost always look "too tall". For multi-panel figures such as the first facetted plot above, this ratio is usually applied to each panel. Deviations from this ratio arise from aesthetich preference, constraints imposed by external factors, and the size of axis labels, titles, and legends.
+Figures are often produced with an aspect ratio (height / width) in the range of 0.6-0.7. Square images almost always look "too tall". For multi-panel figures such as the first facetted plot above, this ratio is usually applied to each panel. Deviations from this ratio arise from aesthetic preference, constraints imposed by external factors, and the size of axis labels, titles, and legends.
 
 If you examine the versions of this plot in the PDF file just created, in the HTML version of this book, and the interactive version produced by Rstudio, you will see that they are all slightly different. This includes minor features like the placement of the dots in the horizontal gridlines relative to other features and major features like the size of the on-graph "legend". In particular, text near a border can easily fall partially outside the boarder and get clipped. (In the first version of my PDF of the "C" in Chinstrap was clipped by the y-axis even though it looked fine in the Rstudio preview.) The only way I know to resolve these problems is by testing and iterative refinement of the graph.
 
 The actual sizes of these plots are of course completely fictional. The instructions stored on a computer have no physical size! What purpose to the size measurements have? They allow for the relative sizing of different elements: lines, symbols, and text. If you change the size of the images created above, all that will change is the relative sizes of these elements. This is why the "size" of text elements is not closely tied to a "point size" for a font; ggplot does not know how the figure will be rendered not when stored in a file a certainly not when ultimately placed on a computer monitor, phone, projected on a wall, printed on a page or a poster. The size of a figure in these functions serves as a convenient reminder of how you are planning to use the image and will help you think about your design. Sometimes the simplest way to refine a plot is to change the "size" it is created at slightly to make a bit more or less white space between the graphical elements.
 
-Here is how to make the raster format images; it's fairly easy to guess the functions now!
+Here is how to make the raster format images; it's fairly easy to guess the functions now:
 
 ```{r}
 ggsave("static/penguin-plot.png", p2, width = 15, height = 10, units = "cm", dpi = 300)
 ggsave("static/penguin-plot.jpeg", p2, width = 15, height = 10, units = "cm", dpi = 144)
 ```
 
-For raster images, the the "dots per inch" (dpi) provides some information on how the figure is intended to be displayed. Montiors, phones, and other devices generally range from 100-250 dpi and physical printing usually ranges from 300-600 dpi. There are, of course, exceptions.
+For raster images, the the "dots per inch" (dpi) provides some information on how the figure is intended to be displayed. Monitors, phones, and other devices generally range from 100-250 dpi and physical printing usually ranges from 300-600 dpi. There are, of course, exceptions.
 
 The JPEG file format was designed to store photographic images compactly. Image compression algorithms are used to reduce the size of the file from the literal content (x resolution x y resolution x colour bits per pixel, commonly a total of 30-40 million bytes even for a camera phone) to a size of 5-10% of that total. Photographs rarely include precisely straight lines, crisp text, and lots of small symbols. The JPEG compression tends to create lots of "artifacts" or "jaggies" on an image since the data compression algorithms smooth out sharp, high contrast boundaries that are common in data visualizations and rare in photographs. Don't use JPEG for ggplot figures.
 
@@ -94,7 +94,7 @@ p1
 
 ## Vector or raster?
 
-The quality of a vector image (PDF, svg) should always be superior to a raster image (png). Vector images can be redrawn at different scales easily, making it possible for your reader to zoom in on your graphics. If your plot has millions of points or a huge number of lines, then a vector format which requires the computer to draw each feature every time the image is shown will be slow. So you should normally use a raster format (svg for the web, pdf for printing) and only use raster formats (png) for very complicated figures, for example if you notice that your graphics are displaying slowly.
+The quality of a vector image (PDF, svg) should always be superior to a raster image (png). Vector images can be redrawn at different scales easily, making it possible for your reader to zoom in on your graphics. If your plot has millions of points or a huge number of lines, then a vector format which requires the computer to draw each feature every time the image is shown will be slow. So you should normally use a vector format (svg for the web, pdf for printing) and only use raster formats (png) for very complicated figures, for example if you notice that your graphics are displaying slowly.
 
 ```{r dev = 'svglite', fig.align='center'}
 p1
@@ -133,8 +133,7 @@ Once you have made a graphic look just the way you want, you can adjust the scal
 ```{r}
 pngfile <- fs::path(knitr::fig_path(),  "penguins-ragg.png")
 ggsave(pngfile, p2, device = agg_png, 
-        width = 45, height = 30, units = "cm", res = 300, scaling = 3,
-       create.dir = TRUE)
+        width = 45, height = 30, units = "cm", res = 300, scaling = 3)
 knitr::include_graphics(pngfile)
 # agg_png("static/penguins-ragg.png", width = 45, height = 30, units = "cm", res = 300, scaling = 3)
 # p2

@@ -43,6 +43,7 @@ book:
     - lessons/130-bonus-topics.Rmd
     - lessons/201-colour.Rmd
     - lessons/133-themes.Rmd
+    - lessons/160-other-data.Rmd
     - lessons/130-graphics-output.Rmd
     - lessons/134-reconstruction.Rmd
     - lessons/499-review.Rmd
