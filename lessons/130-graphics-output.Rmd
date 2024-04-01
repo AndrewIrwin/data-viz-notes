@@ -22,8 +22,9 @@ These two questions focus your attention on whether elements of your visualizati
 Let's start with a frequently used visualization of penguin data.
 
 ```{r warning=FALSE}
-p1 <- penguins %>% ggplot(aes(body_mass_g, flipper_length_mm, 
-                        color = species, shape = sex)) + 
+p1 <- penguins |> na.omit() |>
+  ggplot(aes(body_mass_g, flipper_length_mm, 
+             color = species, shape = sex)) + 
         facet_wrap( ~ island) + 
         geom_point() +
         scale_shape(na.translate = FALSE) +
@@ -36,8 +37,9 @@ This is a fairly complex figure, but it's fine if you will have a minute to look
 Let's simplify the visualization to emphasize the species differences, discard the sex and island differences, and make it suitable for display in an oral presentation or poster.
 
 ```{r warning=FALSE}
-p2 <- penguins %>% ggplot(aes(body_mass_g, flipper_length_mm, 
-                        color = species)) + 
+p2 <- penguins |> na.omit() |>
+  ggplot(aes(body_mass_g, flipper_length_mm, 
+             color = species)) + 
         geom_point(size = 3, alpha = 0.5) + 
         theme_clean() + 
         theme(axis.title = element_text(size = 18),
@@ -139,7 +141,59 @@ knitr::include_graphics(pngfile)
 # invisble(dev.off())
 ```
 
-The `ragg` library and graphics output device also provides reliable rendering text in many (perhaps most) languages and a way to scale the size of images across different output formats. See the link below for more information.
+The `ragg` library and graphics output device also provides reliable rendering text in many (perhaps most) languages and a way to scale the size of images across different output formats. 
+
+I've copied the nice map with an emoji and Japanese text from [this tutorial](https://www.tidyverse.org/blog/2021/02/modern-text-features/):
+
+```{r echo=FALSE, dev='ragg_png'}
+city_names <- c(
+  "Tokyo (東京)",
+  "Yokohama (横浜)",
+  "Osaka (大阪市)",
+  "Nagoya (名古屋市)",
+  "Sapporo (札幌市)",
+  "Kobe (神戸市)",
+  "Kyoto (京都市)",
+  "Fukuoka (福岡市)",
+  "Kawasaki (川崎市)",
+  "Saitama (さいたま市)"
+)
+main_cities <- data.frame(
+  name = city_names,
+  lat = c(35.690, 35.444, 34.694, 35.183, 43.067, 
+          34.69, 35.012, 33.583, 35.517, 35.861),
+  lon = c(139.692, 139.638, 135.502, 136.9, 141.35, 
+          135.196, 135.768, 130.4, 139.7, 139.646)
+)
+japan <- rnaturalearth::ne_countries(
+  scale = 10, 
+  country = "Japan", 
+  returnclass = "sf"
+)
+ggplot() + 
+  geom_sf(
+    data = japan, 
+    fill = "forestgreen", 
+    colour = "grey10", 
+    size = 0.2
+  ) + 
+  ggrepel::geom_label_repel(
+    aes(lon, lat, label = name), 
+    data = main_cities,
+    fill = "#FFFFFF88",
+    box.padding = unit(5, "mm")
+  ) + 
+  geom_point(aes(lon, lat), main_cities) +
+  ggtitle(
+    "Location of largest cities in Japan (日本) 🇯🇵"
+  ) +
+  theme_void() + 
+  theme(panel.background = element_rect("steelblue"),
+        plot.title = element_text(margin = margin(5, 0, 5, 0)))
+```
+
+
+See the link below for more information.
 
 
 ## Further reading

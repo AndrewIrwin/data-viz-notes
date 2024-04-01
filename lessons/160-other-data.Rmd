@@ -323,12 +323,14 @@ A file with 1 million floating point numbers takes this much storage on disk
 
 ```{r}
 library(arrow) # for parquet and arrow format files
+# On M1/2/3 Mac, instead of installing from CRAN do the following
+# install.packages('arrow',  repos = c('https://apache.r-universe.dev', 'https://cloud.r-project.org'))
 library(RSQLite)
 library(dplyr)
 library(dbplyr)
 
 df <- matrix(runif(1000000), 100000, 10) 
-df <- df |> as_tibble()
+df <- df |> as_tibble(.name_repair = "unique")
 names(df) <- letters[1:10]
 
 # parquet compresses data on columns, try the nycflights13 data with 6.4m "entries" (336,776 observations of 19 variables)
