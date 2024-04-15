@@ -293,12 +293,12 @@ package <- add_resource(package, resource_name = "penguins_raw",
                        data = penguins_raw,
                        schema = schema2)
 
-# add metadata to package
-package$resources[[1]]$schema$missingValues = list('', 'NA')
-package$resources[[2]]$schema$missingValues = list('', 'NA')
-package <- append(package, c(name = "palmerpenguins"), after = 0)
-package <- append(package, c(title = "Data about penguins from Palmer Station, Antarctica"), after = 1)
-package <- append(package, c(citation = "Horst, A. and Gorman, K. Palmer Penguins Data. https://doi.org/10.5281/zenodo.3960218" ), after = 2)
+# add metadata to package (recent change in library; commented out for now)
+# package$resources[[1]]$schema$missingValues = list('', 'NA')
+# package$resources[[2]]$schema$missingValues = list('', 'NA')
+# package <- append(package, c(name = "palmerpenguins"), after = 0)
+# package <- append(package, c(title = "Data about penguins from Palmer Station, Antarctica"), after = 1)
+# package <- append(package, c(citation = "Horst, A. and Gorman, K. Palmer Penguins Data. https://doi.org/10.5281/zenodo.3960218" ), after = 2)
 
 write_package(package, here::here("lessons/static/L160", "penguins-data-tables"))
 ```
