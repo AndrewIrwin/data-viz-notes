@@ -11,13 +11,13 @@ Climate change over the coming century will be controlled by human-driven emissi
 The two graphs below show carbon dioxide concentrations (in parts per million) in the atmosphere measured from a high-altitude observatory on the island of Hawai'i. The first graph shows two years of data. The second graph shows the monthly record since regular observations began.
 
 ```{r co2-2-year, echo=FALSE,  out.width = '100%'}
-#| fig-cap: "Two years of atmospheric CO$_2$ concentration from Mauna Loa observatory. Source [co2.earth](https://www.co2.earth/daily-co2) and [sioweb.ucsd.edu](https://sioweb.ucsd.edu/programs/keelingcurve/). "
+#| fig-cap: "Two years of atmospheric CO$_2$ concentration from Mauna Loa observatory. Source [co2.earth](https://www.co2.earth/daily-co2) and [keelingcurve.ucsd.edu](https://keelingcurve.ucsd.edu/). "
 #| label: fig-co2-2-year
 knitr::include_graphics("static/mlo_two_years.png")
 ```
 
 ```{r co2-full-record, echo=FALSE, out.width='100%'}
-#| fig-cap: "Atmospheric CO$_2$ concentration from Mauna Loa observatory, 1958 to present. Source [co2.earth](https://www.co2.earth/daily-co2) and [sioweb.ucsd.edu](https://sioweb.ucsd.edu/programs/keelingcurve/). "
+#| fig-cap: "Atmospheric CO$_2$ concentration from Mauna Loa observatory, 1958 to present. Source [co2.earth](https://www.co2.earth/daily-co2) and [keelingcurve.ucsd.edu](https://keelingcurve.ucsd.edu/). "
 #| label: fig-co2-full-record
 knitr::include_graphics("static/mlo_full_record.png")
 ```
@@ -49,7 +49,7 @@ knitr::include_graphics("static/gapminder-fertility-income.png")
 
 ## Weather
 
-Many people are strongly interested in their local weather conditions. As a result of this strong interest and the complextity of the data, many visualizations have been developed. Forecasts, such as those produced by [Environment Canada](https://weather.gc.ca/city/pages/ns-19_metric_e.html), and historical retrospectives, such as those produced by [Weatherspark](https://weatherspark.com/y/28434/Average-Weather-in-Halifax-Canada-Year-Round) are examples that leverage familiarity with the data, broad-scale human interest, and data-rich but not overly complicated displays. Two examples are shown below.
+Many people are strongly interested in their local weather conditions. As a result of this strong interest and the complextity of the data, many visualizations have been developed. Forecasts, such as those produced by [Environment Canada](https://weather.gc.ca/en/location/index.html?coords=44.649,-63.602), and historical retrospectives, such as those produced by [Weatherspark](https://weatherspark.com/y/28434/Average-Weather-in-Halifax-Canada-Year-Round) are examples that leverage familiarity with the data, broad-scale human interest, and data-rich but not overly complicated displays. Two examples are shown below.
 
 ```{r env-canada-weather, echo=FALSE, out.width = '100%'}
 #| fig-cap: "Environment Canada weather forecast for Halifax NS, December 10, 2020"

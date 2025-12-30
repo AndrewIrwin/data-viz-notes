@@ -75,8 +75,6 @@ Github is a web service that allows you to easily publish your git repositories.
 
 -   [R Markdown for scientists](https://rmd4sci.njtierney.com/) is a set of notes on using R markdown for report writing and data analysis aimed at scientists.
 
--   Some [R Markdown](https://towardsdatascience.com/ten-awesome-r-markdown-tricks-56ef6d41098) tips.
-
 - Information about [Quarto](https://quarto.org/), the successor to R markdown.
 
 ## References

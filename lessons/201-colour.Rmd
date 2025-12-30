@@ -202,6 +202,7 @@ In addition to the `tidyverse` and `palmerpenguins` packages, in this lesson I'v
 * [Color Brewer 2](https://colorbrewer2.org/) interactive website to select and illustrate use of color scales on maps.
 * [HCL wizard](http://hclwizard.org/hclcolorpicker/)
 * The [colorspace](https://cran.r-project.org/web/packages/colorspace/vignettes/colorspace.html) package enables conversions between many different ways of describing colours
+* The story of the [dress](https://en.wikipedia.org/wiki/The_dress)
 
 ```{r echo=FALSE}
 source("helper.R")

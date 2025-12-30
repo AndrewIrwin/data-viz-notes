@@ -49,8 +49,7 @@ It's helpful to create informative names for files. If two files are related, us
 ## Resources
 
 * Healy. Appendix. [Managing projects and files](https://socviz.co/appendix.html#managing-projects-and-files)
-* Avoid using directory paths that won't exist on someone else's computer when you share files by using the [Here pacakge](https://here.r-lib.org/) ([github](https://github.com/jennybc/here_here)).
+* How to avoid using directory paths that won't exist on someone else's computer when you share files by using the [Here pacakge](https://here.r-lib.org/) ([github](https://github.com/jennybc/here_here)).
 * R for Data Science notes on [scripts](https://r4ds.had.co.nz/workflow-scripts.html) and  [projects](https://r4ds.had.co.nz/workflow-projects.html)
-* Drake [package](https://github.com/ropensci/drake) and [manual](https://books.ropensci.org/drake/)
 * If you are worried about versions of packages changing, you can keep track of the packages you used and their versions using [checkpoint](https://github.com/RevolutionAnalytics/checkpoint) or [packrat](http://rstudio.github.io/packrat/)
 

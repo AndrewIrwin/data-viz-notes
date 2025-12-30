@@ -22,11 +22,11 @@ If you use linux, adapt the instructions below to install the software and conta
 
 ## R
 
-* To download and install R go to [r-project.org](https://www.r-project.org/) and click on the link to [download R](https://cloud.r-project.org/). For Mac, you want "R-4.2.1.pkg" (or a more recent version). For Windows, follow the link marked "base". If you already have R installed, please check to be sure you have version 4.0 or later, and update the software if you have an older version. You can see the version of R with the command `R.version`.
+* To download and install R go to r-project.org and click on the link to [download R](https://cloud.r-project.org/). For Mac, you want "R-4.5.2.pkg" (or a more recent version). For Windows, follow the link marked "base". 
 
-## Rstudio
+## RStudio
 
-* To download and install Rstudio, go to [Rstudio.com](https://www.rstudio.com/) and click on the download link to [download Rstudio](https://rstudio.com/products/rstudio/download/). You want the free Rstudio Desktop for your computer (Windows, Mac, Linux).
+* To download and install RStudio, go to posit.co and click on the download link to [download RStudio](https://posit.co/download/rstudio-desktop/). You want the free Rstudio Desktop for your computer (Windows, Mac, Linux).
 
 ## Git
 
@@ -34,13 +34,13 @@ If you use linux, adapt the instructions below to install the software and conta
   * on Windows, go to [git-scm.org](https://git-scm.org) and click on the link to [download a version for Windows](https://git-scm.com/download/win)
   * on Macintosh, use the [Terminal app](https://www.dummies.com/computers/macs/mac-operating-systems/unix-terminal-application-on-your-macbook/) or the [Terminal tab](https://support.rstudio.com/hc/en-us/articles/115010737148-Using-the-RStudio-Terminal-in-the-RStudio-IDE) in Rstudio and type `xcode-select --install` to download and install git. There should be two minus signs in front of "install"; some web browsers may display this incorrectly as a dash (one symbol).
 
-## rstudio.cloud
+## posit.cloud
 
-If you have a Chromebook you can use R, Rstudio and git through the cloud service [rstudio.cloud](https://rstudio.cloud/). **Everyone** should learn to use the cloud service as a backup in case of problems with the software on their own computer.
+If you have a Chromebook you can use R, Rstudio and git through the cloud service [posit.cloud](https://posit.cloud/). **Everyone** should learn to use the cloud service as a backup in case of problems with the software on their own computer. The free service has a limit of 25 hours per month. If you use this service and run into limits of the free service, please contact me.
 
 ## Dalhousie on-campus labs
 
-R and Rstudio are available on Dalhousie computer labs, but the git version control software must be installed following the instructions for Windows computers above. Since all your user files are erased from lab computers when you log out, this process must be repeated on each login. For this reason, I don't recommend using lab computers for this course, unless you are using the [rstudio.cloud](https://rstudio.cloud/) service.
+R and Rstudio are available on Dalhousie computer labs, but the git version control software must be installed following the instructions for Windows computers above. Since all your user files are erased from lab computers when you log out, this process must be repeated on each login. For this reason, I don't recommend using lab computers for this course, unless you are using the [posit.cloud](https://posit.cloud/) service.
 
 ## Packages
 
@@ -50,7 +50,7 @@ You are not done downloading and installing software yet! Most of the tools we w
 * Tell R you will be using the package (done each time you start R)
 * Learn how to use the package (a major goal of this course)
 
-I install new packages all the time on my machine. Right now I have 203 installed. It's also common to update to new versions. Rstudio trys to help you identify packages you need to install -- we'll see how later on. An optional task for today is to install packages suggested by Healy in his [Preface](https://socviz.co/index.html#install). (We'll use lots more packages than this, but this is a good start.) Cut and paste the following R code into the window marked "Console" in Rstudio.
+I install new packages all the time on my machine. Right now I have 546 installed. It's also common to update to new versions. Rstudio trys to help you identify packages you need to install -- we'll see how later on. An optional task for today is to install packages suggested by Healy in his [Preface](https://socviz.co/index.html#install). (We'll use lots more packages than this, but this is a good start.) Cut and paste the following R code into the window marked "Console" in Rstudio.
 
 ```
 my_packages <- c("tidyverse", "broom", "coefplot", "cowplot",
