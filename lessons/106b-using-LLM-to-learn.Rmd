@@ -103,6 +103,11 @@ Copilot suggested a ten web resources from well-known websites that sounded like
 
 3. Write a summary for yourself of a few strengths and weaknesses you identified while using LLMs for learning new skills. Reflect on the risks associated with using LLMs and how you can ensure that you are learning effectively.
 
+4. Try the following prompts combined with some R code:
+
+* "Explain what the following code does and suggest improvements"
+* "Find errors in the following code and suggest corrections"
+
 ## Summary
 
 Using LLMs to learn new skills can be a powerful tool, but it requires careful management and evaluation. By developing effective strategies for asking for help, identifying strengths and weaknesses of LLMs, and ensuring that you are learning rather than just outsourcing tasks, you can make the most of this technology. Always remember to critically evaluate the output of LLMs and use them as a supplement to your own learning and understanding.
