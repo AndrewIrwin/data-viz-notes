@@ -1,0 +1,108 @@
+# Using AI to learn {#LLM}
+
+## Goals
+
+Artificial intelligence (AI), particularly in the form of large language models (LLM) that generate computer code and natural language text, has become a powerful tool in recent years. There are several skills to manage when you are trying to use LLMs to learn to accomplish tasks:
+
+* Learn effective ways to ask the computer for help
+* Identify which tasks are done well and which tasks are done poorly by LLMs
+* Ensure the computer helps you extend and expand your knowledge, rather than just replacing your brain (the GPS problem)
+* Develop strategies for knowing if the solutions provided by the computer are correct
+
+AI assistants are changing frequently and you should anticipate that strategies to use them
+effectively will need to change over time. This lesson focusses on core skills and
+metacognition strategies that should be helpful as you use AI to learn new skills and do work.
+
+
+
+## Introduction
+ 
+Over the past few months I have made an effort to get various LLM (chat gpt, copilot, gemini, deepseek) to help me with data analysis and visualization tasks by writing computer code to the following tasks:
+
+* generate points along a geodesic to plot a path on a map
+* parse a AIS messages from commercial ships, which are encoded in a complicated, nested data structure
+* compute prime numbers using a sieve wheel
+* write a complicated statistical model in a probabilistic programming language
+* assign students to projects based on a set of preference scores
+
+In each case the computer generated code which would take me about an hour to produce with about a minute's work. Also in each case the code was non-functional. In some cases the LLM could be asked to fix the problem, but often while it agreed with me that there was a problem, the correction it provided did not work. 
+
+I asked an AI to explain some code I had written more than a decade ago to me. It explained the code very well and suggested some improvements to the code that made it easier to read and faster. You may find asking LLMs to help explain code to increase your understanding of a piece computer code very helpful.
+
+I asked an AI to help me finish some code I had written, but hadn't got to work yet, to simulate a board game I used to play. It found three real errors in my code and suggested corrections, which worked.
+
+LLMs shift work from creating code to debugging code. A good skill to develop, but arguable more difficult. They can provide good stimulation for how to solve a problem.
+
+Strengths:
+
+* super-human database of facts
+* large library of examples to draw upon
+* attention to detail for finding mistakes
+
+Weaknesses:
+
+* will assert code is tested and works, but may be wrong
+* may use packages (libraries) that don't exist
+
+Risks I've experienced:
+
+* using code without checking it carefully
+* not paying attention to how the analysis works, and thus misunderstanding it and failing to learn from the opportunity
+
+What's the goal? Learn and develop new skills and capacities. 
+
+
+## Software testing
+
+Computer code is a particularly good example of a task where LLMs can help you do work. Software testing is the process of evaluating a piece of code to determine if it works as intended. This can involve writing test cases that check the output of the code for a variety of inputs, as well as checking for edge cases and error handling. For a data analysis task, this means providing a set of test data and known outputs, and checking that the code produces the expected results. This practice is valuable whether you write your own code, you get it from a team member, or you get it from an LLM.
+
+As a very simple example, I want to make a table that lists the months of the year and the number of days in each. Two simple tests I can design before the data are generated is to check that there are 12 rows in the table and that the total number of days is 365. 
+
+```{r}
+# tests; no output means the test passed
+test_nrow <- function(df) {
+  if (nrow(df) != 12) {
+    stop("Data frame does not have 12 rows")
+  }
+}
+test_total_days <- function(df) {
+  if (sum(df$days) != 365) {
+    stop("Total number of days is not 365")
+  }
+}
+```
+
+Now I can ask an LLM to generate the code to create the table, and then run my tests on the output.
+
+```{r}
+# generated code
+months <- data.frame(
+  month = c("January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"),
+  days = c(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+)
+# run tests
+test_nrow(months)
+test_total_days(months)
+```
+
+If the tests pass without error, I can be reasonably confident that the code works as intended. If the tests fail, I can use the error messages to help debug the code. This process of writing tests and using them to evaluate code is a valuable skill to develop when using LLMs to generate code.
+
+Notice that this data is clearly wrong for a leap year. A more sophisticated table of the lengths of months and a more comprehensive set of tests would be needed to catch this error. Properly guided, an LLM can produce that code for you as well, but with the prompts I used, this question was not raised by the LLM.
+
+
+## Resources
+
+Copilot suggested a ten web resources from well-known websites that sounded like they would explain how to use AI to learn new skills. None of them existed.
+
+## Exercises
+
+1. Think of a task you would like to accomplish using computer code. Use an LLM to help you write the code to accomplish the task. Evaluate the code produced by the LLM and determine if it works correctly. If it does not work correctly, try to debug the code with the help of the LLM. Reflect on the experience and what you learned from it.
+
+2. Find a piece of code from the course notes that you do not fully understand. Use an LLM to help explain the code to you and suggest improvements. Reflect on how the LLM's explanation helped you understand the code better.
+
+3. Write a summary for yourself of a few strengths and weaknesses you identified while using LLMs for learning new skills. Reflect on the risks associated with using LLMs and how you can ensure that you are learning effectively.
+
+## Summary
+
+Using LLMs to learn new skills can be a powerful tool, but it requires careful management and evaluation. By developing effective strategies for asking for help, identifying strengths and weaknesses of LLMs, and ensuring that you are learning rather than just outsourcing tasks, you can make the most of this technology. Always remember to critically evaluate the output of LLMs and use them as a supplement to your own learning and understanding.
