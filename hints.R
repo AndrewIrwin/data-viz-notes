@@ -2,11 +2,11 @@
 
 # To preview quarto document from terminal
 
-quarto preview
+## quarto preview
 
 # to compile and make available using github pages
 
-quarto publish gh-pages
+## quarto publish gh-pages
 
 # to find all the libraries needed
 ## find in files library()
@@ -15,21 +15,29 @@ quarto publish gh-pages
 
 # untested for completeness
 library(autoharp)
-getLessons <- function(directory = "lessons") {
-  fl_qmd <- list.files(here::here(directory), ".Rmd", full.names=TRUE)
+getLessons <- function(directory = "lessons", all=TRUE) {
+  fl_qmd <- list.files(here::here(directory), "\\.[Rq]md$", full.names=TRUE, recursive = TRUE)
   lessons <- lapply(fl_qmd, get_libraries) |> unlist() 
   have <- installed.packages()[, "Package"]
-  setdiff(lessons, have)
+  if (!all) { lessons <- setdiff(lessons, have) }
   lessons |> unique() |> sort()
 }
 
+pkgs  <- getLessons(all=FALSE)
 # install.packages(getLessons())
 
 # install.packages(c("vegan", "tidymodels", "statebins", "sf", "dlookr", "equatiomatic", "fields", "gapminder", "geojsonio", "caret", "leaflet", "ggvegan"))
 
+## ggheatmap not available in R 4.5
+
 ## count words
 
 # extract_non_chunks("lessons/101-introduction.Rmd") |> paste(collapse= " ") |> text_stats_chr()
+
+library(tidyverse)
+
+# devtools::install_github("benmarwick/wordcountaddin", type = "source", dependencies = TRUE)
+library(wordcountaddin)
 
 getWordCount <- function(directory = "lessons") {
   fl_qmd <- list.files(here::here(directory), ".Rmd", full.names=TRUE)
@@ -41,3 +49,8 @@ getWordCount <- function(directory = "lessons") {
 }
 # getWordCount() |> summarize(sumwords = sum(n_words_korp))
 # 49916 words (korp) as at 2022-09-03
+# 57477 words as at 2026-01-02
+
+# write a function to read all Rmd files in this directory and list all libraries needed to run the code
+
+
