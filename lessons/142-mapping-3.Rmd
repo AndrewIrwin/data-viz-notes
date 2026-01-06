@@ -5,7 +5,7 @@
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(cansim)
-library(ggheatmap) # remotes::install_github("tleonardi/ggheatmap")
+# library(ggheatmap) # remotes::install_github("tleonardi/ggheatmap")
 ```
 
 Sometimes geospatial data doesn't need to be shown on a map. If there are a small number of categories -- for example the provinces of Canada -- a regular boxplot or dotplot (scatterplot with a categorical axis) can work just fine. We are very used to seeing [coloured maps of the United States](https://www.esri.com/en-us/maps-we-love/gallery/popular-vote), but these distort data in ways that people [rarely recognize](https://xkcd.com/2399/). For example, we often care about the number of people affected by a factor and maps serve to [confuse area and population](https://xkcd.com/1138/). There are [tricks](https://www.businessinsider.com/2016-election-results-maps-population-adjusted-cartogram-2016-11) (and [more tricks](https://stats.stackexchange.com/questions/136007/data-visualization-alternatives-to-choropleth-maps-for-spatial-data-and-statist)) like shading and adjusting regions to the population size, but perceptual problems persist. We rarely see maps like this for Canada because the way population and political power is distributed is very different in Canada compared to the USA.
@@ -46,9 +46,9 @@ covid_ss3 |>
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-A second approach is to group the rows and columns so that similar patterns are side by side. The `ggheatmap` function in the [ggheatmap](https://github.com/tleonardi/ggheatmap/) package makes this easy.
+A second approach is to group the rows and columns so that similar patterns are side by side. FIXME find heatmpa function.
 
-```{r message=FALSE}
+```{r message=FALSE, eval=FALSE}
 covid_ss4 <- covid_ss3 |> select(GEO, `Age group`, VALUE) |>
   pivot_wider(names_from = GEO, values_from = VALUE) 
 data.frame(covid_ss4 |> select(-`Age group`), 
@@ -58,7 +58,7 @@ data.frame(covid_ss4 |> select(-`Age group`),
 
 From this analysis you can tell that the number of cases is structured by age (see the tree on left side of the plot) and geographically. The number of people in each region is very different, so you might want to account for that in some way. One approach would be to compute the cases per capita in each region, but I don't have those data handy. An alternative is to allocate the number of cases to age classes as proportions, by dividing the number of cases in each region and age group by the total in each region. We can use scale to accomplish that scaling. Now the color represents the proportion of COVID-19 cases in each age class, scaled within a region.
 
-```{r message=FALSE}
+```{r message=FALSE, eval=FALSE}
 data.frame(covid_ss4 |> select(-`Age group`), 
               row.names = covid_ss4 |> pull(`Age group`)) %>%
   scale(center = FALSE, scale = colSums(.)) |>
