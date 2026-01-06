@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.7.32">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Data Visualization notes - 14&nbsp; Getting help and asking questions</title>
+<title>15&nbsp; Getting help and asking questions – Data Visualization notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,6 +18,7 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -62,21 +63,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <link href="../lessons/118-working-with-models.html" rel="next">
 <link href="../lessons/113-data-tables.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -85,30 +93,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 </head>
-<body class="nav-sidebar floating">
-
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/114-asking-questions.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Getting help and asking questions</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lessons/114-asking-questions.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Getting help and asking questions</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -194,56 +202,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../lessons/106b-using-LLM-to-learn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Using AI to learn</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../lessons/111-reading-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Reading data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reading data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/112-reshaping-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/113-data-tables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Format tables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Format tables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/114-asking-questions.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Getting help and asking questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Getting help and asking questions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/118-working-with-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Working with models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Working with models</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/119-linear-models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Linear models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Linear models</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/120-gam-loess.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">GAM and LOESS smoothing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">GAM and LOESS smoothing</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/124-collaboration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Collaborating with GitHub</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Collaborating with GitHub</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/301-data-sources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Finding and accessing data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Finding and accessing data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -255,97 +269,97 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/133-reproducible-reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Reproducible reports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reproducible reports</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/121-PCA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Principal component analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Principal component analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/122-mds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Multidimensional scaling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Multidimensional scaling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/123-kmean.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">K-means clustering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">K-means clustering</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/125-slides.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Making slides for presentations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Making slides for presentations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/127-test-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Checking your work</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Checking your work</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/155-dynamics-graphics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Dynamic graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Dynamic graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/140-mapping.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Making maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Making maps</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/141-mapping-2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Mapping II</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Mapping II</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/142-mapping-3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Alternatives to maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Alternatives to maps</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/130-bonus-topics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Working with text, factors, dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Working with text, factors, dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/201-colour.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Using colour well</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Using colour well</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/133-themes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Themes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Themes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/160-other-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Beyond tidy data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Beyond tidy data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/130-graphics-output.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Graphics formatting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Graphics formatting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lessons/134-reconstruction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Reconstructing a visualization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Reconstructing a visualization</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -374,49 +388,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
     </ul>
 </div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
 <li>
-<a href="#asking-questions-to-learn" id="toc-asking-questions-to-learn" class="nav-link active" data-scroll-target="#asking-questions-to-learn"><span class="header-section-number">14.1</span> Asking questions to learn</a>
+<a href="#asking-questions-to-learn" id="toc-asking-questions-to-learn" class="nav-link active" data-scroll-target="#asking-questions-to-learn"><span class="header-section-number">15.1</span> Asking questions to learn</a>
   <ul class="collapse">
-<li><a href="#start-with-google" id="toc-start-with-google" class="nav-link" data-scroll-target="#start-with-google"><span class="header-section-number">14.1.1</span> Start with google</a></li>
-  <li><a href="#find-an-example" id="toc-find-an-example" class="nav-link" data-scroll-target="#find-an-example"><span class="header-section-number">14.1.2</span> Find an example</a></li>
-  <li><a href="#look-at-the-documentation" id="toc-look-at-the-documentation" class="nav-link" data-scroll-target="#look-at-the-documentation"><span class="header-section-number">14.1.3</span> Look at the documentation</a></li>
-  <li><a href="#reproduce-an-example" id="toc-reproduce-an-example" class="nav-link" data-scroll-target="#reproduce-an-example"><span class="header-section-number">14.1.4</span> Reproduce an example</a></li>
-  <li><a href="#modify-the-example" id="toc-modify-the-example" class="nav-link" data-scroll-target="#modify-the-example"><span class="header-section-number">14.1.5</span> Modify the example</a></li>
-  <li><a href="#make-notes-to-explain-the-solution" id="toc-make-notes-to-explain-the-solution" class="nav-link" data-scroll-target="#make-notes-to-explain-the-solution"><span class="header-section-number">14.1.6</span> Make notes to explain the solution</a></li>
+<li><a href="#start-with-google" id="toc-start-with-google" class="nav-link" data-scroll-target="#start-with-google"><span class="header-section-number">15.1.1</span> Start with google</a></li>
+  <li><a href="#find-an-example" id="toc-find-an-example" class="nav-link" data-scroll-target="#find-an-example"><span class="header-section-number">15.1.2</span> Find an example</a></li>
+  <li><a href="#look-at-the-documentation" id="toc-look-at-the-documentation" class="nav-link" data-scroll-target="#look-at-the-documentation"><span class="header-section-number">15.1.3</span> Look at the documentation</a></li>
+  <li><a href="#reproduce-an-example" id="toc-reproduce-an-example" class="nav-link" data-scroll-target="#reproduce-an-example"><span class="header-section-number">15.1.4</span> Reproduce an example</a></li>
+  <li><a href="#modify-the-example" id="toc-modify-the-example" class="nav-link" data-scroll-target="#modify-the-example"><span class="header-section-number">15.1.5</span> Modify the example</a></li>
+  <li><a href="#make-notes-to-explain-the-solution" id="toc-make-notes-to-explain-the-solution" class="nav-link" data-scroll-target="#make-notes-to-explain-the-solution"><span class="header-section-number">15.1.6</span> Make notes to explain the solution</a></li>
   </ul>
 </li>
-  <li><a href="#example-learning-how-to-draw-error-bars" id="toc-example-learning-how-to-draw-error-bars" class="nav-link" data-scroll-target="#example-learning-how-to-draw-error-bars"><span class="header-section-number">14.2</span> Example: learning how to draw error bars</a></li>
+  <li><a href="#example-learning-how-to-draw-error-bars" id="toc-example-learning-how-to-draw-error-bars" class="nav-link" data-scroll-target="#example-learning-how-to-draw-error-bars"><span class="header-section-number">15.2</span> Example: learning how to draw error bars</a></li>
   <li>
-<a href="#asking-question-in-this-course" id="toc-asking-question-in-this-course" class="nav-link" data-scroll-target="#asking-question-in-this-course"><span class="header-section-number">14.3</span> Asking question in this course</a>
+<a href="#asking-question-in-this-course" id="toc-asking-question-in-this-course" class="nav-link" data-scroll-target="#asking-question-in-this-course"><span class="header-section-number">15.3</span> Asking question in this course</a>
   <ul class="collapse">
-<li><a href="#starting-out" id="toc-starting-out" class="nav-link" data-scroll-target="#starting-out"><span class="header-section-number">14.3.1</span> Starting out</a></li>
-  <li><a href="#learning-r-basics" id="toc-learning-r-basics" class="nav-link" data-scroll-target="#learning-r-basics"><span class="header-section-number">14.3.2</span> Learning R basics</a></li>
-  <li><a href="#problem-solving" id="toc-problem-solving" class="nav-link" data-scroll-target="#problem-solving"><span class="header-section-number">14.3.3</span> Problem solving</a></li>
-  <li><a href="#learning-new-methods-r" id="toc-learning-new-methods-r" class="nav-link" data-scroll-target="#learning-new-methods-r"><span class="header-section-number">14.3.4</span> Learning new methods R</a></li>
+<li><a href="#starting-out" id="toc-starting-out" class="nav-link" data-scroll-target="#starting-out"><span class="header-section-number">15.3.1</span> Starting out</a></li>
+  <li><a href="#learning-r-basics" id="toc-learning-r-basics" class="nav-link" data-scroll-target="#learning-r-basics"><span class="header-section-number">15.3.2</span> Learning R basics</a></li>
+  <li><a href="#problem-solving" id="toc-problem-solving" class="nav-link" data-scroll-target="#problem-solving"><span class="header-section-number">15.3.3</span> Problem solving</a></li>
+  <li><a href="#learning-new-methods-r" id="toc-learning-new-methods-r" class="nav-link" data-scroll-target="#learning-new-methods-r"><span class="header-section-number">15.3.4</span> Learning new methods R</a></li>
   </ul>
 </li>
   <li>
-<a href="#solving-computer-problems-debugging" id="toc-solving-computer-problems-debugging" class="nav-link" data-scroll-target="#solving-computer-problems-debugging"><span class="header-section-number">14.4</span> Solving computer problems (“Debugging”)</a>
+<a href="#solving-computer-problems-debugging" id="toc-solving-computer-problems-debugging" class="nav-link" data-scroll-target="#solving-computer-problems-debugging"><span class="header-section-number">15.4</span> Solving computer problems (“Debugging”)</a>
   <ul class="collapse">
-<li><a href="#suggestions-for-asking-questions" id="toc-suggestions-for-asking-questions" class="nav-link" data-scroll-target="#suggestions-for-asking-questions"><span class="header-section-number">14.4.1</span> Suggestions for asking questions</a></li>
-  <li><a href="#asking-a-complete-question" id="toc-asking-a-complete-question" class="nav-link" data-scroll-target="#asking-a-complete-question"><span class="header-section-number">14.4.2</span> Asking a complete question</a></li>
-  <li><a href="#what-does-this-unknown-function-do" id="toc-what-does-this-unknown-function-do" class="nav-link" data-scroll-target="#what-does-this-unknown-function-do"><span class="header-section-number">14.4.3</span> What does this unknown function do?</a></li>
+<li><a href="#suggestions-for-asking-questions" id="toc-suggestions-for-asking-questions" class="nav-link" data-scroll-target="#suggestions-for-asking-questions"><span class="header-section-number">15.4.1</span> Suggestions for asking questions</a></li>
+  <li><a href="#asking-a-complete-question" id="toc-asking-a-complete-question" class="nav-link" data-scroll-target="#asking-a-complete-question"><span class="header-section-number">15.4.2</span> Asking a complete question</a></li>
+  <li><a href="#what-does-this-unknown-function-do" id="toc-what-does-this-unknown-function-do" class="nav-link" data-scroll-target="#what-does-this-unknown-function-do"><span class="header-section-number">15.4.3</span> What does this unknown function do?</a></li>
   </ul>
 </li>
-  <li><a href="#how-to-learn-material-in-this-course" id="toc-how-to-learn-material-in-this-course" class="nav-link" data-scroll-target="#how-to-learn-material-in-this-course"><span class="header-section-number">14.5</span> How to learn material in this course</a></li>
-  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help"><span class="header-section-number">14.6</span> Getting help</a></li>
-  <li><a href="#more-advanced-help" id="toc-more-advanced-help" class="nav-link" data-scroll-target="#more-advanced-help"><span class="header-section-number">14.7</span> More advanced help</a></li>
+  <li><a href="#how-to-learn-material-in-this-course" id="toc-how-to-learn-material-in-this-course" class="nav-link" data-scroll-target="#how-to-learn-material-in-this-course"><span class="header-section-number">15.5</span> How to learn material in this course</a></li>
+  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help"><span class="header-section-number">15.6</span> Getting help</a></li>
+  <li><a href="#more-advanced-help" id="toc-more-advanced-help" class="nav-link" data-scroll-target="#more-advanced-help"><span class="header-section-number">15.7</span> More advanced help</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="help" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Getting help and asking questions</span></span></h1>
+<h1 class="title"><span id="help" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Getting help and asking questions</span></span></h1>
 </div>
 
 
@@ -429,10 +443,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header><p>When you are learning a new subject or skill, you will have a lot of questions. Detailed questions about a particular skill. General questions about a topic. Big-picture questions about how to apply the material. Not knowing where to begin, how to make progress, or what questions to ask!</p>
 <p>Regardless of the question, asking questions well is a <a href="https://jvns.ca/blog/2014/06/13/asking-questions-is-a-superpower/">superpower</a>. Why? A question is a way of crystallizing the uncertainty in your mind about a specific topic. The more specific your question, the easier it is to answer, and the more likely it is that the response will be helpful to you. Often carefully posing a question will lead you to the answer yourself. Broad general questions are valuable too, primarily because they help you develop and organize more questions. Asking questions of yourself and struggling to answer them is an important part of learning and thinking.</p>
-<section id="asking-questions-to-learn" class="level2" data-number="14.1"><h2 data-number="14.1" class="anchored" data-anchor-id="asking-questions-to-learn">
-<span class="header-section-number">14.1</span> Asking questions to learn</h2>
+<section id="asking-questions-to-learn" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="asking-questions-to-learn">
+<span class="header-section-number">15.1</span> Asking questions to learn</h2>
 <p>Here are some examples of questions I’ve asked myself about R and data visualization:</p>
 <ul>
 <li>How do I add error bars to a scatter plot?</li>
@@ -440,8 +455,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>How do I change axis labels?</li>
 </ul>
 <p>Now I’ll show you the steps I recommend to answer these questions. If you have no idea how to solve the problem, these steps will take you a while and you may need to ask someone for help. If you have solved the problem once before, it will be easier the second time, because you will remember part of the solution. If you have solved the problem several times, the same steps are useful, but you may only need a hint to remember the answer.</p>
-<section id="start-with-google" class="level3" data-number="14.1.1"><h3 data-number="14.1.1" class="anchored" data-anchor-id="start-with-google">
-<span class="header-section-number">14.1.1</span> Start with google</h3>
+<section id="start-with-google" class="level3" data-number="15.1.1"><h3 data-number="15.1.1" class="anchored" data-anchor-id="start-with-google">
+<span class="header-section-number">15.1.1</span> Start with google</h3>
 <p>If I have no idea how to solve a problem, I go to google. It’s often good to add “R” or “tidyverse” or “ggplot” to your search query. Here are a few searches that I’ve found helpful for the questions above:</p>
 <ul>
 <li><a href="https://www.google.com/search?q=ggplot+error+bars">error bars</a></li>
@@ -454,26 +469,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/">error bars</a></li>
 <li><a href="https://www.stat.ubc.ca/~jenny/STAT545A/block17_colorsGgplot2Qualitative.html">plot colours</a></li>
 <li><a href="https://ggplot2.tidyverse.org/reference/labs.html">axis labels</a></li>
-</ul></section><section id="find-an-example" class="level3" data-number="14.1.2"><h3 data-number="14.1.2" class="anchored" data-anchor-id="find-an-example">
-<span class="header-section-number">14.1.2</span> Find an example</h3>
+</ul></section><section id="find-an-example" class="level3" data-number="15.1.2"><h3 data-number="15.1.2" class="anchored" data-anchor-id="find-an-example">
+<span class="header-section-number">15.1.2</span> Find an example</h3>
 <p>The web pages I find most helpful have lots of examples. Sometimes I realize that there are many ways to interpret the idea in my head and the examples help me figure out what I really want. I will often search three or more google links until I find an example I like – the output looks right and the code doesn’t look too complicated.</p>
 <p>I also look for an example that looks like the code I write myself. There are many different ways to solve some tasks, but some of those methods will be harder for you to understand. So if you find a “solution”, but it’s too hard to understand—there might be a way that’s easier for you to understand. In this course we are using a style called “tidyverse” which emphasizes descriptive function names. Other styles include “base” and “data table”. If you see a lot of pipes (<code>%&gt;%</code> or <code>|&gt;</code>) and familiar functions (<code>ggplot</code>, <code>summarize</code>, <code>select</code>, <code>group_by</code>), it’s tidyverse style. If you see a lot of dollar signs (<code>$</code>) or square brackets (<code>[</code>, <code>]</code>) it’s probably a different coding style and you can expect it to be harder to understand from your current perspective. Go ahead and learn other styles if you are excited to explore more!</p>
-</section><section id="look-at-the-documentation" class="level3" data-number="14.1.3"><h3 data-number="14.1.3" class="anchored" data-anchor-id="look-at-the-documentation">
-<span class="header-section-number">14.1.3</span> Look at the documentation</h3>
+</section><section id="look-at-the-documentation" class="level3" data-number="15.1.3"><h3 data-number="15.1.3" class="anchored" data-anchor-id="look-at-the-documentation">
+<span class="header-section-number">15.1.3</span> Look at the documentation</h3>
 <p>The link for axis labels I picked above is just the help page for <code>labs</code>. You can see it by typing “labs” into the help search box on Rstudio. But maybe you didn’t know to search for “labs” – that’s where google helps.</p>
 <p>R help pages all have the same format and the part most useful to beginners is the “Examples” section at the bottom. Cut and paste some examples from the help page for “labs” into the console to see how the function works.</p>
-</section><section id="reproduce-an-example" class="level3" data-number="14.1.4"><h3 data-number="14.1.4" class="anchored" data-anchor-id="reproduce-an-example">
-<span class="header-section-number">14.1.4</span> Reproduce an example</h3>
+</section><section id="reproduce-an-example" class="level3" data-number="15.1.4"><h3 data-number="15.1.4" class="anchored" data-anchor-id="reproduce-an-example">
+<span class="header-section-number">15.1.4</span> Reproduce an example</h3>
 <p>Cut and paste an example from a help page or web page into your R session. If it doesn’t work right away, check that (a) you have installed the package and typed the required “library()” function, and (b) you have defined any objects needed for the task – sometimes these are defined near the top of a web or the examples on a help page. For example, on the “labs” help page, the first example creates a plot and stores it in the object called <code>p</code>. If you skip that first part of the example, the rest of the examples won’t work.</p>
-</section><section id="modify-the-example" class="level3" data-number="14.1.5"><h3 data-number="14.1.5" class="anchored" data-anchor-id="modify-the-example">
-<span class="header-section-number">14.1.5</span> Modify the example</h3>
+</section><section id="modify-the-example" class="level3" data-number="15.1.5"><h3 data-number="15.1.5" class="anchored" data-anchor-id="modify-the-example">
+<span class="header-section-number">15.1.5</span> Modify the example</h3>
 <p>Test your understanding by modifying the example a little bit. If it does more than you need, try removing parts you don’t want. This is the same skill I suggest for every lesson in this course – experiment with some code that works to minimize frustration.</p>
 <p>Gradually turn the example into what you want, changing one feature at a time. Using your data instead of the data in the example. Using your preferences (colours, font size, text for titles, etc.).</p>
-</section><section id="make-notes-to-explain-the-solution" class="level3" data-number="14.1.6"><h3 data-number="14.1.6" class="anchored" data-anchor-id="make-notes-to-explain-the-solution">
-<span class="header-section-number">14.1.6</span> Make notes to explain the solution</h3>
+</section><section id="make-notes-to-explain-the-solution" class="level3" data-number="15.1.6"><h3 data-number="15.1.6" class="anchored" data-anchor-id="make-notes-to-explain-the-solution">
+<span class="header-section-number">15.1.6</span> Make notes to explain the solution</h3>
 <p>I strongly suggest you keep your experiments and notes in a separate R markdown file, then call it something appropriate (“drawing-errorbars”) and put it in a folder called something like “examples”. Knit the document before moving on to be sure it works and is complete.</p>
-</section></section><section id="example-learning-how-to-draw-error-bars" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="example-learning-how-to-draw-error-bars">
-<span class="header-section-number">14.2</span> Example: learning how to draw error bars</h2>
+</section></section><section id="example-learning-how-to-draw-error-bars" class="level2" data-number="15.2"><h2 data-number="15.2" class="anchored" data-anchor-id="example-learning-how-to-draw-error-bars">
+<span class="header-section-number">15.2</span> Example: learning how to draw error bars</h2>
 <ul>
 <li>Skim the <a href="http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/">R cookbook</a> page</li>
 <li>The data are fine – some quantitative data and categorical data for grouping</li>
@@ -505,7 +520,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="114-asking-questions_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="114-asking-questions_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Get rid of the lines, because I don’t want them.</p>
@@ -514,13 +532,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="fu">geom_errorbar</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>ymin<span class="op">=</span><span class="va">mean_len</span><span class="op">-</span><span class="va">se</span>, ymax<span class="op">=</span><span class="va">mean_len</span><span class="op">+</span><span class="va">se</span><span class="op">)</span>, width<span class="op">=</span><span class="fl">.1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="114-asking-questions_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="114-asking-questions_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Now, drop in my favourite data, the Palmer penguins, making only the changes that are absolutely necessary. I had the overlapping points problem mentioned on the help page, so I borrowed it’s <code>position_dodge</code> idea. I also noticed that the web page used <code>se</code> instead of the larger <code>ci</code> to draw the error bars, so I changed that too.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span>
-<span><span class="va">my_summarySE</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/">palmerpenguins</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'palmerpenguins'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:datasets':
+
+    penguins, penguins_raw</code></pre>
+</div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_summarySE</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">species</span>, <span class="va">island</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>N <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>              mean_mass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">body_mass_g</span><span class="op">)</span>,</span>
@@ -531,36 +561,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>`summarise()` has grouped output by 'species'. You can override using the
 `.groups` argument.</code></pre>
 </div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pd</span> <span class="op">&lt;-</span> <span class="fu">position_dodge</span><span class="op">(</span><span class="fl">0.2</span><span class="op">)</span> <span class="co"># move them .05 to the left and right</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pd</span> <span class="op">&lt;-</span> <span class="fu">position_dodge</span><span class="op">(</span><span class="fl">0.2</span><span class="op">)</span> <span class="co"># move them .05 to the left and right</span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">my_summarySE</span>, <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">species</span>, y<span class="op">=</span><span class="va">mean_mass</span>, colour<span class="op">=</span><span class="va">island</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>    <span class="fu">geom_errorbar</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>ymin<span class="op">=</span><span class="va">mean_mass</span><span class="op">-</span><span class="va">ci</span>, ymax<span class="op">=</span><span class="va">mean_mass</span><span class="op">+</span><span class="va">ci</span><span class="op">)</span>, width<span class="op">=</span><span class="fl">.1</span>, position <span class="op">=</span> <span class="va">pd</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_point</span><span class="op">(</span>position<span class="op">=</span><span class="va">pd</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="114-asking-questions_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure"><p><img src="114-asking-questions_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-</section><section id="asking-question-in-this-course" class="level2" data-number="14.3"><h2 data-number="14.3" class="anchored" data-anchor-id="asking-question-in-this-course">
-<span class="header-section-number">14.3</span> Asking question in this course</h2>
+</div>
+</section><section id="asking-question-in-this-course" class="level2" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="asking-question-in-this-course">
+<span class="header-section-number">15.3</span> Asking question in this course</h2>
 <p>Asking good questions can be challenging, especially when you are working on your own. In a classroom, it’s fairly easy: Can you give another example? Why did you do that calculation? What does the answer mean? Many questions you might ask in person don’t translate well to other contexts: email, office hours, or online forums, because the immediate context of group discussion is missing. So it’s up to you to add that context when you ask a question.</p>
 <p>Here I describe several different ways to get answers to your questions. Knowing which method to use is itself a skill, so I provide some guidance for that as well. It’s important to ask questions – and <a href="https://jvns.ca/blog/2014/04/04/ask-if-you-have-questions-isnt-enough/">I want you to ask questions</a>, so much that you should consider it part of your assigned work to formulate questions.</p>
-<section id="starting-out" class="level3" data-number="14.3.1"><h3 data-number="14.3.1" class="anchored" data-anchor-id="starting-out">
-<span class="header-section-number">14.3.1</span> Starting out</h3>
+<section id="starting-out" class="level3" data-number="15.3.1"><h3 data-number="15.3.1" class="anchored" data-anchor-id="starting-out">
+<span class="header-section-number">15.3.1</span> Starting out</h3>
 <p>At the start of the course you will have a bunch of computer tasks (installing R and Rstudio, installing R packages, understanding the basics of Rstudio, working with git and github). These will range from easy to difficult depending on your previous experience. I have tried to provide written and video information to guide you, but if you get stuck on any of these, or the work associated with a “task” at any point in the course, ask for help right away.</p>
-</section><section id="learning-r-basics" class="level3" data-number="14.3.2"><h3 data-number="14.3.2" class="anchored" data-anchor-id="learning-r-basics">
-<span class="header-section-number">14.3.2</span> Learning R basics</h3>
+</section><section id="learning-r-basics" class="level3" data-number="15.3.2"><h3 data-number="15.3.2" class="anchored" data-anchor-id="learning-r-basics">
+<span class="header-section-number">15.3.2</span> Learning R basics</h3>
 <p>As you start to write R commands and make R markdown documents you will encounter problems arising from typos (forgetting, or not knowing where to place) commas, brackets, backticks, quotation marks, pipes (<code>%&gt;%</code> or <code>|&gt;</code>), and many other bits of <a href="https://en.wikipedia.org/wiki/Syntax_(programming_languages)">syntax</a> necessary for communication with the computer. The error messages will frequently be hard to decipher. The best way to learn to solve these problems is the following: take a working R markdown document or example of R code and change it slightly. Make a prediction of what will happen and then get the computer to process the code. Compare what happens to what you predicted. Do this regularly until you can reliably predict outcomes of any changes you can think of. This is “playing computer” in your head—try to understand how it will react to your input. When something happens that you don’t understand: ask someone why. Describe what you did, what you thought would happen, and what really happened.</p>
-</section><section id="problem-solving" class="level3" data-number="14.3.3"><h3 data-number="14.3.3" class="anchored" data-anchor-id="problem-solving">
-<span class="header-section-number">14.3.3</span> Problem solving</h3>
+</section><section id="problem-solving" class="level3" data-number="15.3.3"><h3 data-number="15.3.3" class="anchored" data-anchor-id="problem-solving">
+<span class="header-section-number">15.3.3</span> Problem solving</h3>
 <p>Once you have developed some fluency for working with R, you will start to learn to solve problems. This means that you are trying to accomplish a data visualization task, such as make a single plot, use colour in some way, change the kind of plot, add text to an axis, or thousands of other tasks. At the start you will be just doing tasks I’ve given you and later on you will be trying to achieve your own goals by solving problems. The method described above is useful here: when you have a working example, change it in some way and predict the result. Make changes that you think will lead to good outcomes, but also make playful or “silly” changes that will lead to poor quality graphs but still help you learn to use the tools. This kind of experimentation is essential for develop a robust and accurate mental model of how R (or any other) computer software works.</p>
-</section><section id="learning-new-methods-r" class="level3" data-number="14.3.4"><h3 data-number="14.3.4" class="anchored" data-anchor-id="learning-new-methods-r">
-<span class="header-section-number">14.3.4</span> Learning new methods R</h3>
+</section><section id="learning-new-methods-r" class="level3" data-number="15.3.4"><h3 data-number="15.3.4" class="anchored" data-anchor-id="learning-new-methods-r">
+<span class="header-section-number">15.3.4</span> Learning new methods R</h3>
 <p>The tools available within R are so extensive that you can never learn them all by being taught by a course or a textbook or a website. To really master R you need to learn how to learn new tools.</p>
 <p>R functions have <strong>help pages</strong> – accessed from the help tab in Rstudio or by prefacing the function with a ‘?’ in the R console. These help pages have a very specific style and require practice to <a href="https://socviz.co/appendix.html#a-little-more-about-r">learn how to read them</a>. One of the best features of the help page, especially when you are starting out, is the examples at the bottom of the page. Usually these can be simply cut and pasted into the console and you can observe the results to see how the function author intended them to be used.</p>
 <p>Many R packages have <strong>vignettes</strong>. These are extended documents intended to explain how to use a key feature of the package. You can find the vignettes on the web page where you found the software (CRAN or github) or using the vignette function. Read the help page – and especially the examples – to see how to use the <code>vignette</code> function.</p>
 <p>We are focussing on the tidyverse set of packages. The <a href="https://www.tidyverse.org/">tidyverse</a> website contains help, examples, and reference documentation for these packages. These web pages combine the features of <a href="https://www.tidyverse.org/learn/">books</a>, tutorials, vignettes, and help pages. All are worth your time! Keep an eye out for <a href="https://rstudio.com/resources/cheatsheets/">cheatsheets</a> that are especially helpful after you learn the basics of a package.</p>
 <p>One of the many reasons we are using git and GitHub in this course is that it will make it easier for you to ask me a question. If you have a problem with an R markdown document or making a function work the way you think it should or you just don’t know how to interpret the results of a calculation, you can ask me. But how do you know how much information to give me? And how do you make that easy? Send an email with the question – what are you trying to do, what is the problem or error message, and why do you think might be going wrong. Or, you can put the computer code into an R markdown document, commit the changes to your project, and push it to Github. Then tell me the name of the repository and file and I’ll have the full set of code that lead to your problem. That will make it much easier for me to help you. (Note that I can only see private repositories that we both have access to, for example course work repositories. So use those repositories to share files and ask questions.)</p>
-</section></section><section id="solving-computer-problems-debugging" class="level2" data-number="14.4"><h2 data-number="14.4" class="anchored" data-anchor-id="solving-computer-problems-debugging">
-<span class="header-section-number">14.4</span> Solving computer problems (“Debugging”)</h2>
+</section></section><section id="solving-computer-problems-debugging" class="level2" data-number="15.4"><h2 data-number="15.4" class="anchored" data-anchor-id="solving-computer-problems-debugging">
+<span class="header-section-number">15.4</span> Solving computer problems (“Debugging”)</h2>
 <p>There are two kinds of computer problems,</p>
 <ul>
 <li>your code does something, but not what you want, and</li>
@@ -569,34 +602,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Both problems can be frustrating, but the second kind is especially difficult when you are starting out.</p>
 <p>There are sophisticated tools for debugging in R, but we won’t discuss them in this course.</p>
 <p>My recommendation for both kinds of problem is the same: simplify what you are doing until something works and you understand what is going on. Then add one step at a time. If you are adapting code you found somewhere, make sure the original example works. Develop a “mental model” of what the computer is doing, and test it by modifying your code. Be creative and relaxed. Try hard not to get frustrated! Errors are a really important part of learning – they help you develop deeper and more powerful understanding of the tools you are trying to use.</p>
-<section id="suggestions-for-asking-questions" class="level3" data-number="14.4.1"><h3 data-number="14.4.1" class="anchored" data-anchor-id="suggestions-for-asking-questions">
-<span class="header-section-number">14.4.1</span> Suggestions for asking questions</h3>
+<section id="suggestions-for-asking-questions" class="level3" data-number="15.4.1"><h3 data-number="15.4.1" class="anchored" data-anchor-id="suggestions-for-asking-questions">
+<span class="header-section-number">15.4.1</span> Suggestions for asking questions</h3>
 <p>A few <a href="https://jvns.ca/blog/good-questions/">suggestions</a>:</p>
 <ul>
 <li><p>Explain the context (is this about material from a video, the course notes, an assignment – which one?, or just something that you are wondering about)</p></li>
 <li><p>Say what you know (the topic is X, or the question asks for Y)</p></li>
 <li><p>Say what you are trying to do (understand an argument, perform a calculation, fix an error in code)</p></li>
 <li><p>Say what you think comes next or where you think you are stuck (I’m trying to figure out X, I don’t know why the plot looks like Y)</p></li>
-</ul></section><section id="asking-a-complete-question" class="level3" data-number="14.4.2"><h3 data-number="14.4.2" class="anchored" data-anchor-id="asking-a-complete-question">
-<span class="header-section-number">14.4.2</span> Asking a complete question</h3>
+</ul></section><section id="asking-a-complete-question" class="level3" data-number="15.4.2"><h3 data-number="15.4.2" class="anchored" data-anchor-id="asking-a-complete-question">
+<span class="header-section-number">15.4.2</span> Asking a complete question</h3>
 <p>If you are trying to solve a problem with R, and the code is not working as you expect, make the smallest possible example of the problem that you can. This is called a “reproducible example” – meaning that you have provided enough information that the person you are asking for help can make the problem repeat on their computer. There is an R package to help you create these examples called <a href="https://www.tidyverse.org/help/#reprex">reprex</a>, but you don’t need to do this in our course.</p>
 <p>The reprex function tests your code to see if you’ve included all the necessary to enable someone else to understand your code. This includes which libraries you are using and any variables that must be defined. Select your code that demonstrates the problem, then copy it to the clipboard. Type <code>reprex()</code> in the R Console. If your example is complete, it will appear in the preview window on the lower right. This can be cut and pasted into an email.</p>
-</section><section id="what-does-this-unknown-function-do" class="level3" data-number="14.4.3"><h3 data-number="14.4.3" class="anchored" data-anchor-id="what-does-this-unknown-function-do">
-<span class="header-section-number">14.4.3</span> What does this unknown function do?</h3>
+</section><section id="what-does-this-unknown-function-do" class="level3" data-number="15.4.3"><h3 data-number="15.4.3" class="anchored" data-anchor-id="what-does-this-unknown-function-do">
+<span class="header-section-number">15.4.3</span> What does this unknown function do?</h3>
 <p>There is another important kind of question – what does <code>an-unfamiliar-R-function</code> do? This is a bit easier since you don’t need to translate a goal into a question about R, you just need to figure out what the function does.</p>
 <p>You might be wondering what <code>position_dodge</code> does. It’s fairly obvious from the step-by-step example, but try to figure out by reading the help page. It’s a bit hard to understand, but you should be able to get that it is a function that moves (dodges) the horizontal position of a point, error bar, or other geom.</p>
-</section></section><section id="how-to-learn-material-in-this-course" class="level2" data-number="14.5"><h2 data-number="14.5" class="anchored" data-anchor-id="how-to-learn-material-in-this-course">
-<span class="header-section-number">14.5</span> How to learn material in this course</h2>
+</section></section><section id="how-to-learn-material-in-this-course" class="level2" data-number="15.5"><h2 data-number="15.5" class="anchored" data-anchor-id="how-to-learn-material-in-this-course">
+<span class="header-section-number">15.5</span> How to learn material in this course</h2>
 <p>The course goals are summarized in the <a href="../index.html#goals">welcome</a> to the course. One of the most important is learning how to learn to use new tools for data visualization. This sort of learning is <a href="https://jvns.ca/blog/2018/09/01/learning-skills-you-can-practice/">hard</a> but very worthwhile. It’s also a great transferrable skill. If you can master the material in this course and learn how to keep learning, you’ll be able to apply what you learned to a wide range of computing skills.</p>
-</section><section id="getting-help" class="level2" data-number="14.6"><h2 data-number="14.6" class="anchored" data-anchor-id="getting-help">
-<span class="header-section-number">14.6</span> Getting help</h2>
+</section><section id="getting-help" class="level2" data-number="15.6"><h2 data-number="15.6" class="anchored" data-anchor-id="getting-help">
+<span class="header-section-number">15.6</span> Getting help</h2>
 <ul>
 <li>
 <a href="https://www.pipinghotdata.com/posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/">R studio tips</a> presented as animated GIFs</li>
 <li>Learning resources from <a href="https://education.rstudio.com/learn/beginner/">R studio</a>
 </li>
-</ul></section><section id="more-advanced-help" class="level2" data-number="14.7"><h2 data-number="14.7" class="anchored" data-anchor-id="more-advanced-help">
-<span class="header-section-number">14.7</span> More advanced help</h2>
+</ul></section><section id="more-advanced-help" class="level2" data-number="15.7"><h2 data-number="15.7" class="anchored" data-anchor-id="more-advanced-help">
+<span class="header-section-number">15.7</span> More advanced help</h2>
 <ul>
 <li>
 <a href="https://rstats.wtf/index.html">What they forgot to teach you about R</a>
@@ -609,245 +642,411 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-  function tippyHover(el, contentFn) {
-    const config = {
-      allowHTML: true,
-      content: contentFn,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start'
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      return note.innerHTML;
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
       }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
+      return false;
     }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
       });
     }
-  }
-});
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../lessons/113-data-tables.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Format tables</span></span>
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="../lessons/113-data-tables.html" class="pagination-link" aria-label="Format tables">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Format tables</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../lessons/118-working-with-models.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Working with models</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lessons/118-working-with-models.html" class="pagination-link" aria-label="Working with models">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Working with models</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
