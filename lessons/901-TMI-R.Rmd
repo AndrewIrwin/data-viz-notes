@@ -17,9 +17,9 @@ Data sources and external links disappear and change frequently. I think I have 
 
 ## Overview
 
-R is a big software package. It's developed over decades of use. It has millions of regular users across many disciplines in teaching,  academic research and professional applications.  It's a computer programming language, and a tool for accessing thousands of data analysis tools, and a great interactive environment for exploring, analyzing, and visualizing data. You won't learn it all.
+R is a big software package that has developed over decades of use. It has millions of regular users across many disciplines in teaching,  academic research and professional applications.  It's a computer programming language, and a tool for accessing thousands of data analysis tools, and a great interactive environment for exploring, analyzing, and visualizing data. You won't learn it all.
 
-The approach in this course is to teach you how to use R in a particular style, with an emphasis on the ggplot and tidyverse packages. The R markdown documents we write balance interactive use while documentating the sequence of steps used in any analysis. I have omitted a lot of details that might be called "fundamentals" and instead focussed on getting work done quickly. In this lesson I fill in some of the gaps. My reasoning is that most students want to learn a tool before you spend too much time on details, so this course emphasizes what you can do with R. On the other hand, I hope you will use R for a long time on many projects, and once you reach the point you know you will do that, you should start developing a solid mental model of how R works so that you can build robust understandings of how to accomplish tasks with R and get beyond copy, paste,  search, and experiment. Without these fundamentals, its easy to make up incorrect ideas about why and how R works and then get really confused and frustrated. 
+The approach in this course is to teach you how to use R in a particular style, with an emphasis on the ggplot and tidyverse packages. The R markdown documents we write balance interactive use while documenting the sequence of steps used in any analysis. I have omitted a lot of details that might be called "fundamentals" and instead focused on getting work done quickly. In this lesson I fill in some of the gaps. My reasoning is that most students want to learn a tool before you spend too much time on details, so this course emphasizes what you can do with R. On the other hand, I hope you will use R for a long time on many projects, and once you reach the point you know you will do that, you should start developing a solid mental model of how R works so that you can build robust understandings of how to accomplish tasks with R and get beyond copy, paste,  search, and experiment. Without these fundamentals, its easy to make up incorrect ideas about why and how R works and then get really confused and frustrated. 
 
 A simple introduction to the basics of R appears in [Healy Appendix](https://socviz.co/appendix.html#appendix). A different approach is taken in the R for Data Science book, which introduces the basics of many topics, such as  [tibbles](https://r4ds.had.co.nz/tibbles.html), 
 [strings](https://r4ds.had.co.nz/strings.html), [factors](https://r4ds.had.co.nz/factors.html) and 
@@ -89,6 +89,7 @@ d1 <- filter(diamonds, cut=="Ideal")
 d2 <- group_by(d1, color) 
 summarize(d2, mean_price = mean(price))
 ```
+
 Composition:
 
 ```{r}
@@ -110,7 +111,7 @@ When we make plots with ggplot we do something very similar -- we start with a t
 Simple. The developer [didn't know about](https://www.reddit.com/r/dataisbeautiful/comments/3mp9r7/im_hadley_wickham_chief_scientist_at_rstudio_and/cvi19ly/) the pipe operator in R when ggplot was developed. Adding a feature to a plot seemed like a "plus" operation, so that was chosen. The developer says if he was starting over today, ggplot would use pipes, but its not practical to change at this point. Too many people use it with the `+`. Some [people think](https://community.rstudio.com/t/why-cant-ggplot2-use/4372/5) of functions as verbs and ggplot commands as nouns, and justify the difference that way. Software development is a complicated human activity that takes place over time and develops quirks and lore.
 
 
-## What are packages? What’s the difference between installing one and using one? Why is r organized this way?
+## What are packages? What’s the difference between installing one and using one? Why is R organized this way?
 
 There are thousands of R packages. So many that it seems you are always needing to install a new one. Worse, sometimes you want a function, but you can't remember which package it's installed in -- so then you can't use it. (There is a solution to this: use the double ?? followed by the fuction name in the console to search for a function across all packages available on your computer.) Why this complication?
 

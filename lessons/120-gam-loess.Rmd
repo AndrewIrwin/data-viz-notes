@@ -83,7 +83,7 @@ If we generate new data (dates), we can plot predictions too. Since the model is
 ```{r warning=FALSE}
 new_data <- tibble(decimal_date = seq(2017, 2022, by = 0.05))
 new_data |> add_fitted(g3) |>
-  ggplot(aes(decimal_date, .value)) + 
+  ggplot(aes(decimal_date, .fitted)) + 
   geom_line(color = "blue", size = 2) +
   geom_point(aes(y= co2_avg), data = co2) + my_theme + xlim(2017, 2022)
 ```
@@ -94,8 +94,8 @@ If you want confidence intervals on the fitted values, use the `confint` functio
 confint(g1, "s(year_fraction)", level = 0.95) |> kable() |>  scroll_box(height = "200px")
 confint(g1, "s(year_fraction)", level = 0.95) |> 
   ggplot(aes(year_fraction)) + 
-  geom_ribbon(aes(ymin = lower, ymax = upper), alpha = 0.25) + 
-  geom_line(aes(y = est)) + my_theme
+  geom_ribbon(aes(ymin = .lower_ci, ymax = .upper_ci), alpha = 0.25) + 
+  geom_line(aes(y = .estimate)) + my_theme
 ```
 
 You can also use `lm` to fit splines; these are similar to GAMs but there are some important differences. The `mgcv` package has a lot of features not available with `lm`.

@@ -24,7 +24,8 @@ getLessons <- function(directory = "lessons", all=TRUE) {
 }
 
 pkgs  <- getLessons(all=FALSE)
-# install.packages(getLessons())
+pkgs <- pkgs[!stringr::str_detect(pkgs, "quietly")]
+# install.packages(pkgs)
 
 # install.packages(c("vegan", "tidymodels", "statebins", "sf", "dlookr", "equatiomatic", "fields", "gapminder", "geojsonio", "caret", "leaflet", "ggvegan"))
 

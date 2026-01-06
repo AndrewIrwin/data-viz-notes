@@ -179,7 +179,7 @@ ggplot() +
 	geom_sf(aes(fill = PRUID), color = "gray60", linewidth = 0.1, data = canada_cd ) +
 	coord_sf(crs = crs_string) + 
   scale_fill_manual(values = map_colors) +
-	guides(fill = FALSE) +
+	guides(fill = "none") +
 	theme_map() +
 	theme(panel.grid.major = element_line(color = "white"))
 ```
@@ -216,7 +216,7 @@ ggplot() +
 	geom_sf(data = sf_cities, color = '#001e73', alpha = 0.5, size = 3) + # 17
 	coord_sf(crs = crs_string) +
 	scale_fill_manual(values = map_colors) +
-	guides(fill = FALSE) +
+	guides(fill = "none") +
 	theme_map() +
 	theme(panel.grid.major = element_line(color = "white"),
 	  	  legend.key = element_rect(color = "gray40", size = 0.1))
@@ -282,7 +282,8 @@ ggplot() +
 
 [Here](https://gist.githubusercontent.com/mikelotis/2156d7c170d10d2c77cb79424fe2137d/raw/7a13748ed7ea5ba64876c77c53b6cb64dd5c3ab0/canada-province.geojson) is a file of province boundaries that can be used without showing the census district regions. I've added a latitude-longitude grid to the map.
 
-```{r}
+```{r eval = FALSE}
+# Code not working; file has moved; to be fixed
 canada_prov <- geojson_read("https://gist.githubusercontent.com/mikelotis/2156d7c170d10d2c77cb79424fe2137d/raw/7a13748ed7ea5ba64876c77c53b6cb64dd5c3ab0/canada-province.geojson", what="sp") |> st_as_sf()
 
 ggplot() +

@@ -5,7 +5,7 @@ project:
 book:
   title: "Data Visualization notes"
   author: "Andrew Irwin"
-  date: "2024-01-08"
+  date: "2026-01-08"
   chapters:
     - index.qmd
     - lessons/101-introduction.Rmd
@@ -20,6 +20,7 @@ book:
     # - lessons/109-scales.Rmd
     - lessons/110-summarizing-data.Rmd
     - lessons/115-facets.Rmd
+    - lessons/106b-using-LLM-to-learn.Rmd
     - lessons/111-reading-data.Rmd
     - lessons/112-reshaping-data.Rmd
     - lessons/113-data-tables.Rmd

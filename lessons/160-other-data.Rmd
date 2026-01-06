@@ -86,7 +86,7 @@ To flesh out the examples a bit more, imagine you are describing a list of cours
   * Year and Term
   * Grade
 
-Notice that the variables Student ID, Course ID, and Year and Term each appear in multiple tables and will be used to connect the data from different tables together. All of the data could be in a single table, with every row having a student, course, and time; but you'd need to have a lot of duplicated information. Some tasks like preparing the timetable wouldn't fit in to a single table well since there would be no students registered when the course was first created. Having four separate tables is a much more convenient way to represent these data.
+Notice that the variables Student ID, Course ID, and Year and Term each appear in multiple tables and will be used to connect the data from different tables together. All of the data could be in a single table, with every row having a student, course, and time; but you'd need to have a lot of duplicated information. Some tasks like preparing the timetable wouldn't fit into a single table well since there would be no students registered when the course was first created. Having four separate tables is a much more convenient way to represent these data.
 
 Another example is a list of books, authors, publishers, and libraries that bought the book:
 
@@ -112,7 +112,7 @@ Another example is a list of books, authors, publishers, and libraries that boug
   * Is book in library, or checked out
   * Last date the book was checked out
 
-Incidentally, a similar database structure would work for academic research articles. In the last few years, an international standard for author ID numbers ([ORCID](https://en.wikipedia.org/wiki/ORCID)) has been developed to facilitate this sort of database construction.
+Incidentally, a similar database structure would work for academic research articles. In the last few years, international standards for author ID numbers ([ORCID](https://en.wikipedia.org/wiki/ORCID)) and publication ID numbers ([DOI](https://www.doi.org/the-identifier/what-is-a-doi/)) have been developed to facilitate this sort of database construction.
 
 Each of these data structures is more complicated than the simple tables that we have used in this course. Generally managing these sort of data is done with a relational database. Software for relational databases provides ways to combine data from different tables together ("join" the data) and validate data to be sure for example that a book is only created using valid author and publisher IDs. R has tools for working with many different databases and their software. Fortunately databases are standardized enough that many of the common functions are available using a common syntax and this matches the `dplyr` tools we have been using nearly perfectly.
 

@@ -130,10 +130,12 @@ Then you only need to specify these chunk options if you need to change them for
 When you show a figure on the screen, on a projector, printed page, or poster, you will want to redesign some elements. There is a relatively new solution to this resizing challenge. (So new it seems to not work sometimes.) 
 Once you have made a graphic look just the way you want, you can adjust the scale of the elements of the figure without changing the “physical” size of the image. Here I make the graphic have a much larger "physical" size, but I also scale up all the elements of the graphic by a factor of three (using `scaling = 3`). This allows you to make a high resolution object you can include in a printed poster without redesigning a figure too much -- just set the scaling factor and adjust the width and height by the same factor.
 
-```{r}
+```{r eval=FALSE}
+# example not working
 pngfile <- fs::path(knitr::fig_path(),  "penguins-ragg.png")
 ggsave(pngfile, p2, device = agg_png, 
-        width = 45, height = 30, units = "cm", res = 300, scaling = 3)
+        width = 45, height = 30, units = "cm", res = 300, scaling = 3,
+       create.dir=TRUE)
 knitr::include_graphics(pngfile)
 # agg_png("static/penguins-ragg.png", width = 45, height = 30, units = "cm", res = 300, scaling = 3)
 # p2

@@ -60,7 +60,8 @@ m3
 
 It's common to see "chloropleth" maps of the USA in which geographic regions are coloured to show a quantitative or categorical variable, such as population density or election results. These maps are less common in Canada due to two main factors: the geographic concentration of the population in cities means that area maps are even less informative than for the USA and the latitude range of Canada makes for some severe challenges when plotting whole-country chloropleth maps on commonly used projections. Nevertheless, it is possible. Here's a demonstration with some random numbers for "data".
 
-```{r message=FALSE}
+```{r message=FALSE, eval=FALSE}
+# example not working, data file has moved
 library(geojsonio)
 pal <- colorNumeric("viridis", NULL)  # make a viridis palette
 canada <- geojson_read("https://gist.githubusercontent.com/mikelotis/2156d7c170d10d2c77cb79424fe2137d/raw/7a13748ed7ea5ba64876c77c53b6cb64dd5c3ab0/canada-province.geojson", what="sp")
@@ -84,6 +85,7 @@ There are two steps. First download the tiles needed for your map by specifying
 Always start with a small zoom level -- if you make it too big you will download a lot of unnecessary data, which takes time and imposes a burden on the service.
 
 ```{r message=FALSE, eval=FALSE}
+# requires API key; read the help to get this set up on your computer
 mymap_terrain <- get_googlemap(bbox = c(left = -130, bottom = 41, right = -50, top = 60),
                                 zoom=4, maptype = "terrain")
 ggmap(mymap_terrain)  
