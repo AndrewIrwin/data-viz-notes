@@ -7,11 +7,11 @@ citation-location: margin
 
 ## What is a file? What is a folder?
 
-When you use an application on a desktop computer you are usually invited to give your work a name and save it to a file in a particular place (a folder) on your computer storage so that it can be accessed later. A big exception occurs when you use a web browser; in this case you rarely permanently store your work on your computer, usually your work is stored "in the cloud". By contrast, on a phone or tablet data you create is usually associated with the app you are using and there is no way to work with the data except through the app.
+When you use an application on a desktop computer you are usually invited to give your work a name and save it to a file in a particular place (a folder) on your computer storage so that it can be accessed later. A big exception occurs when you use a web browser; in this case you rarely permanently store your work on your computer, usually your work is stored "in the cloud". By contrast, on a phone or tablet data you create is usually associated with the app you are using and it can be hard to work with the data except through the app.
 
 What do all these words ([save](https://en.wikipedia.org/wiki/Persistence_(computer_science)), [file](https://en.wikipedia.org/wiki/Computer_file), [folder](https://en.wikipedia.org/wiki/Directory_(computing)) ) mean? I need to explain some of these ideas because we will be managing a lot of files --- for both our writing and finding the data we want to use.
 
-To [save](https://www.dictionary.com/browse/save) data means that you want to keep it safe against loss. Work done in many applications is temporary -- it will be lost if you quit the application -- unless you save the data. A [file](https://www.dictionary.com/browse/file) is a place on the computer where you store your data. Usually files are identified by their file name. Since a computer has a vast number of files, its conveient to put them in a [folder](https://www.dictionary.com/browse/folder) or directory. Again there are many folders, so folders are placed inside other folders. Files and folders are references to [old physical storage technology](https://en.wikipedia.org/wiki/Filing_cabinet) for paper.  When you save data to a file in a folder on your computer, it's important to remember where you put it so that you can find it again! This all sounds mundane, but picking good names for files and folders to store them in is [surprisingly tricky](https://www.data.cam.ac.uk/data-management-guide/organising-your-data)[^1]. It's well worth a bit of time to develop some easy to use habits.
+To [save](https://www.dictionary.com/browse/save) data means that you want to keep it safe against loss. Work done in many applications is temporary -- it will be lost if you quit the application -- unless you save the data. A [file](https://www.dictionary.com/browse/file) is a place on the computer where you store your data. Usually files are identified by their file name. Since a computer has a vast number of files, its convenient to put related files together in a [folder](https://www.dictionary.com/browse/folder) or directory. Again there are many folders, so folders are placed inside other folders. Files and folders are references to [old physical storage technology](https://en.wikipedia.org/wiki/Filing_cabinet) for paper.  When you save data to a file in a folder on your computer, it's important to remember where you put it so that you can find it again! This all sounds mundane, but picking good names for files and folders to store them in is [surprisingly tricky](https://www.data.cam.ac.uk/data-management-guide/organising-your-data)[^1]. It's well worth a bit of time to develop some easy to use habits.
 
 [^1]: Most guides you find for organizing files emphasize the use of version numbers in file names. There is a better way -- see the lesson on version control!
 
@@ -25,7 +25,7 @@ When you first start learning a computing tool like R, most people just put thei
 
 Whenever you start a new project, such as a course, create a folder with an easy to understand name like "STAT2430" or "Data-Visualization". Spaces in file names in general are fine, but if you plan to share files with others its usually best to use a dash (`-`) or underscore (`_`) instead of spaces, since spaces in file names cause problems with some computing tools. 
 
-As soon as you start work on a new project, you should give some thought to [backups](https://www.worldbackupday.com/en) too. I put project folders in 'Dropbox' or 'One Drive' to reduce the chance of losing my work.
+As soon as you start work on a new project, you should give some thought to [backups](https://www.worldbackupday.com/en) too. I put project folders in '[Dropbox](https://help.dropbox.com/sync/sync-overview)' or '[OneDrive](https://support.microsoft.com/en-us/office/sync-with-onedrive-bb89981b-e382-4969-b8fd-d413a90b6db3)' and use their automatic synchonization feature to reduce the chance of losing my work.
 
 
 ## Sub-projects
@@ -50,6 +50,6 @@ It's helpful to create informative names for files. If two files are related, us
 
 * Healy. Appendix. [Managing projects and files](https://socviz.co/appendix.html#managing-projects-and-files)
 * How to avoid using directory paths that won't exist on someone else's computer when you share files by using the [Here pacakge](https://here.r-lib.org/) ([github](https://github.com/jennybc/here_here)).
-* R for Data Science notes on [scripts](https://r4ds.had.co.nz/workflow-scripts.html) and  [projects](https://r4ds.had.co.nz/workflow-projects.html)
+* R for Data Science notes on [scripts](https://r4ds.hadley.nz/workflow-scripts.html) and  [projects](https://r4ds.hadley.nz/workflow-scripts.html)
 * If you are worried about versions of packages changing, you can keep track of the packages you used and their versions using [checkpoint](https://github.com/RevolutionAnalytics/checkpoint) or [packrat](http://rstudio.github.io/packrat/)
 

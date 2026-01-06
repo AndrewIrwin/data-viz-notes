@@ -13,7 +13,7 @@ In this lesson I will show you how to create a basic plot and then demonstrate a
 
 In this lesson you will start to learn how to use ggplot to visualize data. There is one simple example with several exercises, designed to make the essentials clear in your mind. All plots share the three features explained below, but many plots we draw later in the course are much more complex. 
 
-You can read these notes as a static document in a web browser, but it's better to download the R markdown file [here](`r guc`), open it in Rstudio, and edit the examples as you read.
+You can read these notes as a static document in a web browser, but it's better to create a quarto (or R markdown file) on your computer and type and modify the examples as you read.
 
 ## Required elements for a plot
 

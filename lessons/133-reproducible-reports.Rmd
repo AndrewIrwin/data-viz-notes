@@ -1,6 +1,6 @@
 # Reproducible reports {#reproduce}
 
-We've seen throughout the course how to combine computer code, data, tabular and graphical results, and natural language writing to explain and communicate our work. R markdown documents are a great tool for writing reports and ensuring they are reproducible. In this lesson we will examine a few more features of R markdown to help customize your reports, make them easier to revise, and make them more effective data analysis communication tools.
+We've seen throughout the course how to combine computer code, data, tabular and graphical results, and natural language writing to explain and communicate our work. Quarto (or R markdown) documents are a great tool for writing reports and ensuring they are reproducible. In this lesson we will examine a few more features of quarto and markdown to help customize your reports, make them easier to revise, and make them more effective data analysis communication tools.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -16,14 +16,14 @@ library(styler)
 
 Many people use R as an interactive computer tool. This means they sit at the keyboard, type a series of commands, and keep the results they want. It's like a very fancy calculator. This is a fantastic way to explore data, learn R, and test out ideas quickly. This work is not reproducible. You would need a recording of everything that was done to reproduce the analysis. If you need to change a small step in your work, you will need to repeat many or all of the steps.
 
-In this course, we have been using R in a slightly more disciplined way, at least for assigned work. For every project, you create a new R markdown file, and then you write your computer instructions in code "chunks", interspersed with English (or any other natural human language) explanations. With Rstudio, you can still use R interactively in this mode, clicking the "play" button on each chunk and seeing the output. When your analysis is done, you can "knit" the whole document. This does two important things:
+In this course, we have been using R in a slightly more disciplined way, at least for assigned work. For every project, you edit a quarto (.qmd) file, and then you write your computer instructions in code "chunks", interspersed with English (or any other natural human language) explanations. With Rstudio, you can still use R interactively in this mode, clicking the "play" button on each chunk and seeing the output. When your analysis is done, you can "render" the whole document. This does two important things:
 
 -   all the code is executed in order from top to bottom, and
 -   the results are kept in a new file.
 
-You may have had the experience during the course of preparing your R markdown file, trying to knit it, and discovering an error. This error is evidence that your R markdown document is not complete, so if you rely on it, you will not be able to repeat your steps later on. So the first way R markdown aids you in reproducing your work is by giving you an easy way to test if your instructions are complete. If you can knit your file today, you can turn off your computer, and come back in a week, and be confident you will be able to reproduce your work then.
+You may have had the experience during the course of preparing your work, trying to render it, and discovering an error. This error is evidence that your quarto document is not complete, so if you rely on it, you will not be able to repeat your steps later on. So the first way quarto aids you in reproducing your work is by giving you an easy way to test if your instructions are complete. If you can render your file today, you can turn off your computer, and come back in a week, and be confident you will be able to reproduce your work then.
 
-We have stressed the value of communication in this course. For some purposes you will just want to communicate by sending someone your knitted report. When you work in a team, communication is not just about the knitted report, but it includes the instructions needed to recreate the report. R markdown is great for this. But most analyses will require more than just one R markdown file. They will require data. This is why we have also learned to use R projects, version control, and to share files using GitHub. Now you can write a document to show someone else how to reproduce your work, from gathering data to making a report, and you can be confident that they will be able to make all the steps work and even add to your work in a time-efficient way.
+We have stressed the value of communication in this course. For some purposes you will just want to communicate by sending someone your report. When you work in a team, communication is not just about the rendered report, but it includes the instructions needed to recreate the report. Quarto is great for this. Most analyses will require more than just one quarto file. They will require data. This is why we have also learned to use R projects, version control, and to share files using GitHub. Now you can write a document to show someone else how to reproduce your work, from gathering data to making a report, and you can be confident that they will be able to make all the steps work and even add to your work in a time-efficient way.
 
 ## What are barriers to reproducibility and how I can overcome them?
 
@@ -37,24 +37,11 @@ because there is no way that will work on someone else's computer! If you reorga
 
 We have been using R packages and organizing all files for a project in a folder (and sub-folders) created just for that project. This is a good first step. The `here` package provides a useful function that allows you refer to a file relative to the directory where your `.Rproj` file is stored. This is [important](https://malco.io/2018/11/05/why-should-i-use-the-here-package-when-i-m-already-using-projects/) to make your R code work on someone else's computer. Here's how you use it:
 
-    my_data <- read_csv(here("static", "annual-number-of-deaths-by-cause.csv"))
+    my_data <- read_csv(here("data", "annual-number-of-deaths-by-cause.csv"))
 
-This tells R to find a folder called `static` in your project, then look for a file called `annual-number-of-deaths-by-cause.csv` in that folder. If this code works on your computer, with your R project, and you give the whole folder to a collaborator, you don't need to worry how they organize their files.
+This tells R to find a folder called `data` in your project, then look for a file called `annual-number-of-deaths-by-cause.csv` in that folder. If this code works on your computer, with your R project, and you give the whole folder to a collaborator, you don't need to worry how they organize their files.
 
 Sometimes you will think a dataset is too large to put in your project folder. Or the data may be used by multiple projects, and you don't want to have multiple copies. What should you do? The best options are: put the common data files in a GitHub repository (public or private), deposit the data in an online repository such as [osf.io](https://osf.io/), or create an [R data package](https://r-pkgs.org/data.html) of your own to manage the data on your computer and the computers of your collaborators. The R data package can be pubic, available to anyone, or you can keep it completely private on your own computer. All of these methods have the advantage of separating the data collection and validating process from the analysis and visualization process. Which method you prefer will depend on many factors including the size of the data, how often it changes, whether it is public, or if you are allowed to redistribute it.
-
-### Caching time-consuming computations
-
-R markdown is a great way to manage an analysis notebook, but every time you want to update your analysis, you need to recalculate everything in your document. It is possible to store (cache) the results of a code chunk by giving it a name and setting `cache=TRUE`. This will store the results of that computation so that when the markdown file is recomputed, the stored results are used. This can save time, but also lead to unpredictable results depending on how the results of one code chunk and external data influence the cached code chunk.
-
-Here is an example using the code chunk header `{r test_caching, cache=TRUE}`:
-
-```{r test_caching, cache=TRUE}
-s1 <- summarize(mpg, count = n()) 
-s1
-```
-
-If you are going to use this feature, you should read more about [caching in Rmarkdown](https://bookdown.org/yihui/rmarkdown-cookbook/cache.html). This page describes a do-it-yourself caching method which I recommend as well.
 
 ### Finding and installing R packages
 
@@ -76,7 +63,7 @@ Here are some specific recommendations for formatting your report:
 
 For examples of these formatting tips, see the [source for this file](https://github.com/AndrewIrwin/data-viz-notes/blob/main/lessons/133-reproducible-reports.Rmd).
 
-Headings make your markdown document easier to navigate too. Look for the "show outline" button in the upper right of Rstudio's editing pane.
+Headings make your markdown document easier to navigate too. Look for the "show outline" button in the upper right of Rstudio's editing pane. For your homework assignments, I have set the quarto documents up to turn these headings into a table of contents on the rendered document.
 
 ## Code formatting
 
@@ -101,7 +88,7 @@ If you have loaded the `styler` package, you can use the Addins menu to style a 
 
 What makes code easier to read? Consistency, indentation when an idea continues from one line to the next, and keeping lines short. Consistency in spacing, use of upper and lower case, and naming of variables is valuable. I suggest you write neat and easy to read code in your R markdown documents. Don't use automatic tidying as an excuse to make messy code.
 
-## Customization of result reporting in R markdown
+## Customization of result reporting in quarto
 
 The first line of a code chunk can be as simple as `{r}` but you can also include many options between the braces. The [markdown book](https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html) describes the options available. Here I will demonstrate a few chunk options related to figures and formatting output.
 
@@ -155,7 +142,7 @@ To absolutely guarantee you can use R code in the future, some applications will
 
 ## Using other languages
 
-Quarto is a new publishing tool being developed based on the ideas of R markdown. Quarto is designed to work much like R markdown, but with extra features for publishing books, websites, and presentation slides. Quarto allows you to combine several different programming languages, including python and Julia in the same document. For more information see the [Quarto](https://quarto.org/) website. Quarto is already built-in to R and your Rmd documents work fine with Quarto, so if you want to to learn more about this tool it should be easy to start. Look under the File > New File... menu for Quarto options.
+Quarto allows you to combine several different programming languages, including python and Julia in the same document. For more information see the [Quarto](https://quarto.org/) website. 
 
 Related to the topic of inter-operation of computing languages, but departing from the topic of R markdown, you can also write C++ code in an R session and execute the compiled code directly from R. This is very valuable if you have a calculation that is slow in R, but would be faster in a compiled language like C.
 
@@ -181,7 +168,7 @@ capture.output(show_query(penguins_aggr))
 rm(con)
 ```
 
-What does using other tools have to do with making your work reproducible? R markdown is a flexible tool that lets you use more than just R, so if your workflow contains steps external to R, they can sometimes still be included in your report.
+What does using other tools have to do with making your work reproducible? Quarto is a flexible tool that lets you use more than just R, so if your workflow contains steps external to R, they can sometimes still be included in your report.
 
 ## Packages used
 
