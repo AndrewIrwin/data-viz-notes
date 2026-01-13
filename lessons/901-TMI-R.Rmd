@@ -44,7 +44,7 @@ class(as.matrix(diamonds %>% select(depth, table, price)))  # if you pick column
 class(as.matrix(diamonds %>% select(cut, color, clarity)))  
 ```
 
-## data frame, tibbles, and data tables
+## Data frame, tibbles, and data tables
 
 When R was young, there was one way to organize data into the tables we are using throughout this course: the data frame. This data structure is made from a list of vectors; each column is an entry in the list and all the data in each list (column) must be of the same type. Over time, people wanted to add new features to data tables, but existing code made this difficult. So two new kinds of data frames were created.
 

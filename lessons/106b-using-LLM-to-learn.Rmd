@@ -51,6 +51,16 @@ Risks I've experienced:
 
 What's the goal? Learn and develop new skills and capacities. 
 
+## LLMs to try
+
+Each LLM has its own strengths and weaknesses. And they all are changing and being updated frequently. There is no need to use them all, but you should try at least two. I am only using the freely available versions of each, except for Microsoft copilot which is provided as a subscription by our university.
+
+* [Claude](https://claude.ai/chat/)
+* [ChatGPT](https://chatgpt.com/)
+* Microsoft co-pilot
+* [Gemini](https://gemini.google.com/)
+* [DeepSeek](https://chat.deepseek.com/)
+
 
 ## Software testing
 
