@@ -583,13 +583,13 @@ div.csl-indent {
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu">slice_sample</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 10
-  carat cut     color clarity depth table price     x     y     z
-  &lt;dbl&gt; &lt;ord&gt;   &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  0.3  Premium G     SI1      59.7    60   574  4.39  4.35  2.61
-2  0.73 Ideal   E     VS1      62.8    57  3327  5.75  5.78  3.62
-3  0.43 Ideal   G     SI2      62.3    53   696  4.84  4.86  3.02
-4  2.04 Ideal   F     SI2      62.4    56 17049  8.07  8.14  5.06
-5  1.55 Ideal   J     SI2      62      56  6805  7.42  7.38  4.59</code></pre>
+  carat cut       color clarity depth table price     x     y     z
+  &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1  1.13 Ideal     E     SI2      62.4    56  4303  6.66  6.63  4.15
+2  0.32 Ideal     D     VS2      62.7    57   758  4.4   4.44  2.77
+3  0.4  Ideal     D     VVS2     62.2    55  1263  4.72  4.74  2.94
+4  0.54 Very Good E     SI1      62.1    59  1379  5.17  5.2   3.22
+5  1.5  Very Good I     SI1      60.7    58  8475  7.34  7.4   4.47</code></pre>
 </div>
 </div>
 <p>You can use <code>arrange</code> to sort the data by any number of columns before slicing or displaying the data.</p>

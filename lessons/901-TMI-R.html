@@ -422,7 +422,7 @@ window.Quarto = {
 <li><a href="#recent-changes" id="toc-recent-changes" class="nav-link active" data-scroll-target="#recent-changes">Recent changes</a></li>
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#what-kinds-of-data-structures-does-r-use" id="toc-what-kinds-of-data-structures-does-r-use" class="nav-link" data-scroll-target="#what-kinds-of-data-structures-does-r-use">What kinds of data structures does R use?</a></li>
-  <li><a href="#data-frame-tibbles-and-data-tables" id="toc-data-frame-tibbles-and-data-tables" class="nav-link" data-scroll-target="#data-frame-tibbles-and-data-tables">data frame, tibbles, and data tables</a></li>
+  <li><a href="#data-frame-tibbles-and-data-tables" id="toc-data-frame-tibbles-and-data-tables" class="nav-link" data-scroll-target="#data-frame-tibbles-and-data-tables">Data frame, tibbles, and data tables</a></li>
   <li><a href="#what-is-the-difference-between-strings-and-factors" id="toc-what-is-the-difference-between-strings-and-factors" class="nav-link" data-scroll-target="#what-is-the-difference-between-strings-and-factors">What is the difference between strings and factors?</a></li>
   <li><a href="#whats-the-pipe" id="toc-whats-the-pipe" class="nav-link" data-scroll-target="#whats-the-pipe">What’s the pipe?</a></li>
   <li><a href="#why-does-ggplot-use" id="toc-why-does-ggplot-use" class="nav-link" data-scroll-target="#why-does-ggplot-use">Why does ggplot use +?</a></li>
@@ -503,7 +503,7 @@ window.Quarto = {
 <pre><code>[1] "matrix" "array" </code></pre>
 </div>
 </div>
-</section><section id="data-frame-tibbles-and-data-tables" class="level2"><h2 class="anchored" data-anchor-id="data-frame-tibbles-and-data-tables">data frame, tibbles, and data tables</h2>
+</section><section id="data-frame-tibbles-and-data-tables" class="level2"><h2 class="anchored" data-anchor-id="data-frame-tibbles-and-data-tables">Data frame, tibbles, and data tables</h2>
 <p>When R was young, there was one way to organize data into the tables we are using throughout this course: the data frame. This data structure is made from a list of vectors; each column is an entry in the list and all the data in each list (column) must be of the same type. Over time, people wanted to add new features to data tables, but existing code made this difficult. So two new kinds of data frames were created.</p>
 <p>A <a href="https://r4ds.had.co.nz/tibbles.html">tibble</a> is a data frame, but it has some extra features. Most notably the way it is displayed in R has been improved. Only a few rows and columns are shown (unless you ask for more) with the rest of the information provided as a summary. Tibbles are widely used by the tidyverse packages.</p>
 <p>A <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">data table</a> is a kind of data frame where all the code has been written with the goal of increasing calculation speed. Some of the methods for manipulating data tables are quite different from what we have learned in this course; some of the examples from R4DS chapter on data transformations are demonstrated <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html">here</a>.</p>

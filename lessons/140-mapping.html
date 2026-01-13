@@ -678,9 +678,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">canada_cd</span> <span class="op">|&gt;</span> <span class="fu">pull</span><span class="op">(</span><span class="va">CDNAME</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Nicolet-Yamaska" "Lambton"         "Kitikmeot"       "East Kootenay"  
- [5] "Division No.  1" "Division No.  8" "Annapolis"       "Division No.  5"
- [9] "Wellington"      "Division No.  3"</code></pre>
+<pre><code> [1] "Division No. 16"                "Middlesex"                     
+ [3] "Division No.  2"                "Grey"                          
+ [5] "Joliette"                       "Lajemmerais"                   
+ [7] "Gatineau"                       "Matawinie"                     
+ [9] "Stormont, Dundas and Glengarry" "Lanark"                        </code></pre>
 </div>
 </div>
 <p>I’ve changed the latitude and longitude parameters for the projection to values more suitable for this part of Canada.</p>

@@ -396,10 +396,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
 <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals"><span class="header-section-number">11.1</span> Goals</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">11.2</span> Introduction</a></li>
-  <li><a href="#software-testing" id="toc-software-testing" class="nav-link" data-scroll-target="#software-testing"><span class="header-section-number">11.3</span> Software testing</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources"><span class="header-section-number">11.4</span> Resources</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">11.5</span> Exercises</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">11.6</span> Summary</a></li>
+  <li><a href="#llms-to-try" id="toc-llms-to-try" class="nav-link" data-scroll-target="#llms-to-try"><span class="header-section-number">11.3</span> LLMs to try</a></li>
+  <li><a href="#software-testing" id="toc-software-testing" class="nav-link" data-scroll-target="#software-testing"><span class="header-section-number">11.4</span> Software testing</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources"><span class="header-section-number">11.5</span> Resources</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">11.6</span> Exercises</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">11.7</span> Summary</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -459,8 +460,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>not paying attention to how the analysis works, and thus misunderstanding it and failing to learn from the opportunity</li>
 </ul>
 <p>What’s the goal? Learn and develop new skills and capacities.</p>
-</section><section id="software-testing" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="software-testing">
-<span class="header-section-number">11.3</span> Software testing</h2>
+</section><section id="llms-to-try" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="llms-to-try">
+<span class="header-section-number">11.3</span> LLMs to try</h2>
+<p>Each LLM has its own strengths and weaknesses. And they all are changing and being updated frequently. There is no need to use them all, but you should try at least two. I am only using the freely available versions of each, except for Microsoft copilot which is provided as a subscription by our university.</p>
+<ul>
+<li><a href="https://claude.ai/chat/">Claude</a></li>
+<li><a href="https://chatgpt.com/">ChatGPT</a></li>
+<li>Microsoft co-pilot</li>
+<li><a href="https://gemini.google.com/">Gemini</a></li>
+<li><a href="https://chat.deepseek.com/">DeepSeek</a></li>
+</ul></section><section id="software-testing" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="software-testing">
+<span class="header-section-number">11.4</span> Software testing</h2>
 <p>Computer code is a particularly good example of a task where LLMs can help you do work. Software testing is the process of evaluating a piece of code to determine if it works as intended. This can involve writing test cases that check the output of the code for a variety of inputs, as well as checking for edge cases and error handling. For a data analysis task, this means providing a set of test data and known outputs, and checking that the code produces the expected results. This practice is valuable whether you write your own code, you get it from a team member, or you get it from an LLM.</p>
 <p>As a very simple example, I want to make a table that lists the months of the year and the number of days in each. Two simple tests I can design before the data are generated is to check that there are 12 rows in the table and that the total number of days is 365.</p>
 <div class="cell">
@@ -490,11 +500,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>If the tests pass without error, I can be reasonably confident that the code works as intended. If the tests fail, I can use the error messages to help debug the code. This process of writing tests and using them to evaluate code is a valuable skill to develop when using LLMs to generate code.</p>
 <p>Notice that this data is clearly wrong for a leap year. A more sophisticated table of the lengths of months and a more comprehensive set of tests would be needed to catch this error. Properly guided, an LLM can produce that code for you as well, but with the prompts I used, this question was not raised by the LLM.</p>
-</section><section id="resources" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="resources">
-<span class="header-section-number">11.4</span> Resources</h2>
+</section><section id="resources" class="level2" data-number="11.5"><h2 data-number="11.5" class="anchored" data-anchor-id="resources">
+<span class="header-section-number">11.5</span> Resources</h2>
 <p>Copilot suggested a ten web resources from well-known websites that sounded like they would explain how to use AI to learn new skills. None of them existed.</p>
-</section><section id="exercises" class="level2" data-number="11.5"><h2 data-number="11.5" class="anchored" data-anchor-id="exercises">
-<span class="header-section-number">11.5</span> Exercises</h2>
+</section><section id="exercises" class="level2" data-number="11.6"><h2 data-number="11.6" class="anchored" data-anchor-id="exercises">
+<span class="header-section-number">11.6</span> Exercises</h2>
 <ol type="1">
 <li><p>Think of a task you would like to accomplish using computer code. Use an LLM to help you write the code to accomplish the task. Evaluate the code produced by the LLM and determine if it works correctly. If it does not work correctly, try to debug the code with the help of the LLM. Reflect on the experience and what you learned from it.</p></li>
 <li><p>Find a piece of code from the course notes that you do not fully understand. Use an LLM to help explain the code to you and suggest improvements. Reflect on how the LLM’s explanation helped you understand the code better.</p></li>
@@ -504,8 +514,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>“Explain what the following code does and suggest improvements”</li>
 <li>“Find errors in the following code and suggest corrections”</li>
-</ul></section><section id="summary" class="level2" data-number="11.6"><h2 data-number="11.6" class="anchored" data-anchor-id="summary">
-<span class="header-section-number">11.6</span> Summary</h2>
+</ul></section><section id="summary" class="level2" data-number="11.7"><h2 data-number="11.7" class="anchored" data-anchor-id="summary">
+<span class="header-section-number">11.7</span> Summary</h2>
 <p>Using LLMs to learn new skills can be a powerful tool, but it requires careful management and evaluation. By developing effective strategies for asking for help, identifying strengths and weaknesses of LLMs, and ensuring that you are learning rather than just outsourcing tasks, you can make the most of this technology. Always remember to critically evaluate the output of LLMs and use them as a supplement to your own learning and understanding.</p>
 
 
