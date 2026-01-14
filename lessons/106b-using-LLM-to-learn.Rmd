@@ -31,7 +31,7 @@ I asked an AI to explain some code I had written more than a decade ago to me. I
 
 I asked an AI to help me finish some code I had written, but hadn't got to work yet, to simulate a board game I used to play. It found three real errors in my code and suggested corrections, which worked.
 
-LLMs shift work from creating code to debugging code. A good skill to develop, but arguable more difficult. They can provide good stimulation for how to solve a problem.
+LLMs shift work from creating code to debugging code. A good skill to develop, but arguably more difficult. They can provide good stimulation for how to solve a problem.
 
 Strengths:
 
@@ -51,8 +51,15 @@ Risks I've experienced:
 
 What's the goal? Learn and develop new skills and capacities. 
 
+## Examples
 
-## Software testing
+### Asking questions
+
+### Explaining code
+
+### Keeping your mind engaged
+
+### Testing the results
 
 Computer code is a particularly good example of a task where LLMs can help you do work. Software testing is the process of evaluating a piece of code to determine if it works as intended. This can involve writing test cases that check the output of the code for a variety of inputs, as well as checking for edge cases and error handling. For a data analysis task, this means providing a set of test data and known outputs, and checking that the code produces the expected results. This practice is valuable whether you write your own code, you get it from a team member, or you get it from an LLM.
 
