@@ -2,21 +2,21 @@
 
 ## Goals
 
-In this lesson I will explain what version control is and why we use it. I will also demonstrate how we will use version control with Rstudio and github in this course for tasks, assignments, and the term project.
+In this lesson I will explain what version control software is and why we use it. I will also demonstrate how we will use version control with Rstudio and github in this course for assignments and the term project.
 
 ## Introduction
 
-[Version control](https://en.wikipedia.org/wiki/Version_control) software is used to manage the process of creating software. It is commonly used to track changes, manage the revision process of correcting errors and adding new features, track the history of a project through different versions, synchronize contributions from many different people, and facilitate the distribution of software to a broad audience. Version control software is most commonly applied to the production of complex projects like software, but it can be used for text documents, data, web pages, and other applications.
+[Version control](https://en.wikipedia.org/wiki/Version_control) software is used to manage the process of creating software. It is commonly used to track changes, manage the revision process of correcting errors and adding new features, track the history of a project through different versions, synchronize contributions from many different people, and facilitate the distribution of software to a broad audience. Version control software is most commonly applied to the production of complex projects like software applications, but it can be used for text documents, data, web pages, and other applications.
 
 ## What software is used for version control?
 
 Version control software has a history dating back several decades, so there are [many different tools available](https://en.wikipedia.org/wiki/Comparison_of_version-control_software). We will be using one of the most popular packages, known as [git](https://en.wikipedia.org/wiki/Git) ([homepage](https://git-scm.com/)). Git keeps the entire history of a project on your own computer and does not require any central repository. Since version control software is often used to coordinate the work of many authors and to distribute the product, central repositories such as [GitHub](https://en.wikipedia.org/wiki/GitHub) ([homepage](https://github.com/)) have become very popular, to the point that some people see them as an integrated set of tools. Other popular version control software packages include [Mercurial](https://en.wikipedia.org/wiki/Mercurial) and [Subversion](https://en.wikipedia.org/wiki/Apache_Subversion). There are several alternatives to GitHub such as [bitbucket](https://en.wikipedia.org/wiki/Bitbucket), [gitlab](https://en.wikipedia.org/wiki/GitLab) and [more](https://en.wikipedia.org/wiki/Comparison_of_source-code-hosting_facilities).
 
-We will be using git and github in this course. There are many add-on tools to help you work with git. We will use the excellent tools built-in to Rstudio. Other tools that are popular, but we will not explore are a simpler git called [gitless](https://gitless.com/) and many different [graphical interfaces](https://git-scm.com/downloads/guis).
+We will be using git and GitHub in this course. There are many add-on tools to help you work with git. We will use the excellent tools built-in to Rstudio. Other tools that are popular, but we will not explore, are a simpler git called [gitless](https://gitless.com/) and many different [graphical interfaces](https://git-scm.com/downloads/guis).
 
 ## Why is version control used in data visualization?
 
-Data visualization is the process of combining data with computer code to create a visualization. Both of these parts can change with new information and new ideas, can require synthesis of skills from multiple authors, and benefit from transparency in design and distribution. As a result, version control software is a natural tool to help with the work of data visualization.
+Data visualization is the process of combining data with computer code to create a visualization. Both parts can change with new information and new ideas, can require synthesis of skills from multiple authors, and benefit from transparency in design and distribution. As a result, version control software is a natural tool to help with the work of data visualization.
 
 Suppose you develop a data visualization and you want to distribute the result, but you anticipate updating the data and revising the analyses. This sequence of steps is very similar to software development: an initial version is produced and released to users, changes are made, new versions are produced. Users (of software and data visualizations) want to know what version they are using, if there are any updates, and what the changes were between the versions. Version control software can help with these tasks and, once the key concepts are understood, without much extra effort on the part of the team producing the data visualization. Understanding this workflow is a valuable technical skill on its own.
 
@@ -24,11 +24,11 @@ In this course we will integrate just enough use of version control to help you 
 
 ## How will we use version control?
 
-Course work and evaluation from this lesson onward in the course will require you to use git and github. As part of your final project, you will practice using them as tools for collaboration. This course will emphasize the most basic uses of git and give you an opportunity to practice core elements of using git.
+Course work and evaluation from this lesson onward in the course will require you to use git and GitHub. As part of your final project, you will practice using them as tools for collaboration. This course will emphasize the most basic uses of git and give you an opportunity to practice core elements of using git.
 
 ## Introduction to git
 
-Git organizes data in a *repository*, commonly called a *repo*. The repo contains a copy of all the files you ask git to track and it tracks all changes you make to the files. One you create a repository you must *stage* or add files to the repository. Staging is a declaration that the current version of a file is the one you want to added to the repository. Each file must be staged as a separate step. (In Rstudio this just means checking a box.) Once you have staged all the files you want, you *commit* them to the repository. This updates the repository, moving files from the staged area. Complete copies of new files are stored, but if a file has been changed, only the differences between the old and new versions are retained. All of these changes happen on your own computer, in a sub-folder called `.git` used by git to keep track of the repository. If you are using a service like github you can then *push* your changes to the *remote* location so that they can easily be obtained by others.
+Git organizes data in a *repository*, commonly called a *repo*. The repo contains a copy of all the files you ask git to track and it tracks all changes you make to the files. Once you create a repository you must *stage* or add files to the repository. Staging is a declaration that the current version of a file is the one you want to added to the repository. Each file must be staged as a separate step. (In Rstudio this just means checking a box.) Once you have staged all the files you want, you *commit* them to the repository. This updates the repository, moving files from the staged area. Complete copies of new files are stored, but if a file has been changed, only the differences between the old and new versions are retained. All of these changes happen on your own computer, in a sub-folder called `.git` used by git to keep track of the repository. If you are using a service like github you can then *push* your changes to the *remote* location so that they can easily be obtained by others.
 
 ## Using git with Rstudio
 
@@ -66,7 +66,7 @@ To install git, open the Terminal tab within Rstudio (or using the application T
 
 and wait a few minutes.
 
-Type `git` at the terminal to check that the installation worked.
+Type `git` at the terminal to check that the installation worked. If you see some help text displayed instead of an error message you know git is installed.
 
 ### On a Windows computer
 
@@ -76,9 +76,9 @@ When you are done, type `git` in the Rstudio terminal. If you see some help text
 
 **Do not move on to the next steps until you have git working properly on your computer.** If you can't get it working on your own computer, use [rstudio.cloud](https://rstudio.cloud/project/1998812) for now.
 
-### On rstudio.cloud
+### On posit.cloud
 
-Git is already installed on rstudio.cloud. There are several ways to confirm this.
+Git is already installed on posit.cloud. There are several ways to confirm this.
 
 -   You can click on the "terminal" tab and type `git`. You will see a help message instead of an error message.
 -   Under the menu item Tools \> Version Control \> Project setup, you will see git as a choice in the popup menu for "version control system" instead of "none".
@@ -153,7 +153,7 @@ You should notice that the "status" display in the Git tab is now blank. There a
 
 ### Publish your changes to GitHub
 
-Before your work can be graded, you need to send it from your computer to GitHub. Once it is there, I can download it to my computer.
+**Before your work can be graded, you need to send it from your computer to GitHub.** Once it is there, I can download it to my computer.
 To publish these files on github you need to push the changes from your computer to the github (remote) repository.
 
 Repositories on github can be public (so anyone can see them) or private (so that only you and people you give explicit permission can see them.) The course repositories I have created for you are private (and the TA and I can both edit them.)
@@ -245,11 +245,10 @@ If you don't want to keep this repository, you can get rid of it in two steps.
 
 ## Resources
 
--   Rstudio [help](https://support.rstudio.com/hc/en-us/articles/200532077?version=1.2.5001&mode=desktop) for git
--   Software Carpentry [tutorial using git with Rstudio](https://swcarpentry.github.io/git-novice/14-supplemental-rstudio/index.html)
+-   Rstudio [help](https://docs.posit.co/ide/user/ide/guide/tools/version-control.html) for git
+-   Software Carpentry [tutorial using git with Rstudio](https://swcarpentry.github.io/git-novice/index.html)
 -   [Happy Git with R](https://happygitwithr.com/)
--   Highlights of key features of git and github for [developers](https://dev.to/firangizg/git-github-key-things-you-will-want-to-remember-5390)
--   [Advanced Git cheat sheet](https://www.maxpou.fr/git-cheat-sheet)
+-   [Advanced Git cheat sheet](https://www.maxpou.fr/blog/git-cheat-sheet)
 -   A more advanced look at the [internals of git](https://www.freecodecamp.org/news/git-internals-objects-branches-create-repo/)
 -   Article on [teaching statistics with git and github](https://www.tandfonline.com/doi/full/10.1080/10691898.2019.1617089), for students and instructors.
 

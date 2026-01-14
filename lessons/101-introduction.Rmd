@@ -10,13 +10,13 @@ Climate change over the coming century will be controlled by human-driven emissi
 
 The two graphs below show carbon dioxide concentrations (in parts per million) in the atmosphere measured from a high-altitude observatory on the island of Hawai'i. The first graph shows two years of data. The second graph shows the monthly record since regular observations began.
 
-```{r co2-2-year, echo=FALSE,  out.width = '100%'}
+```{r echo=FALSE,  out.width = '100%'}
 #| fig-cap: "Two years of atmospheric CO$_2$ concentration from Mauna Loa observatory. Source [co2.earth](https://www.co2.earth/daily-co2) and [keelingcurve.ucsd.edu](https://keelingcurve.ucsd.edu/). "
 #| label: fig-co2-2-year
 knitr::include_graphics("static/mlo_two_years.png")
 ```
 
-```{r co2-full-record, echo=FALSE, out.width='100%'}
+```{r echo=FALSE, out.width='100%'}
 #| fig-cap: "Atmospheric CO$_2$ concentration from Mauna Loa observatory, 1958 to present. Source [co2.earth](https://www.co2.earth/daily-co2) and [keelingcurve.ucsd.edu](https://keelingcurve.ucsd.edu/). "
 #| label: fig-co2-full-record
 knitr::include_graphics("static/mlo_full_record.png")
@@ -41,7 +41,7 @@ Many other sites have information on these data, usually presenting [data visual
 
 [Hans Rosling](https://en.wikipedia.org/wiki/Hans_Rosling) was a physician and popularizer of data visualizations to develop understanding of human health and economic development over time and across countries. His [public presentations](https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen) illustrate his view of how dyanmic charts can help us come to see the trajectory of global development, particularly the connections between health and economic development. I strongly encourage you to watch one of his [presentations](https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen). He was especially well known for his effort to dispell misunderstandings about differences across countries in health and human development. He popularized a style of scatterplot which combined the use of colour, symbol size, and animations to show changes over time.
 
-```{r gapminder-fertility, echo=FALSE, out.width = '100%'}
+```{r echo=FALSE, out.width = '100%'}
 #| fig-cap: "Fertility rate (babies per woman) as a function of median national income across countries. See the animated version showing how this relationship has changed over time in the video linked above. Source [gapminder.org](https://gapminder.org)"
 #| label: fig-gapminder-fertility
 knitr::include_graphics("static/gapminder-fertility-income.png")
@@ -51,13 +51,13 @@ knitr::include_graphics("static/gapminder-fertility-income.png")
 
 Many people are strongly interested in their local weather conditions. As a result of this strong interest and the complextity of the data, many visualizations have been developed. Forecasts, such as those produced by [Environment Canada](https://weather.gc.ca/en/location/index.html?coords=44.649,-63.602), and historical retrospectives, such as those produced by [Weatherspark](https://weatherspark.com/y/28434/Average-Weather-in-Halifax-Canada-Year-Round) are examples that leverage familiarity with the data, broad-scale human interest, and data-rich but not overly complicated displays. Two examples are shown below.
 
-```{r env-canada-weather, echo=FALSE, out.width = '100%'}
+```{r echo=FALSE, out.width = '100%'}
 #| fig-cap: "Environment Canada weather forecast for Halifax NS, December 10, 2020"
 #| label: fig-env-canada-weather
 knitr::include_graphics("static/env-canada-halifax-snapshot.png")
 ```
 
-```{r weatherspark, echo=FALSE, out.width = '100%'}
+```{r echo=FALSE, out.width = '100%'}
 #| fig-cap: "Climatological mean daily high and low temperatures in Halifax NS from weatherspark.com"
 #| label: fig-weatherspark
 knitr::include_graphics("static/weatherspark-hfx-temperature.png")

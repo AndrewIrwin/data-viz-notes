@@ -142,32 +142,22 @@ knitr::include_graphics(pngfile)
 # invisble(dev.off())
 ```
 
-The `ragg` library and graphics output device also provides reliable rendering text in many (perhaps most) languages and a way to scale the size of images across different output formats. 
+The `ragg` library and graphics output device also provides reliable rendering text in many languages and a way to scale the size of images across different output formats. I had 
+an example with Japanese text and emoji, but it seems to not be working properly at the moment, so I'm showing the map without those text elements.
 
-I've copied the nice map with an emoji and Japanese text from [this tutorial](https://www.tidyverse.org/blog/2021/02/modern-text-features/):
+For more information see [this tutorial](https://www.tidyverse.org/blog/2021/02/modern-text-features/).
 
 ```{r echo=FALSE, dev='ragg_png'}
-city_names <- c(
-  "Tokyo (東京)",
-  "Yokohama (横浜)",
-  "Osaka (大阪市)",
-  "Nagoya (名古屋市)",
-  "Sapporo (札幌市)",
-  "Kobe (神戸市)",
-  "Kyoto (京都市)",
-  "Fukuoka (福岡市)",
-  "Kawasaki (川崎市)",
-  "Saitama (さいたま市)"
-)
 main_cities <- data.frame(
-  name = city_names,
+  name = c("Tokyo", "Yokohama", "Osaka", "Nagoya", "Sapporo", "Kobe", "Kyoto", "Fukuoka",
+  "Kawasaki", "Saitama"),
   lat = c(35.690, 35.444, 34.694, 35.183, 43.067, 
           34.69, 35.012, 33.583, 35.517, 35.861),
   lon = c(139.692, 139.638, 135.502, 136.9, 141.35, 
           135.196, 135.768, 130.4, 139.7, 139.646)
 )
 japan <- rnaturalearth::ne_countries(
-  scale = 10, 
+  scale = "large",
   country = "Japan", 
   returnclass = "sf"
 )
@@ -179,14 +169,16 @@ ggplot() +
     size = 0.2
   ) + 
   ggrepel::geom_label_repel(
-    aes(lon, lat, label = name), 
     data = main_cities,
+    mapping = aes(x = lon, y = lat, label = name),
     fill = "#FFFFFF88",
-    box.padding = unit(5, "mm")
-  ) + 
+    box.padding = grid::unit(2, "mm"),
+    point.padding = grid::unit(1, "mm"),
+    max.overlaps = 15,
+    size = 2) +
   geom_point(aes(lon, lat), main_cities) +
   ggtitle(
-    "Location of largest cities in Japan (日本) 🇯🇵"
+    "Location of largest cities in Japan"
   ) +
   theme_void() + 
   theme(panel.background = element_rect("steelblue"),
