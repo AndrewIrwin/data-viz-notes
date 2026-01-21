@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>21&nbsp; Reproducible reports – Data Visualization notes</title>
 <style>
@@ -85,14 +85,15 @@ div.csl-indent {
 <link href="../lessons/911-ethics.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -136,7 +137,9 @@ div.csl-indent {
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -491,17 +494,17 @@ div.csl-indent {
 <p>There is a <a href="https://style.tidyverse.org/">tidyverse style guide</a>. Google has their <a href="https://google.github.io/styleguide/Rguide.html">own</a>, revised from the tidyverse guide. It’s worthwhile reading these guides. Code that is formatted in a standard way is easier for you to read and easier for someone else to read.</p>
 <p>Here is some carelessly formatted code.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>    <span class="va">gapminder</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">==</span><span class="st">"Europe"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">country</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">summarize</span><span class="op">(</span>mean_life_exp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lifeExp</span><span class="op">)</span>, mean_GDP <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span></span>
-<span>    <span class="fu">aes</span><span class="op">(</span>color <span class="op">=</span> <span class="va">mean_life_exp</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">mean_GDP</span><span class="op">)</span>, y<span class="op">=</span><span class="fu">fct_reorder</span><span class="op">(</span><span class="va">country</span>, <span class="va">mean_life_exp</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span>    <span class="va">gapminder</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">==</span><span class="st">"Europe"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">country</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">summarize</span><span class="op">(</span>mean_life_exp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lifeExp</span><span class="op">)</span>, mean_GDP <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span></span>
+<span>    <span class="fu">aes</span><span class="op">(</span>color <span class="op">=</span> <span class="va">mean_life_exp</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">mean_GDP</span><span class="op">)</span>, y<span class="op">=</span><span class="fu">fct_reorder</span><span class="op">(</span><span class="va">country</span>, <span class="va">mean_life_exp</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Here is the same code (and its output) formatted using <code>styler</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">==</span> <span class="st">"Europe"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">country</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">summarize</span><span class="op">(</span>mean_life_exp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lifeExp</span><span class="op">)</span>, mean_GDP <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color <span class="op">=</span> <span class="va">mean_life_exp</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">mean_GDP</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">country</span>, <span class="va">mean_life_exp</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="133-reproducible-reports_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
@@ -516,14 +519,14 @@ div.csl-indent {
 <p>The first line of a code chunk can be as simple as <code>{r}</code> but you can also include many options between the braces. The <a href="https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html">markdown book</a> describes the options available. Here I will demonstrate a few chunk options related to figures and formatting output.</p>
 <p>Knitting a document usually stops when an error is encountered. This is a safety measure to alert you to a document which is not reproducible because of errors. On rare occasions you may want to use the chunk option <code>error=TRUE</code> to allow error messages to appear in knitted output and not stop the knitting process.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">+</span> <span class="st">"A"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">+</span> <span class="st">"A"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in 1 + "A": non-numeric argument to binary operator</code></pre>
 </div>
 </div>
 <p>You can output graphics in multiple file formats by adding <code>dev = c("png", "pdf")</code> (and other formats) to the chunk options. These files will be deleted unless you <a href="https://bookdown.org/yihui/rmarkdown-cookbook/keep-files.html#keep-files">reqest they be kept</a>, which is easily done by caching the results of at least one code chunk.</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mpg</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">displ</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mpg</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">displ</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="133-reproducible-reports_files/figure-html/cache_test_2-1.png" class="img-fluid figure-img" width="672"></p>
@@ -549,7 +552,7 @@ div.csl-indent {
 <span class="header-section-number">21.6</span> Documenting which packages you use</h2>
 <p>If you use R for long enough and with enough other people, you will discover that R packages get revised and don’t always work the same way as they used to. This can be a major impediment to reproducibility. The simplest solution to this problem is to document the R packages you use in your analysis by adding a line of code to the end of your report that lists the packages and their version numbers in use. By looking at your knitted output, a user having trouble (possibly you in the future!) can look to see which packages have changed.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.5.2 (2025-10-31)
 Platform: aarch64-apple-darwin20
@@ -589,7 +592,7 @@ loaded via a namespace (and not attached):
 </div>
 </div>
 <p>If you want to produce bibliographic citations for your packages you can use the <code>report</code> package:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">report</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/report/reference/report.sessionInfo.html">cite_packages</a></span><span class="op">(</span><span class="op">)</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">report</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/report/reference/report.sessionInfo.html">cite_packages</a></span><span class="op">(</span><span class="op">)</span>  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Bryan J (2025). <em>gapminder: Data from Gapminder</em>. doi:10.32614/CRAN.package.gapminder <a href="https://doi.org/10.32614/CRAN.package.gapminder" class="uri">https://doi.org/10.32614/CRAN.package.gapminder</a>, R package version 1.0.1, <a href="https://CRAN.R-project.org/package=gapminder" class="uri">https://CRAN.R-project.org/package=gapminder</a>.</li>
 <li>Grolemund G, Wickham H (2011). “Dates and Times Made Easy with lubridate.” <em>Journal of Statistical Software</em>, <em>40</em>(3), 1-25. <a href="https://www.jstatsoft.org/v40/i03/" class="uri">https://www.jstatsoft.org/v40/i03/</a>.</li>
@@ -607,7 +610,7 @@ loaded via a namespace (and not attached):
 <li>Wickham H, Hester J, Bryan J (2025). <em>readr: Read Rectangular Text Data</em>. doi:10.32614/CRAN.package.readr <a href="https://doi.org/10.32614/CRAN.package.readr" class="uri">https://doi.org/10.32614/CRAN.package.readr</a>, R package version 2.1.6, <a href="https://CRAN.R-project.org/package=readr" class="uri">https://CRAN.R-project.org/package=readr</a>.</li>
 <li>Wickham H, Vaughan D, Girlich M (2024). <em>tidyr: Tidy Messy Data</em>. doi:10.32614/CRAN.package.tidyr <a href="https://doi.org/10.32614/CRAN.package.tidyr" class="uri">https://doi.org/10.32614/CRAN.package.tidyr</a>, R package version 1.3.1, <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a>.</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># See also report::report(sessionInfo())</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># See also report::report(sessionInfo())</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To absolutely guarantee you can use R code in the future, some applications will benefit from you keeping copies of all the required packages on your own computer system. The <a href="https://rstudio.github.io/packrat/">packrat</a> and <a href="https://github.com/RevolutionAnalytics/checkpoint">checkpoint</a> packages can help you manage packages. I have never felt the need to have this level of reproducibility, but I find it reassuring to know these tools exist.</p>
 </section><section id="using-other-languages" class="level2" data-number="21.7"><h2 data-number="21.7" class="anchored" data-anchor-id="using-other-languages">
 <span class="header-section-number">21.7</span> Using other languages</h2>
@@ -615,7 +618,7 @@ loaded via a namespace (and not attached):
 <p>Related to the topic of inter-operation of computing languages, but departing from the topic of R markdown, you can also write C++ code in an R session and execute the compiled code directly from R. This is very valuable if you have a calculation that is slow in R, but would be faster in a compiled language like C.</p>
 <p><a href="https://en.wikipedia.org/wiki/SQL">SQL</a> is a language for describing queries to a widely used style of database. R contains tools for interacting with SQL databases, but it can also generate SQL code from <code>dplyr</code> functions. Here’s an example showing how R can generate SQL queries from dplyr calculations.</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbplyr.tidyverse.org/">dbplyr</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbplyr.tidyverse.org/">dbplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rsqlite.r-dbi.org">RSQLite</a></span><span class="op">)</span></span>
 <span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span><span class="fu">RSQLite</span><span class="fu">::</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html">SQLite</a></span><span class="op">(</span><span class="op">)</span>, dbname <span class="op">=</span> <span class="st">":memory:"</span><span class="op">)</span></span>
 <span><span class="fu">copy_to</span><span class="op">(</span><span class="va">con</span>, <span class="fu">palmerpenguins</span><span class="fu">::</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/reference/penguins.html">penguins</a></span>, <span class="st">"penguins"</span><span class="op">)</span></span>
@@ -628,7 +631,7 @@ loaded via a namespace (and not attached):
 <span>    <span class="fu">across</span><span class="op">(</span><span class="fu">ends_with</span><span class="op">(</span><span class="st">"mm"</span><span class="op">)</span>, <span class="va">sum</span>, .names <span class="op">=</span> <span class="st">"TOT_{.col}"</span><span class="op">)</span>,</span>
 <span>    <span class="fu">across</span><span class="op">(</span><span class="fu">ends_with</span><span class="op">(</span><span class="st">"mm"</span><span class="op">)</span>, <span class="va">mean</span>, .names <span class="op">=</span> <span class="st">"AVG_{.col}"</span><span class="op">)</span>,</span>
 <span>  <span class="op">)</span></span>
-<span><span class="va">penguins_aggr</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">penguins_aggr</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   SQL [?? x 8]
 # Database: sqlite 3.51.1 [:memory:]
@@ -640,7 +643,7 @@ loaded via a namespace (and not attached):
 # ℹ 3 more variables: AVG_bill_length_mm &lt;dbl&gt;, AVG_bill_depth_mm &lt;dbl&gt;,
 #   AVG_flipper_length_mm &lt;dbl&gt;</code></pre>
 </div>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/capture.output.html">capture.output</a></span><span class="op">(</span><span class="fu">show_query</span><span class="op">(</span><span class="va">penguins_aggr</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/capture.output.html">capture.output</a></span><span class="op">(</span><span class="fu">show_query</span><span class="op">(</span><span class="va">penguins_aggr</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "&lt;SQL&gt;"                                                 
  [2] "SELECT"                                                
@@ -655,7 +658,7 @@ loaded via a namespace (and not attached):
 [11] "FROM `penguins`"                                       
 [12] "GROUP BY `species`"                                    </code></pre>
 </div>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>What does using other tools have to do with making your work reproducible? Quarto is a flexible tool that lets you use more than just R, so if your workflow contains steps external to R, they can sometimes still be included in your report.</p>
 </section><section id="packages-used" class="level2" data-number="21.8"><h2 data-number="21.8" class="anchored" data-anchor-id="packages-used">
@@ -744,13 +747,14 @@ Peng, Roger D. 2011. <span>“Reproducible Research in Computational Science.”
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

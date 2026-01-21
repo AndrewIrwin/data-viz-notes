@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>28&nbsp; Making maps – Data Visualization notes</title>
 <style>
@@ -65,14 +65,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../lessons/155-dynamics-graphics.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -116,7 +117,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -434,12 +437,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">28.1</span> Vector map</h2>
 <p>Here is a map of the 48 continental US states, with a quantitative variable used to shade each region. To change the variable used to colour the states, simply provide a new dataset with a numeric column and a text column called “state”. The map is drawn with ggplot, so the other features of ggplot including annotation, setting colour scales, labeling axes, etc., are all available to you and work the same way as for other visualizations we have created. The function <code>expand_limits</code> sets the range of latitudes and longitudes that will be displayed. Here I’m using a base-R syntax (<code>states_map$long</code>) to access these data and get the range (smallest and largest) longitude and latitude. Finally, the <code>coord_map</code> function creates a projection from a piece of a sphere onto a flat page. Other projections you can try include Mollweide (<code>coord_map("mollweide")</code>) and azimuthal equal area (<code>coord_map("azequalarea")</code>). There are many projections. See the help for <code>coord_map</code> for more information.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">states_map</span> <span class="op">&lt;-</span> <span class="fu">map_data</span><span class="op">(</span><span class="st">"state"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">states_map</span> <span class="op">&lt;-</span> <span class="fu">map_data</span><span class="op">(</span><span class="st">"state"</span><span class="op">)</span></span>
 <span><span class="va">crimes</span> <span class="op">&lt;-</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="va">USArrests</span>, rownames<span class="op">=</span><span class="st">"state"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>state <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="va">state</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">crimes</span>, <span class="fu">aes</span><span class="op">(</span>map_id <span class="op">=</span> <span class="va">state</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_map</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">Murder</span><span class="op">)</span>, map <span class="op">=</span> <span class="va">states_map</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">expand_limits</span><span class="op">(</span>x <span class="op">=</span> <span class="va">states_map</span><span class="op">$</span><span class="va">long</span>, y <span class="op">=</span> <span class="va">states_map</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">coord_map</span><span class="op">(</span><span class="st">"albers"</span>, <span class="fl">40</span>, <span class="fl">100</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">coord_map</span><span class="op">(</span><span class="st">"albers"</span>, <span class="fl">40</span>, <span class="fl">100</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="140-mapping_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
@@ -450,14 +453,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <code>map_data</code> function works with maps from the <code>maps</code> package, including two world maps (<code>world</code> and <code>world2</code>) and detailed maps of France, Italy, New Zealand, the USA and its states. The <code>maps</code> package has several other datasets including a list of Canadian cities with population greater than about 1000. The world is a large and complex place and you will often need to obtain data and map boundaries for regions which are not readily available in this package. Some guidance appears at the end of the lesson, but this can be a challenging task.</p>
 <p>The surface of the Earth is curved, so choices need to be made when plotting it on a flat surface. These choices are called <a href="https://en.wikipedia.org/wiki/List_of_map_projections">projections</a>. Here’s a map of France using an azimuthal equidistant projection (see <code><a href="https://rdrr.io/pkg/mapproj/man/mapproject.html">mapproj::mapproject()</a></code> for more examples):</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">map_data</span> <span class="op">&lt;-</span> <span class="fu">map_data</span><span class="op">(</span><span class="st">'france'</span><span class="op">)</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">map_data</span> <span class="op">&lt;-</span> <span class="fu">map_data</span><span class="op">(</span><span class="st">'france'</span><span class="op">)</span> </span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>       <span class="fu">geom_map</span><span class="op">(</span>map <span class="op">=</span> <span class="va">map_data</span>,</span>
 <span>                data <span class="op">=</span> <span class="va">map_data</span>,</span>
 <span>                <span class="fu">aes</span><span class="op">(</span>map_id<span class="op">=</span><span class="va">region</span><span class="op">)</span>,</span>
 <span>                fill <span class="op">=</span> <span class="st">"white"</span>, colour <span class="op">=</span> <span class="st">"#7f7f7f"</span><span class="op">)</span>  <span class="op">+</span></span>
 <span>  <span class="fu">expand_limits</span><span class="op">(</span>x <span class="op">=</span> <span class="va">map_data</span><span class="op">$</span><span class="va">long</span>, y <span class="op">=</span> <span class="va">map_data</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">coord_map</span><span class="op">(</span><span class="st">"azequidistant"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">coord_map</span><span class="op">(</span><span class="st">"azequidistant"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="140-mapping_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
@@ -467,7 +470,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Not all maps are political: here is a map of large lakes throughout the world.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lake_data</span> <span class="op">&lt;-</span> <span class="fu">map_data</span><span class="op">(</span><span class="st">'lakes'</span><span class="op">)</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lake_data</span> <span class="op">&lt;-</span> <span class="fu">map_data</span><span class="op">(</span><span class="st">'lakes'</span><span class="op">)</span> </span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>       <span class="fu">geom_map</span><span class="op">(</span>data <span class="op">=</span> <span class="va">lake_data</span>, </span>
 <span>                <span class="fu">aes</span><span class="op">(</span>map_id<span class="op">=</span><span class="va">region</span><span class="op">)</span>,</span>
@@ -475,7 +478,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>                fill <span class="op">=</span> <span class="st">"blue"</span>, colour <span class="op">=</span> <span class="cn">NA</span>, alpha <span class="op">=</span> <span class="fl">1.0</span><span class="op">)</span>  <span class="op">+</span></span>
 <span>  <span class="fu">expand_limits</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">130</span>, <span class="fl">120</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">50</span>, <span class="fl">70</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">coord_map</span><span class="op">(</span><span class="st">"albers"</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x<span class="op">=</span> <span class="st">""</span>, y <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">labs</span><span class="op">(</span>x<span class="op">=</span> <span class="st">""</span>, y <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="140-mapping_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
@@ -486,7 +489,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Incidentally, a frequently used projection for the USA is the Bonne. Revise the USA map to use that projection by adding the following code <code>+ coord_map("bonne", 45)</code>. (Albers: <code>coord_map("albers", 40, 100)</code> and Lambert: <code>coord_map("lambert", 40, 100)</code> are also used, although Lambert makes the USA look very wide in the North.)</p>
 <p>Political boundaries for the world are available as “world” (centred on the Atlantic Ocean) or “world2” (centered on the Pacific Ocean.)</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">WorldData</span> <span class="op">&lt;-</span> <span class="fu">map_data</span><span class="op">(</span><span class="st">'world'</span><span class="op">)</span>  </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">WorldData</span> <span class="op">&lt;-</span> <span class="fu">map_data</span><span class="op">(</span><span class="st">'world'</span><span class="op">)</span>  </span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">geom_map</span><span class="op">(</span>data <span class="op">=</span> <span class="va">WorldData</span>, </span>
 <span>           <span class="fu">aes</span><span class="op">(</span>map_id<span class="op">=</span><span class="va">region</span><span class="op">)</span>,</span>
@@ -495,7 +498,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu">expand_limits</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">180</span>, <span class="fl">180</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">80</span>, <span class="fl">80</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme</span><span class="op">(</span>panel.background <span class="op">=</span> <span class="fu">element_rect</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"darkblue"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">""</span>, y<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">""</span>, y<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="140-mapping_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
@@ -505,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>You can select a specific country if you want, for example, Canada. This is a reasonable map of Canada made up of 141 regions (main land mass plus islands), but it doesn’t have any provincial boundaries, lakes, or other detail:</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_map</span> <span class="op">&lt;-</span> <span class="fu">map_data</span><span class="op">(</span><span class="st">'world'</span>, region<span class="op">=</span><span class="st">'Canada'</span><span class="op">)</span>  </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_map</span> <span class="op">&lt;-</span> <span class="fu">map_data</span><span class="op">(</span><span class="st">'world'</span>, region<span class="op">=</span><span class="st">'Canada'</span><span class="op">)</span>  </span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">geom_map</span><span class="op">(</span>data <span class="op">=</span> <span class="va">my_map</span>, <span class="fu">aes</span><span class="op">(</span>map_id<span class="op">=</span><span class="va">region</span><span class="op">)</span>,</span>
 <span>           map <span class="op">=</span> <span class="va">my_map</span>,</span>
@@ -517,7 +520,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>        axis.text <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>        axis.ticks <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">""</span>, y<span class="op">=</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">coord_map</span><span class="op">(</span><span class="st">"albers"</span>, <span class="fl">60</span>, <span class="fl">90</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">coord_map</span><span class="op">(</span><span class="st">"albers"</span>, <span class="fl">60</span>, <span class="fl">90</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="140-mapping_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
@@ -527,14 +530,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Here is a list of 252 regions available in the world map (abbreviated here to the first 40).</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">WorldData</span> <span class="op">|&gt;</span> <span class="fu">pull</span><span class="op">(</span><span class="va">region</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">40</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span>sep <span class="op">=</span> <span class="st">", "</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">WorldData</span> <span class="op">|&gt;</span> <span class="fu">pull</span><span class="op">(</span><span class="va">region</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">40</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span>sep <span class="op">=</span> <span class="st">", "</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Afghanistan, Albania, Algeria, American Samoa, Andorra, Angola, Anguilla, Antarctica, Antigua, Argentina, Armenia, Aruba, Ascension Island, Australia, Austria, Azerbaijan, Azores, Bahamas, Bahrain, Bangladesh, Barbados, Barbuda, Belarus, Belgium, Belize, Benin, Bermuda, Bhutan, Bolivia, Bonaire, Bosnia and Herzegovina, Botswana, Brazil, Brunei, Bulgaria, Burkina Faso, Burundi, Cambodia, Cameroon, Canada</code></pre>
 </div>
 </div>
 <p>The map of the globe and even of Canada does not look good at high latitudes, especially if either pole is included. Here is a projection that is a bit more suitable for those regions. The <code>geom_map</code> function is not perfect; it creates stray lines when a region is clipped by the projection.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_map</span><span class="op">(</span>data <span class="op">=</span> <span class="va">WorldData</span>, </span>
 <span>           map <span class="op">=</span> <span class="va">WorldData</span>, </span>
 <span>           <span class="fu">aes</span><span class="op">(</span>map_id <span class="op">=</span> <span class="va">region</span><span class="op">)</span>,</span>
@@ -550,7 +553,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">p2b</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op">+</span> <span class="fu">coord_map</span><span class="op">(</span><span class="st">"perspective"</span>, <span class="fl">2.5</span>, </span>
 <span>                      orientation<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">60</span>, <span class="fl">80</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> </span>
 <span>      <span class="co"># try also orthographic, with no observer distance</span></span>
-<span><span class="va">p2a</span> <span class="op">+</span> <span class="va">p2b</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">p2a</span> <span class="op">+</span> <span class="va">p2b</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="140-mapping_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
@@ -574,15 +577,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">28.2.1</span> Draw the map</h3>
 <p>Download the file, read the map data into R and get to mapmaking.</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">canada_cd</span> <span class="op">&lt;-</span> <span class="fu">st_read</span><span class="op">(</span><span class="st">"static/canada_cd_sim.geojson"</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">canada_cd</span> <span class="op">&lt;-</span> <span class="fu">st_read</span><span class="op">(</span><span class="st">"static/canada_cd_sim.geojson"</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The official projection for maps of Canada is the Lambert conformal conic (“lcc”) with the following latitude and longitude parameters. These complicated strings are now considered the old way of making projections. A function <code>crs</code> in the package <code>terra</code> can now be used instead – details not shown!</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">crs_string</span> <span class="op">=</span> <span class="st">"+proj=lcc +lat_1=49 +lat_2=77 +lon_0=-91.52 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">crs_string</span> <span class="op">=</span> <span class="st">"+proj=lcc +lat_1=49 +lat_2=77 +lon_0=-91.52 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Here is a theme for the map to remove axes, ticks, borders and more.</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">theme_map</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">base_size</span><span class="op">=</span><span class="fl">9</span>, <span class="va">base_family</span><span class="op">=</span><span class="st">""</span><span class="op">)</span> <span class="op">{</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">theme_map</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">base_size</span><span class="op">=</span><span class="fl">9</span>, <span class="va">base_family</span><span class="op">=</span><span class="st">""</span><span class="op">)</span> <span class="op">{</span> </span>
 <span>    <span class="fu">theme_bw</span><span class="op">(</span>base_size<span class="op">=</span><span class="va">base_size</span>, base_family<span class="op">=</span><span class="va">base_family</span><span class="op">)</span> <span class="op">%+replace%</span></span>
 <span>        <span class="fu">theme</span><span class="op">(</span>axis.line<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>              axis.text<span class="op">=</span><span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
@@ -596,11 +599,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>              legend.justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>,</span>
 <span>              legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span></span>
 <span>        <span class="op">)</span></span>
-<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now we draw the map with some colours from a palette.</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">map_colors</span> <span class="op">&lt;-</span> <span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="fl">9</span>, <span class="st">"Pastel1"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>   <span class="co"># 18 colours, 9 repeated</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">map_colors</span> <span class="op">&lt;-</span> <span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="fl">9</span>, <span class="st">"Pastel1"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>   <span class="co"># 18 colours, 9 repeated</span></span>
 <span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_sf</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">PRUID</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"gray60"</span>, linewidth <span class="op">=</span> <span class="fl">0.1</span>, data <span class="op">=</span> <span class="va">canada_cd</span> <span class="op">)</span> <span class="op">+</span></span>
@@ -608,7 +611,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu">scale_fill_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">map_colors</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">guides</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">theme_map</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">theme</span><span class="op">(</span>panel.grid.major <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>    <span class="fu">theme</span><span class="op">(</span>panel.grid.major <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="140-mapping_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
@@ -618,27 +621,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>If we have a list of latitudes and longitudes, we can add points to the map.</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">city_coords</span> <span class="op">&lt;-</span> <span class="fu">tribble</span><span class="op">(</span> <span class="op">~</span><span class="va">city</span>, <span class="op">~</span><span class="va">lat</span>, <span class="op">~</span><span class="va">long</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">city_coords</span> <span class="op">&lt;-</span> <span class="fu">tribble</span><span class="op">(</span> <span class="op">~</span><span class="va">city</span>, <span class="op">~</span><span class="va">lat</span>, <span class="op">~</span><span class="va">long</span>,</span>
 <span><span class="st">"Vancouver"</span>,    <span class="fl">49.2827</span>,    <span class="op">-</span><span class="fl">123.1207</span>,</span>
 <span><span class="st">"Calgary"</span>,  <span class="fl">51.0447</span>,    <span class="op">-</span><span class="fl">114.0719</span>,</span>
 <span><span class="st">"Edmonton"</span>, <span class="fl">53.5461</span>,    <span class="op">-</span><span class="fl">113.4938</span>,</span>
 <span><span class="st">"Toronto"</span>,  <span class="fl">43.6532</span>,    <span class="op">-</span><span class="fl">79.3832</span>,</span>
 <span><span class="st">"Ottawa"</span>,   <span class="fl">45.4215</span>,    <span class="op">-</span><span class="fl">75.6972</span>,</span>
 <span><span class="st">"Montreal"</span>, <span class="fl">45.5017</span>,    <span class="op">-</span><span class="fl">73.5673</span>,</span>
-<span><span class="st">"Halifax"</span>, <span class="fl">44.6488</span>, <span class="op">-</span><span class="fl">63.5752</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="st">"Halifax"</span>, <span class="fl">44.6488</span>, <span class="op">-</span><span class="fl">63.5752</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Since our axes on our plot are not just longitude and latitude, we need to convert (project) the longitudes and latitudes to map coordinates. There are several steps: select only the numerical latitude and longitude coordinates, convert the data frame to a matrix, convert to a “simple feature” consisting of a set of points, make it back into a table, and add a projection onto to the data.</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sf_cities</span> <span class="op">=</span> <span class="va">city_coords</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sf_cities</span> <span class="op">=</span> <span class="va">city_coords</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">select</span><span class="op">(</span><span class="va">long</span>, <span class="va">lat</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu">st_multipoint</span><span class="op">(</span>dim <span class="op">=</span> <span class="st">'XY'</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu">st_sfc</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>    <span class="fu">st_set_crs</span><span class="op">(</span><span class="fl">4326</span><span class="op">)</span> <span class="co"># 4269 also works</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>    <span class="fu">st_set_crs</span><span class="op">(</span><span class="fl">4326</span><span class="op">)</span> <span class="co"># 4269 also works</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Make the map with projected points.</p>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_sf</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">PRUID</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"gray60"</span>, linewidth <span class="op">=</span> <span class="fl">0.1</span>, data <span class="op">=</span> <span class="va">canada_cd</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_sf</span><span class="op">(</span>data <span class="op">=</span> <span class="va">sf_cities</span>, color <span class="op">=</span> <span class="st">'#001e73'</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="co"># 17</span></span>
 <span>    <span class="fu">coord_sf</span><span class="op">(</span>crs <span class="op">=</span> <span class="va">crs_string</span><span class="op">)</span> <span class="op">+</span></span>
@@ -646,7 +649,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="fu">guides</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">theme_map</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">theme</span><span class="op">(</span>panel.grid.major <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>,</span>
-<span>          legend.key <span class="op">=</span> <span class="fu">element_rect</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"gray40"</span>, size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>          legend.key <span class="op">=</span> <span class="fu">element_rect</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"gray40"</span>, size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: The `size` argument of `element_rect()` is deprecated as of ggplot2 3.4.0.
 ℹ Please use the `linewidth` argument instead.</code></pre>
@@ -660,7 +663,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>It’s easy to focus in on the Maritimes region of Canada – just filter the data to include only the province or census districts you want. Here are some of the names in the map data that you can use for filtering.</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">canada_cd</span> <span class="op">|&gt;</span> <span class="fu">pull</span><span class="op">(</span><span class="va">PRNAME</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">canada_cd</span> <span class="op">|&gt;</span> <span class="fu">pull</span><span class="op">(</span><span class="va">PRNAME</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Manitoba"                                           
  [2] "British Columbia / Colombie-Britannique"            
@@ -676,7 +679,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [12] "Nunavut"                                            
 [13] "Yukon"                                              </code></pre>
 </div>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">canada_cd</span> <span class="op">|&gt;</span> <span class="fu">pull</span><span class="op">(</span><span class="va">CDNAME</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">canada_cd</span> <span class="op">|&gt;</span> <span class="fu">pull</span><span class="op">(</span><span class="va">CDNAME</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Colchester"             "Thunder Bay"            "Division No. 16"       
  [4] "Skeena-Queen Charlotte" "Inverness"              "Division No. 20"       
@@ -686,7 +689,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>I’ve changed the latitude and longitude parameters for the projection to values more suitable for this part of Canada.</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">crs_string2</span> <span class="op">=</span> <span class="st">"+proj=lcc +lat_1=40 +lat_2=50 +lon_0=-75 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">crs_string2</span> <span class="op">=</span> <span class="st">"+proj=lcc +lat_1=40 +lat_2=50 +lon_0=-75 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs"</span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="co"># geom_sf(data = sf_cities, color = '#001e73', alpha = 0.5, size = 3) +</span></span>
 <span>    <span class="fu">geom_sf</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">PRUID</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"gray60"</span>, linewidth <span class="op">=</span> <span class="fl">0.1</span>, </span>
@@ -697,7 +700,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="fu">guides</span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">theme_map</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">theme</span><span class="op">(</span>panel.grid.major <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>,</span>
-<span>          legend.key <span class="op">=</span> <span class="fu">element_rect</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"gray40"</span>, size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>          legend.key <span class="op">=</span> <span class="fu">element_rect</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"gray40"</span>, size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: The `&lt;scale&gt;` argument of `guides()` cannot be `FALSE`. Use "none" instead as
 of ggplot2 3.3.4.</code></pre>
@@ -711,7 +714,7 @@ of ggplot2 3.3.4.</code></pre>
 </div>
 <p>You can also <a href="https://datascience.blog.wzb.eu/2019/04/30/zooming-in-on-maps-with-sf-and-ggplot2/">crop</a> the data to be drawn or the projected map. This is a bit more complex than you might expect since you need to be sure you are specifying the area to be plotted and the actual projected coordinates in the same coordinate system. You can easily get errors (invalid points in a projection), empty maps, or croppings that don’t look right. See the link at the start of this paragraph for several approaches.</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">crs_string2</span> <span class="op">=</span> <span class="st">"+proj=lcc +lat_1=40 +lat_2=50 +lon_0=-75 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">crs_string2</span> <span class="op">=</span> <span class="st">"+proj=lcc +lat_1=40 +lat_2=50 +lon_0=-75 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs"</span></span>
 <span><span class="va">zoom_to</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">64.3683</span>, <span class="fl">45.8979</span><span class="op">)</span> <span class="co"># Sackville, New Brunswick; could try c(-63.5752, 44.6488)  # Halifax</span></span>
 <span><span class="va">zoom_level</span> <span class="op">&lt;-</span> <span class="fl">6</span></span>
 <span><span class="va">C</span> <span class="op">&lt;-</span> <span class="fl">40075016.686</span>   <span class="co"># ~ circumference of Earth in meters</span></span>
@@ -736,7 +739,7 @@ of ggplot2 3.3.4.</code></pre>
 <span>    <span class="fu">guides</span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">theme_map</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">theme</span><span class="op">(</span>panel.grid.major <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>,</span>
-<span>          legend.key <span class="op">=</span> <span class="fu">element_rect</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"gray40"</span>, size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>          legend.key <span class="op">=</span> <span class="fu">element_rect</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"gray40"</span>, size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="140-mapping_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
@@ -748,7 +751,7 @@ of ggplot2 3.3.4.</code></pre>
 <span class="header-section-number">28.2.2</span> Just the map, please</h3>
 <p><a href="https://gist.githubusercontent.com/mikelotis/2156d7c170d10d2c77cb79424fe2137d/raw/7a13748ed7ea5ba64876c77c53b6cb64dd5c3ab0/canada-province.geojson">Here</a> is a file of province boundaries that can be used without showing the census district regions. I’ve added a latitude-longitude grid to the map.</p>
 <div class="cell">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Code not working; file has moved; to be fixed</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Code not working; file has moved; to be fixed</span></span>
 <span><span class="va">canada_prov</span> <span class="op">&lt;-</span> <span class="fu">geojson_read</span><span class="op">(</span><span class="st">"https://gist.githubusercontent.com/mikelotis/2156d7c170d10d2c77cb79424fe2137d/raw/7a13748ed7ea5ba64876c77c53b6cb64dd5c3ab0/canada-province.geojson"</span>, what<span class="op">=</span><span class="st">"sp"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">st_as_sf</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -762,7 +765,7 @@ of ggplot2 3.3.4.</code></pre>
 <span>    <span class="fu">theme</span><span class="op">(</span>panel.grid.major <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"lightgray"</span><span class="op">)</span>,</span>
 <span>          panel.grid.minor <span class="op">=</span> <span class="fu">element_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"lightgray"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">scale_x_continuous</span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">160</span>, <span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_y_continuous</span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">85</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">scale_y_continuous</span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">85</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section></section><section id="summary" class="level2" data-number="28.3"><h2 data-number="28.3" class="anchored" data-anchor-id="summary">
 <span class="header-section-number">28.3</span> Summary</h2>
@@ -863,13 +866,14 @@ of ggplot2 3.3.4.</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

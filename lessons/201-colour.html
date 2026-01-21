@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>32&nbsp; Using colour well – Data Visualization notes</title>
 <style>
@@ -65,14 +65,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../lessons/130-bonus-topics.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -116,7 +117,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -469,9 +472,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Let’s use the Palmer penguins data to show how three colours can be selected: by palette or as custom choices.</p>
 <p>The <a href="https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html">viridis</a> palette is designed to have approximately uniform brightness (making it suitable for printing in gray scale) and colour-blind friendly. There are four different colour scales you can select (option: magma = A, inferno = B, plasma = C, viridis = D, cividis = E), plus you select the beginning and ending location (begin, end: numbers between 0 and 1). I find the end of the viridis scale to be too yellow, so I usually adjust <code>end</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">flipper_length_mm</span>, <span class="va">bill_length_mm</span>, color <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">flipper_length_mm</span>, <span class="va">bill_length_mm</span>, color <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>size<span class="op">=</span><span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_color_viridis_d</span><span class="op">(</span>begin <span class="op">=</span> <span class="fl">0.1</span>, end <span class="op">=</span> <span class="fl">0.9</span>, option <span class="op">=</span> <span class="st">"D"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">scale_color_viridis_d</span><span class="op">(</span>begin <span class="op">=</span> <span class="fl">0.1</span>, end <span class="op">=</span> <span class="fl">0.9</span>, option <span class="op">=</span> <span class="st">"D"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="201-colour_files/figure-html/unnamed-chunk-3-1.svg" class="img-fluid figure-img" width="672"></p>
@@ -481,11 +484,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Now I’ll show how to use other scales you can find from paletteer. Here we use the <code>ggthemes</code> package and its palette <code>hc_default</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># paletteer_d("ggthemes::hc_default", n = 3)  # to see the colours</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># paletteer_d("ggthemes::hc_default", n = 3)  # to see the colours</span></span>
 <span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">flipper_length_mm</span>, <span class="va">bill_length_mm</span>, </span>
 <span>                        color <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>size<span class="op">=</span><span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_color_paletteer_d</span><span class="op">(</span><span class="st">"ggthemes::hc_default"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">scale_color_paletteer_d</span><span class="op">(</span><span class="st">"ggthemes::hc_default"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="201-colour_files/figure-html/unnamed-chunk-4-1.svg" class="img-fluid figure-img" width="672"></p>
@@ -495,10 +498,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>To make a custom scale use <code>scale_color_manual</code>. You need to give the right number of colours (or some extras which will be ignored), or a function which takes and integer and returns that many colours.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">flipper_length_mm</span>, <span class="va">bill_length_mm</span>, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">flipper_length_mm</span>, <span class="va">bill_length_mm</span>, </span>
 <span>                        color <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>size<span class="op">=</span><span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"orange"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"orange"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="201-colour_files/figure-html/unnamed-chunk-5-1.svg" class="img-fluid figure-img" width="672"></p>
@@ -513,20 +516,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Quantitative data are almost always best shown as position on an axis, so when would you want to use colour brightness to show a quantitative variable? A common reason is that you are putting points on a map (or heatmap) and the location in the visualization is being used to describe the location on the map. A related reason is that you are trying to display a third quantitative varaible. Here we will use the penguin data and show body mass as colour.</p>
 <p>Quantitative values can be mapped onto colour in a “continuous” way or in a “binned” way. Of course there are only a finite number of colours so this is a matter of degree. Do you want colours to change smoothly (continuously) or do you want a small number of discrete colours (binned). Examples of both are shown below.</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">flipper_length_mm</span>, <span class="va">bill_length_mm</span>, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">flipper_length_mm</span>, <span class="va">bill_length_mm</span>, </span>
 <span>                        color <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>size<span class="op">=</span><span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_color_viridis_c</span><span class="op">(</span>begin <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">scale_color_viridis_c</span><span class="op">(</span>begin <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="201-colour_files/figure-html/unnamed-chunk-6-1.svg" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">flipper_length_mm</span>, <span class="va">bill_length_mm</span>, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">flipper_length_mm</span>, <span class="va">bill_length_mm</span>, </span>
 <span>                        color <span class="op">=</span> <span class="va">body_mass_g</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>size<span class="op">=</span><span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_color_paletteer_binned</span><span class="op">(</span><span class="st">"ggthemes::Blue"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">scale_color_paletteer_binned</span><span class="op">(</span><span class="st">"ggthemes::Blue"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="201-colour_files/figure-html/unnamed-chunk-6-2.svg" class="img-fluid figure-img" width="672"></p>
@@ -536,7 +539,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>If it is important to draw a difference between two classes, for example positive and negative values, or numbers larger and smaller than a mean, you can use a diverging colour scale. For variety I will use functions from the <code>RColorBrewer</code> package that has a great set of palettes. With a diverging colour scale you generally want to make a symmetric scale so that 0 is placed at the centre of your color scale.</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>body_mass_centered <span class="op">=</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>body_mass_centered <span class="op">=</span> </span>
 <span>                      <span class="va">body_mass_g</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">body_mass_g</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">flipper_length_mm</span>, <span class="va">bill_length_mm</span>, </span>
 <span>             color <span class="op">=</span> <span class="va">body_mass_centered</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -544,7 +547,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="co"># scale_color_distiller(type="div", palette="RdBu", limits = c(-2000,2000)) </span></span>
 <span>  <span class="fu">scale_color_fermenter</span><span class="op">(</span>type<span class="op">=</span><span class="st">"div"</span>, </span>
 <span>                        palette<span class="op">=</span><span class="st">"RdBu"</span>, </span>
-<span>                        limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2000</span>,<span class="fl">2000</span><span class="op">)</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>                        limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2000</span>,<span class="fl">2000</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="201-colour_files/figure-html/unnamed-chunk-7-1.svg" class="img-fluid figure-img" width="672"></p>
@@ -557,7 +560,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">32.6</span> Highlighting</h2>
 <p>Sometimes you will just want to highlight a small number of points. Perhaps they are outliers or interesting for a particular reason. One of the most flexible ways to do this is to create a new variable that identifies an observation as being highlighted or not, then use this to control plotting.</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>highlight <span class="op">=</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>highlight <span class="op">=</span> </span>
 <span>                      <span class="va">body_mass_g</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">body_mass_g</span>, <span class="fl">0.9</span>, </span>
 <span>                                             na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">flipper_length_mm</span>, <span class="va">bill_length_mm</span>, </span>
@@ -565,7 +568,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu">geom_point</span><span class="op">(</span>size<span class="op">=</span><span class="fl">3</span>, show.legend<span class="op">=</span><span class="cn">FALSE</span>,</span>
 <span>             alpha <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"red"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"red"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="201-colour_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
@@ -583,13 +586,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">32.8</span> Annotation to avoid legends</h2>
 <p>Particularly in a oral presentation you want your figure to be decoded rapidly. A legend off to one side slows down your reader and requires focus to move back and forth between the data and the legend. You can use coloured text labels on the plot to reduce the need for legends.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">flipper_length_mm</span>, <span class="va">bill_length_mm</span>, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">flipper_length_mm</span>, <span class="va">bill_length_mm</span>, </span>
 <span>                        color <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>size<span class="op">=</span><span class="fl">3</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"orange"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">annotate</span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">175</span>, y <span class="op">=</span> <span class="fl">44</span>, label <span class="op">=</span> <span class="st">"Adélie"</span>, color <span class="op">=</span> <span class="st">"red"</span>, fontface <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">annotate</span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">195</span>, y <span class="op">=</span> <span class="fl">55</span>, label <span class="op">=</span> <span class="st">"Chinstrap"</span>, color <span class="op">=</span> <span class="st">"blue"</span>, fontface <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">annotate</span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">220</span>, y <span class="op">=</span> <span class="fl">40</span>, label <span class="op">=</span> <span class="st">"Gentoo"</span>, color <span class="op">=</span> <span class="st">"orange"</span>, fontface <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">annotate</span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">220</span>, y <span class="op">=</span> <span class="fl">40</span>, label <span class="op">=</span> <span class="st">"Gentoo"</span>, color <span class="op">=</span> <span class="st">"orange"</span>, fontface <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="201-colour_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
@@ -692,13 +695,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

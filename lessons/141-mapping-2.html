@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>29&nbsp; Mapping II – Data Visualization notes</title>
 <style>
@@ -65,14 +65,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../lessons/140-mapping.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -120,7 +121,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -426,10 +429,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In the previous lesson we made maps to show geographical data using map outlines from R packages. In this lesson we will look at making maps that build on detailed basemaps from online mapping systems. <a href="https://www.google.com/maps">Google maps</a> is a well known service; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> is a community-built free alternative. We will use the <code>leaflet</code> package.</p>
 <p>Let’s make a map and place a marker at the location of the Mathematics and Statistics Department. You can pan and zoom this map from within Rstudio and in the knitted output.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">leaflet</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu">leaflet</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">addTiles</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span>  <span class="co"># Add default OpenStreetMap map tiles</span></span>
 <span>  <span class="fu">addMarkers</span><span class="op">(</span>lng<span class="op">=</span><span class="op">-</span><span class="fl">63.5932</span>, lat<span class="op">=</span><span class="fl">44.63697</span>, popup<span class="op">=</span><span class="st">"Math &amp; Stats, Dalhousie U"</span><span class="op">)</span></span>
-<span><span class="va">m</span>  <span class="co"># Print the map</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">m</span>  <span class="co"># Print the map</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="leaflet html-widget html-fill-item" id="htmlwidget-70b6c71c362a82bfc8b0" style="width:100%;height:464px;"></div>
 <script type="application/json" data-for="htmlwidget-70b6c71c362a82bfc8b0">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[44.63697,-63.5932,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Math & Stats, Dalhousie U",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[44.63697,44.63697],"lng":[-63.5932,-63.5932]}},"evals":[],"jsHooks":[]}</script>
@@ -437,7 +440,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>If you want to connect a name to a location, you can use the <code>getbb</code> function from <code>osmdata</code> (OpenStreetMap data). This gives the bounding box (upper left and lower right latitude and longitude coordinates):</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">getbb</span><span class="op">(</span><span class="st">'halifax'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">getbb</span><span class="op">(</span><span class="st">'halifax'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        min       max
 x -63.72266 -63.54275
@@ -446,11 +449,11 @@ y  44.58117  44.71121</code></pre>
 </div>
 <p>Let’s use the city database we used in the MDS lesson to label the 61 cities we selected in that lesson.</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cities</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"static/selected_cities.csv"</span>, show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cities</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"static/selected_cities.csv"</span>, show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu">leaflet</span><span class="op">(</span>data <span class="op">=</span> <span class="va">cities</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">addTiles</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">addCircleMarkers</span><span class="op">(</span><span class="op">~</span> <span class="va">lng</span>, <span class="op">~</span><span class="va">lat</span>, label <span class="op">=</span> <span class="op">~</span><span class="va">city</span><span class="op">)</span></span>
-<span><span class="va">m2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">m2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="leaflet html-widget html-fill-item" id="htmlwidget-5f76bb7bc1d49571ae70" style="width:100%;height:464px;"></div>
 <script type="application/json" data-for="htmlwidget-5f76bb7bc1d49571ae70">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircleMarkers","args":[[35.6897,-6.2146,28.66,18.9667,14.5958,31.1667,-23.5504,37.5833,19.4333,23.1288,39.905,30.0561,40.6943,22.5411,55.7558,13.75,-34.5997,22.535,23.7161,6.45,41.01,34.6936,24.86,12.9699,35.7,-4.3317,10.8167,34.1139,-22.9083,31.5497,48.8566,51.5072,-12.05,4.6126,35.1167,41.8373,-8.8383,3.1478,21.0245,6.1667,22.305,15.6031,-33.45,24.65,-6.8,25.7839,33.35,1.3,-1.2864,39.93,16.8,43.7417,59.95,-33.865,20.6767,-19.8917,-37.8136,45.5089,49.25,51.05,44.6475],[139.6922,106.8451,77.23,72.83329999999999,120.9772,121.4667,-46.6339,127,-99.13330000000001,113.259,116.3914,31.2394,-73.92489999999999,88.3378,37.6178,100.5167,-58.3819,114.054,90.3961,3.4,28.9603,135.5019,67.01000000000001,77.598,51.4167,15.3139,106.6333,-118.4068,-43.1964,74.3436,2.3522,-0.1275,-77.0333,-74.0705,136.9333,-87.6862,13.2344,101.6953,105.8412,6.7833,114.185,32.5265,-70.66670000000001,46.71,39.2833,-80.2102,44.4167,103.8,36.8172,32.85,96.15000000000001,-79.3733,30.3167,151.2094,-103.3475,-43.9478,144.9631,-73.5617,-123.1,-114.0667,-63.5906],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,null,null,["Tokyo","Jakarta","Delhi","Mumbai","Manila","Shanghai","São Paulo","Seoul","Mexico City","Guangzhou","Beijing","Cairo","New York","Kolkāta","Moscow","Bangkok","Buenos Aires","Shenzhen","Dhaka","Lagos","Istanbul","Ōsaka","Karachi","Bangalore","Tehran","Kinshasa","Ho Chi Minh City","Los Angeles","Rio de Janeiro","Lahore","Paris","London","Lima","Bogotá","Nagoya","Chicago","Luanda","Kuala Lumpur","Hanoi","Onitsha","Hong Kong","Khartoum","Santiago","Riyadh","Dar es Salaam","Miami","Baghdad","Singapore","Nairobi","Ankara","Rangoon","Toronto","Saint Petersburg","Sydney","Guadalajara","Belo Horizonte","Melbourne","Montréal","Vancouver","Calgary","Halifax"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-37.8136,59.95],"lng":[-123.1,151.2094]}},"evals":[],"jsHooks":[]}</script>
@@ -458,7 +461,7 @@ y  44.58117  44.71121</code></pre>
 </div>
 <p>There are several different <a href="https://rstudio.github.io/leaflet/basemaps.html">basemaps</a>, or tiles, that you can use. A fun one to look at – because it changes frequently is a radar map for the USA from Iowa State.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m3</span> <span class="op">&lt;-</span> <span class="fu">leaflet</span><span class="op">(</span>data <span class="op">=</span> <span class="va">cities</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m3</span> <span class="op">&lt;-</span> <span class="fu">leaflet</span><span class="op">(</span>data <span class="op">=</span> <span class="va">cities</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">addTiles</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">addCircleMarkers</span><span class="op">(</span><span class="op">~</span> <span class="va">lng</span>, <span class="op">~</span><span class="va">lat</span>, label <span class="op">=</span> <span class="op">~</span><span class="va">city</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">addWMSTiles</span><span class="op">(</span><span class="st">"http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi"</span>,</span>
@@ -466,7 +469,7 @@ y  44.58117  44.71121</code></pre>
 <span>    options <span class="op">=</span> <span class="fu">WMSTileOptions</span><span class="op">(</span>format <span class="op">=</span> <span class="st">"image/png"</span>, transparent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>    attribution <span class="op">=</span> <span class="st">"Weather data © 2012 IEM Nexrad"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">setView</span><span class="op">(</span><span class="op">-</span><span class="fl">93.65</span>, <span class="fl">42.0285</span>, zoom <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
-<span><span class="va">m3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">m3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="leaflet html-widget html-fill-item" id="htmlwidget-bf790e0f257e85387839" style="width:100%;height:464px;"></div>
 <script type="application/json" data-for="htmlwidget-bf790e0f257e85387839">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircleMarkers","args":[[35.6897,-6.2146,28.66,18.9667,14.5958,31.1667,-23.5504,37.5833,19.4333,23.1288,39.905,30.0561,40.6943,22.5411,55.7558,13.75,-34.5997,22.535,23.7161,6.45,41.01,34.6936,24.86,12.9699,35.7,-4.3317,10.8167,34.1139,-22.9083,31.5497,48.8566,51.5072,-12.05,4.6126,35.1167,41.8373,-8.8383,3.1478,21.0245,6.1667,22.305,15.6031,-33.45,24.65,-6.8,25.7839,33.35,1.3,-1.2864,39.93,16.8,43.7417,59.95,-33.865,20.6767,-19.8917,-37.8136,45.5089,49.25,51.05,44.6475],[139.6922,106.8451,77.23,72.83329999999999,120.9772,121.4667,-46.6339,127,-99.13330000000001,113.259,116.3914,31.2394,-73.92489999999999,88.3378,37.6178,100.5167,-58.3819,114.054,90.3961,3.4,28.9603,135.5019,67.01000000000001,77.598,51.4167,15.3139,106.6333,-118.4068,-43.1964,74.3436,2.3522,-0.1275,-77.0333,-74.0705,136.9333,-87.6862,13.2344,101.6953,105.8412,6.7833,114.185,32.5265,-70.66670000000001,46.71,39.2833,-80.2102,44.4167,103.8,36.8172,32.85,96.15000000000001,-79.3733,30.3167,151.2094,-103.3475,-43.9478,144.9631,-73.5617,-123.1,-114.0667,-63.5906],10,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,null,null,["Tokyo","Jakarta","Delhi","Mumbai","Manila","Shanghai","São Paulo","Seoul","Mexico City","Guangzhou","Beijing","Cairo","New York","Kolkāta","Moscow","Bangkok","Buenos Aires","Shenzhen","Dhaka","Lagos","Istanbul","Ōsaka","Karachi","Bangalore","Tehran","Kinshasa","Ho Chi Minh City","Los Angeles","Rio de Janeiro","Lahore","Paris","London","Lima","Bogotá","Nagoya","Chicago","Luanda","Kuala Lumpur","Hanoi","Onitsha","Hong Kong","Khartoum","Santiago","Riyadh","Dar es Salaam","Miami","Baghdad","Singapore","Nairobi","Ankara","Rangoon","Toronto","Saint Petersburg","Sydney","Guadalajara","Belo Horizonte","Melbourne","Montréal","Vancouver","Calgary","Halifax"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addWMSTiles","args":["http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",null,null,{"styles":"","format":"image/png","transparent":true,"version":"1.1.1","attribution":"Weather data © 2012 IEM Nexrad","layers":"nexrad-n0r-900913"}]}],"limits":{"lat":[-37.8136,59.95],"lng":[-123.1,151.2094]},"setView":[[42.0285,-93.65000000000001],4,[]]},"evals":[],"jsHooks":[]}</script>
@@ -474,7 +477,7 @@ y  44.58117  44.71121</code></pre>
 </div>
 <p>It’s common to see “chloropleth” maps of the USA in which geographic regions are coloured to show a quantitative or categorical variable, such as population density or election results. These maps are less common in Canada due to two main factors: the geographic concentration of the population in cities means that area maps are even less informative than for the USA and the latitude range of Canada makes for some severe challenges when plotting whole-country chloropleth maps on commonly used projections. Nevertheless, it is possible. Here’s a demonstration with some random numbers for “data”.</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># example not working, data file has moved</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># example not working, data file has moved</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/geojsonio">geojsonio</a></span><span class="op">)</span></span>
 <span><span class="va">pal</span> <span class="op">&lt;-</span> <span class="fu">colorNumeric</span><span class="op">(</span><span class="st">"viridis"</span>, <span class="cn">NULL</span><span class="op">)</span>  <span class="co"># make a viridis palette</span></span>
 <span><span class="va">canada</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/geojsonio/reference/geojson_read.html">geojson_read</a></span><span class="op">(</span><span class="st">"https://gist.githubusercontent.com/mikelotis/2156d7c170d10d2c77cb79424fe2137d/raw/7a13748ed7ea5ba64876c77c53b6cb64dd5c3ab0/canada-province.geojson"</span>, what<span class="op">=</span><span class="st">"sp"</span><span class="op">)</span></span>
@@ -482,7 +485,7 @@ y  44.58117  44.71121</code></pre>
 <span><span class="fu">leaflet</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">addTiles</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">addPolygons</span><span class="op">(</span>data <span class="op">=</span> <span class="va">canada</span>, fillColor <span class="op">=</span> <span class="op">~</span> <span class="fu">pal</span><span class="op">(</span><span class="va">my_values</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">addLegend</span><span class="op">(</span>pal <span class="op">=</span> <span class="va">pal</span>, values <span class="op">=</span> <span class="va">my_values</span>, opacity <span class="op">=</span> <span class="fl">1.0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">addLegend</span><span class="op">(</span>pal <span class="op">=</span> <span class="va">pal</span>, values <span class="op">=</span> <span class="va">my_values</span>, opacity <span class="op">=</span> <span class="fl">1.0</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="tiled-map-with-ggmap" class="level2" data-number="29.2"><h2 data-number="29.2" class="anchored" data-anchor-id="tiled-map-with-ggmap">
 <span class="header-section-number">29.2</span> Tiled map with ggmap</h2>
@@ -494,26 +497,26 @@ y  44.58117  44.71121</code></pre>
 </ul>
 <p>Always start with a small zoom level – if you make it too big you will download a lot of unnecessary data, which takes time and imposes a burden on the service.</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># requires API key; read the help to get this set up on your computer</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># requires API key; read the help to get this set up on your computer</span></span>
 <span><span class="va">mymap_terrain</span> <span class="op">&lt;-</span> <span class="fu">get_googlemap</span><span class="op">(</span>bbox <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>left <span class="op">=</span> <span class="op">-</span><span class="fl">130</span>, bottom <span class="op">=</span> <span class="fl">41</span>, right <span class="op">=</span> <span class="op">-</span><span class="fl">50</span>, top <span class="op">=</span> <span class="fl">60</span><span class="op">)</span>,</span>
 <span>                                zoom<span class="op">=</span><span class="fl">4</span>, maptype <span class="op">=</span> <span class="st">"terrain"</span><span class="op">)</span></span>
-<span><span class="fu">ggmap</span><span class="op">(</span><span class="va">mymap_terrain</span><span class="op">)</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu">ggmap</span><span class="op">(</span><span class="va">mymap_terrain</span><span class="op">)</span>  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This is a regular ggplot, so you can add lines and points to a map easily, using latitude and longitude as coordinates. Placing text on a map in a readable and attractive way can be quite a challenge.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_points</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>lat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">43</span><span class="op">+</span><span class="fl">57</span><span class="op">/</span><span class="fl">60</span>, <span class="fl">49</span><span class="op">+</span><span class="fl">53</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_points</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>lat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">43</span><span class="op">+</span><span class="fl">57</span><span class="op">/</span><span class="fl">60</span>, <span class="fl">49</span><span class="op">+</span><span class="fl">53</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span>,</span>
 <span>                    lon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">59</span><span class="op">-</span><span class="fl">55</span><span class="op">/</span><span class="fl">60</span>, <span class="op">-</span><span class="fl">97</span><span class="op">-</span><span class="fl">9</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span>,</span>
 <span>                    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Sable Is."</span>, <span class="st">"Winnipeg"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu">ggmap</span><span class="op">(</span><span class="va">mymap_terrain</span><span class="op">)</span>  <span class="op">+</span></span>
 <span>   <span class="fu">geom_point</span><span class="op">(</span>data <span class="op">=</span><span class="va">my_points</span>, color<span class="op">=</span><span class="st">"brown"</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>   <span class="fu">geom_text</span><span class="op">(</span>data <span class="op">=</span> <span class="va">my_points</span>, <span class="fu">aes</span><span class="op">(</span>label<span class="op">=</span><span class="va">label</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>   <span class="fu">geom_text</span><span class="op">(</span>data <span class="op">=</span> <span class="va">my_points</span>, <span class="fu">aes</span><span class="op">(</span>label<span class="op">=</span><span class="va">label</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You can also zoom in on urban areas.</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mymap_halifax</span> <span class="op">&lt;-</span> <span class="fu">get_googlemap</span><span class="op">(</span>bbox <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>left <span class="op">=</span> <span class="op">-</span><span class="fl">63.6</span><span class="op">-</span><span class="fl">0.1</span>, bottom <span class="op">=</span> <span class="fl">44.60</span>, right <span class="op">=</span> <span class="op">-</span><span class="fl">63.6</span><span class="op">+</span><span class="fl">0.1</span>, top <span class="op">=</span> <span class="fl">44.75</span><span class="op">)</span>, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mymap_halifax</span> <span class="op">&lt;-</span> <span class="fu">get_googlemap</span><span class="op">(</span>bbox <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>left <span class="op">=</span> <span class="op">-</span><span class="fl">63.6</span><span class="op">-</span><span class="fl">0.1</span>, bottom <span class="op">=</span> <span class="fl">44.60</span>, right <span class="op">=</span> <span class="op">-</span><span class="fl">63.6</span><span class="op">+</span><span class="fl">0.1</span>, top <span class="op">=</span> <span class="fl">44.75</span><span class="op">)</span>, </span>
 <span>                              zoom<span class="op">=</span><span class="fl">12</span>, maptype <span class="op">=</span> <span class="st">"toner-lite"</span><span class="op">)</span></span>
-<span><span class="fu">ggmap</span><span class="op">(</span><span class="va">mymap_halifax</span><span class="op">)</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu">ggmap</span><span class="op">(</span><span class="va">mymap_halifax</span><span class="op">)</span>  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="packages-used" class="level2" data-number="29.3"><h2 data-number="29.3" class="anchored" data-anchor-id="packages-used">
 <span class="header-section-number">29.3</span> Packages used</h2>
@@ -591,13 +594,14 @@ y  44.58117  44.71121</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

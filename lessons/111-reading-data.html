@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>12&nbsp; Reading data – Data Visualization notes</title>
 <style>
@@ -65,14 +65,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../lessons/106b-using-LLM-to-learn.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -109,7 +110,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -141,7 +142,9 @@ window.Quarto = {
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -467,7 +470,7 @@ window.Quarto = {
 <p>The biggest problem with text files is that, as a rule, they contain no computer-readable information about how the text in each column should be interpreted: as a number, text, a date, time, a filename, or something else. This is the source of a lot of problems! The only good solutions are to use a database (which can have other challenges) or a binary format (which has problems too). Someday this will get fixed, but not before you are done this course!</p>
 <p>Here are some examples using the functions in the <code>readr</code> and <code>readxl</code> packages. The three functions below are all specialize variants of <code>read_delim</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">example1a</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"static/test-data.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">example1a</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"static/test-data.csv"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 3 Columns: 5
 ── Column specification ────────────────────────────────────────────────────────
@@ -480,7 +483,7 @@ date (1): Birthdate
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">example1b</span> <span class="op">&lt;-</span> <span class="fu">read_csv2</span><span class="op">(</span><span class="st">"static/test-data2.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">example1b</span> <span class="op">&lt;-</span> <span class="fu">read_csv2</span><span class="op">(</span><span class="st">"static/test-data2.csv"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>ℹ Using "','" as decimal and "'.'" as grouping mark. Use `read_delim()` for more control.
 Rows: 3 Columns: 5── Column specification ────────────────────────────────────────────────────────
@@ -492,7 +495,7 @@ date (1): Birthdate
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">example2</span> <span class="op">&lt;-</span> <span class="fu">read_tsv</span><span class="op">(</span><span class="st">"static/test-data.txt"</span><span class="op">)</span> <span class="co"># A tab character is written as \t</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">example2</span> <span class="op">&lt;-</span> <span class="fu">read_tsv</span><span class="op">(</span><span class="st">"static/test-data.txt"</span><span class="op">)</span> <span class="co"># A tab character is written as \t</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 3 Columns: 5
 ── Column specification ────────────────────────────────────────────────────────
@@ -510,7 +513,7 @@ date (1): Birthdate
 <p>These are very small files all with the same data which you can find here: <a href="static/test-data.csv">csv</a>, <a href="static/test-data2.csv">csv2</a>, <a href="static/test-data.txt">tsv</a>. Tab separated files come with a variety of “extensions”: sometimestsv, tab, or txt.</p>
 <p>I created these files using a spreadsheet program, and you may often find yourself editing data using a program like Excel. Here is how you can read <a href="static/test-data.xlsx">that file</a> directly.</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">example3</span> <span class="op">&lt;-</span> <span class="fu">read_excel</span><span class="op">(</span><span class="st">"static/test-data.xlsx"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">example3</span> <span class="op">&lt;-</span> <span class="fu">read_excel</span><span class="op">(</span><span class="st">"static/test-data.xlsx"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You should look at each of these files in a text editor (such as textedit on a Macintosh, or notepad on Windows) or spreadsheet program (Excel, LibreOffice). Edit the files by adding a line of your own data and then read the data back into R. This is the best way to practice making data and reading it into R.</p>
 <p>There are lots of other functions used for reading files in R, including the similarly named <code>read.csv</code> and <code>read.delim</code> which are similar but with many important differences including how data are interpreted and encoded and how columns are named.</p>
@@ -520,7 +523,7 @@ date (1): Birthdate
 <p>When you go to read a data file, there are a large number of problems that can arise. Your first task is always to be sure the data you loaded into R are what you think they should be. Check as many features as you can: the number of columns, the names of the columns, the number of rows, the type of data in each column, the extence and amount of missing data, the levels of categorical variables.</p>
 <p>Our example is so small we can just look at the whole table, but we’ll practice using functions you should use on any data you read.</p>
 <div class="cell page-columns page-full">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">skim</span><span class="op">(</span><span class="va">example1a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">skim</span><span class="op">(</span><span class="va">example1a</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display page-columns page-full">
 <table class="table table-sm table-striped small">
 
@@ -739,15 +742,15 @@ date (1): Birthdate
 <p>R uses <code>NA</code> to represent missing data, for text, dates, factors, and numbers. But if “NA” is written in a text file it will be interpreted as a piece of text, not missing data. Generally leaving a blank in a data file is the way to indicate data are missing. If you know there are missing data in a file, confirm that they were identified correctly by R. If you are not sure, check for the presence of NAs in your data in R and then go back to the data file to see if the interpretation is correct.</p>
 <p>Here are a few ways to check for NAs in a file using a function from the <code>naniar</code> package:</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">n_case_miss</span><span class="op">(</span><span class="va">example1a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">n_case_miss</span><span class="op">(</span><span class="va">example1a</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
 </div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">n_miss</span><span class="op">(</span><span class="va">example1a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">n_miss</span><span class="op">(</span><span class="va">example1a</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
 </div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">gg_miss_var</span><span class="op">(</span><span class="va">example1a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">gg_miss_var</span><span class="op">(</span><span class="va">example1a</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="111-reading-data_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
@@ -855,13 +858,14 @@ date (1): Birthdate
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

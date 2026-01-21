@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>18&nbsp; GAM and LOESS smoothing – Data Visualization notes</title>
 <style>
@@ -65,14 +65,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../lessons/119-linear-models.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -116,7 +117,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -424,10 +427,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We will start by using the last decade of data from Lesson 1.</p>
 <p>Here is a plot of atmospheric CO2 concentration over time.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_theme</span> <span class="op">=</span> <span class="fu">theme_linedraw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme</span><span class="op">(</span>text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_theme</span> <span class="op">=</span> <span class="fu">theme_linedraw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme</span><span class="op">(</span>text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">co2</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">decimal_date</span>, <span class="va">co2_avg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="va">my_theme</span> <span class="op">+</span></span>
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Year (decimal)"</span>, y <span class="op">=</span> <span class="st">"Atmospheric CO2 (ppm)"</span><span class="op">)</span></span>
-<span><span class="va">p1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">p1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="120-gam-loess_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
@@ -437,9 +440,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The next plot shows each observation, minus the annual mean, as a function of the time of year but not the actual year. Each year’s observations are overlapped.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">co2</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">year_fraction</span>, <span class="va">co2_anomaly</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="va">my_theme</span> <span class="op">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">co2</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">year_fraction</span>, <span class="va">co2_anomaly</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="va">my_theme</span> <span class="op">+</span></span>
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Year fraction (decimal)"</span>, y <span class="op">=</span> <span class="st">"Atmospheric CO2 anomaly (ppm)"</span><span class="op">)</span></span>
-<span><span class="va">p2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">p2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="120-gam-loess_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
@@ -449,16 +452,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Here are GAM fits to both of these pairs of data using the <code>gam</code> function from the <code>mgcv</code> package. There is a <code>plot</code> function in the <code>mgcv</code> package, but I’m using a ggplot function called <code>draw</code> in the <code>gratia</code> package.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">g1</span> <span class="op">&lt;-</span> <span class="fu">gam</span><span class="op">(</span><span class="va">co2_anomaly</span> <span class="op">~</span> <span class="fu">s</span><span class="op">(</span><span class="va">year_fraction</span>, bs<span class="op">=</span><span class="st">"cs"</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">co2</span><span class="op">)</span></span>
-<span><span class="fu">draw</span><span class="op">(</span><span class="va">g1</span>, residuals<span class="op">=</span><span class="cn">TRUE</span>, rug<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">g1</span> <span class="op">&lt;-</span> <span class="fu">gam</span><span class="op">(</span><span class="va">co2_anomaly</span> <span class="op">~</span> <span class="fu">s</span><span class="op">(</span><span class="va">year_fraction</span>, bs<span class="op">=</span><span class="st">"cs"</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">co2</span><span class="op">)</span></span>
+<span><span class="fu">draw</span><span class="op">(</span><span class="va">g1</span>, residuals<span class="op">=</span><span class="cn">TRUE</span>, rug<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="120-gam-loess_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">g2</span> <span class="op">&lt;-</span> <span class="fu">gam</span><span class="op">(</span><span class="va">co2_avg</span> <span class="op">~</span> <span class="fu">s</span><span class="op">(</span><span class="va">decimal_date</span>, bs<span class="op">=</span><span class="st">"cs"</span><span class="op">)</span>,  data <span class="op">=</span> <span class="va">co2</span><span class="op">)</span></span>
-<span><span class="fu">draw</span><span class="op">(</span><span class="va">g2</span>, residuals<span class="op">=</span><span class="cn">TRUE</span>, rug<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">g2</span> <span class="op">&lt;-</span> <span class="fu">gam</span><span class="op">(</span><span class="va">co2_avg</span> <span class="op">~</span> <span class="fu">s</span><span class="op">(</span><span class="va">decimal_date</span>, bs<span class="op">=</span><span class="st">"cs"</span><span class="op">)</span>,  data <span class="op">=</span> <span class="va">co2</span><span class="op">)</span></span>
+<span><span class="fu">draw</span><span class="op">(</span><span class="va">g2</span>, residuals<span class="op">=</span><span class="cn">TRUE</span>, rug<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="120-gam-loess_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
@@ -468,8 +471,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Depending on your goal, you may find that the second plot is too smooth – the interannual oscillations are smoothed out completely. We can increase the number of “knots” (by setting <code>k=25</code>) in the spline to capture the oscillation, but this is not the way the smoothing is normally used:</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">g3</span> <span class="op">&lt;-</span> <span class="fu">gam</span><span class="op">(</span><span class="va">co2_avg</span> <span class="op">~</span> <span class="fu">s</span><span class="op">(</span><span class="va">decimal_date</span>, bs<span class="op">=</span><span class="st">"cs"</span>, k <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>,  data <span class="op">=</span> <span class="va">co2</span><span class="op">)</span></span>
-<span><span class="fu">draw</span><span class="op">(</span><span class="va">g3</span>, residuals<span class="op">=</span><span class="cn">TRUE</span>, rug<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">g3</span> <span class="op">&lt;-</span> <span class="fu">gam</span><span class="op">(</span><span class="va">co2_avg</span> <span class="op">~</span> <span class="fu">s</span><span class="op">(</span><span class="va">decimal_date</span>, bs<span class="op">=</span><span class="st">"cs"</span>, k <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>,  data <span class="op">=</span> <span class="va">co2</span><span class="op">)</span></span>
+<span><span class="fu">draw</span><span class="op">(</span><span class="va">g3</span>, residuals<span class="op">=</span><span class="cn">TRUE</span>, rug<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="120-gam-loess_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
@@ -479,7 +482,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>There is a <code>summary</code> function for GAM fits and the <code>broom</code> functions <code>glance</code> and <code>tidy</code> give access to these data, but the interpretation of this output is beyond the scope of the course:</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">g1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">g1</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Family: gaussian 
@@ -501,7 +504,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 R-sq.(adj) =  0.976   Deviance explained = 97.8%
 GCV = 0.092244  Scale est. = 0.085038  n = 119</code></pre>
 </div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">glance</span><span class="op">(</span><span class="va">g1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">glance</span><span class="op">(</span><span class="va">g1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <colgroup>
@@ -539,7 +542,7 @@ GCV = 0.092244  Scale est. = 0.085038  n = 119</code></pre>
 </tr></tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tidy</span><span class="op">(</span><span class="va">g1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tidy</span><span class="op">(</span><span class="va">g1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead><tr class="header">
@@ -561,10 +564,10 @@ GCV = 0.092244  Scale est. = 0.085038  n = 119</code></pre>
 </div>
 <p>It is often useful to compute residuals and extract predicted values.</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">co2</span> <span class="op">|&gt;</span> <span class="fu">add_residuals</span><span class="op">(</span><span class="va">g1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">add_fitted</span><span class="op">(</span><span class="va">g1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span>  <span class="fu">scroll_box</span><span class="op">(</span>height <span class="op">=</span> <span class="st">"200px"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">co2</span> <span class="op">|&gt;</span> <span class="fu">add_residuals</span><span class="op">(</span><span class="va">g1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">add_fitted</span><span class="op">(</span><span class="va">g1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span>  <span class="fu">scroll_box</span><span class="op">(</span>height <span class="op">=</span> <span class="st">"200px"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; ">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
 <thead><tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">year</th>
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">month</th>
@@ -1773,11 +1776,11 @@ GCV = 0.092244  Scale est. = 0.085038  n = 119</code></pre>
 </div>
 <p>If we generate new data (dates), we can plot predictions too. Since the model is a piecewise cubic function, extrapolations are often dramatically unreliable. The downward facing cubic in the last “bump” is simply continued, with comically bad results. Extrapolation of models, and especially smooths, is somewhere between risky and foolish!</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_data</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>decimal_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">2017</span>, <span class="fl">2022</span>, by <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_data</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>decimal_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">2017</span>, <span class="fl">2022</span>, by <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">new_data</span> <span class="op">|&gt;</span> <span class="fu">add_fitted</span><span class="op">(</span><span class="va">g3</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">decimal_date</span>, <span class="va">.fitted</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">geom_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y<span class="op">=</span> <span class="va">co2_avg</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">co2</span><span class="op">)</span> <span class="op">+</span> <span class="va">my_theme</span> <span class="op">+</span> <span class="fu">xlim</span><span class="op">(</span><span class="fl">2017</span>, <span class="fl">2022</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y<span class="op">=</span> <span class="va">co2_avg</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">co2</span><span class="op">)</span> <span class="op">+</span> <span class="va">my_theme</span> <span class="op">+</span> <span class="fu">xlim</span><span class="op">(</span><span class="fl">2017</span>, <span class="fl">2022</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="120-gam-loess_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
@@ -1787,10 +1790,10 @@ GCV = 0.092244  Scale est. = 0.085038  n = 119</code></pre>
 </div>
 <p>If you want confidence intervals on the fitted values, use the <code>confint</code> function together with the name of the smooth you are extracting. Be aware that this function does not include the intercept (or grand mean) from the model, so the values are all centred on zero.</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">g1</span>, <span class="st">"s(year_fraction)"</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span>  <span class="fu">scroll_box</span><span class="op">(</span>height <span class="op">=</span> <span class="st">"200px"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">g1</span>, <span class="st">"s(year_fraction)"</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span>  <span class="fu">scroll_box</span><span class="op">(</span>height <span class="op">=</span> <span class="st">"200px"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; ">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
 <thead><tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">.smooth</th>
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">.type</th>
@@ -2907,10 +2910,10 @@ GCV = 0.092244  Scale est. = 0.085038  n = 119</code></pre>
 </table>
 </div>
 </div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">g1</span>, <span class="st">"s(year_fraction)"</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">g1</span>, <span class="st">"s(year_fraction)"</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">year_fraction</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">geom_ribbon</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">.lower_ci</span>, ymax <span class="op">=</span> <span class="va">.upper_ci</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">.estimate</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="va">my_theme</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">.estimate</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="va">my_theme</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="120-gam-loess_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
@@ -2920,8 +2923,8 @@ GCV = 0.092244  Scale est. = 0.085038  n = 119</code></pre>
 </div>
 <p>You can also use <code>lm</code> to fit splines; these are similar to GAMs but there are some important differences. The <code>mgcv</code> package has a lot of features not available with <code>lm</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">co2_avg</span> <span class="op">~</span> <span class="fu">splines</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/splines/bs.html">bs</a></span><span class="op">(</span><span class="va">decimal_date</span>, df <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">co2</span><span class="op">)</span></span>
-<span><span class="fu">tidy</span><span class="op">(</span><span class="va">s1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">co2_avg</span> <span class="op">~</span> <span class="fu">splines</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/splines/bs.html">bs</a></span><span class="op">(</span><span class="va">decimal_date</span>, df <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">co2</span><span class="op">)</span></span>
+<span><span class="fu">tidy</span><span class="op">(</span><span class="va">s1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <colgroup>
@@ -2984,7 +2987,7 @@ GCV = 0.092244  Scale est. = 0.085038  n = 119</code></pre>
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">glance</span><span class="op">(</span><span class="va">s1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">glance</span><span class="op">(</span><span class="va">s1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <colgroup>
@@ -3034,12 +3037,12 @@ GCV = 0.092244  Scale est. = 0.085038  n = 119</code></pre>
 </div>
 <p>We can use <code>augment</code> to generate data to plot and combine it with the original data.</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a1</span> <span class="op">&lt;-</span> <span class="fu">augment</span><span class="op">(</span><span class="va">s1</span>, data <span class="op">=</span> <span class="va">co2</span>, se_fit <span class="op">=</span> <span class="cn">TRUE</span>, interval<span class="op">=</span><span class="st">"prediction"</span><span class="op">)</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a1</span> <span class="op">&lt;-</span> <span class="fu">augment</span><span class="op">(</span><span class="va">s1</span>, data <span class="op">=</span> <span class="va">co2</span>, se_fit <span class="op">=</span> <span class="cn">TRUE</span>, interval<span class="op">=</span><span class="st">"prediction"</span><span class="op">)</span> </span>
 <span><span class="va">a1</span> <span class="op">|&gt;</span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">decimal_date</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">geom_ribbon</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">.lower</span>, ymax <span class="op">=</span> <span class="va">.upper</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y<span class="op">=</span> <span class="va">.fitted</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">co2_avg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="va">my_theme</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="va">my_theme</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="120-gam-loess_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
@@ -3052,11 +3055,11 @@ GCV = 0.092244  Scale est. = 0.085038  n = 119</code></pre>
 <span class="header-section-number">18.2</span> Locally Estimated Scatterplot Smoothing (LOESS)</h2>
 <p>LOESS smooths are constructed by making a large number of quadratic (or possibly linear) regression lines as a window moves along the x-axis. The degree of the fits and the width of the window (and other details) can be adjusted. The predictions from these many local regressions are then computed and plotted as a “smooth” of the data. We usually just imagine the line is drawn through the data in a way that allows it to track fluctuations without specifying a model.</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">l1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/loess.html">loess</a></span><span class="op">(</span><span class="va">co2_anomaly</span> <span class="op">~</span> <span class="va">year_fraction</span>, data <span class="op">=</span> <span class="va">co2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">l1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/loess.html">loess</a></span><span class="op">(</span><span class="va">co2_anomaly</span> <span class="op">~</span> <span class="va">year_fraction</span>, data <span class="op">=</span> <span class="va">co2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>As with the GAMs, the <code>summary</code> function is not particularly easy to interpret and we will not explore the details, but you can see that this is a quadratic model with a “span” of 0.75, meaning that 75% of the data are used for each regression. (The weighting of each point in the regression varies as a function of x, resulting a continuous change in the predictions.)</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">l1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">l1</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Call:
 loess(formula = co2_anomaly ~ year_fraction, data = co2)
@@ -3078,10 +3081,10 @@ drop.square:  FALSE </code></pre>
 </div>
 <p>We can use <code>predict</code>, <code>residuals</code> and <code>augment</code> on these model objects as we did for <code>lm</code> fits in the previous lesson.</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">augment</span><span class="op">(</span><span class="va">l1</span>, se_fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span>  <span class="fu">scroll_box</span><span class="op">(</span>height <span class="op">=</span> <span class="st">"200px"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">augment</span><span class="op">(</span><span class="va">l1</span>, se_fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span>  <span class="fu">scroll_box</span><span class="op">(</span>height <span class="op">=</span> <span class="st">"200px"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; ">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="table table-sm table-striped small">
 <thead><tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">co2_anomaly</th>
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">year_fraction</th>
@@ -3927,11 +3930,11 @@ drop.square:  FALSE </code></pre>
 </table>
 </div>
 </div>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">augment</span><span class="op">(</span><span class="va">l1</span>, se_fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">augment</span><span class="op">(</span><span class="va">l1</span>, se_fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year_fraction</span>, y <span class="op">=</span> <span class="va">.fitted</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">geom_ribbon</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">.fitted</span> <span class="op">-</span> <span class="fl">2</span><span class="op">*</span><span class="va">.se.fit</span>, ymax <span class="op">=</span> <span class="va">.fitted</span> <span class="op">+</span> <span class="fl">2</span><span class="op">*</span><span class="va">.se.fit</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.20</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="va">my_theme</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="va">my_theme</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="120-gam-loess_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
@@ -3941,7 +3944,7 @@ drop.square:  FALSE </code></pre>
 </div>
 <p>This line is only drawn using 12 points, so we might want to generate a smoother prediction by creating a new set of dates. We also add the original data to the plot.</p>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_data</span> <span class="op">=</span> <span class="fu">tibble</span><span class="op">(</span>year_fraction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">co2</span><span class="op">$</span><span class="va">year_fraction</span><span class="op">)</span>, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_data</span> <span class="op">=</span> <span class="fu">tibble</span><span class="op">(</span>year_fraction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">co2</span><span class="op">$</span><span class="va">year_fraction</span><span class="op">)</span>, </span>
 <span>                                      <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">co2</span><span class="op">$</span><span class="va">year_fraction</span><span class="op">)</span>,</span>
 <span>                                      length <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">augment</span><span class="op">(</span><span class="va">l1</span>, newdata <span class="op">=</span> <span class="va">new_data</span>, se_fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -3951,7 +3954,7 @@ drop.square:  FALSE </code></pre>
 <span>                  ymax <span class="op">=</span> <span class="va">.fitted</span> <span class="op">+</span> <span class="fl">2</span><span class="op">*</span><span class="va">.se.fit</span><span class="op">)</span>, </span>
 <span>              alpha <span class="op">=</span> <span class="fl">0.20</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">co2_anomaly</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">co2</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="va">my_theme</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="va">my_theme</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="120-gam-loess_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
@@ -3962,7 +3965,7 @@ drop.square:  FALSE </code></pre>
 <p>The LOESS function will not predict outside of the range of data provided, so I had to select the range of <code>new_data</code> above carefully to get the line to start and end near the first and last points.</p>
 <p>Now we make two plots that contrast the results with different sized windows (<code>span</code>) and degree of the local regression models.</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">l2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/loess.html">loess</a></span><span class="op">(</span><span class="va">co2_avg</span> <span class="op">~</span> <span class="va">decimal_date</span>, data <span class="op">=</span> <span class="va">co2</span>, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">l2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/loess.html">loess</a></span><span class="op">(</span><span class="va">co2_avg</span> <span class="op">~</span> <span class="va">decimal_date</span>, data <span class="op">=</span> <span class="va">co2</span>, </span>
 <span>            degree <span class="op">=</span> <span class="fl">1</span>, span <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="va">l3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/loess.html">loess</a></span><span class="op">(</span><span class="va">co2_avg</span> <span class="op">~</span> <span class="va">decimal_date</span>, data <span class="op">=</span> <span class="va">co2</span>, </span>
 <span>            degree <span class="op">=</span> <span class="fl">1</span>, span <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span></span>
@@ -3983,7 +3986,7 @@ drop.square:  FALSE </code></pre>
 <span>              <span class="fu">aes</span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">.fitted</span> <span class="op">-</span> <span class="fl">2</span><span class="op">*</span><span class="va">.se.fit</span>, </span>
 <span>                  ymax <span class="op">=</span> <span class="va">.fitted</span> <span class="op">+</span> <span class="fl">2</span><span class="op">*</span><span class="va">.se.fit</span><span class="op">)</span>, </span>
 <span>              alpha <span class="op">=</span> <span class="fl">0.20</span>, fill<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="va">my_theme</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="va">my_theme</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="120-gam-loess_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
@@ -4060,13 +4063,14 @@ drop.square:  FALSE </code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

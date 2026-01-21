@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>16&nbsp; Working with models – Data Visualization notes</title>
 <style>
@@ -85,14 +85,15 @@ div.csl-indent {
 <link href="../lessons/114-asking-questions.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -136,7 +137,9 @@ div.csl-indent {
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -455,10 +458,10 @@ div.csl-indent {
 <p>In this lesson we will focus on visualizing models that smooth data. In the next two lessons we will take a closer look at these models, in particular getting diagnostic information about model fits and making data frames with quantitative output from the models.</p>
 <p>First, we’ll take a subset of the gapminder data and make a simple scatterplot.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gp</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">==</span> <span class="st">"Europe"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gp</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">==</span> <span class="st">"Europe"</span><span class="op">)</span></span>
 <span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">gp</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">p1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">p1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="118-working-with-models_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
@@ -469,7 +472,7 @@ div.csl-indent {
 <p>Now we will add some lines to highlight trends in the data.</p>
 <p>First use linear regression to add a straight line.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="118-working-with-models_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
@@ -479,8 +482,8 @@ div.csl-indent {
 </div>
 <p>We can change the formula to other curves. If you want a smoothed line that follows the data, use a <a href="https://en.wikipedia.org/wiki/B-spline">B-spline</a> with degree 3 (cubic).</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, </span>
-<span>                 formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="fu">splines</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/splines/bs.html">bs</a></span><span class="op">(</span><span class="va">x</span>, df<span class="op">=</span><span class="fl">5</span>, degree<span class="op">=</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, </span>
+<span>                 formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="fu">splines</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/splines/bs.html">bs</a></span><span class="op">(</span><span class="va">x</span>, df<span class="op">=</span><span class="fl">5</span>, degree<span class="op">=</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="118-working-with-models_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
@@ -490,8 +493,8 @@ div.csl-indent {
 </div>
 <p>Another way to describe a cubic spline is with a generalized additive model (or GAM). This model is quite a bit more sophisticated than the previous spline. Depending on the data, the model fitting process will add or remove oscillations (“wiggles”) from the curve.</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"gam"</span>, </span>
-<span>                 formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="fu">s</span><span class="op">(</span><span class="va">x</span>, bs <span class="op">=</span> <span class="st">"cs"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"gam"</span>, </span>
+<span>                 formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="fu">s</span><span class="op">(</span><span class="va">x</span>, bs <span class="op">=</span> <span class="st">"cs"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="118-working-with-models_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
@@ -501,8 +504,8 @@ div.csl-indent {
 </div>
 <p>Another data smoothing method is called <a href="https://en.wikipedia.org/wiki/Local_regression">LOESS</a> (locally estimated scatterplot smoothing) which does not require you to describe a model (line, cubic spline, etc.) for the data. Instead the model takes small subsets of the data along the independent variable and makes many models (usually first or second degree polynomials) and joins them together.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"loess"</span>,</span>
-<span>                 formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"loess"</span>,</span>
+<span>                 formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="118-working-with-models_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
@@ -512,9 +515,9 @@ div.csl-indent {
 </div>
 <p>As a final example we can try quantile regression. This will make lines to approximate a specific quantile (10%, 50%, 90% are shown below) instead of a mean. This might be a good idea for these data in particular since for each year we have a range of countries spanning a large distribution of GDP per capita, so the analysis allows us to see how the short, median, and long life expectancies have changed over time. The slope of the 10 and 90 percentiles seems to be very similar, but the median life expectancy has increased faster, as countries have shifted from low life expectancy to high life expectancy.</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">geom_quantile</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">geom_quantile</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, </span>
 <span>                   method <span class="op">=</span> <span class="st">"rq"</span>, </span>
-<span>                   lambda <span class="op">=</span> <span class="fl">1</span>, quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.50</span>, <span class="fl">0.90</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>                   lambda <span class="op">=</span> <span class="fl">1</span>, quantiles <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.50</span>, <span class="fl">0.90</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="118-working-with-models_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
@@ -526,7 +529,7 @@ div.csl-indent {
 <span class="header-section-number">16.2</span> Putting several models on a single plot</h2>
 <p>In this example I’ll show you how you can plot more than one smooth on the same plot (easily, but adding multiple smooths together with <code>+</code>) and how to add a legend and control the colours used for each line. You can learn more about colours on this <a href="https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf">cheatsheet</a> and you can get a list of all colour names with the function <code><a href="https://rdrr.io/r/grDevices/colors.html">colors()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, </span>
 <span>                 formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, </span>
 <span>                 <span class="fu">aes</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"Linear"</span>, fill <span class="op">=</span> <span class="st">"Linear"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"loess"</span>, </span>
@@ -536,7 +539,7 @@ div.csl-indent {
 <span>                     values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"salmon"</span>, <span class="st">"limegreen"</span> <span class="op">)</span> <span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">scale_fill_manual</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Smooth"</span>, </span>
 <span>                    values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"salmon"</span>, <span class="st">"limegreen"</span> <span class="op">)</span> <span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="118-working-with-models_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
@@ -549,9 +552,9 @@ div.csl-indent {
 <p>Smoothing works really easily on facetted plots. Simply adding a facet function to a plot will make a different smooth for each facet.</p>
 <p>We will make lots of facets, one for each country, and add a smooth to each panel.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">country</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">country</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>,</span>
-<span>              formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>              formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="118-working-with-models_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
@@ -634,13 +637,14 @@ Healy, Kieran. 2018. <em>Data Visualization: A Practical Introduction</em>. Prin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

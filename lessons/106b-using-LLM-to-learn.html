@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>11&nbsp; Using AI to learn – Data Visualization notes</title>
 <style>
@@ -65,14 +65,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../lessons/115-facets.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -116,7 +117,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -396,11 +399,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
 <li><a href="#goals" id="toc-goals" class="nav-link active" data-scroll-target="#goals"><span class="header-section-number">11.1</span> Goals</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">11.2</span> Introduction</a></li>
-  <li><a href="#llms-to-try" id="toc-llms-to-try" class="nav-link" data-scroll-target="#llms-to-try"><span class="header-section-number">11.3</span> LLMs to try</a></li>
-  <li><a href="#software-testing" id="toc-software-testing" class="nav-link" data-scroll-target="#software-testing"><span class="header-section-number">11.4</span> Software testing</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources"><span class="header-section-number">11.5</span> Resources</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">11.6</span> Exercises</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">11.7</span> Summary</a></li>
+  <li>
+<a href="#llms-to-try" id="toc-llms-to-try" class="nav-link" data-scroll-target="#llms-to-try"><span class="header-section-number">11.3</span> LLMs to try</a>
+  <ul class="collapse">
+<li><a href="#asking-questions" id="toc-asking-questions" class="nav-link" data-scroll-target="#asking-questions"><span class="header-section-number">11.3.1</span> Asking questions</a></li>
+  <li><a href="#explaining-code" id="toc-explaining-code" class="nav-link" data-scroll-target="#explaining-code"><span class="header-section-number">11.3.2</span> Explaining code</a></li>
+  <li><a href="#extending-and-improving-your-work" id="toc-extending-and-improving-your-work" class="nav-link" data-scroll-target="#extending-and-improving-your-work"><span class="header-section-number">11.3.3</span> Extending and improving your work</a></li>
+  <li><a href="#stimulating-your-thinking" id="toc-stimulating-your-thinking" class="nav-link" data-scroll-target="#stimulating-your-thinking"><span class="header-section-number">11.3.4</span> Stimulating your thinking</a></li>
+  <li><a href="#keeping-your-mind-engaged" id="toc-keeping-your-mind-engaged" class="nav-link" data-scroll-target="#keeping-your-mind-engaged"><span class="header-section-number">11.3.5</span> Keeping your mind engaged</a></li>
+  <li><a href="#testing-the-results" id="toc-testing-the-results" class="nav-link" data-scroll-target="#testing-the-results"><span class="header-section-number">11.3.6</span> Testing the results</a></li>
+  </ul>
+</li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources"><span class="header-section-number">11.4</span> Resources</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">11.5</span> Exercises</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">11.6</span> Summary</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -433,33 +445,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">11.2</span> Introduction</h2>
 <p>Over the past few months I have made an effort to get various LLM (chat gpt, copilot, gemini, deepseek) to help me with data analysis and visualization tasks by writing computer code to the following tasks:</p>
 <ul>
-<li>generate points along a geodesic to plot a path on a map</li>
-<li>parse a AIS messages from commercial ships, which are encoded in a complicated, nested data structure</li>
-<li>compute prime numbers using a sieve wheel</li>
-<li>write a complicated statistical model in a probabilistic programming language</li>
-<li>assign students to projects based on a set of preference scores</li>
+<li>generate points along a geodesic to plot a path on a map,</li>
+<li>parse a AIS messages from commercial ships, which are encoded in a complicated, nested data structure,</li>
+<li>compute prime numbers using a sieve wheel,</li>
+<li>write a complicated statistical model in a probabilistic programming language, and</li>
+<li>assign students to projects based on a set of preference scores.</li>
 </ul>
-<p>In each case the computer generated code which would take me about an hour to produce with about a minute’s work. Also in each case the code was non-functional. In some cases the LLM could be asked to fix the problem, but often while it agreed with me that there was a problem, the correction it provided did not work.</p>
+<p>In each case the computer generated code which would take me about an hour to produce with about a minute’s work. Also in each case the code was non-functional. In some cases the LLM could be asked to fix the problem, but often while it agreed with me that there was a problem, the correction it provided did not work. The lesson here is that LLM can write computer code, but it is essential that you understand the code so you can check it for errors, fix errors, and extend or expand the functionality of the code.</p>
 <p>I asked an AI to explain some code I had written more than a decade ago to me. It explained the code very well and suggested some improvements to the code that made it easier to read and faster. You may find asking LLMs to help explain code to increase your understanding of a piece computer code very helpful.</p>
-<p>I asked an AI to help me finish some code I had written, but hadn’t got to work yet, to simulate a board game I used to play. It found three real errors in my code and suggested corrections, which worked.</p>
-<p>LLMs shift work from creating code to debugging code. A good skill to develop, but arguable more difficult. They can provide good stimulation for how to solve a problem.</p>
+<p>I asked an AI to help me finish some code I had written, but hadn’t got to work yet, to simulate a board game I used to play. It found three real errors in my code and suggested corrections, which worked. If you start to work on code to solve a problem, then providing the code and a description to the LLM can increase the chances of getting output you find useful. This makes sense: the combination of sample code and a written description helps define the problem you are trying to solve.</p>
+<p>LLMs shift work you have to do from writing code to describing problems and debugging code. These are good skills to develop, but are arguably more difficult than learning to write the code yourself. LLMs are probably best used as a skill multiplier to help you do work faster than you might do on your own, but without the skill to solve a problem yourself you are likely to get nonsense or solve the wrong problem. They can provide good stimulation for how to solve a problem or identify a new skill you want to learn.</p>
 <p>Strengths:</p>
 <ul>
-<li>super-human database of facts</li>
-<li>large library of examples to draw upon</li>
+<li>super-human database of facts,</li>
+<li>large library of examples to draw upon and the ability to customize example code to your specific task,</li>
 <li>attention to detail for finding mistakes</li>
 </ul>
 <p>Weaknesses:</p>
 <ul>
 <li>will assert code is tested and works, but may be wrong</li>
 <li>may use packages (libraries) that don’t exist</li>
+<li>hidden miscommunications between you and the LLM may lead to the wrong problem being solved.</li>
 </ul>
 <p>Risks I’ve experienced:</p>
 <ul>
 <li>using code without checking it carefully</li>
-<li>not paying attention to how the analysis works, and thus misunderstanding it and failing to learn from the opportunity</li>
+<li>not paying attention to how the proposed code, misunderstanding it, and failing to learn from the opportunity</li>
+<li>wasting time and not thinking clearly</li>
 </ul>
-<p>What’s the goal? Learn and develop new skills and capacities.</p>
+<p>What’s the goal for this course? Learn and develop new skills and capacities.</p>
 </section><section id="llms-to-try" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="llms-to-try">
 <span class="header-section-number">11.3</span> LLMs to try</h2>
 <p>Each LLM has its own strengths and weaknesses. And they all are changing and being updated frequently. There is no need to use them all, but you should try at least two. I am only using the freely available versions of each, except for Microsoft copilot which is provided as a subscription by our university.</p>
@@ -469,12 +483,90 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Microsoft co-pilot</li>
 <li><a href="https://gemini.google.com/">Gemini</a></li>
 <li><a href="https://chat.deepseek.com/">DeepSeek</a></li>
-</ul></section><section id="software-testing" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="software-testing">
-<span class="header-section-number">11.4</span> Software testing</h2>
-<p>Computer code is a particularly good example of a task where LLMs can help you do work. Software testing is the process of evaluating a piece of code to determine if it works as intended. This can involve writing test cases that check the output of the code for a variety of inputs, as well as checking for edge cases and error handling. For a data analysis task, this means providing a set of test data and known outputs, and checking that the code produces the expected results. This practice is valuable whether you write your own code, you get it from a team member, or you get it from an LLM.</p>
+</ul>
+<section id="asking-questions" class="level3" data-number="11.3.1"><h3 data-number="11.3.1" class="anchored" data-anchor-id="asking-questions">
+<span class="header-section-number">11.3.1</span> Asking questions</h3>
+<p>You can use the same queries you would use as a web search as a prompt for an LLM. After the first few lessons in this course that might include questions like:</p>
+<ul>
+<li>Write code for a simple scatterplot based on the Palmer Penguins data using ggplot</li>
+<li>What is tidy data?</li>
+<li>Explain what the “aes” function in ggplot does.</li>
+<li>What is the difference between staging, committing and pushing to github?</li>
+</ul>
+<p>The answers to each of these are generally excellent.</p>
+<p>You can ask more complex questions as well. Sometimes these prompts lead to suggestions for refining your question since there are many possible ways to answer the question.</p>
+<ul>
+<li>Is there a version of the mtcars dataset with more modern data?</li>
+<li>Make a ggplot of gapminder data showing life expectancy vs GDP per capita, with GDP on a log scale. Label the GDP axis using exponents, for example 1e5 = 10^5.</li>
+<li>Find the Mauna Loa atmospheric CO2 data since 1960 and write code to plot the concentration of CO2 vs time.</li>
+</ul>
+<p>If you use an LLM to answer someone else’s question, a good strategy to ensure you are learning something is to make notes on what was new in the solution beyond your current understanding. If you are trying to answer a question that you created for yourself, it’s easier to know what you are trying to learn, but take a moment to reflect on the answer to see if you think it is correct, if you learned something new, and if there is anything new you can incorporate in your toolbox of skills.</p>
+<p>I strongly suggest you keep a written journal (perhaps as a qmd file) that explains what you learned from each session with the LLM.</p>
+</section><section id="explaining-code" class="level3" data-number="11.3.2"><h3 data-number="11.3.2" class="anchored" data-anchor-id="explaining-code">
+<span class="header-section-number">11.3.2</span> Explaining code</h3>
+<p>It’s still a bit early in the course to be asking an LLM to explain code, since we haven’t done much beyond making a plot.</p>
+<p>Here are two ideas. Ask for an explanation for an element of the code, for example the pipe. Using an example I just got from the CO2 prompt:</p>
+<ul>
+<li>Explain what %&gt;% does in the code co2_1960 &lt;- co2_raw %&gt;% filter(year &gt;= 1960)</li>
+</ul>
+<p>And here are some questions you might wonder about based on some of our early examples:</p>
+<ul>
+<li>Does it matter if I use |&gt; or %&gt;%?</li>
+<li>What is the difference between =, ==, and &lt;- ?</li>
+</ul>
+<p>Or take a full example from Lesson 8:</p>
+<ul>
+<li>Explain and improve diamonds |&gt; ggplot(aes(x = price, y = carat)) + geom_bin2d() + scale_x_log10()</li>
+</ul>
+<p>(The answer I got from copilot to this prompt included non-working code having to do with relatively recent changes in the scales package. The example provided by Gemini worked.)</p>
+</section><section id="extending-and-improving-your-work" class="level3" data-number="11.3.3"><h3 data-number="11.3.3" class="anchored" data-anchor-id="extending-and-improving-your-work">
+<span class="header-section-number">11.3.3</span> Extending and improving your work</h3>
+<p>Take the code from your plots in Assignment 1 and ask an LLM for suggestions to improve the plot:</p>
+<ul>
+<li>Help me improve the following code to make a scatter plot: mpg |&gt; ggplot() + geom_point(aes(displ, cty))</li>
+</ul>
+<p>This might make your mind wander –</p>
+<ul>
+<li>Why is fuel efficiency sometimes reported in MPG and sometimes in L/100km? How can I convert the MPG in mtcars and update the plot using the new variable?</li>
+</ul>
+<p>These kinds of explorations are amazing ways to learn new ideas linked to existing knowledge in your head. Of course it works best if you write the question yourself based on your own knowledge.</p>
+</section><section id="stimulating-your-thinking" class="level3" data-number="11.3.4"><h3 data-number="11.3.4" class="anchored" data-anchor-id="stimulating-your-thinking">
+<span class="header-section-number">11.3.4</span> Stimulating your thinking</h3>
+<p>You can use an LLM in tutor mode. For example, start your prompt with “I want to learn how XXX works. Do not give me the code. Instead, ask me leading questions to help me figure out what I need to do.” Try the following:</p>
+<ul>
+<li>I’d like to reproduce Hans Rosling’s life expectancy vs GDP figure, without animation using the tidyverse. I want to learn how to make the figure, so don’t give me the code or an answer. Instead ask me questions to help me figure out what I need to know to solve this challenge.</li>
+</ul>
+<p>Then continue the dialog, using the steps you know. For example,</p>
+<ul>
+<li>I can get as far as: gapminder |&gt; ggplot() + geom_point(aes(gdpPerCapita, lifeExp)). Can you help me with the size of the dots?</li>
+</ul>
+<p>and keep going … until you get tired.</p>
+<p>Here is a very broad question, but an LLM will still often give you a useful response:</p>
+<ul>
+<li>Help me find and summarize temperature data from Halifax, NS using R and the tidyverse.</li>
+</ul>
+<p>The code I got from this prompt went well beyond what we have learned so far in the course, and had errors that needed fixing – some of the variable names were given incorrectly. You should return to practice this sort of skill later on in the course.</p>
+<p>Refining your questions and goals based on initial vague goals is a key skill of data visualization. You should practice this skill often. An LLM can help you get started.</p>
+</section><section id="keeping-your-mind-engaged" class="level3" data-number="11.3.5"><h3 data-number="11.3.5" class="anchored" data-anchor-id="keeping-your-mind-engaged">
+<span class="header-section-number">11.3.5</span> Keeping your mind engaged</h3>
+<p>The LLMs are modern magical oracles. Obviously it’s fine to use them for entertainment and not always think, but when you are trying to learn skills and incorporate new knowledge in your own mind, you have to stay engaged. I’ve found moving between the following “learning modes” can be very helpful:</p>
+<ul>
+<li>brainstorming how to create a visualization,</li>
+<li>explaining the details of how some code works,</li>
+<li>asking for help fixing or improving some code, and</li>
+<li>simplifying code to show just the absolute essential details.</li>
+</ul>
+<p>After a few explorations, take a break from the LLM to</p>
+<ul>
+<li>write notes or a journal entry on what you have learned,</li>
+<li>explain what you figured out to someone else who has the patience to engage and ask questions, and</li>
+<li>deliberately use the new knowledge you’ve gained in a completely new computation.</li>
+</ul></section><section id="testing-the-results" class="level3" data-number="11.3.6"><h3 data-number="11.3.6" class="anchored" data-anchor-id="testing-the-results">
+<span class="header-section-number">11.3.6</span> Testing the results</h3>
+<p>Software testing is the process of evaluating a piece of code to determine if it works as intended. This can involve writing test cases that check the output of the code for a variety of inputs, as well as checking for edge cases and error handling. For a data analysis task, this means providing a set of test data and known outputs, and checking that the code produces the expected results. This practice is valuable whether you write your own code, you get it from a team member, or you get it from an LLM.</p>
 <p>As a very simple example, I want to make a table that lists the months of the year and the number of days in each. Two simple tests I can design before the data are generated is to check that there are 12 rows in the table and that the total number of days is 365.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># tests; no output means the test passed</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># tests; no output means the test passed</span></span>
 <span><span class="va">test_nrow</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">!=</span> <span class="fl">12</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"Data frame does not have 12 rows"</span><span class="op">)</span></span>
@@ -484,11 +576,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">days</span><span class="op">)</span> <span class="op">!=</span> <span class="fl">365</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"Total number of days is not 365"</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
-<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now I can ask an LLM to generate the code to create the table, and then run my tests on the output.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># generated code</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># generated code</span></span>
 <span><span class="va">months</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"January"</span>, <span class="st">"February"</span>, <span class="st">"March"</span>, <span class="st">"April"</span>, <span class="st">"May"</span>, <span class="st">"June"</span>,</span>
 <span>            <span class="st">"July"</span>, <span class="st">"August"</span>, <span class="st">"September"</span>, <span class="st">"October"</span>, <span class="st">"November"</span>, <span class="st">"December"</span><span class="op">)</span>,</span>
@@ -496,15 +588,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="op">)</span></span>
 <span><span class="co"># run tests</span></span>
 <span><span class="fu">test_nrow</span><span class="op">(</span><span class="va">months</span><span class="op">)</span></span>
-<span><span class="fu">test_total_days</span><span class="op">(</span><span class="va">months</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu">test_total_days</span><span class="op">(</span><span class="va">months</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>If the tests pass without error, I can be reasonably confident that the code works as intended. If the tests fail, I can use the error messages to help debug the code. This process of writing tests and using them to evaluate code is a valuable skill to develop when using LLMs to generate code.</p>
 <p>Notice that this data is clearly wrong for a leap year. A more sophisticated table of the lengths of months and a more comprehensive set of tests would be needed to catch this error. Properly guided, an LLM can produce that code for you as well, but with the prompts I used, this question was not raised by the LLM.</p>
-</section><section id="resources" class="level2" data-number="11.5"><h2 data-number="11.5" class="anchored" data-anchor-id="resources">
-<span class="header-section-number">11.5</span> Resources</h2>
-<p>Copilot suggested a ten web resources from well-known websites that sounded like they would explain how to use AI to learn new skills. None of them existed.</p>
-</section><section id="exercises" class="level2" data-number="11.6"><h2 data-number="11.6" class="anchored" data-anchor-id="exercises">
-<span class="header-section-number">11.6</span> Exercises</h2>
+</section></section><section id="resources" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="resources">
+<span class="header-section-number">11.4</span> Resources</h2>
+<p>Copilot suggested ten web resources from well-known websites that sounded like they would explain how to use AI to learn new skills. None of them existed.</p>
+</section><section id="exercises" class="level2" data-number="11.5"><h2 data-number="11.5" class="anchored" data-anchor-id="exercises">
+<span class="header-section-number">11.5</span> Exercises</h2>
 <ol type="1">
 <li><p>Think of a task you would like to accomplish using computer code. Use an LLM to help you write the code to accomplish the task. Evaluate the code produced by the LLM and determine if it works correctly. If it does not work correctly, try to debug the code with the help of the LLM. Reflect on the experience and what you learned from it.</p></li>
 <li><p>Find a piece of code from the course notes that you do not fully understand. Use an LLM to help explain the code to you and suggest improvements. Reflect on how the LLM’s explanation helped you understand the code better.</p></li>
@@ -514,8 +606,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>“Explain what the following code does and suggest improvements”</li>
 <li>“Find errors in the following code and suggest corrections”</li>
-</ul></section><section id="summary" class="level2" data-number="11.7"><h2 data-number="11.7" class="anchored" data-anchor-id="summary">
-<span class="header-section-number">11.7</span> Summary</h2>
+</ul>
+<ol start="5" type="1">
+<li>Use an LLM in “tutor mode” by including in your prompt the instruction that it is supposed to guide your learning and not provide solutions or written code.</li>
+</ol></section><section id="summary" class="level2" data-number="11.6"><h2 data-number="11.6" class="anchored" data-anchor-id="summary">
+<span class="header-section-number">11.6</span> Summary</h2>
 <p>Using LLMs to learn new skills can be a powerful tool, but it requires careful management and evaluation. By developing effective strategies for asking for help, identifying strengths and weaknesses of LLMs, and ensuring that you are learning rather than just outsourcing tasks, you can make the most of this technology. Always remember to critically evaluate the output of LLMs and use them as a supplement to your own learning and understanding.</p>
 
 
@@ -570,13 +665,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

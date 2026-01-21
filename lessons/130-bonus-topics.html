@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>31&nbsp; Working with text, factors, dates and times – Data Visualization notes</title>
 <style>
@@ -65,14 +65,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../lessons/142-mapping-3.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -116,7 +117,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -443,10 +446,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>A very common task is to remove leading, trailing, and duplicated spaces in a string. The <code>str_squish</code> function removes whitespace (spaces, tabs, and new lines) in these positions.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_string</span> <span class="op">&lt;-</span> <span class="st">"   A cat  is a small </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_string</span> <span class="op">&lt;-</span> <span class="st">"   A cat  is a small </span></span>
 <span><span class="st">                    and furry animal.  "</span></span>
 <span><span class="va">my_string2</span> <span class="op">&lt;-</span> <span class="fu">str_squish</span><span class="op">(</span><span class="va">my_string</span><span class="op">)</span></span>
-<span><span class="va">my_string2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">my_string2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "A cat is a small and furry animal."</code></pre>
 </div>
@@ -455,19 +458,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>It can be helpful to convert all text to a uniform pattern of capitalization: all capital letters, all lower case, and other patterns. Standardization is important for aesthetic reasons and to avoid splitting categories because of unimportant spelling differences.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">str_to_lower</span><span class="op">(</span><span class="va">my_string2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">str_to_lower</span><span class="op">(</span><span class="va">my_string2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "a cat is a small and furry animal."</code></pre>
 </div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">str_to_upper</span><span class="op">(</span><span class="va">my_string2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">str_to_upper</span><span class="op">(</span><span class="va">my_string2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "A CAT IS A SMALL AND FURRY ANIMAL."</code></pre>
 </div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">str_to_sentence</span><span class="op">(</span><span class="va">my_string2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">str_to_sentence</span><span class="op">(</span><span class="va">my_string2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "A cat is a small and furry animal."</code></pre>
 </div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">str_to_title</span><span class="op">(</span><span class="va">my_string2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">str_to_title</span><span class="op">(</span><span class="va">my_string2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "A Cat Is A Small And Furry Animal."</code></pre>
 </div>
@@ -476,15 +479,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>If there are particular letters or symbols you want to remove, the <code>str_remove</code> function can accomplish this. You can match literal strings or on <a href="https://en.wikipedia.org/wiki/Regular_expression">patterns</a>. Patterns allow for the use of character classes, selecting specific sequences, and more complex symbolic descriptions of strings. I will give a couple of simple examples of patterns. <code>str_remove</code> matches only once; <code>str_remove_all</code> matches the pattern as many times as possible.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">str_remove</span><span class="op">(</span><span class="va">my_string2</span>, <span class="st">"cat"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">str_remove</span><span class="op">(</span><span class="va">my_string2</span>, <span class="st">"cat"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "A  is a small and furry animal."</code></pre>
 </div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">str_remove_all</span><span class="op">(</span><span class="va">my_string2</span>, <span class="st">"[aeiou]"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">str_remove_all</span><span class="op">(</span><span class="va">my_string2</span>, <span class="st">"[aeiou]"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "A ct s  smll nd frry nml."</code></pre>
 </div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">str_remove_all</span><span class="op">(</span><span class="va">my_string2</span>, <span class="st">"[ ,\\.!]"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">str_remove_all</span><span class="op">(</span><span class="va">my_string2</span>, <span class="st">"[ ,\\.!]"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Acatisasmallandfurryanimal"</code></pre>
 </div>
@@ -494,10 +497,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>If a variable contains numbers, but R is interpreting the data as text, you can use the function <code>as.numeric</code> to convert the text to numbers. Any string that can’t be interpreted as a number will be converted to <code>NA</code>.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">text_and_numbers</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span> text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Andrew"</span>, <span class="st">"33"</span>, <span class="st">"12.45"</span>, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">text_and_numbers</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span> text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Andrew"</span>, <span class="st">"33"</span>, <span class="st">"12.45"</span>, </span>
 <span>                                     <span class="st">"-1.00"</span>, <span class="st">"Inf"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">text_and_numbers</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>numbers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span>, </span>
-<span>                            integers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>                            integers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead><tr class="header">
@@ -539,41 +542,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>If a pattern appears in a string, you might want to extract that information. <code>str_extract</code> allows you to write a pattern that matches part of the string and extract that from the source material.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A1"</span>, <span class="st">"A2"</span>, <span class="st">"B1"</span>, <span class="st">"B4"</span>, <span class="st">"C5"</span><span class="op">)</span></span>
-<span><span class="fu">str_extract</span><span class="op">(</span><span class="va">sets</span>, <span class="st">"[0-9]"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A1"</span>, <span class="st">"A2"</span>, <span class="st">"B1"</span>, <span class="st">"B4"</span>, <span class="st">"C5"</span><span class="op">)</span></span>
+<span><span class="fu">str_extract</span><span class="op">(</span><span class="va">sets</span>, <span class="st">"[0-9]"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "1" "2" "1" "4" "5"</code></pre>
 </div>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">str_extract</span><span class="op">(</span><span class="va">sets</span>, <span class="st">"[A-Z]"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">str_extract</span><span class="op">(</span><span class="va">sets</span>, <span class="st">"[A-Z]"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "A" "A" "B" "B" "C"</code></pre>
 </div>
 </div>
 <p>Thinking about patterns is a lot of work and prone to error, so the pair of functions <code>glue</code> and <code>unglue</code> were created to perform common tasks of combining text and data and then to separate them again.</p>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://glue.tidyverse.org/">glue</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://glue.tidyverse.org/">glue</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">unglue</span><span class="op">)</span></span>
 <span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">6</span></span>
 <span><span class="va">c</span> <span class="op">&lt;-</span> <span class="fl">15.63</span></span>
 <span><span class="va">my_string3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"The numbers a, b, and c are {a}, {b}, and {c}, respectively. Their sum is {a+b+c}."</span><span class="op">)</span></span>
-<span><span class="va">my_string3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">my_string3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The numbers a, b, and c are 1, 6, and 15.63, respectively. Their sum is 22.63.</code></pre>
 </div>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/unglue/man/unglue.html">unglue</a></span><span class="op">(</span><span class="va">my_string3</span>, <span class="st">"The numbers a, b, and c are {a}, {b}, and {c}, respectively. Their sum is {d}."</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/unglue/man/unglue.html">unglue</a></span><span class="op">(</span><span class="va">my_string3</span>, <span class="st">"The numbers a, b, and c are {a}, {b}, and {c}, respectively. Their sum is {d}."</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$`1`
   a b     c     d
 1 1 6 15.63 22.63</code></pre>
 </div>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_strings1</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>greeting <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"My name is Andrew."</span>, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">my_strings1</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>greeting <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"My name is Andrew."</span>, </span>
 <span>                                   <span class="st">"My name is Li."</span>, </span>
 <span>                                   <span class="st">"My name is Emily."</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/unglue/man/unglue.html">unglue_unnest</a></span><span class="op">(</span><span class="va">my_strings1</span>, </span>
 <span>              <span class="va">greeting</span>, </span>
 <span>              <span class="st">"My name is {name}."</span>, </span>
-<span>              remove<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>              remove<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead><tr class="header">
@@ -603,9 +606,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <a href="https://forcats.tidyverse.org/">forcats</a> package has a series of functions for reordering factors. These can be used to explicitly reorder a factor by value (level) or a quantitative value can be used to reorder a factor.</p>
 <p>Here are a few examples using the <code>mpg</code> data set. First a visualization without any explicit reordering of factors. Notice the factors on the vertical axis are arranged alphabetically with the first one at the bottom of the axis (the order follows the usual increase along the y-axis since the factors are interpreted as the numbers 1, 2, 3, … on the visualization.)</p>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mpg</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">cty</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mpg</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">cty</span>,</span>
 <span>                   y <span class="op">=</span> <span class="va">trans</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="130-bonus-topics_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
@@ -615,9 +618,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Next we reorder the transmission categorical variable according to the minimum value of highway fuel economy. The three arguments to <code>fct_reorder</code> are the categorical variable to be reordered, the quantitative variable to use for the reordering, and a function that converts a vector of numbers to a single value for sorting (such as mean, median, min, max, length). The smallest value is plotted on the left of the horizontal axis or the bottom of the vertical axis. The option <code>.desc=TRUE</code> (descending = TRUE) is an easy way to reverse the order of factors and is especially useful for the vertical axis.</p>
 <div class="cell">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mpg</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">cty</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mpg</span> <span class="op">|&gt;</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">cty</span>,</span>
 <span>                   y <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">trans</span>, <span class="va">hwy</span>, <span class="va">median</span>, .desc<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="130-bonus-topics_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
@@ -628,7 +631,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You should to practice working with strings and factors to develop flexible methods of customizing your display of categorical variables.</p>
 <p>Next we extract the number of gears from the transmission and reorder transmission on this basis.</p>
 <div class="cell">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mpg</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/unglue/man/unglue.html">unglue_unnest</a></span><span class="op">(</span><span class="va">trans</span>, <span class="st">"{trans_desc}({trans_code})"</span>, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mpg</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/unglue/man/unglue.html">unglue_unnest</a></span><span class="op">(</span><span class="va">trans</span>, <span class="st">"{trans_desc}({trans_code})"</span>, </span>
 <span>                      remove<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>  <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>gears <span class="op">=</span> <span class="fu">str_extract</span><span class="op">(</span><span class="va">trans_code</span>, <span class="st">"[0-9]"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">gears</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -636,7 +639,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>             y <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">trans_code</span>, <span class="va">gears</span><span class="op">)</span>,</span>
 <span>             fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">gears</span><span class="op">)</span></span>
 <span>             <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="130-bonus-topics_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
@@ -646,11 +649,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>When there are too many cateogories to display on a graph, it can be helpful to pick out the ones with the most observations and to group the remaining observations together in an “other” category. Here’s how you can accomplish that.</p>
 <div class="cell">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mpg</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mpg</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">cty</span>,</span>
 <span>             y <span class="op">=</span> <span class="va">trans</span> <span class="op">|&gt;</span> <span class="fu">fct_lump</span><span class="op">(</span><span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">fct_rev</span><span class="op">(</span><span class="op">)</span> <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">labs</span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Transmission (minor categories grouped together)"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">labs</span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Transmission (minor categories grouped together)"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="130-bonus-topics_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
@@ -664,14 +667,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Sometimes you want to change the way the name of a factor (or string) label is shown on a plot. Here I will create clusters from the Palmer penguins data and then change the names from 1, 2, 3, to “Cluster A”, “Cluster B”, and “Cluster C”. I’ll show three different ways to accomplish the same goal.</p>
 <p>First we make the clusters and show a plot with the original cluster names.</p>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguin_q</span> <span class="op">&lt;-</span> <span class="fu">palmerpenguins</span><span class="fu">::</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/reference/penguins.html">penguins</a></span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguin_q</span> <span class="op">&lt;-</span> <span class="fu">palmerpenguins</span><span class="fu">::</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/reference/penguins.html">penguins</a></span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">species</span>, <span class="va">flipper_length_mm</span>, <span class="va">bill_length_mm</span>, <span class="va">bill_depth_mm</span>, <span class="va">body_mass_g</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="op">)</span> </span>
 <span><span class="va">kclust1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span><span class="va">penguin_q</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">species</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                  centers <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">kc1</span> <span class="op">&lt;-</span> <span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">kclust1</span>, <span class="va">penguin_q</span><span class="op">)</span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">kc1</span>, <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">bill_length_mm</span>, y <span class="op">=</span> <span class="va">bill_depth_mm</span>, color<span class="op">=</span><span class="va">.cluster</span>, shape<span class="op">=</span><span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="130-bonus-topics_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
@@ -681,12 +684,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The first solution uses <code>case_when</code> to rename each cluster one at a time and define a new variable. For example whenever <code>.cluster</code> has the value 1, the new variable <code>my_cluster</code> will have the value <code>Cluster A</code>. It’s traditional to include a “catch all” option as the last one (the line with <code>TRUE</code> in it). If none of the earlier conditions match, then the cluster will be called “Unknown cluster”.</p>
 <div class="cell">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">kc1</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>my_cluster <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">.cluster</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"Cluster A"</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">kc1</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>my_cluster <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">.cluster</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"Cluster A"</span>,</span>
 <span>                                     <span class="va">.cluster</span> <span class="op">==</span> <span class="fl">2</span> <span class="op">~</span> <span class="st">"Cluster B"</span>, </span>
 <span>                                     <span class="va">.cluster</span> <span class="op">==</span> <span class="fl">3</span> <span class="op">~</span> <span class="st">"Cluster C"</span>,</span>
 <span>                                     <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"Unknown cluster"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">bill_length_mm</span>, y <span class="op">=</span> <span class="va">bill_depth_mm</span>, color<span class="op">=</span><span class="va">my_cluster</span>, shape<span class="op">=</span><span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="130-bonus-topics_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
@@ -696,11 +699,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The second solution creates a new table that translates from one label to the other. Then we use left_join to combine the two tables.</p>
 <div class="cell">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cluster_table</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>.cluster <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cluster_table</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>.cluster <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>,</span>
 <span>                        my_cluster <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Cluster A"</span>, <span class="st">"Cluster B"</span>, <span class="st">"Cluster C"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">kc1</span> <span class="op">|&gt;</span> <span class="fu">left_join</span><span class="op">(</span><span class="va">cluster_table</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">bill_length_mm</span>, y <span class="op">=</span> <span class="va">bill_depth_mm</span>, color<span class="op">=</span><span class="va">my_cluster</span>, shape<span class="op">=</span><span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Joining with `by = join_by(.cluster)`</code></pre>
 </div>
@@ -713,11 +716,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The third solution doesn’t change the name of the clusters, it just changes the name used to display the clusters on the legend:</p>
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">kc1</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">kc1</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">bill_length_mm</span>, y <span class="op">=</span> <span class="va">bill_depth_mm</span>, color<span class="op">=</span><span class="va">.cluster</span>, shape<span class="op">=</span><span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">scale_color_discrete</span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Cluster A"</span>, <span class="st">"Cluster B"</span>, <span class="st">"Cluster C"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">labs</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"Cluster"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>    <span class="fu">labs</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"Cluster"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="130-bonus-topics_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
@@ -731,15 +734,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The package <code>lubridate</code> contains many functions to help you work with dates and times. For data visualization purposes I mostly use functions to parse dates and times (converting text to a date-time object), perform arithmetic such as subtracting dates to find the time difference, extract components of a date, and format axis labels.</p>
 <p>To see some nicely formatted dates and times, use the <code>today</code> and <code>now</code> functions. When reporting times, you need to pick a time zone. This can be surprisingly complicated, especially since the time zone used in a particular location changes (daylight savings time) and according to changes in local regulations and legislation. For example, as I write these notes the “Atlantic/Halifax” time zone corresponds to AST (Atlantic Standard Time), but when you read the notes, the same time zone will be ADT (Daylight time.) We don’t use the three letter codes for time zone (except as an abbreviation when displaying the time), because there are multiple meanings for some three letter codes. Many people report time in UTC (referenced to longitude 0, Greenwich UK, but without the complexity of daylight savings time) to make times a bit easier. Of course, the date in UTC may not be the date where you are right now (it could be ‘yesterday’ or ‘tomorrow’), so be on the lookout for that!</p>
 <div class="cell">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">today</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">today</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2026-01-13"</code></pre>
 </div>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">now</span><span class="op">(</span><span class="op">)</span> <span class="co"># for me this is: now(tz = "America/Halifax") </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">now</span><span class="op">(</span><span class="op">)</span> <span class="co"># for me this is: now(tz = "America/Halifax") </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2026-01-13 17:19:10 AST"</code></pre>
 </div>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">now</span><span class="op">(</span>tz <span class="op">=</span> <span class="st">"UTC"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">now</span><span class="op">(</span>tz <span class="op">=</span> <span class="st">"UTC"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2026-01-13 21:19:10 UTC"</code></pre>
 </div>
@@ -748,13 +751,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">31.3.1</span> Reading dates</h3>
 <p>There are a family of functions <code>ymd</code>, <code>dmy</code>, <code>mdy</code>, and <code>ymd_hms</code> among others that are used to turn text (such as in a table you read from a file) into a date. I strongly encourage the use of <a href="https://xkcd.com/1179/">ISO 8601</a> date formatting. Illegal dates are converted to NA_Date and displayed as <code>NA</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt1</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>text_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1999-01-31"</span>, <span class="st">"2000-02-28"</span>, <span class="st">"2010-06-28"</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt1</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>text_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1999-01-31"</span>, <span class="st">"2000-02-28"</span>, <span class="st">"2010-06-28"</span>,</span>
 <span>                            <span class="st">"2024-03-14"</span>, <span class="st">"2021-02-29"</span><span class="op">)</span>,</span>
-<span>             date <span class="op">=</span> <span class="fu">ymd</span><span class="op">(</span><span class="va">text_date</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>             date <span class="op">=</span> <span class="fu">ymd</span><span class="op">(</span><span class="va">text_date</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: 1 failed to parse.</code></pre>
 </div>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt1</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt1</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead><tr class="header">
@@ -788,11 +791,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Here is an example with times. You can specify a <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">time zone</a> if you want, but sometimes you can get away with ignoring the problem. Here the timezone information tells the computer how to interpret the text representation of the time.</p>
 <div class="cell">
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt2</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>text_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1999-01-31 09:14"</span>, <span class="st">"2000-02-28 12:15"</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt2</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>text_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1999-01-31 09:14"</span>, <span class="st">"2000-02-28 12:15"</span>,</span>
 <span>                            <span class="st">"2010-06-28 23:45"</span>, </span>
 <span>                            <span class="st">"2024-03-14 07:00 AM"</span>, <span class="st">"2021-03-01 6:16 PM"</span><span class="op">)</span>,</span>
 <span>             date_time <span class="op">=</span> <span class="fu">ymd_hm</span><span class="op">(</span><span class="va">text_date</span>, tz<span class="op">=</span><span class="st">"America/Halifax"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">dt2</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">dt2</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead><tr class="header">
@@ -826,9 +829,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>These functions are remarkably powerful, for example they work on formats like this:</p>
 <div class="cell">
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tibble</span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jan 5, 1999"</span>, <span class="st">"Saturday May 16, 70"</span>, <span class="st">"8-8-88"</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tibble</span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jan 5, 1999"</span>, <span class="st">"Saturday May 16, 70"</span>, <span class="st">"8-8-88"</span>,</span>
 <span>               <span class="st">"December 31/99"</span>, <span class="st">"Jan 1, 01"</span><span class="op">)</span>,</span>
-<span>      decoded <span class="op">=</span> <span class="fu">mdy</span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>      decoded <span class="op">=</span> <span class="fu">mdy</span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead><tr class="header">
@@ -863,9 +866,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>As many people working in the <a href="https://en.wikipedia.org/wiki/Year_2000_problem">late 20th century</a> discovered, you should be very careful with two digit years. Best not to use them.</p>
 <p>If you want to know how much time has passed since the earliest observation in a dataset, you can do arithmetic. Note the data types of each column (chr = character, date, time, dbl = double = numeric, drtn = duration).</p>
 <div class="cell">
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt1</span> <span class="op">|&gt;</span> <span class="fu">arrange</span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt1</span> <span class="op">|&gt;</span> <span class="fu">arrange</span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>elapsed <span class="op">=</span> <span class="va">date</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">date</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>         t_days <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">elapsed</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>         t_days <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">elapsed</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
   text_date  date       elapsed   t_days
@@ -879,10 +882,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Let’s add some random data to the second table and make a scatter graph. Special codes are used to format dates and times, but these are fairly well standardized (see the help for <code>strptime</code>).</p>
 <div class="cell">
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt2</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>r <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fu">n</span><span class="op">(</span><span class="op">)</span>, <span class="fl">20</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt2</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>r <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fu">n</span><span class="op">(</span><span class="op">)</span>, <span class="fl">20</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date_time</span>, y <span class="op">=</span> <span class="va">r</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_x_datetime</span><span class="op">(</span>date_labels <span class="op">=</span> <span class="st">"%Y\n%b-%d"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">scale_x_datetime</span><span class="op">(</span>date_labels <span class="op">=</span> <span class="st">"%Y\n%b-%d"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="130-bonus-topics_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
@@ -901,28 +904,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">31.4.2</span> Computations with NA</h3>
 <p>Any arithmetic computation with an NA will result in an NA result.</p>
 <div class="cell">
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">+</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">+</span> <span class="cn">NA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
 </div>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="cn">Inf</span> <span class="op">+</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="cn">Inf</span> <span class="op">+</span> <span class="cn">NA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
 </div>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="cn">NA</span><span class="op">/</span><span class="fl">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="cn">NA</span><span class="op">/</span><span class="fl">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
 </div>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="cn">NA</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="cn">NA</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
 </div>
 </div>
 <p>When we use functions that turn a vector into a single number (mean, min, median, etc.), sometimes we want to ignore missing values. This is because we have at least two different ways of thinking about missing values: missing values should be ignored versus missing values are important signals of data. The option <code>na.rm=</code> is useful here.</p>
 <div class="cell">
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt3</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">9</span>, <span class="fl">14.5</span>, <span class="cn">NA</span>, <span class="fl">21</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt3</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">9</span>, <span class="fl">14.5</span>, <span class="cn">NA</span>, <span class="fl">21</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">dt3</span> <span class="op">|&gt;</span> <span class="fu">summarize</span><span class="op">(</span>mean_with_NA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,</span>
-<span>                  mean_no_NA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>                  mean_no_NA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   mean_with_NA mean_no_NA
@@ -932,9 +935,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>If you want to know the number of observations, non-missing or missing data, use <code>n</code> or the idiom <code>sum(!is.na(...))</code> and <code>sum(is.na(...))</code> The exclamation mark (!, sometimes called <a href="https://en.wikipedia.org/wiki/Exclamation_mark">bang</a>) means logical not so <code>!is.na</code> means not missing.</p>
 <div class="cell">
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt3</span> <span class="op">|&gt;</span> <span class="fu">summarize</span><span class="op">(</span>n_with_NA <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt3</span> <span class="op">|&gt;</span> <span class="fu">summarize</span><span class="op">(</span>n_with_NA <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                  n_no_NA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>                  n_is_NA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>                  n_is_NA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   n_with_NA n_no_NA n_is_NA
@@ -944,9 +947,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>There are special functions <code>n_missing</code>, <code>n_complete</code> and more in the <code>skimr</code> package but I sometimes forget these and use the <code>sum(...)</code> calculations above.</p>
 <div class="cell">
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt3</span> <span class="op">|&gt;</span> <span class="fu">summarize</span><span class="op">(</span>n_with_NA <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dt3</span> <span class="op">|&gt;</span> <span class="fu">summarize</span><span class="op">(</span>n_with_NA <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                  n_no_NA <span class="op">=</span> <span class="fu">skimr</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/skimr/reference/stats.html">n_complete</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,</span>
-<span>                  n_is_NA <span class="op">=</span> <span class="fu">skimr</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/skimr/reference/stats.html">n_missing</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>                  n_is_NA <span class="op">=</span> <span class="fu">skimr</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/skimr/reference/stats.html">n_missing</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   n_with_NA n_no_NA n_is_NA
@@ -956,7 +959,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>If you have missing data in one or more columns and want to remove all observations from a table that have missing data, you can use <code>na.omit</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">dt3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">dt3</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 1
       x
@@ -972,7 +975,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">31.5</span> Packages</h2>
 <p>The string and date/time manipulation functions are part of the tidyverse. A full list of tidyverse packages is</p>
 <div class="cell">
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tidyverse_packages</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span>sep <span class="op">=</span> <span class="st">", "</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tidyverse_packages</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span>sep <span class="op">=</span> <span class="st">", "</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>broom, conflicted, cli, dbplyr, dplyr, dtplyr, forcats, ggplot2, googledrive, googlesheets4, haven, hms, httr, jsonlite, lubridate, magrittr, modelr, pillar, purrr, ragg, readr, readxl, reprex, rlang, rstudioapi, rvest, stringr, tibble, tidyr, xml2, tidyverse</code></pre>
 </div>
@@ -1041,13 +1044,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

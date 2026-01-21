@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>20&nbsp; Finding and accessing data – Data Visualization notes</title>
 <style>
@@ -65,14 +65,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../lessons/124-collaboration.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -116,7 +117,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Data Visualization notes</a> 
     </div>
@@ -491,7 +494,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">20.2.1</span> Gapminder</h3>
 <p>Gapminder distributes many datasets, some of their own, and some collected by other organizations that they are redistributing. They have a <a href="https://www.gapminder.org/data/">webpage</a> to help you search, browse and access the data. Using this webpage I have found <a href="http://gapm.io/dpop">data</a> on population of countries by years from 1800-2100 (with many missing data, some interpolated data, and of course many years of projections). Here is some R code to read and work with this data. There are data on 195 countries over 302 years. I have selected five countries to make a simple plot.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pop</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"static/population_total.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pop</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"static/population_total.csv"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 195 Columns: 302
 ── Column specification ────────────────────────────────────────────────────────
@@ -502,7 +505,7 @@ dbl (301): 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 1809, 1810,...
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pop</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Canada"</span>, <span class="st">"China"</span>, <span class="st">"Chile"</span>, <span class="st">"Germany"</span>, <span class="st">"United States"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pop</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Canada"</span>, <span class="st">"China"</span>, <span class="st">"Chile"</span>, <span class="st">"Germany"</span>, <span class="st">"United States"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">pivot_longer</span><span class="op">(</span><span class="va">`1800`</span><span class="op">:</span><span class="va">`2100`</span>, names_to <span class="op">=</span> <span class="st">"years"</span>, values_to <span class="op">=</span> <span class="st">"population"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">years</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">years</span>, </span>
@@ -510,7 +513,7 @@ dbl (301): 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 1809, 1810,...
 <span>             color <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">country</span>, <span class="va">population</span>, <span class="va">max</span>, .desc<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_line</span><span class="op">(</span>size<span class="op">=</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">scale_y_log10</span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">trans_format</span><span class="op">(</span><span class="st">"log10"</span>, <span class="fu">math_format</span><span class="op">(</span><span class="fl">10</span><span class="op">^</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"Country"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">labs</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"Country"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ℹ Please use `linewidth` instead.</code></pre>
@@ -526,17 +529,17 @@ dbl (301): 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 1809, 1810,...
 <span class="header-section-number">20.2.2</span> Consumer price index in Canada</h3>
 <p>One measure of inflation is its effect on prices. Here is a table from Statistics Canada that reports over 1 million rows of data on this measure. Statistics Canada tables are an extreme version of “long” data, which usually require a lot of filtering to get just the rows you want. You will want to make use of <code>dpylr</code> functions <code>summarize</code> and <code>count</code> to study the structure of the data.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Population and projection in a huge table with 2 million rows, 300 MB of data</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Population and projection in a huge table with 2 million rows, 300 MB of data</span></span>
 <span><span class="co"># cansim::get_cansim("17100057")  </span></span>
-<span><span class="va">cpi</span> <span class="op">&lt;-</span> <span class="fu">cansim</span><span class="fu">::</span><span class="fu"><a href="https://mountainmath.github.io/cansim/reference/get_cansim.html">get_cansim</a></span><span class="op">(</span><span class="st">"18-10-0004-01"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">cpi</span> <span class="op">&lt;-</span> <span class="fu">cansim</span><span class="fu">::</span><span class="fu"><a href="https://mountainmath.github.io/cansim/reference/get_cansim.html">get_cansim</a></span><span class="op">(</span><span class="st">"18-10-0004-01"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Accessing CANSIM NDM product 18-10-0004 from Statistics Canada</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Parsing data</code></pre>
 </div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cpi</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">`Products and product groups`</span> <span class="op">==</span> <span class="st">"All-items"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">count</span><span class="op">(</span><span class="va">GEO</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cpi</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">`Products and product groups`</span> <span class="op">==</span> <span class="st">"All-items"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">count</span><span class="op">(</span><span class="va">GEO</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 30 × 2
    GEO                                                    n
@@ -556,7 +559,7 @@ dbl (301): 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 1809, 1810,...
 </div>
 <p>Let’s look at these data for Canada as a whole.</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cpi</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">`Products and product groups`</span> <span class="op">==</span> <span class="st">"All-items"</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cpi</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">`Products and product groups`</span> <span class="op">==</span> <span class="st">"All-items"</span>,</span>
 <span>               <span class="va">GEO</span> <span class="op">==</span> <span class="st">"Canada"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">REF_DATE</span>, <span class="va">VALUE</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>date <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">ym</a></span><span class="op">(</span><span class="va">REF_DATE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
@@ -565,7 +568,7 @@ dbl (301): 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 1809, 1810,...
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Date"</span>, y <span class="op">=</span> <span class="st">"All items CPI"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"Consumer price index in Canada"</span>,</span>
 <span>       caption <span class="op">=</span> <span class="st">"Scaled so that 2002 = 100"</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">scale_y_log10</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">scale_y_log10</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="301-data-sources_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
@@ -577,7 +580,7 @@ dbl (301): 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 1809, 1810,...
 <span class="header-section-number">20.2.3</span> Causes of death worldwide</h3>
 <p><a href="https://ourworldindata.org/">Our world in data</a> has many compliations of data across many countries. <a href="https://ourworldindata.org/causes-of-death">Here</a> is a table listing causes of death over time and countries. There is a link to a csv file on that page that can be easily read with R. As is often the case, this is a large table (nearly 7000 observations of 37 variables). You will need to explore the data a bit to understand it. Here is one simple plot that can be made.</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">death</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"static/annual-number-of-deaths-by-cause.csv"</span>, guess_max <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">death</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"static/annual-number-of-deaths-by-cause.csv"</span>, guess_max <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 6686 Columns: 37
 ── Column specification ────────────────────────────────────────────────────────
@@ -588,7 +591,7 @@ dbl (34): Year, Deaths - Road injuries - Sex: Both - Age: All Ages (Number),...
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">death</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">Entity</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Canada"</span>, <span class="st">"China"</span>, <span class="st">"Germany"</span>, <span class="st">"United States"</span><span class="op">)</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">death</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">Entity</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Canada"</span>, <span class="st">"China"</span>, <span class="st">"Germany"</span>, <span class="st">"United States"</span><span class="op">)</span>,</span>
 <span>                 <span class="va">Year</span> <span class="op">==</span> <span class="fl">2015</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">Entity</span>, <span class="va">`Deaths - Road injuries - Sex: Both - Age: All Ages (Number)`</span><span class="op">:</span><span class="va">`Terrorism (deaths)`</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">pivot_longer</span><span class="op">(</span><span class="va">`Deaths - Road injuries - Sex: Both - Age: All Ages (Number)`</span><span class="op">:</span><span class="va">`Terrorism (deaths)`</span>,</span>
@@ -598,7 +601,7 @@ dbl (34): Year, Deaths - Road injuries - Sex: Both - Age: All Ages (Number),...
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Deaths</span>, y <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">Cause</span>, <span class="va">Deaths</span><span class="op">)</span>, </span>
 <span>             color <span class="op">=</span> <span class="va">Entity</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_x_log10</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">scale_x_log10</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in scale_x_log10(): log-10 transformation introduced infinite values.</code></pre>
 </div>
@@ -683,13 +686,14 @@ dbl (34): Year, Deaths - Road injuries - Sex: Both - Age: All Ages (Number),...
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
