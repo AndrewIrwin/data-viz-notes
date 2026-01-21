@@ -123,7 +123,7 @@ Almost all decisions about data visualizations come down to this: what is the be
 
 ## Further reading
 
-Both these chapters are strongly recommended. This lesson is a brief introduction to complex topic. The papers below provide empirical data for some of the claims about perception of visualizations.
+Both of these chapters are strongly recommended. This lesson is a brief introduction to complex topic. The papers below provide empirical data for some of the claims about perception of visualizations.
 
 -   [Healy Chapter 1](https://socviz.co/lookatdata.html#lookatdata)
 -   [Wilke Chapter 1](https://clauswilke.com/dataviz/introduction.html) emphasizes the difference between ugly, bad, and wrong figures, echoing many of the observations made here. The rest of his book addresses these questions in considerable detail from the perspective of someone training students in good and bad features of graphics, focusing on many of the same perceptual issues introduced here.
