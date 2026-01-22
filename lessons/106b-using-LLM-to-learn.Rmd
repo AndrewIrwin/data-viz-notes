@@ -19,11 +19,11 @@ metacognition strategies that should be helpful as you use AI to learn new skill
  
 Over the past few months I have made an effort to get various LLM (chat gpt, copilot, gemini, deepseek) to help me with data analysis and visualization tasks by writing computer code to the following tasks:
 
-* generate points along a geodesic to plot a path on a map,
-* parse a AIS messages from commercial ships, which are encoded in a complicated, nested data structure,
-* compute prime numbers using a sieve wheel,
-* write a complicated statistical model in a probabilistic programming language, and
-* assign students to projects based on a set of preference scores.
+* generate points along a [geodesic](https://en.wikipedia.org/wiki/Geodesics_on_an_ellipsoid) to plot a path on a map,
+* parse a [AIS messages](https://en.wikipedia.org/wiki/Automatic_identification_system) from commercial ships, which are encoded in a complicated, nested data structure,
+* compute prime numbers using a [sieve wheel](https://en.wikipedia.org/wiki/Sieve_of_Pritchard),
+* write a complicated statistical model in a [probabilistic programming language](https://en.wikipedia.org/wiki/Probabilistic_programming), and
+* assign students to projects based on a set of [preference scores](https://en.wikipedia.org/wiki/Assignment_problem).
 
 In each case the computer generated code which would take me about an hour to produce with about a minute's work. Also in each case the code was non-functional. In some cases the LLM could be asked to fix the problem, but often while it agreed with me that there was a problem, the correction it provided did not work. The lesson here is that LLM can write computer code, but it is essential that you understand the code so you can check it for errors, fix errors, and extend or expand the functionality of the code.
 
@@ -41,15 +41,18 @@ Strengths:
 
 Weaknesses:
 
-* will assert code is tested and works, but may be wrong
-* may use packages (libraries) that don't exist
-* hidden miscommunications between you and the LLM may lead to the wrong problem being solved.
+* will assert code is tested and works, but may be wrong,
+* may use packages (libraries) that don't exist or are outdated methods, and
+* hidden miss-communication between you and the LLM may lead to the wrong problem being solved.
 
 Risks I've experienced:
 
-* using code without checking it carefully
-* not paying attention to how the proposed code, misunderstanding it, and failing to learn from the opportunity
-* wasting time and not thinking clearly 
+* using code without checking it carefully,
+* not paying attention to how the proposed code works, misunderstanding it, and failing to learn from the opportunity,
+* not thinking clearly and wasting time,
+* developing false confidence in the LLM results,  and
+* developing an over reliance on prompts instead of thinking for myself.
+
 
 What's the goal for this course? Learn and develop new skills and capacities. 
 
@@ -104,6 +107,25 @@ Or take a full example from Lesson 8:
 
 (The answer I got from copilot to this prompt included non-working code having to do with relatively recent changes in the scales package. The example provided by Gemini worked.)
 
+Once you are comfortable with some simple examples, try something more complex like the last example in Lesson 9: 
+
+Explain the following code line by line: 
+
+```
+diamonds |>
+  mutate(price_per_carat = price / carat) |>
+  group_by(color, clarity, cut) |>
+  summarise(median_price_per_carat = median(price_per_carat),
+            n = n(),
+            .groups = "drop") |>
+  arrange(-median_price_per_carat) |>
+  group_by(cut) |>
+  slice_head(n=2) |>
+  arrange(-median_price_per_carat)
+```
+
+* Ask the LLM to challenge you or give you some examples: _Give me some interesting calculations to make summary tables with group_by, mutate and summarize._
+
 ### Extending and improving your work
 
 Take the code from your plots in Assignment 1 and ask an LLM for suggestions to improve the plot:
@@ -137,6 +159,7 @@ The code I got from this prompt went well beyond what we have learned so far in 
 
 Refining your questions and goals based on initial vague goals is a key skill of data visualization. You should practice this skill often. An LLM can help you get started.
 
+Since we're in the winter freeze-thaw snow-rain-ice cycle right now, my mind turned to the following question: _tidyverse code to compute the distribution of the number of days in a row with a daily high temperature below freezing in Halifax_. Gemini did a good job with this task.
 
 ### Keeping your mind engaged
 
