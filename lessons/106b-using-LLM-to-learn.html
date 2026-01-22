@@ -445,11 +445,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">11.2</span> Introduction</h2>
 <p>Over the past few months I have made an effort to get various LLM (chat gpt, copilot, gemini, deepseek) to help me with data analysis and visualization tasks by writing computer code to the following tasks:</p>
 <ul>
-<li>generate points along a geodesic to plot a path on a map,</li>
-<li>parse a AIS messages from commercial ships, which are encoded in a complicated, nested data structure,</li>
-<li>compute prime numbers using a sieve wheel,</li>
-<li>write a complicated statistical model in a probabilistic programming language, and</li>
-<li>assign students to projects based on a set of preference scores.</li>
+<li>generate points along a <a href="https://en.wikipedia.org/wiki/Geodesics_on_an_ellipsoid">geodesic</a> to plot a path on a map,</li>
+<li>parse a <a href="https://en.wikipedia.org/wiki/Automatic_identification_system">AIS messages</a> from commercial ships, which are encoded in a complicated, nested data structure,</li>
+<li>compute prime numbers using a <a href="https://en.wikipedia.org/wiki/Sieve_of_Pritchard">sieve wheel</a>,</li>
+<li>write a complicated statistical model in a <a href="https://en.wikipedia.org/wiki/Probabilistic_programming">probabilistic programming language</a>, and</li>
+<li>assign students to projects based on a set of <a href="https://en.wikipedia.org/wiki/Assignment_problem">preference scores</a>.</li>
 </ul>
 <p>In each case the computer generated code which would take me about an hour to produce with about a minute’s work. Also in each case the code was non-functional. In some cases the LLM could be asked to fix the problem, but often while it agreed with me that there was a problem, the correction it provided did not work. The lesson here is that LLM can write computer code, but it is essential that you understand the code so you can check it for errors, fix errors, and extend or expand the functionality of the code.</p>
 <p>I asked an AI to explain some code I had written more than a decade ago to me. It explained the code very well and suggested some improvements to the code that made it easier to read and faster. You may find asking LLMs to help explain code to increase your understanding of a piece computer code very helpful.</p>
@@ -463,15 +463,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Weaknesses:</p>
 <ul>
-<li>will assert code is tested and works, but may be wrong</li>
-<li>may use packages (libraries) that don’t exist</li>
-<li>hidden miscommunications between you and the LLM may lead to the wrong problem being solved.</li>
+<li>will assert code is tested and works, but may be wrong,</li>
+<li>may use packages (libraries) that don’t exist or are outdated methods, and</li>
+<li>hidden miss-communication between you and the LLM may lead to the wrong problem being solved.</li>
 </ul>
 <p>Risks I’ve experienced:</p>
 <ul>
-<li>using code without checking it carefully</li>
-<li>not paying attention to how the proposed code, misunderstanding it, and failing to learn from the opportunity</li>
-<li>wasting time and not thinking clearly</li>
+<li>using code without checking it carefully,</li>
+<li>not paying attention to how the proposed code works, misunderstanding it, and failing to learn from the opportunity,</li>
+<li>not thinking clearly and wasting time,</li>
+<li>developing false confidence in the LLM results, and</li>
+<li>developing an over reliance on prompts instead of thinking for myself.</li>
 </ul>
 <p>What’s the goal for this course? Learn and develop new skills and capacities.</p>
 </section><section id="llms-to-try" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="llms-to-try">
@@ -519,7 +521,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Explain and improve diamonds |&gt; ggplot(aes(x = price, y = carat)) + geom_bin2d() + scale_x_log10()</li>
 </ul>
 <p>(The answer I got from copilot to this prompt included non-working code having to do with relatively recent changes in the scales package. The example provided by Gemini worked.)</p>
-</section><section id="extending-and-improving-your-work" class="level3" data-number="11.3.3"><h3 data-number="11.3.3" class="anchored" data-anchor-id="extending-and-improving-your-work">
+<p>Once you are comfortable with some simple examples, try something more complex like the last example in Lesson 9:</p>
+<p>Explain the following code line by line:</p>
+<pre><code>diamonds |&gt;
+  mutate(price_per_carat = price / carat) |&gt;
+  group_by(color, clarity, cut) |&gt;
+  summarise(median_price_per_carat = median(price_per_carat),
+            n = n(),
+            .groups = "drop") |&gt;
+  arrange(-median_price_per_carat) |&gt;
+  group_by(cut) |&gt;
+  slice_head(n=2) |&gt;
+  arrange(-median_price_per_carat)</code></pre>
+<ul>
+<li>Ask the LLM to challenge you or give you some examples: <em>Give me some interesting calculations to make summary tables with group_by, mutate and summarize.</em>
+</li>
+</ul></section><section id="extending-and-improving-your-work" class="level3" data-number="11.3.3"><h3 data-number="11.3.3" class="anchored" data-anchor-id="extending-and-improving-your-work">
 <span class="header-section-number">11.3.3</span> Extending and improving your work</h3>
 <p>Take the code from your plots in Assignment 1 and ask an LLM for suggestions to improve the plot:</p>
 <ul>
@@ -547,6 +564,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>The code I got from this prompt went well beyond what we have learned so far in the course, and had errors that needed fixing – some of the variable names were given incorrectly. You should return to practice this sort of skill later on in the course.</p>
 <p>Refining your questions and goals based on initial vague goals is a key skill of data visualization. You should practice this skill often. An LLM can help you get started.</p>
+<p>Since we’re in the winter freeze-thaw snow-rain-ice cycle right now, my mind turned to the following question: <em>tidyverse code to compute the distribution of the number of days in a row with a daily high temperature below freezing in Halifax</em>. Gemini did a good job with this task.</p>
 </section><section id="keeping-your-mind-engaged" class="level3" data-number="11.3.5"><h3 data-number="11.3.5" class="anchored" data-anchor-id="keeping-your-mind-engaged">
 <span class="header-section-number">11.3.5</span> Keeping your mind engaged</h3>
 <p>The LLMs are modern magical oracles. Obviously it’s fine to use them for entertainment and not always think, but when you are trying to learn skills and incorporate new knowledge in your own mind, you have to stay engaged. I’ve found moving between the following “learning modes” can be very helpful:</p>
@@ -566,7 +584,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Software testing is the process of evaluating a piece of code to determine if it works as intended. This can involve writing test cases that check the output of the code for a variety of inputs, as well as checking for edge cases and error handling. For a data analysis task, this means providing a set of test data and known outputs, and checking that the code produces the expected results. This practice is valuable whether you write your own code, you get it from a team member, or you get it from an LLM.</p>
 <p>As a very simple example, I want to make a table that lists the months of the year and the number of days in each. Two simple tests I can design before the data are generated is to check that there are 12 rows in the table and that the total number of days is 365.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># tests; no output means the test passed</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># tests; no output means the test passed</span></span>
 <span><span class="va">test_nrow</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">!=</span> <span class="fl">12</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"Data frame does not have 12 rows"</span><span class="op">)</span></span>
@@ -580,7 +598,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Now I can ask an LLM to generate the code to create the table, and then run my tests on the output.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># generated code</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># generated code</span></span>
 <span><span class="va">months</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"January"</span>, <span class="st">"February"</span>, <span class="st">"March"</span>, <span class="st">"April"</span>, <span class="st">"May"</span>, <span class="st">"June"</span>,</span>
 <span>            <span class="st">"July"</span>, <span class="st">"August"</span>, <span class="st">"September"</span>, <span class="st">"October"</span>, <span class="st">"November"</span>, <span class="st">"December"</span><span class="op">)</span>,</span>
