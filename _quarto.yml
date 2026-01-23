@@ -62,4 +62,6 @@ format:
     # citation-location: margin
     code-link: true
 
+execute:
+  freeze: auto  # Only re-render if code changes
 

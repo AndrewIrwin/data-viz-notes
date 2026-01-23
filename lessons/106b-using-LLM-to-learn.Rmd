@@ -19,37 +19,42 @@ metacognition strategies that should be helpful as you use AI to learn new skill
  
 Over the past few months I have made an effort to get various LLM (chat gpt, copilot, gemini, deepseek) to help me with data analysis and visualization tasks by writing computer code to the following tasks:
 
-* generate points along a geodesic to plot a path on a map
-* parse a AIS messages from commercial ships, which are encoded in a complicated, nested data structure
-* compute prime numbers using a sieve wheel
-* write a complicated statistical model in a probabilistic programming language
-* assign students to projects based on a set of preference scores
+* generate points along a [geodesic](https://en.wikipedia.org/wiki/Geodesics_on_an_ellipsoid) to plot a path on a map,
+* parse a [AIS messages](https://en.wikipedia.org/wiki/Automatic_identification_system) from commercial ships, which are encoded in a complicated, nested data structure,
+* compute prime numbers using a [sieve wheel](https://en.wikipedia.org/wiki/Sieve_of_Pritchard),
+* write a complicated statistical model in a [probabilistic programming language](https://en.wikipedia.org/wiki/Probabilistic_programming), and
+* assign students to projects based on a set of [preference scores](https://en.wikipedia.org/wiki/Assignment_problem).
 
-In each case the computer generated code which would take me about an hour to produce with about a minute's work. Also in each case the code was non-functional. In some cases the LLM could be asked to fix the problem, but often while it agreed with me that there was a problem, the correction it provided did not work. 
+In each case the computer generated code which would take me about an hour to produce with about a minute's work. Also in each case the code was non-functional. In some cases the LLM could be asked to fix the problem, but often while it agreed with me that there was a problem, the correction it provided did not work. The lesson here is that LLM can write computer code, but it is essential that you understand the code so you can check it for errors, fix errors, and extend or expand the functionality of the code.
 
 I asked an AI to explain some code I had written more than a decade ago to me. It explained the code very well and suggested some improvements to the code that made it easier to read and faster. You may find asking LLMs to help explain code to increase your understanding of a piece computer code very helpful.
 
-I asked an AI to help me finish some code I had written, but hadn't got to work yet, to simulate a board game I used to play. It found three real errors in my code and suggested corrections, which worked.
+I asked an AI to help me finish some code I had written, but hadn't got to work yet, to simulate a board game I used to play. It found three real errors in my code and suggested corrections, which worked. If you start to work on code to solve a problem, then providing the code and a description to the LLM can increase the chances of getting output you find useful. This makes sense: the combination of sample code and a written description helps define the problem you are trying to solve.
 
-LLMs shift work from creating code to debugging code. A good skill to develop, but arguably more difficult. They can provide good stimulation for how to solve a problem.
+LLMs shift work you have to do from writing code to describing problems and debugging code. These are good skills to develop, but are arguably more difficult than learning to write the code yourself. LLMs are probably best used as a skill multiplier to help you do work faster than you might do on your own, but without the skill to solve a problem yourself you are likely to get nonsense or solve the wrong problem. They can provide good stimulation for how to solve a problem or identify a new skill you want to learn.
 
 Strengths:
 
-* super-human database of facts
-* large library of examples to draw upon
+* super-human database of facts,
+* large library of examples to draw upon and the ability to customize example code to your specific task,
 * attention to detail for finding mistakes
 
 Weaknesses:
 
-* will assert code is tested and works, but may be wrong
-* may use packages (libraries) that don't exist
+* will assert code is tested and works, but may be wrong,
+* may use packages (libraries) that don't exist or are outdated methods, and
+* hidden miss-communication between you and the LLM may lead to the wrong problem being solved.
 
 Risks I've experienced:
 
-* using code without checking it carefully
-* not paying attention to how the analysis works, and thus misunderstanding it and failing to learn from the opportunity
+* using code without checking it carefully,
+* not paying attention to how the proposed code works, misunderstanding it, and failing to learn from the opportunity,
+* not thinking clearly and wasting time,
+* developing false confidence in the LLM results,  and
+* developing an over reliance on prompts instead of thinking for myself.
 
-What's the goal? Learn and develop new skills and capacities. 
+
+What's the goal for this course? Learn and develop new skills and capacities. 
 
 ## LLMs to try
 
@@ -63,13 +68,118 @@ Each LLM has its own strengths and weaknesses. And they all are changing and bei
 
 ### Asking questions
 
+You can use the same queries you would use as a web search as a prompt for an LLM. After the first few lessons in this course that might include questions like:
+
+* Write code for a simple scatterplot based on the Palmer Penguins data using ggplot
+* What is tidy data?
+* Explain what the "aes" function in ggplot does.
+* What is the difference between staging, committing and pushing to github?
+
+The answers to each of these are generally excellent.
+
+You can ask more complex questions as well. Sometimes these prompts lead to suggestions for refining your question since there are many possible ways to answer the question.
+
+* Is there a version of the mtcars dataset with more modern data?
+* Make a ggplot of gapminder data showing life expectancy vs GDP per capita, with GDP on a log scale. Label the GDP axis using exponents, for example 1e5 = 10^5.
+* Find the Mauna Loa atmospheric CO2 data since 1960 and write code to plot the concentration of CO2 vs time.
+
+If you use an LLM to answer someone else's question, a good strategy to ensure you are learning something is to make notes on what was new in the solution beyond your current understanding.
+If you are trying to answer a question that you created for yourself, it's easier to know what you are trying to learn, but take a moment to reflect on the answer to see if you think it is correct, if you learned something new, and if there is anything new you can incorporate in your toolbox of skills.
+
+I strongly suggest you keep a written journal (perhaps as a qmd file) that explains what you learned from each session with the LLM.
+
 ### Explaining code
+
+It's still a bit early in the course to be asking an LLM to explain code, since we haven't done much beyond making a plot.
+
+Here are two ideas. Ask for an explanation for an element of the code, for example the pipe. Using an example I just got from the CO2 prompt:
+
+* Explain what %>% does in the code co2_1960 <- co2_raw %>% filter(year >= 1960)
+
+And here are some questions you might wonder about based on some of our early examples:
+
+* Does it matter if I use |> or %>%?
+* What is the difference between =, ==, and <- ?
+
+Or take a full example from Lesson 8:
+
+* Explain and improve diamonds |> ggplot(aes(x = price, y = carat)) + geom_bin2d() + scale_x_log10()
+
+(The answer I got from copilot to this prompt included non-working code having to do with relatively recent changes in the scales package. The example provided by Gemini worked.)
+
+Once you are comfortable with some simple examples, try something more complex like the last example in Lesson 9: 
+
+Explain the following code line by line: 
+
+```
+diamonds |>
+  mutate(price_per_carat = price / carat) |>
+  group_by(color, clarity, cut) |>
+  summarise(median_price_per_carat = median(price_per_carat),
+            n = n(),
+            .groups = "drop") |>
+  arrange(-median_price_per_carat) |>
+  group_by(cut) |>
+  slice_head(n=2) |>
+  arrange(-median_price_per_carat)
+```
+
+* Ask the LLM to challenge you or give you some examples: _Give me some interesting calculations to make summary tables with group_by, mutate and summarize._
+
+### Extending and improving your work
+
+Take the code from your plots in Assignment 1 and ask an LLM for suggestions to improve the plot:
+
+* Help me improve the following code to make a scatter plot: mpg |> ggplot() + geom_point(aes(displ, cty))
+
+This might make your mind wander -- 
+
+* Why is fuel efficiency sometimes reported in MPG and sometimes in L/100km? How can I convert the MPG in mtcars and update the plot using the new variable?
+
+These kinds of explorations are amazing ways to learn new ideas linked to existing knowledge in your head. Of course it works best if you write the question yourself based on your own knowledge.
+
+
+### Stimulating your thinking
+
+You can use an LLM in tutor mode. For example, start your prompt with "I want to learn how XXX works. Do not give me the code. Instead, ask me leading questions to help me figure out what I need to do." Try the following:
+
+* I'd like to reproduce Hans Rosling's life expectancy vs GDP figure, without animation using the tidyverse. I want to learn how to make the figure, so don't give me the code or an answer. Instead ask me questions to help me figure out what I need to know to solve this challenge.
+
+Then continue the dialog, using the steps you know. For example,
+
+* I can get as far as: gapminder |> ggplot() + geom_point(aes(gdpPerCapita, lifeExp)). Can you help me with the size of the dots?
+
+and keep going ... until you get tired.
+
+Here is a very broad question, but an LLM will still often give you a useful response:
+
+* Help me find and summarize temperature data from Halifax, NS using R and the tidyverse.
+
+The code I got from this prompt went well beyond what we have learned so far in the course, and had errors that needed fixing -- some of the variable names were given incorrectly. You should return to practice this sort of skill later on in the course.
+
+Refining your questions and goals based on initial vague goals is a key skill of data visualization. You should practice this skill often. An LLM can help you get started.
+
+Since we're in the winter freeze-thaw snow-rain-ice cycle right now, my mind turned to the following question: _tidyverse code to compute the distribution of the number of days in a row with a daily high temperature below freezing in Halifax_. Gemini did a good job with this task.
 
 ### Keeping your mind engaged
 
+The LLMs are modern magical oracles. Obviously it's fine to use them for entertainment and not always think, but when you are trying to learn skills and incorporate new knowledge in your own mind, you have to stay engaged. I've found moving between the following "learning modes" can be very helpful:
+
+* brainstorming how to create a visualization,
+* explaining the details of how some code works,
+* asking for help fixing or improving some code, and
+* simplifying code to show just the absolute essential details.
+
+After a few explorations, take a break from the LLM to 
+
+* write notes or a journal entry on what you have learned,
+* explain what you figured out to someone else who has the patience to engage and ask questions, and
+* deliberately use the new knowledge you've gained in a completely new computation.
+
+
 ### Testing the results
 
-Computer code is a particularly good example of a task where LLMs can help you do work. Software testing is the process of evaluating a piece of code to determine if it works as intended. This can involve writing test cases that check the output of the code for a variety of inputs, as well as checking for edge cases and error handling. For a data analysis task, this means providing a set of test data and known outputs, and checking that the code produces the expected results. This practice is valuable whether you write your own code, you get it from a team member, or you get it from an LLM.
+Software testing is the process of evaluating a piece of code to determine if it works as intended. This can involve writing test cases that check the output of the code for a variety of inputs, as well as checking for edge cases and error handling. For a data analysis task, this means providing a set of test data and known outputs, and checking that the code produces the expected results. This practice is valuable whether you write your own code, you get it from a team member, or you get it from an LLM.
 
 As a very simple example, I want to make a table that lists the months of the year and the number of days in each. Two simple tests I can design before the data are generated is to check that there are 12 rows in the table and that the total number of days is 365. 
 
@@ -105,10 +215,9 @@ If the tests pass without error, I can be reasonably confident that the code wor
 
 Notice that this data is clearly wrong for a leap year. A more sophisticated table of the lengths of months and a more comprehensive set of tests would be needed to catch this error. Properly guided, an LLM can produce that code for you as well, but with the prompts I used, this question was not raised by the LLM.
 
-
 ## Resources
 
-Copilot suggested a ten web resources from well-known websites that sounded like they would explain how to use AI to learn new skills. None of them existed.
+Copilot suggested ten web resources from well-known websites that sounded like they would explain how to use AI to learn new skills. None of them existed.
 
 ## Exercises
 
@@ -122,6 +231,8 @@ Copilot suggested a ten web resources from well-known websites that sounded like
 
 * "Explain what the following code does and suggest improvements"
 * "Find errors in the following code and suggest corrections"
+
+5. Use an LLM in "tutor mode" by including in your prompt the instruction that it is supposed to guide your learning and not provide solutions or written code.
 
 ## Summary
 
