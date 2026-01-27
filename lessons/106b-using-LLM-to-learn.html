@@ -509,16 +509,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>It’s still a bit early in the course to be asking an LLM to explain code, since we haven’t done much beyond making a plot.</p>
 <p>Here are two ideas. Ask for an explanation for an element of the code, for example the pipe. Using an example I just got from the CO2 prompt:</p>
 <ul>
-<li>Explain what %&gt;% does in the code co2_1960 &lt;- co2_raw %&gt;% filter(year &gt;= 1960)</li>
+<li>Explain what <code>%&gt;%</code> does in the code <code>co2_1960 &lt;- co2_raw %&gt;% filter(year &gt;= 1960)</code>
+</li>
 </ul>
 <p>And here are some questions you might wonder about based on some of our early examples:</p>
 <ul>
-<li>Does it matter if I use |&gt; or %&gt;%?</li>
-<li>What is the difference between =, ==, and &lt;- ?</li>
+<li>Does it matter if I use <code>|&gt;</code> or <code>%&gt;%</code>?</li>
+<li>What is the difference between <code>=</code>, <code>==</code>, and <code>&lt;-</code> ?</li>
 </ul>
 <p>Or take a full example from Lesson 8:</p>
 <ul>
-<li>Explain and improve diamonds |&gt; ggplot(aes(x = price, y = carat)) + geom_bin2d() + scale_x_log10()</li>
+<li>Explain and improve <code>diamonds |&gt; ggplot(aes(x = price, y = carat)) + geom_bin2d() + scale_x_log10()</code>
+</li>
 </ul>
 <p>(The answer I got from copilot to this prompt included non-working code having to do with relatively recent changes in the scales package. The example provided by Gemini worked.)</p>
 <p>Once you are comfortable with some simple examples, try something more complex like the last example in Lesson 9:</p>
@@ -540,7 +542,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">11.3.3</span> Extending and improving your work</h3>
 <p>Take the code from your plots in Assignment 1 and ask an LLM for suggestions to improve the plot:</p>
 <ul>
-<li>Help me improve the following code to make a scatter plot: mpg |&gt; ggplot() + geom_point(aes(displ, cty))</li>
+<li>Help me improve the following code to make a scatter plot: <code>mpg |&gt; ggplot() + geom_point(aes(displ, cty))</code>
+</li>
 </ul>
 <p>This might make your mind wander –</p>
 <ul>
@@ -555,7 +558,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Then continue the dialog, using the steps you know. For example,</p>
 <ul>
-<li>I can get as far as: gapminder |&gt; ggplot() + geom_point(aes(gdpPerCapita, lifeExp)). Can you help me with the size of the dots?</li>
+<li>I can get as far as: <code>gapminder |&gt; ggplot() + geom_point(aes(gdpPerCapita, lifeExp))</code>. Can you help me with the size of the dots?</li>
 </ul>
 <p>and keep going … until you get tired.</p>
 <p>Here is a very broad question, but an LLM will still often give you a useful response:</p>

@@ -119,7 +119,32 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar floating quarto-light">
 
@@ -453,12 +478,12 @@ div.csl-indent {
 <li>
 <code>summarise</code> for reducing a table to a single row or a single row for each value of a grouped variable.</li>
 </ul>
-<p>These tools mirror the methods used by database software for querying and summarizing data, such as the widely used SQL data query language. The correspondence is close enough that the tools can be used directly on databases by translating the tidyverse code into SQL with the <code>dbplyr</code> package. In databases, there are often links between two or more tables and information be combined using “joins”; R has all the standard joins for <a href="https://r4ds.had.co.nz/relational-data.html">combining data from two or more tables</a> into one.</p>
+<p>These tools mirror the methods used by database software for querying and summarizing data, such as the widely used SQL data query language. The correspondence is close enough that the tools can be used directly on databases by translating the tidyverse code into SQL with the <code>dbplyr</code> package. In databases, there are often links between two or more tables and information be combined using “joins”; R has all the standard joins for <a href="https://r4ds.hadley.nz/joins.html">combining data from two or more tables</a> into one.</p>
 <p>There are many other data manipulation and reduction tools to be learned, but these four functions are the foundation for a huge number of calculations to help you understand, simplify, summarize and communicate information about a dataset.</p>
-<p>We will work with the <code>diamonds</code> dataset; it’s fairly large and has a combination of quantitative and categorical data which can be used to illustrate these methods. R4DS <a href="https://r4ds.had.co.nz/transform.html">chapter 5</a> does many similar demonstrations with a large database of flight data. You should practice all these calculations on a data set of your choice (some ideas are <a href="301-data-sources.html">here</a>).</p>
+<p>We will work with the <code>diamonds</code> dataset; it’s fairly large and has a combination of quantitative and categorical data which can be used to illustrate these methods. R4DS <a href="https://r4ds.hadley.nz/data-transform.html">chapter 5</a> does many similar demonstrations with a large database of flight data. You should practice all these calculations on a data set of your choice (some ideas are <a href="301-data-sources.html">here</a>).</p>
 <section id="creating-new-variables-with-mutate" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="creating-new-variables-with-mutate">
 <span class="header-section-number">9.1</span> Creating new variables with mutate</h2>
-<p>The diamonds data has dimensions (x, y, and z) and a mass (carat) of each diamond. It might be interesting to compare a <a href="https://en.wikipedia.org/wiki/Cuboid">cuboid</a> approximation of the diamond to its mass to get a quantitative measure of how different each diamond is from a box. To start, we’ll create a new variable called <code>box</code> defined by the product of x, y, and z. Then we’ll create the ratio <code>box_ratio</code> as the quotient of its mass (<code>carat</code>) and this volume.</p>
+<p>The diamonds data has dimensions (x, y, and z, in mm) and a mass (carat) of each diamond. (One carat, ct, is equal to 0.2 g. The average density of diamond is 3.51 g/cm<span class="math inline">\(^3\)</span>, so you can estimate the volume of each diamond.) It might be interesting to compare a <a href="https://en.wikipedia.org/wiki/Cuboid">cuboid</a> approximation of the diamond to its mass to get a quantitative measure of how different each diamond is from a box. To start, we’ll create a new variable called <code>box</code> defined by the product of x, y, and z. Then we’ll create the ratio <code>box_ratio</code> as the quotient of its mass (<code>carat</code>) and this volume.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>box <span class="op">=</span> <span class="va">x</span><span class="op">*</span><span class="va">y</span><span class="op">*</span><span class="va">z</span>,</span>
@@ -480,12 +505,13 @@ div.csl-indent {
 <p>A few things to note:</p>
 <ul>
 <li>We use the name of a column to create or modify on the left hand side of the equals sign/</li>
-<li>We use an <code>=</code> instead of <code>&lt;-</code> when creating or modifying columns. The arrow is used to assign values to new R objects in your environment (see the Environment tab in R studio); here we are modifying the columns of a data frame so a different notation is appropriate.</li>
+<li>We use an <code>=</code> instead of <code>&lt;-</code> when creating or modifying columns. The arrow is used to assign values to new R objects in your environment (see the Environment tab in Rstudio); here we are modifying the columns of a data frame so a different notation is appropriate.</li>
+<li>Below you will see we use a repeated equals sign (<code>==</code>) to test if a variable has a particular value; this is another meaning of equals, so we use the equals sign, but we need to distinguish comparison and assignment. The usual solution in computing is to use two equals signs.</li>
 <li>The transformation shown above does not modify the <code>diamonds</code> object – it creates a new object, which you can then store in a new R variable in your environment. I often perform transformations simply for the purposes of making a table or a plot without ever storing the the result.</li>
 </ul></section><section id="filtering-rows" class="level2" data-number="9.2"><h2 data-number="9.2" class="anchored" data-anchor-id="filtering-rows">
 <span class="header-section-number">9.2</span> Filtering rows</h2>
 <p>Tbe <code>diamonds</code> data has many rows (more than 50,000). You might be interested in just a subset of the rows. We use <code>filter</code> to select rows to keep from a table. (We can specify rows to remove and use the logical not operator <code>!</code> to reverse the logic and keep all the other rows.)</p>
-<p>For example, there are only 5 diamonds of more than 4 carats:</p>
+<p>For example, there are only 5 observations of diamons with more than 4 carats:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">carat</span> <span class="op">&gt;</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -500,7 +526,7 @@ div.csl-indent {
 5  4.5  Fair    J     I1       65.8    58 18531  10.2 10.2   6.72</code></pre>
 </div>
 </div>
-<p>You can combine filtering operations by chaining them together with commas, pipes, or using boolean logic (<code>&amp;</code> for and; <code>|</code> for or). The following three expressions all do the same thing.</p>
+<p>You can combine filtering operations by chaining them together with commas, pipes, or using boolean logic (<code>&amp;</code> for and; <code>|</code> for or). Notice that we use a repeated equals sign (<code>==</code>) to indicate a comparison rather than assignment. The following three expressions all do the same thing.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">color</span> <span class="op">==</span> <span class="st">"J"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">cut</span> <span class="op">==</span> <span class="st">"Premium"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">carat</span> <span class="op">&gt;</span> <span class="fl">3.0</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -565,7 +591,7 @@ div.csl-indent {
 6   336 Very Good J     VVS2     0.24</code></pre>
 </div>
 </div>
-<p>You’ll notice I’ve used <code>head</code> to get just the first 6 rows of the data table. You can also use <code>tail</code> to get the last few rows. And you can modify the number of rows (see the help page for head and tail.)</p>
+<p>You’ll notice I’ve used <code>head</code> to get just the first 6 rows of the data table. You can also use <code>tail</code> to get the last few rows. And you can modify the number of rows (see the help page for <code>head</code> and <code>tail</code>.)</p>
 <p>A more general method for extracting rows by number is <code>slice</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu">slice</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">100</span>, <span class="fl">200</span>, <span class="fl">1000</span>, <span class="fl">5000</span>, <span class="fl">1000</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -581,18 +607,18 @@ div.csl-indent {
 6  1.12 Premium   J     SI2      60.6    59  2898  6.68  6.61  4.03</code></pre>
 </div>
 </div>
-<p>Sometimes with a large dataset I want to look at a random subset of all the rows. Use these variants on <code>slice_</code> for that task. (Try it yourself: you will get different rows each time.)</p>
+<p>Sometimes with a large dataset I want to look at a random subset of all the rows. Use this variant of <code>slice_</code> for that task. (Try it yourself: you will get different rows each time.)</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu">slice_sample</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 10
   carat cut       color clarity depth table price     x     y     z
   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  0.45 Good      D     VS2      63.7    61  1149  4.81  4.73  3.04
-2  1.13 Ideal     H     SI1      62      57  4959  6.66  6.73  4.15
-3  0.91 Very Good F     SI1      62.2    57  4108  6.19  6.25  3.87
-4  1.02 Ideal     G     VS2      62.8    57  6418  6.36  6.45  4.02
-5  0.43 Premium   G     VS2      59.1    60  1113  4.93  4.88  2.9 </code></pre>
+1  0.55 Very Good E     VS2      62.3    61  1669  5.16  5.21  3.23
+2  0.5  Ideal     E     SI1      62.2    57  1316  5.05  5.11  3.16
+3  0.32 Ideal     F     VS2      61.6    57   828  4.43  4.4   2.72
+4  0.3  Premium   E     VS2      61.7    61   844  4.31  4.28  2.65
+5  0.54 Very Good F     VS2      60.9    55  1639  5.25  5.31  3.21</code></pre>
 </div>
 </div>
 <p>You can use <code>arrange</code> to sort the data by any number of columns before slicing or displaying the data.</p>
