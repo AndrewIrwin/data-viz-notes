@@ -612,13 +612,13 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu">slice_sample</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 10
-  carat cut       color clarity depth table price     x     y     z
-  &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  0.55 Very Good E     VS2      62.3    61  1669  5.16  5.21  3.23
-2  0.5  Ideal     E     SI1      62.2    57  1316  5.05  5.11  3.16
-3  0.32 Ideal     F     VS2      61.6    57   828  4.43  4.4   2.72
-4  0.3  Premium   E     VS2      61.7    61   844  4.31  4.28  2.65
-5  0.54 Very Good F     VS2      60.9    55  1639  5.25  5.31  3.21</code></pre>
+  carat cut     color clarity depth table price     x     y     z
+  &lt;dbl&gt; &lt;ord&gt;   &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1  1.01 Good    E     SI1      64.1    59  4480  6.35  6.31  4.06
+2  0.73 Ideal   F     SI1      62.1    55  2822  5.75  5.78  3.58
+3  0.3  Ideal   F     VVS1     62.2    56   814  4.27  4.31  2.67
+4  0.34 Premium G     VS2      61.8    58   765  4.5   4.47  2.77
+5  1.2  Good    G     SI2      62.1    60  5310  6.72  6.78  4.19</code></pre>
 </div>
 </div>
 <p>You can use <code>arrange</code> to sort the data by any number of columns before slicing or displaying the data.</p>
@@ -666,7 +666,7 @@ Caused by warning in `Ops.ordered()`:
 </div>
 </section><section id="summarizing-data-tables" class="level2" data-number="9.4"><h2 data-number="9.4" class="anchored" data-anchor-id="summarizing-data-tables">
 <span class="header-section-number">9.4</span> Summarizing data tables</h2>
-<p>These filtering and transformation functions are powerful and encourage a really useful way of probing a complext dataset. The <code>summarize</code> (or <code>summarise</code>) provides a way to apply a function to one or more variables across all the rows or colletions of rows. To use this effectively you want to think of functions that operate on a set of numbers and return just a single one, such as <code>mean</code>, <code>median</code>, <code>max</code>, <code>min</code>, <code>sd</code>, or the simplest of all <code>n</code> which counts the number of rows.</p>
+<p>These filtering and transformation functions are powerful and encourage a really useful way of probing a complex dataset. The <code>summarize</code> (or <code>summarise</code>) provides a way to apply a function to one or more variables across all the rows or colletions of rows. To use this effectively you want to think of functions that operate on a set of numbers and return just a single one, such as <code>mean</code>, <code>median</code>, <code>max</code>, <code>min</code>, <code>sd</code>, or the simplest of all <code>n</code> which counts the number of rows.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu">summarise</span><span class="op">(</span>n_rows <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>, </span>
 <span>                      mean_price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">price</span><span class="op">)</span>,</span>
@@ -679,8 +679,8 @@ Caused by warning in `Ops.ordered()`:
 1  53940      3933.         2401       0.2</code></pre>
 </div>
 </div>
-<p>All the original data is gone, replaced by these four functions applied to all the data in the corresponding column. The name of the new column appears on the left side of the <code>=</code> and the calculation on the right. This is the same way we wrote the <code>mutate</code> function, but instead of creating a new variable and computing a value for each row, we get one value computed using all the rows.</p>
-<p>Rows can be grouped to get summaries for each level of the grouped varible. Let’s group on <code>cut</code> but otherwise repeat this calculation:</p>
+<p>All the original data are gone, replaced by these four functions applied to all the data in the corresponding column. The name of the new column appears on the left side of the <code>=</code> and the calculation on the right. This is the same way we wrote the <code>mutate</code> function, but instead of creating a new variable and computing a value for each row, we get one value computed using all the rows.</p>
+<p>Rows can be grouped to get summaries for each level of the grouped variable. Let’s group on <code>cut</code> but otherwise repeat this calculation:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">cut</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">summarise</span><span class="op">(</span>n_rows <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>, </span>
@@ -699,7 +699,7 @@ Caused by warning in `Ops.ordered()`:
 </div>
 </div>
 <p>Now we get 5 rows.</p>
-<p>You can group on as many variables at once as you like; the result will have one row for each combination of levels from each grouped variable. (You can even group on quantitative varibles, but you usually don’t want to!)</p>
+<p>You can group on as many variables at once as you like; the result will have one row for each combination of levels from each grouped variable. (You can even group on quantitative variables, but you usually don’t want to!)</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">cut</span>, <span class="va">clarity</span>, <span class="va">color</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">summarise</span><span class="op">(</span>n_rows <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>, </span>
@@ -719,8 +719,8 @@ Caused by warning in `Ops.ordered()`:
 5 Fair  I1      H         52      4213.        3340.      0.7 </code></pre>
 </div>
 </div>
-<p>Grouping doen’t do any calculations, it just makes a notation on a data frame that your grouping should be used for subsequent calculations that pay attention to grouping. After you summarise data, one grouping variable is removed (the last one) but the result is still grouped by the remaining variables. (See the notation: Groups: cut, clarity in the result above.)</p>
-<p><code>summarise</code> has an optional argument <code>.groups</code> to say what grouping you want to retain after the calculation is done. <code>drop_last</code> is the default, described above. Probably the next most frequently used choice is <code>drop</code> which ungroups all the rows. To see the diference, I’ll add another step, <code>count()</code>, which is equivalent to <code>summarise(n=n())</code> and counts rows.</p>
+<p>Grouping doesn’t do any calculations, it just makes a notation on a data frame that your grouping should be used for subsequent calculations that pay attention to grouping. After you summarise data, one grouping variable is removed (the last one) but the result is still grouped by the remaining variables. (See the notation: Groups: cut, clarity in the result above.)</p>
+<p><code>summarise</code> has an optional argument <code>.groups</code> to say what grouping you want to retain after the calculation is done. <code>drop_last</code> is the default, described above. Probably the next most frequently used choice is <code>drop</code> which un-groups all the rows. To see the difference, I’ll add another step, <code>count()</code>, which is equivalent to <code>summarise(n=n())</code> and counts rows.</p>
 <p>Using <code>drop_last</code> I get the number of rows for each level of cut and clarity (usually 7 for the levels of color: D, E, F, G, H, I, J) for all 40 combinations of cut and clarity (only a few shown here.)</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">cut</span>, <span class="va">clarity</span>, <span class="va">color</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -798,7 +798,7 @@ Caused by warning in `Ops.ordered()`:
 <span class="header-section-number">9.6</span> What does this have to do with data visualization?</h2>
 <p>These tools are very useful for exploring data; helping you understand the structure of your data. This will help you make better visualizations. In particular, the humble <code>n</code> function which counts rows should be used frequently when you summarize with mean or median to let you know if you have very few observations or too many for a good plot.</p>
 <p>Summarizing data, for example by computing means and standard errors can be done as part of the visualization process using <code>stat_summary</code>, but it can be easier to know exactly what you are calculating if you compute the summary yourself using the methods in this lesson and then plot the results.</p>
-<p>Tables can be a useful way to visualize data and grouped summaries are often the easiest way to make a table to describe your data.</p>
+<p>Tables can be a useful way to visualize data and grouped summaries are often the easiest way to make a table to describe your data. We will look at formatting tables to make them look good a few lessons from now.</p>
 </section><section id="further-reading" class="level2" data-number="9.7"><h2 data-number="9.7" class="anchored" data-anchor-id="further-reading">
 <span class="header-section-number">9.7</span> Further reading</h2>
 <ul>
