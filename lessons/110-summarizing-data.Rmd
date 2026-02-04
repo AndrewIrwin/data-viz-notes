@@ -11,15 +11,15 @@ The tidyverse packages provide powerful tools for transforming and summarizing d
 * `group_by` for dividing a data table in to a set of groups according to one or more variables, before summarizing the data, and
 * `summarise` for reducing a table to a single row or a single row for each value of a grouped variable.
 
-These tools mirror the methods used by database software for querying and summarizing data, such as the widely used SQL data query language. The correspondence is close enough that the tools can be used directly on databases by translating the tidyverse code into SQL with the `dbplyr` package. In databases, there are often links between two or more tables and information be combined using "joins"; R has all the standard joins for [combining data from two or more tables](https://r4ds.had.co.nz/relational-data.html) into one.
+These tools mirror the methods used by database software for querying and summarizing data, such as the widely used SQL data query language. The correspondence is close enough that the tools can be used directly on databases by translating the tidyverse code into SQL with the `dbplyr` package. In databases, there are often links between two or more tables and information be combined using "joins"; R has all the standard joins for [combining data from two or more tables](https://r4ds.hadley.nz/joins.html) into one.
 
 There are many other data manipulation and reduction tools to be learned, but these four functions are the foundation for a huge number of calculations to help you understand, simplify, summarize and communicate information about a dataset.
 
-We will work with the `diamonds` dataset; it's fairly large and has a combination of quantitative and categorical data which can be used to illustrate these methods. R4DS [chapter 5](https://r4ds.had.co.nz/transform.html) does many similar demonstrations with a large database of flight data. You should practice all these calculations on a data set of your choice (some ideas are [here](#data-sources)).
+We will work with the `diamonds` dataset; it's fairly large and has a combination of quantitative and categorical data which can be used to illustrate these methods. R4DS [chapter 5](https://r4ds.hadley.nz/data-transform.html) does many similar demonstrations with a large database of flight data. You should practice all these calculations on a data set of your choice (some ideas are [here](#data-sources)).
 
 ## Creating new variables with mutate
 
-The diamonds data has dimensions (x, y, and z) and a mass (carat) of each diamond. It might be interesting to compare a [cuboid](https://en.wikipedia.org/wiki/Cuboid) approximation of the diamond to its mass to get a quantitative measure of how different each diamond is from a box. To start, we'll create a new variable called `box` defined by the product of x, y, and z. Then we'll create the ratio `box_ratio` as the quotient of its mass (`carat`) and this volume.
+The diamonds data has dimensions (x, y, and z, in mm) and a mass (carat) of each diamond. (One carat, ct, is equal to 0.2 g. The average density of diamond is 3.51 g/cm$^3$, so you can estimate the volume of each diamond.) It might be interesting to compare a [cuboid](https://en.wikipedia.org/wiki/Cuboid) approximation of the diamond to its mass to get a quantitative measure of how different each diamond is from a box. To start, we'll create a new variable called `box` defined by the product of x, y, and z. Then we'll create the ratio `box_ratio` as the quotient of its mass (`carat`) and this volume.
 
 ```{r}
 diamonds |>
@@ -33,21 +33,22 @@ This function adds two new columns to the data table, computing values for every
 A few things to note:
 
 * We use the name of a column to create or modify on the left hand side of the equals sign/
-* We use an `=` instead of `<-` when creating or modifying columns. The arrow is used to assign values to new R objects in your environment (see the Environment tab in R studio); here we are modifying the columns of a data frame so a different notation is appropriate.
+* We use an `=` instead of `<-` when creating or modifying columns. The arrow is used to assign values to new R objects in your environment (see the Environment tab in Rstudio); here we are modifying the columns of a data frame so a different notation is appropriate.
+* Below you will see we use a repeated equals sign (`==`) to test if a variable has a particular value; this is another meaning of equals, so we use the equals sign, but we need to distinguish comparison and assignment. The usual solution in computing is to use two equals signs.
 * The transformation shown above does not modify the `diamonds` object -- it creates a new object, which you can then store in a new R variable in your environment. I often perform transformations simply for the purposes of making a table or a plot without ever storing the the result.
 
 ## Filtering rows
 
-Tbe `diamonds` data has many rows (more than 50,000). You might be interested in just a subset of the rows. We use `filter` to select rows to keep from a table. (We can specify rows to remove and use the logical not operator `!` to reverse the logic and keep all the other rows.)
+Tbe `diamonds` data has many rows (more than 50,000). You might be interested in just a subset of the rows. We use `filter` to select rows to keep from a table. (We can specify rows to remove and  use the logical not operator `!` to reverse the logic and keep all the other rows.)
 
-For example, there are only 5 diamonds of more than 4 carats:
+For example, there are only 5 observations of diamons with more than 4 carats:
 
 ```{r}
 diamonds |> 
   filter(carat > 4)
 ```
 
-You can combine filtering operations by chaining them together with commas, pipes, or using boolean logic (`&` for and; `|` for or). The following three expressions all do the same thing.
+You can combine filtering operations by chaining them together with commas, pipes, or using boolean logic (`&` for and; `|` for or). Notice that we use a repeated equals sign (`==`) to indicate a comparison rather than assignment. The following three expressions all do the same thing.
 
 ```{r}
 diamonds |> filter(color == "J") |> 
@@ -72,7 +73,7 @@ All of the tables above showed all 10 columns. Sometimes you only want some of t
 diamonds |> select(price, cut, color, clarity, carat) |> head()
 ```
 
-You'll notice I've used `head` to get just the first 6 rows of the data table. You can also use `tail` to get the last few rows. And you can modify the number of rows (see the help page for head and tail.)
+You'll notice I've used `head` to get just the first 6 rows of the data table. You can also use `tail` to get the last few rows. And you can modify the number of rows (see the help page for `head` and `tail`.)
 
 A more general method for extracting rows by number is `slice`.
 
@@ -80,7 +81,7 @@ A more general method for extracting rows by number is `slice`.
 diamonds |> slice(c(1, 100, 200, 1000, 5000, 1000))
 ```
 
-Sometimes with a large dataset I want to look at a random subset of all the rows. Use these variants on `slice_` for that task. (Try it yourself: you will get different rows each time.)
+Sometimes with a large dataset I want to look at a random subset of all the rows. Use this variant of `slice_` for that task. (Try it yourself: you will get different rows each time.)
 
 ```{r}
 diamonds |> slice_sample(n = 5)
@@ -104,7 +105,7 @@ diamonds |> select(cut, clarity, color) |>
 
 ## Summarizing data tables
 
-These filtering and transformation functions are powerful and encourage a really useful way of probing a complext dataset. The `summarize` (or `summarise`) provides a way to apply a function to one or more variables across all the rows or colletions of rows. To use this effectively you want to think of functions that operate on a set of numbers and return just a single one, such as `mean`, `median`, `max`, `min`, `sd`, or the simplest of all `n` which counts the number of rows.
+These filtering and transformation functions are powerful and encourage a really useful way of probing a complex dataset. The `summarize` (or `summarise`) provides a way to apply a function to one or more variables across all the rows or colletions of rows. To use this effectively you want to think of functions that operate on a set of numbers and return just a single one, such as `mean`, `median`, `max`, `min`, `sd`, or the simplest of all `n` which counts the number of rows.
 
 ```{r}
 diamonds |> summarise(n_rows = n(), 
@@ -112,9 +113,10 @@ diamonds |> summarise(n_rows = n(),
                       median_price = median(price),
                       min_carat = min(carat))
 ```
-All the original data is gone, replaced by these four functions applied to all the data in the corresponding column. The name of the new column appears on the left side of the `=` and the calculation on the right. This is the same way we wrote the `mutate` function, but instead of creating a new variable and computing a value for each row, we get one value computed using all the rows.
 
-Rows can be grouped to get summaries for each level of the grouped varible. Let's group on `cut` but otherwise repeat this calculation:
+All the original data are gone, replaced by these four functions applied to all the data in the corresponding column. The name of the new column appears on the left side of the `=` and the calculation on the right. This is the same way we wrote the `mutate` function, but instead of creating a new variable and computing a value for each row, we get one value computed using all the rows.
+
+Rows can be grouped to get summaries for each level of the grouped variable. Let's group on `cut` but otherwise repeat this calculation:
 
 ```{r message=FALSE}
 diamonds |> group_by(cut) |>
@@ -126,7 +128,7 @@ diamonds |> group_by(cut) |>
 
 Now we get 5 rows.
 
-You can group on as many variables at once as you like; the result will have one row for each combination of levels from each grouped variable. (You can even group on quantitative varibles, but you usually don't want to!)
+You can group on as many variables at once as you like; the result will have one row for each combination of levels from each grouped variable. (You can even group on quantitative variables, but you usually don't want to!)
 
 ```{r message=FALSE}
 diamonds |> group_by(cut, clarity, color) |>
@@ -137,9 +139,9 @@ diamonds |> group_by(cut, clarity, color) |>
   head(5)
 ```
 
-Grouping doen't do any calculations, it just makes a notation on a data frame that your grouping should be used for subsequent calculations that pay attention to grouping. After you summarise data, one grouping variable is removed (the last one) but the result is still grouped by the remaining variables. (See the notation: Groups: cut, clarity in the result above.)
+Grouping doesn't do any calculations, it just makes a notation on a data frame that your grouping should be used for subsequent calculations that pay attention to grouping. After you summarise data, one grouping variable is removed (the last one) but the result is still grouped by the remaining variables. (See the notation: Groups: cut, clarity in the result above.)
 
-`summarise` has an optional argument `.groups` to say what grouping you want to retain after the calculation is done. `drop_last` is the default, described above. Probably the next most frequently used choice is `drop` which ungroups all the rows. To see the diference, I'll add another step, `count()`, which is equivalent to `summarise(n=n())` and counts rows.
+`summarise` has an optional argument `.groups` to say what grouping you want to retain after the calculation is done. `drop_last` is the default, described above. Probably the next most frequently used choice is `drop` which un-groups all the rows. To see the difference, I'll add another step, `count()`, which is equivalent to `summarise(n=n())` and counts rows.
 
 Using `drop_last` I get the number of rows for each level of cut and clarity (usually 7 for the levels of color: D, E, F, G, H, I, J) for all 40 combinations of cut and clarity (only a few shown here.)
 
@@ -195,7 +197,7 @@ These tools are very useful for exploring data; helping you understand the struc
 
 Summarizing data, for example by computing means and standard errors can be done as part of the visualization process using `stat_summary`, but it can be easier to know exactly what you are calculating if you compute the summary yourself using the methods in this lesson and then plot the results.
 
-Tables can be a useful way to visualize data and grouped summaries are often the easiest way to make a table to describe your data.
+Tables can be a useful way to visualize data and grouped summaries are often the easiest way to make a table to describe your data. We will look at formatting tables to make them look good a few lessons from now.
 
 
 

@@ -54,6 +54,9 @@ There are a few different ways of working with github and Rstudio. For this cour
 -   Push the changes to github
 -   Check the github website to see that the changes have been received
 
+Note that you can see modification times for all files in your repository on GitHub. You can preview the Quarto file (.qmd) but the rendered file (.html) is shown as HTML code not as a formatted web page. As long as the file has the correct modification time, you can be confident that the version from your computer has been copied to the GitHub server.
+
+
 ## Setup
 
 You should have already done this step as part of an earlier lesson. The instructions are repeated below in case you missed the step or something went wrong.
