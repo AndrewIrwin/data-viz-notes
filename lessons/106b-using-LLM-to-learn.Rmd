@@ -13,8 +13,6 @@ AI assistants are changing frequently and you should anticipate that strategies 
 effectively will need to change over time. This lesson focusses on core skills and
 metacognition strategies that should be helpful as you use AI to learn new skills and do work.
 
-
-
 ## Introduction
  
 Over the past few months I have made an effort to get various LLM (chat gpt, copilot, gemini, deepseek) to help me with data analysis and visualization tasks by writing computer code to perform the following tasks:
@@ -94,16 +92,16 @@ It's still a bit early in the course to be asking an LLM to explain code, since 
 
 Here are two ideas. Ask for an explanation for an element of the code, for example the pipe. Using an example I just got from the CO2 prompt:
 
-* Explain what %>% does in the code co2_1960 <- co2_raw %>% filter(year >= 1960)
+* Explain what `%>%` does in the code `co2_1960 <- co2_raw %>% filter(year >= 1960)`
 
 And here are some questions you might wonder about based on some of our early examples:
 
-* Does it matter if I use |> or %>%?
-* What is the difference between =, ==, and <- ?
+* Does it matter if I use `|>` or `%>%`?
+* What is the difference between `=`, `==`, and `<-` ?
 
 Or take a full example from Lesson 8:
 
-* Explain and improve diamonds |> ggplot(aes(x = price, y = carat)) + geom_bin2d() + scale_x_log10()
+* Explain and improve `diamonds |> ggplot(aes(x = price, y = carat)) + geom_bin2d() + scale_x_log10()`
 
 (The answer I got from copilot to this prompt included non-working code having to do with relatively recent changes in the scales package. The example provided by Gemini worked.)
 
@@ -130,7 +128,7 @@ diamonds |>
 
 Take the code from your plots in Assignment 1 and ask an LLM for suggestions to improve the plot:
 
-* Help me improve the following code to make a scatter plot: mpg |> ggplot() + geom_point(aes(displ, cty))
+* Help me improve the following code to make a scatter plot: `mpg |> ggplot() + geom_point(aes(displ, cty))`
 
 This might make your mind wander -- 
 
@@ -147,7 +145,7 @@ You can use an LLM in tutor mode. For example, start your prompt with "I want to
 
 Then continue the dialog, using the steps you know. For example,
 
-* I can get as far as: gapminder |> ggplot() + geom_point(aes(gdpPerCapita, lifeExp)). Can you help me with the size of the dots?
+* I can get as far as: `gapminder |> ggplot() + geom_point(aes(gdpPerCapita, lifeExp))`. Can you help me with the size of the dots?
 
 and keep going ... until you get tired.
 
