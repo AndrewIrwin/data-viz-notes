@@ -57,7 +57,7 @@ t3 <- t2 |> pivot_longer(cols = `1987`:`2007`, names_to = "year", values_to = "m
 t3
 ```
 
-There is an important difference between the original table `t1` and this recovered table `t3`: the year variable in t1 was an integer (numeric) but the year variable in `t3` is character (text). This will matter if you want to calculate with the new year variable or put it on a quantitative scale. The `hablar` package makes it really easy to convert variables from one type to another:
+There is an important difference between the original table `t1` and this recovered table `t3`: the year variable in `t1` was an integer (numeric) but the year variable in `t3` is character (text). This will matter if you want to calculate with the new year variable or put it on a quantitative scale. The `hablar` package makes it really easy to convert variables from one type to another:
 
 ```{r}
 t3 |> convert(int(year))
@@ -88,7 +88,7 @@ who_long <- who_long |> filter(!is.na(counts))
 
 The category variable combines three pieces of information together in one label. How can we decode the category into three columns: diagnosis, sex, and age group? The `separate` function is made for this. The easiest way to use separate is if the variable you are separating is consistently structured with the same character between each column, such as new_rel_f_2534. That's not the case here: some values start with `new_` and some are missing the underscore after the `new`. Also there is no underscore between sex and age group. So we will do a bit of pre-processing using the `stringr` package before we use separate.
 
-First, I'll remove "new" or "new_" (described concisely by a "regular expression" using new_*). Then I'll change `_f` to `_f_` and `_m` to `_m_`. When you first start learning to do these kinds of manipulations, you should check through a lot of the cases to be sure all the transformations worked the way you expect. There are a lot os `str_` functions in the `stringr` package to help with these kinds of manipulations.
+First, I'll remove "new" or "new_" (described concisely by a "regular expression" using new_*). Then I'll change `_f` to `_f_` and `_m` to `_m_`. When you first start learning to do these kinds of manipulations, you should check through a lot of the cases to be sure all the transformations worked the way you expect. There are a lot of `str_` functions in the `stringr` package to help with these kinds of manipulations.
 
 ```{r}
 who_long |> mutate(category = str_remove(category, "new_*"),
