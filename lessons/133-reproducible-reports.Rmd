@@ -90,9 +90,10 @@ What makes code easier to read? Consistency, indentation when an idea continues 
 
 ## Customization of result reporting in quarto
 
-The first line of a code chunk can be as simple as `{r}` but you can also include many options between the braces. The [markdown book](https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html) describes the options available. Here I will demonstrate a few chunk options related to figures and formatting output.
+The first line of a code chunk can be as simple as `{r}` but you can also include many options between the braces or in special comments in the code block. The [quarto documentation](https://quarto.org/docs/computations/r.html) and [markdown book](https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html) describe the options available. Here I will demonstrate a few chunk options related to figures and formatting output.
 
-Knitting a document usually stops when an error is encountered. This is a safety measure to alert you to a document which is not reproducible because of errors. On rare occasions you may want to use the chunk option `error=TRUE` to allow error messages to appear in knitted output and not stop the knitting process.
+
+Rendering (quarto, or knitting for Rmd) a document usually stops when an error is encountered. This is a safety measure to alert you to a document which is not reproducible because of errors. On rare occasions you may want to use the chunk option `error=TRUE` to allow error messages to appear in knitted output and not stop the knitting process.
 
 ```{r error=TRUE}
 1 + "A"

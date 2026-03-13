@@ -11,7 +11,7 @@ library(kableExtra)
 # library(ggvegan) # remotes::install_github("gavinsimpson/ggvegan") 
 ```
 
-Multidimensional scaling (MDS) is another approach to ordination. The purpose is similar to the goals of PCA, but the methods are a bit different. With MDS, the starting point is a similarity, or distance matrix, providing measurements between all pairs of data. Many different [functions](https://pages.mtu.edu/~shanem/psy5220/daily/Day16/MDS.html#:~:text=Multidimentional%20scaling%20(MDS)%20is%20used,measures%20between%20objects%20or%20cases.) can be used to compute this similarity matrix. Commonly distance functions are used. If quantitative data have very skewed distributions, or there is no good way to interpret the distance between points, the data may be converted to ranks (1, 2, 3, ...) before the similarity measure is computed; then the method is called non-metric multidimensional scaling (NMDS) in recognition of the fact that the information being presented is not related to a distance.
+Multidimensional scaling (MDS) is another approach to ordination. The purpose is similar to the goals of PCA, but the methods are a bit different. With MDS, the starting point is a similarity, or distance matrix, providing measurements between all pairs of data. Many different [functions](https://pages.mtu.edu/~shanem/psy5220/daily/Day16/MDS.html) can be used to compute this similarity matrix. Commonly distance functions are used. If quantitative data have very skewed distributions, or there is no good way to interpret the distance between points, the data may be converted to ranks (1, 2, 3, ...) before the similarity measure is computed; then the method is called non-metric multidimensional scaling (NMDS) in recognition of the fact that the information being presented is not related to a distance.
 
 ### Cities on a map
 
@@ -64,6 +64,7 @@ bind_cols(cities, as_tibble(mds1)) |>
   labs(title = "Map reconstructed from equirectangular distance matrix",
        x = "", y = "")
 ```
+
 ```{r}
 city_distance <- rdist.earth(cities |> dplyr::select(lng, lat) |> as.matrix(), 
                              miles = FALSE) # geodesic distance
@@ -82,7 +83,7 @@ bind_cols(cities, as_tibble(mds1)) |>
 
 [Morse code](https://en.wikipedia.org/wiki/Morse_code) is a way of sending text messages using just two symbols: dot and dash, which was designed to be transmitted by a person clicking a key to make sounds and the receiver listening to the sounds and translating the message as it arrives. 
 
-The dataset below was created as part of an experiment to measure the rate at which patterns of sounds for one symbol were confused with sounds for a different symbol. The matrix is symmetric dissimilarity measure. Rows and columns vary across the 36 symbols tested (26 letters and 10 numeric digits). All diagonals are 0s. The off diagonal values are large if the sounds are not likely to be confuesed. Smaller dissimilarities correspond to symbols that are more likely to be confused. A small excerpt of the table is shown.
+The dataset below was created as part of an experiment to measure the rate at which patterns of sounds for one symbol were confused with sounds for a different symbol. The matrix is symmetric dissimilarity measure. Rows and columns vary across the 36 symbols tested (26 letters and 10 numeric digits). All diagonals are 0s. The off diagonal values are large if the sounds are not likely to be confused. Smaller dissimilarities correspond to symbols that are more likely to be confused. A small excerpt of the table is shown.
 
 ```{r}
 morse.dist <- read.delim('https://raw.githubusercontent.com/zdealveindy/anadat-r/master/data/morsecodes-dist.txt',
