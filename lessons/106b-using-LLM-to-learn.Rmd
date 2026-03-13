@@ -4,10 +4,10 @@
 
 Artificial intelligence (AI), particularly in the form of large language models (LLM) that generate computer code and natural language text, has become a powerful tool in recent years. There are several skills to manage when you are trying to use LLMs to learn to accomplish tasks:
 
-* Learn effective ways to ask the computer for help
-* Identify which tasks are done well and which tasks are done poorly by LLMs
-* Ensure the computer helps you extend and expand your knowledge, rather than just replacing your brain (the GPS problem)
-* Develop strategies for knowing if the solutions provided by the computer are correct
+* Learn effective ways to ask the computer for help,
+* Identify which tasks are done well and which tasks are done poorly by LLMs,
+* Ensure the computer helps you extend and expand your knowledge, rather than just replacing your brain (the GPS problem), and
+* Develop strategies to determine if the solutions provided by the computer are correct.
 
 AI assistants are changing frequently and you should anticipate that strategies to use them
 effectively will need to change over time. This lesson focusses on core skills and
@@ -15,7 +15,7 @@ metacognition strategies that should be helpful as you use AI to learn new skill
 
 ## Introduction
  
-Over the past few months I have made an effort to get various LLM (chat gpt, copilot, gemini, deepseek) to help me with data analysis and visualization tasks by writing computer code to the following tasks:
+Over the past few months I have made an effort to get various LLM (chat gpt, copilot, gemini, deepseek) to help me with data analysis and visualization tasks by writing computer code to perform the following tasks:
 
 * generate points along a [geodesic](https://en.wikipedia.org/wiki/Geodesics_on_an_ellipsoid) to plot a path on a map,
 * parse a [AIS messages](https://en.wikipedia.org/wiki/Automatic_identification_system) from commercial ships, which are encoded in a complicated, nested data structure,
