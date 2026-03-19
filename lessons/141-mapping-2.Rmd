@@ -10,6 +10,7 @@ library(tidyverse)
 library(leaflet) # sliding maps
 library(ggmap) # static maps
 library(osmdata) # for geolocation
+library(rnaturalearth)
 ```
 
 Many online services generate tile maps. Generally a small number of maps are available for free and then further maps require a subscription. For causal use the free service tier is almost always sufficient. To keep track of your usage you sometimes need to sign up for an API key. The first example below is unusual because you can use these maps without any account. Tools and services for this sort of mapping change frequently, so this lesson shows how to use two different services.
@@ -60,35 +61,41 @@ m3
 
 It's common to see "chloropleth" maps of the USA in which geographic regions are coloured to show a quantitative or categorical variable, such as population density or election results. These maps are less common in Canada due to two main factors: the geographic concentration of the population in cities means that area maps are even less informative than for the USA and the latitude range of Canada makes for some severe challenges when plotting whole-country chloropleth maps on commonly used projections. Nevertheless, it is possible. Here's a demonstration with some random numbers for "data".
 
-```{r message=FALSE, eval=FALSE}
-# example not working, data file has moved
-library(geojsonio)
+```{r message=FALSE, eval=TRUE}
+canada <- ne_states(country = "canada", returnclass = "sf")
 pal <- colorNumeric("viridis", NULL)  # make a viridis palette
-canada <- geojson_read("https://gist.githubusercontent.com/mikelotis/2156d7c170d10d2c77cb79424fe2137d/raw/7a13748ed7ea5ba64876c77c53b6cb64dd5c3ab0/canada-province.geojson", what="sp")
-my_values = runif(13, 0, 10) # random numbers between 0 and 10
+my_values <- runif(nrow(canada), 0, 10) # Using nrow(canada) ensures the length matches
 leaflet() |>
   addTiles() |>
-  addPolygons(data = canada, fillColor = ~ pal(my_values)) |>
+  addPolygons(
+    data = canada, 
+    fillColor = ~pal(my_values), 
+    color = "white",      # Added a border color for clarity
+    weight = 1, 
+    fillOpacity = 0.7
+  ) |>
   addLegend(pal = pal, values = my_values, opacity = 1.0)
+
 ```
 
 
 ## Tiled map with ggmap
 
-In this section we will use tile maps from Google. To use google maps, you need to have an API key (which may cost money). We will use the `ggmap` package to download and draw the map.
+In this section we will use tile maps from Stadia maps. To use Stadia maps, you need to have an API key (a free account is available). We will use the `ggmap` package to download and draw the map. The map will be drawn from tiles, but it will be a static (not sliding, interactive) map.
 
 There are two steps. First download the tiles needed for your map by specifying
 
 * the bounding box in degrees latitude and longitude, and
 * the [zoom level](https://wiki.openstreetmap.org/wiki/Zoom_levels) of the map.
 
-Always start with a small zoom level -- if you make it too big you will download a lot of unnecessary data, which takes time and imposes a burden on the service.
+Always start with a small zoom level -- if you make it too big you will download a lot of unnecessary data, which takes time and imposes a burden on the service. At zoom level 4, there are only 256 tiles for the whole globe and each tile is 22.5° wide. (There are 4 to the power of the zoom level number of tiles on the earth. At the "building" scale there are a billion tiles for the globe.)
 
-```{r message=FALSE, eval=FALSE}
+```{r message=FALSE}
 # requires API key; read the help to get this set up on your computer
-mymap_terrain <- get_googlemap(bbox = c(left = -130, bottom = 41, right = -50, top = 60),
-                                zoom=4, maptype = "terrain")
-ggmap(mymap_terrain)  
+# register_stadiamaps("API_key")
+bbox <- c(left = -145, bottom = 41, right = -50, top = 70) # Roughly Canada
+canada_map2 <- get_stadiamap(bbox, zoom = 4, maptype = "stamen_toner_lite")
+ggmap(canada_map2)  
 ```
 
 This is a regular ggplot, so you can add lines and points to a map easily, using latitude and longitude as coordinates. Placing text on a map in a readable and attractive way can be quite a challenge.
@@ -98,17 +105,17 @@ my_points <- tibble(lat = c(43+57/60, 49+53/60),
                     lon = c(-59-55/60, -97-9/60),
                     label = c("Sable Is.", "Winnipeg")
 )
-ggmap(mymap_terrain)  +
+ggmap(canada_map2)  +
    geom_point(data =my_points, color="brown") + 
    geom_text(data = my_points, aes(label=label))
-
 ```
 
 You can also zoom in on urban areas.
 
 ```{r message=FALSE, eval=FALSE}
-mymap_halifax <- get_googlemap(bbox = c(left = -63.6-0.1, bottom = 44.60, right = -63.6+0.1, top = 44.75), 
-                              zoom=12, maptype = "toner-lite")
+mymap_halifax <- get_stadiamap(bbox = c(left = -63.6-0.1, bottom = 44.60, 
+                                        right = -63.6+0.1, top = 44.75),
+                               zoom = 12, maptype = "stamen_toner_lite")
 ggmap(mymap_halifax)  
 ```
 
@@ -117,9 +124,9 @@ ggmap(mymap_halifax)
 In addition to `tidyverse`, I've used the following packages
 
 * `leaflet` for making interactive (zoomable, draggable) maps
-* `ggmap`
+* `ggmap` for `get_stadiamap`
 * `osmdata` for geolocation function `getbb`
-* `geojsonio`
+* `rnaturalearth`
 
 ## Further reading 
 

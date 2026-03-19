@@ -5,7 +5,7 @@
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(cansim)
-# library(ggheatmap) # remotes::install_github("tleonardi/ggheatmap")
+library(tidyheatmaps) 
 ```
 
 Sometimes geospatial data doesn't need to be shown on a map. If there are a small number of categories -- for example the provinces of Canada -- a regular boxplot or dotplot (scatterplot with a categorical axis) can work just fine. We are very used to seeing [coloured maps of the United States](https://www.esri.com/en-us/maps-we-love/gallery/popular-vote), but these distort data in ways that people [rarely recognize](https://xkcd.com/2399/). For example, we often care about the number of people affected by a factor and maps serve to [confuse area and population](https://xkcd.com/1138/). There are [tricks](https://www.businessinsider.com/2016-election-results-maps-population-adjusted-cartogram-2016-11) (and [more tricks](https://stats.stackexchange.com/questions/136007/data-visualization-alternatives-to-choropleth-maps-for-spatial-data-and-statist)) like shading and adjusting regions to the population size, but perceptual problems persist. We rarely see maps like this for Canada because the way population and political power is distributed is very different in Canada compared to the USA.
@@ -46,27 +46,27 @@ covid_ss3 |>
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-A second approach is to group the rows and columns so that similar patterns are side by side. FIXME find heatmpa function.
+A second approach is to group the rows and columns so that similar patterns are side by side. This can be accomplished with `tidyheatmap` and using the `cluster_rows` and `cluster_cols` options.
 
-```{r message=FALSE, eval=FALSE}
-covid_ss4 <- covid_ss3 |> select(GEO, `Age group`, VALUE) |>
-  pivot_wider(names_from = GEO, values_from = VALUE) 
-data.frame(covid_ss4 |> select(-`Age group`), 
-              row.names = covid_ss4 |> pull(`Age group`)) |>
-  ggheatmap()
+
+```{r message=FALSE}
+covid_ss3 |>
+  tidyheatmap(rows = `Age group`, columns = `GEO`, values = VALUE,
+              cluster_rows = TRUE, cluster_cols = TRUE)
 ```
 
-From this analysis you can tell that the number of cases is structured by age (see the tree on left side of the plot) and geographically. The number of people in each region is very different, so you might want to account for that in some way. One approach would be to compute the cases per capita in each region, but I don't have those data handy. An alternative is to allocate the number of cases to age classes as proportions, by dividing the number of cases in each region and age group by the total in each region. We can use scale to accomplish that scaling. Now the color represents the proportion of COVID-19 cases in each age class, scaled within a region.
+From this analysis you can tell that the number of cases is structured by age (see the tree on left side of the plot) and geographically. The number of people in each region is very different, so you might want to account for that in some way. One approach would be to compute the cases per capita in each region, but I don't have those data handy. An alternative is to allocate the number of cases to age classes as proportions, by dividing the number of cases in each region and age group by the total in each region. We can use `scale` to accomplish that scaling. Now the color represents the proportion of COVID-19 cases in each age class, scaled within a region.
 
-```{r message=FALSE, eval=FALSE}
-data.frame(covid_ss4 |> select(-`Age group`), 
-              row.names = covid_ss4 |> pull(`Age group`)) %>%
-  scale(center = FALSE, scale = colSums(.)) |>
-  as.data.frame() |>
-  ggheatmap()
+```{r message=FALSE, }
+covid_ss3 |>
+  tidyheatmap(rows = `Age group`, columns = `GEO`, values = VALUE,
+              cluster_rows = TRUE, cluster_cols = TRUE, 
+              scale = "column")
 ```
 
 Matching the previous visualization, we see that the proportion of cases is higher in people age 60 and older compared to younger groups. We now also see that the highest proportion of cases (about 20% or more) was in inviduals aged 80 and over in Quebec and in the 20-29 age group in BC and Yukon. The distribution of cases across ages was most similar between Ontario + Nunavut and BC + Yukon.
+
+Change the `scale` option to `row`. Make a guess about what the heatmap will show before you draw the figure.
 
 ## Specialized maps of the USA
 
@@ -95,7 +95,7 @@ For these reasons, you should consider alternatives to maps even when your data 
 In addition to `tidyverse` I've used the following packages:
 
 * `cansim` for Statistics Canada data
-* `ggheatmap` available on github using `remotes::install_github("tleonardi/ggheatmap")`
+* `tidyheatmaps` 
 * `statebins` for drawing maps with one block per state
 
 ## Further reading
