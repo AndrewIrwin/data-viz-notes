@@ -493,23 +493,33 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>A second approach is to group the rows and columns so that similar patterns are side by side. FIXME find heatmpa function.</p>
+<p>A second approach is to group the rows and columns so that similar patterns are side by side. This can be accomplished with <code>tidyheatmap</code> and using the <code>cluster_rows</code> and <code>cluster_cols</code> options.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_ss4</span> <span class="op">&lt;-</span> <span class="va">covid_ss3</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="va">GEO</span>, <span class="va">`Age group`</span>, <span class="va">VALUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">GEO</span>, values_from <span class="op">=</span> <span class="va">VALUE</span><span class="op">)</span> </span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">covid_ss4</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">`Age group`</span><span class="op">)</span>, </span>
-<span>              row.names <span class="op">=</span> <span class="va">covid_ss4</span> <span class="op">|&gt;</span> <span class="fu">pull</span><span class="op">(</span><span class="va">`Age group`</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">ggheatmap</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_ss3</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">tidyheatmap</span><span class="op">(</span>rows <span class="op">=</span> <span class="va">`Age group`</span>, columns <span class="op">=</span> <span class="va">`GEO`</span>, values <span class="op">=</span> <span class="va">VALUE</span>,</span>
+<span>              cluster_rows <span class="op">=</span> <span class="cn">TRUE</span>, cluster_cols <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="142-mapping-3_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<p>From this analysis you can tell that the number of cases is structured by age (see the tree on left side of the plot) and geographically. The number of people in each region is very different, so you might want to account for that in some way. One approach would be to compute the cases per capita in each region, but I don’t have those data handy. An alternative is to allocate the number of cases to age classes as proportions, by dividing the number of cases in each region and age group by the total in each region. We can use scale to accomplish that scaling. Now the color represents the proportion of COVID-19 cases in each age class, scaled within a region.</p>
+</div>
+</div>
+<p>From this analysis you can tell that the number of cases is structured by age (see the tree on left side of the plot) and geographically. The number of people in each region is very different, so you might want to account for that in some way. One approach would be to compute the cases per capita in each region, but I don’t have those data handy. An alternative is to allocate the number of cases to age classes as proportions, by dividing the number of cases in each region and age group by the total in each region. We can use <code>scale</code> to accomplish that scaling. Now the color represents the proportion of COVID-19 cases in each age class, scaled within a region.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">covid_ss4</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">`Age group`</span><span class="op">)</span>, </span>
-<span>              row.names <span class="op">=</span> <span class="va">covid_ss4</span> <span class="op">|&gt;</span> <span class="fu">pull</span><span class="op">(</span><span class="va">`Age group`</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span>center <span class="op">=</span> <span class="cn">FALSE</span>, scale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">ggheatmap</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">covid_ss3</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">tidyheatmap</span><span class="op">(</span>rows <span class="op">=</span> <span class="va">`Age group`</span>, columns <span class="op">=</span> <span class="va">`GEO`</span>, values <span class="op">=</span> <span class="va">VALUE</span>,</span>
+<span>              cluster_rows <span class="op">=</span> <span class="cn">TRUE</span>, cluster_cols <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>              scale <span class="op">=</span> <span class="st">"column"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="142-mapping-3_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>Matching the previous visualization, we see that the proportion of cases is higher in people age 60 and older compared to younger groups. We now also see that the highest proportion of cases (about 20% or more) was in inviduals aged 80 and over in Quebec and in the 20-29 age group in BC and Yukon. The distribution of cases across ages was most similar between Ontario + Nunavut and BC + Yukon.</p>
+<p>Change the <code>scale</code> option to <code>row</code>. Make a guess about what the heatmap will show before you draw the figure.</p>
 </section><section id="specialized-maps-of-the-usa" class="level2" data-number="30.2"><h2 data-number="30.2" class="anchored" data-anchor-id="specialized-maps-of-the-usa">
 <span class="header-section-number">30.2</span> Specialized maps of the USA</h2>
 <p>Customization of any visualization is always possible, but takes time to develop. Maps of the USA are very common, so a huge number of variations have been developed. Here is a <a href="https://www.washingtonpost.com/wp-srv/special/business/states-most-threatened-by-trade/">kind of heatmap</a>: each state is the same size and the states are arranged in an approximate geographic representation of the USA. (Example adapted from Healy Section 7.3.)</p>
@@ -537,9 +547,7 @@ div.csl-indent {
 <ul>
 <li>
 <code>cansim</code> for Statistics Canada data</li>
-<li>
-<code>ggheatmap</code> available on github using <code>remotes::install_github("tleonardi/ggheatmap")</code>
-</li>
+<li><code>tidyheatmaps</code></li>
 <li>
 <code>statebins</code> for drawing maps with one block per state</li>
 </ul></section><section id="further-reading" class="level2" data-number="30.5"><h2 data-number="30.5" class="anchored" data-anchor-id="further-reading">
