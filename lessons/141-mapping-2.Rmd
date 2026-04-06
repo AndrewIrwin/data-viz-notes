@@ -131,7 +131,7 @@ In addition to `tidyverse`, I've used the following packages
 
 ## Further reading 
 
-* Healy's chapter 7 on [mapping](https://socviz.co/maps.html#maps)
+* Healy's chapter 7 on [mapping](https://socviz.co/07-maps.html)
 * Wilke's chapter 15 on [geospatial data](https://clauswilke.com/dataviz/geospatial-data.html)
 * An article describing how [ggmap](https://journal.r-project.org/archive/2013-1/kahle-wickham.pdf) works
 * A [ggmap](https://github.com/dkahle/ggmap) tutorial, showing how to use Google map services including geocoding (turning an address into a location and the reverse) and routing.
